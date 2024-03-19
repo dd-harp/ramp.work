@@ -1,11 +1,9 @@
 Package: ramp.work
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Algorithms to support workflows and analytics pipelines for RAMP (Robust Analytics for Malaria Policy)
 Version: 0.1.0
-Author: 
 Authors@R: 
       c(person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849")))
-Maintainer: The package maintainer <yourself@somewhere.net>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 License: What license is it under?
@@ -14,7 +12,7 @@ LazyData: true
 RoxygenNote: 7.3.1
 Depends:
   knitr,
-  exDE
+  ramp.xde 
 Imports:
   stats,
   viridisLite

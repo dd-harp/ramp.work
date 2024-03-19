@@ -14,10 +14,10 @@ vignette: >
 Load the required packages:
 
 ```{r}
-suppressMessages(library(exDE))
+suppressMessages(library(ramp.xde))
 suppressMessages(require(deSolve))
 suppressMessages(require(rootSolve))
-suppressMessages(require(mobwork))
+suppressMessages(require(ramp.work))
 ```
 
 In the following 
@@ -25,7 +25,7 @@ In the following
 The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
 Do we need two versions?
 
-The cohort trace functions in `exDE` take the form of `F(a, bday=0, scale=1).` 
+The cohort trace functions in `ramp.xde` take the form of `F(a, bday=0, scale=1).` 
 
 ```{r}
 F_eir = function(a, bday=0, scale=1){scale*(1.01 + sin(2*pi*(a+bday)/365))}

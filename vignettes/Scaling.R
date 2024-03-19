@@ -1,8 +1,8 @@
 ## -----------------------------------------------------------------------------
-suppressMessages(library(exDE))
+suppressMessages(library(ramp.xde))
 suppressMessages(require(deSolve))
 suppressMessages(require(rootSolve))
-suppressMessages(require(mobwork))
+suppressMessages(require(ramp.work))
 
 ## -----------------------------------------------------------------------------
 F_eir = function(a, bday=0, scale=1){scale*(1.01 + sin(2*pi*(a+bday)/365))}
