@@ -1,11 +1,19 @@
+library(devtools)
+devtools::install_github("dd-harp/ramp.xde")
+devtools::install_github("dd-harp/ramp.work")
+devtools::install_github("dd-harp/ramp.library")
+
+
 ## -----------------------------------------------------------------------------
+suppressMessages(library(ramp.library))
 suppressMessages(library(ramp.xde))
 suppressMessages(require(deSolve))
 suppressMessages(require(rootSolve))
-#suppressMessages(require(ramp.work))
+suppressMessages(require(ramp.work))
 
 ## -----------------------------------------------------------------------------
-devtools::load_all()
+#devtools::load_all()
+
 
 ## -----------------------------------------------------------------------------
 sis_si <- xde_setup(MYZname = "si")
@@ -22,13 +30,14 @@ get_par = function(pars){
   return(pars$Lpar[[1]]$scale)
 }
 
+
 put_par = function(x, pars){
   pars$Lpar[[1]]$scale = x
   return(pars)
 }
 
 ## -----------------------------------------------------------------------------
-devtools::load_all()
+#devtools::load_all()
 
 ## -----------------------------------------------------------------------------
 sis_si_fit <- xde_maximize_gof(c(0.8), sis_si, get_stat, get_par, put_par, F_sse, Tmax=100)
