@@ -1,3 +1,4 @@
+#-------------------------------------------- Differential equations
 #' @title sum of squared errors
 #' @description Compute the sum of squared errors
 #' @param ppp the parameters to be fitted
@@ -49,6 +50,7 @@ xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
   return(model)
 }
 
+#------------------------------------------------------------------- Discrete time model
 #' @title sum of squared errors
 #' @description Compute the sum of squared errors
 #' @param ppp the parameters to be fitted
@@ -100,6 +102,7 @@ dts_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
   return(model)
 }
 
+#-------------------------------------------------------------- Calculate sum of squared errors
 #' @title Sum of squared errors. Works as F_gof in xde_maximize_gof
 #' @description Compute the sum of squared errors
 #' @param obs a set of observations
