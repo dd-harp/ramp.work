@@ -1,3 +1,5 @@
-# ramp.work
+# **`ramp.work'**
 
-Utilities and Algorithms for Robust Analytics for Malaria Policy (RAMP) and Mosquito-Transmitted Pathogens
+RAMP - algorithms to do work with [**`ramp.xds`**](https://dd-harp.github.io/ramp.xde/) 
+
+
