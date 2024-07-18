@@ -7,6 +7,18 @@
     <loc>/LICENSE-text.html</loc>
   </url>
   <url>
+    <loc>/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Analysis.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Fitting.html</loc>
+  </url>
+  <url>
+    <loc>/articles/Fitting_pr2eir.html</loc>
+  </url>
+  <url>
     <loc>/articles/Scaling.html</loc>
   </url>
   <url>
@@ -17,6 +29,27 @@
   </url>
   <url>
     <loc>/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/F_sse.html</loc>
+  </url>
+  <url>
+    <loc>/reference/ar_compare.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dts_compute_gof.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dts_init_by_pr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dts_maximize_gof.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dts_pr2ar_step.html</loc>
+  </url>
+  <url>
+    <loc>/reference/dts_pr2ar_ts.html</loc>
   </url>
   <url>
     <loc>/reference/hello.html</loc>
@@ -46,10 +79,19 @@
     <loc>/reference/ssMYZ.html</loc>
   </url>
   <url>
+    <loc>/reference/update_by_ar.html</loc>
+  </url>
+  <url>
+    <loc>/reference/xde_compute_gof.html</loc>
+  </url>
+  <url>
     <loc>/reference/xde_eir2ni.html</loc>
   </url>
   <url>
     <loc>/reference/xde_eir2pr.html</loc>
+  </url>
+  <url>
+    <loc>/reference/xde_maximize_gof.html</loc>
   </url>
   <url>
     <loc>/reference/xde_pr2eir.html</loc>

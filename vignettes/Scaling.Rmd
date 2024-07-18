@@ -14,18 +14,18 @@ vignette: >
 Load the required packages:
 
 ```{r}
-suppressMessages(library(ramp.xde))
-suppressMessages(require(deSolve))
-suppressMessages(require(rootSolve))
-suppressMessages(require(ramp.work))
+library(ramp.xds)
+library(deSolve)
+library(rootSolve)
+library(ramp.work)
 ```
 
-In the following 
+## xde 
 
 The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
 Do we need two versions?
 
-The cohort trace functions in `ramp.xde` take the form of `F(a, bday=0, scale=1).` 
+The cohort trace functions in `ramp.xds` take the form of `F(a, bday=0, scale=1).` 
 
 ```{r}
 F_eir = function(a, bday=0, scale=1){scale*(1.01 + sin(2*pi*(a+bday)/365))}
@@ -52,7 +52,6 @@ xde_setup_cohort(F_eir) -> sis
 ```{r}
 xde_solve(sis) -> sis
 ```
-
 
 ```{r}
 tt = seq(0:365)
@@ -183,7 +182,7 @@ with(sis$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[2
 sip = xde_setup_cohort(F_eir0, Xname = "SIP")
 sip$Xpar[[1]]$eta = 1/40
 xde_scaling_eir(sip, 25) -> sip
-sip1 = setup_exposure_nb(sip, 1/50)
+sip1 = xde_setup_exposure_nb(sip, 1/50)
 xde_scaling_eir(sip1, 25) -> sip1
 ```
 
@@ -197,8 +196,8 @@ with(sip1$outputs$eirpr, lines(aeir, pr, col = "brown"))
 ## Heterogeneity 
 
 ```{r}
-#sis3 <- setup_exposure_nb(sis2, 1/50)
-sis4 <- setup_exposure_nb(sis, 1/50)
+#sis3 <- xde_setup_exposure_nb(sis2, 1/50)
+sis4 <- xde_setup_exposure_nb(sis, 1/50)
 #xde_scaling_eir(sis3, 25) -> sis3
 xde_scaling_eir(sis4, 25) -> sis4
 ```

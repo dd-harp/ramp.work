@@ -1,0 +1,117 @@
+---
+title: "Time Series PR to EIR" 
+subtitle: "Computing a fitted EIR time series from PR time series data" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document: 
+    theme: paper 
+vignette: >
+  %\VignetteIndexEntry{Time Series PR to EIR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```{r}
+library(knitr)
+library(ramp.xds)
+library(ramp.work)
+```
+
+# 
+
+A dynamical systems model, $\mathcal M$, describing malaria... 
+
+**Step-Ahead Fitting** 
+
+Suppose we have a time series with observations:
+
+$$x_1, x_2, x_3, \ldots, x_n$$ 
+
+at time points
+
+$$t_1, t_2, t_3, \ldots, t_n$$ 
+
+we are looking for a set of ar values: 
+
+$$\alpha_1, \alpha_2, \alpha_3, \ldots, \alpha_n$$
+
+Let $$F_{\mathcal M}(t, \alpha_t, y_t, {\mathcal M}) = y_{t+1}$$ be a function that solves (updates) the model, $\mathcal M$ once at time $t$ and returns the state variables $y$ 
+
+The pseudo-code for the fitting algorithm is: 
+
++ initialize the model, $\mathcal M$, such that 
+
+	+ $F_{\mathcal M}(t_1, \alpha_1, y_1, {\mathcal M}) = y_1$ 
+	
+	+ $F_{obs}(y_1) = x_1$
+	
++ Iteratively compute $\alpha_2$ such that: 
+
+	+ $F_{\mathcal M}(t, \alpha_t, y_t, {\mathcal M}) = y_{t+1}$ 
+	
+	+ $F_{obs}(y_{t+1}) = x_{t+1}$
+
+## Verification
+
+This function probably needs to get pushed into the code somehow. 
+
+```{r, show_pr}
+show_pr = function(model, get_pr=F_pr, i=1){
+  y = unname(get_inits(model))
+  get_pr(list_Xvars(y, model, 1), model$Xpar[[1]])
+}
+```
+
+We set up a model:
+
+```{r}
+si <- dts_setup(Xname = "SIS", MYZname = "si")
+```
+
+Note that the initial conditions are not what we wanted: 
+
+```{r}
+show_pr(si)
+```
+
+We initialize the model to have a *Pr*PR 
+
+```{r}
+si <- dts_init_by_pr(.4, si, F_pr, 365)
+show_pr(si)
+```
+
+We find the attack rate at the steady state:   
+
+```{r}
+ar <- dts_pr2ar_step(.4, si, F_pr)
+ar
+```
+
+and we generate a time series:
+
+```{r}
+set.seed(230)
+ar_ts <- ar*c(1, rlnorm(14, 1, 1))
+ar_ts
+```
+
+We use it to create a *Pf*PR time series:
+
+```{r}
+si1 = si
+pr_ts = show_pr(si1)
+for(i in 2:length(ar_ts)){
+  y = update_by_ar(ar_ts[i], si1, 1)
+  si1 = update_inits(y, si1)
+  pr_ts = c(pr_ts, show_pr(si1))
+}
+pr_ts
+```
+
+Now, we pass the *Pf*PR time series to `dts_pr2ar_ts` and test that it returns our AR time series:  
+
+```{r}
+ar_t <- dts_pr2ar_ts(pr_ts, si, F_pr)
+sum((ar_ts-ar_t)^2) < 1e-9
+```
+

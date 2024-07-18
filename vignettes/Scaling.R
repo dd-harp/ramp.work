@@ -1,8 +1,8 @@
 ## -----------------------------------------------------------------------------
-suppressMessages(library(ramp.xde))
-suppressMessages(require(deSolve))
-suppressMessages(require(rootSolve))
-suppressMessages(require(ramp.work))
+library(ramp.xds)
+library(deSolve)
+library(rootSolve)
+library(ramp.work)
 
 ## -----------------------------------------------------------------------------
 F_eir = function(a, bday=0, scale=1){scale*(1.01 + sin(2*pi*(a+bday)/365))}
@@ -101,7 +101,7 @@ with(sis$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[2
 sip = xde_setup_cohort(F_eir0, Xname = "SIP")
 sip$Xpar[[1]]$eta = 1/40
 xde_scaling_eir(sip, 25) -> sip
-sip1 = setup_exposure_nb(sip, 1/50)
+sip1 = xde_setup_exposure_nb(sip, 1/50)
 xde_scaling_eir(sip1, 25) -> sip1
 
 ## -----------------------------------------------------------------------------
@@ -111,8 +111,8 @@ with(sip$outputs$eirpr, lines(aeir, pr, col = "darkorange"))
 with(sip1$outputs$eirpr, lines(aeir, pr, col = "brown"))
 
 ## -----------------------------------------------------------------------------
-#sis3 <- setup_exposure_nb(sis2, 1/50)
-sis4 <- setup_exposure_nb(sis, 1/50)
+#sis3 <- xde_setup_exposure_nb(sis2, 1/50)
+sis4 <- xde_setup_exposure_nb(sis, 1/50)
 #xde_scaling_eir(sis3, 25) -> sis3
 xde_scaling_eir(sis4, 25) -> sis4
 

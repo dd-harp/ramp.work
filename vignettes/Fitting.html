@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-07-03" />
+<meta name="date" content="2024-07-18" />
 
 <title>Fitting Models to Data</title>
 
@@ -374,24 +374,25 @@ display: none;
 
 
 <h1 class="title toc-ignore">Fitting Models to Data</h1>
-<h4 class="date">July 03, 2024</h4>
+<h4 class="date">July 18, 2024</h4>
 
 </div>
 
 
 <p>Load the required packages:</p>
-<pre class="r"><code>suppressMessages(library(ramp.xde))
-suppressMessages(require(deSolve))
-suppressMessages(require(rootSolve))
-#suppressMessages(require(ramp.work))</code></pre>
-<pre class="r"><code>devtools::load_all()</code></pre>
-<pre><code>## ℹ Loading ramp.work</code></pre>
+<pre class="r"><code>library(ramp.xds)
+require(deSolve)</code></pre>
+<pre><code>## Loading required package: deSolve</code></pre>
+<pre class="r"><code>require(rootSolve)</code></pre>
+<pre><code>## Loading required package: rootSolve</code></pre>
+<pre class="r"><code>require(ramp.work)</code></pre>
 <pre class="r"><code>sis_si &lt;- xde_setup(MYZname = &quot;si&quot;)
 sis_si &lt;- xde_solve(sis_si)
 sis_si &lt;- update_inits(sis_si$outputs$orbits$y_last, sis_si)</code></pre>
 <pre class="r"><code>#F_obs
 get_stat = function(pars){
-  return(tail(F_pr(pars$outputs$orbits, pars, 1),1))
+  y = pars$outputs$orbits$y_last
+  return(F_pr(list_Xvars(y, pars, 1), pars$Xpar[[1]]))
 }
 
 get_par = function(pars){
@@ -402,8 +403,6 @@ put_par = function(x, pars){
   pars$Lpar[[1]]$scale = x
   return(pars)
 }</code></pre>
-<pre class="r"><code>devtools::load_all()</code></pre>
-<pre><code>## ℹ Loading ramp.work</code></pre>
 <pre class="r"><code>sis_si_fit &lt;- xde_maximize_gof(c(0.8), sis_si, get_stat, get_par, put_par, F_sse, Tmax=100)
 get_stat(sis_si_fit)</code></pre>
 <pre><code>## [1] 0.7999626</code></pre>
