@@ -1,4 +1,3 @@
-#-------------------------------------------- Differential equations
 #' @title sum of squared errors
 #' @description Compute the sum of squared errors
 #' @param ppp the parameters to be fitted
@@ -31,6 +30,7 @@ xde_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=365, d
 #' @param F_gof a function to compute the goodness of fit
 #' @param Tmax the maximum runtime
 #' @param dt the time step
+#' @param tol the desired accuracy
 #' @return the sum of squared errors
 #' @export
 xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=365, dt=1, tol = 1e-8){
@@ -38,19 +38,18 @@ xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
   while(xxx > tol){
     ppp <- get_par(model)
     if(length(ppp)==1){
-      vals <- optimize(xde_compute_gof, interval = c(1/5*ppp, 5*ppp), data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
+      vals <- stats::optimize(xde_compute_gof, interval = c(1/5*ppp, 5*ppp), data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
     } else {
-      vals <- nlm(xde_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
+      vals <- stats::nlm(xde_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
     }
     model <- put_par(vals$minimum, model)
     model <- xde_solve(model, 3*Tmax)
-    xxx <- F_gof(data, get_stat(model))
+    xxx <- F_gof(data, F_obs(model))
     model <- last_to_inits(model)
   }
   return(model)
 }
 
-#------------------------------------------------------------------- Discrete time model
 #' @title sum of squared errors
 #' @description Compute the sum of squared errors
 #' @param ppp the parameters to be fitted
@@ -60,12 +59,11 @@ xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
 #' @param put_par a function to put the parameters to be fitted
 #' @param F_gof a function to compute the goodness of fit
 #' @param Tmax the maximum runtime
-#' @param dt the time step
 #' @return the sum of squared errors
 #' @export
-dts_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=365, dt=1){
+dts_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof, Tmax=365){
   model <- put_par(ppp, model)
-  model <- dts_solve(model, Tmax, dt)
+  model <- dts_solve(model, Tmax)
   pred <- F_obs(model)
   model <- last_to_inits(model)
   gof <- F_gof(data, pred)
@@ -83,6 +81,7 @@ dts_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=365, d
 #' @param F_gof a function to compute the goodness of fit
 #' @param Tmax the maximum runtime
 #' @param dt the time step
+#' @param tol the desired accuracy
 #' @return the sum of squared errors
 #' @export
 dts_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=365, dt=1, tol = 1e-8){
@@ -90,19 +89,18 @@ dts_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
   while(xxx > tol){
     ppp <- get_par(model)
     if(length(ppp)==1){
-      vals <- optimize(dts_compute_gof, interval=c(1/5*ppp, 5*ppp), data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
+      vals <- stats::optimize(dts_compute_gof, interval=c(1/5*ppp, 5*ppp), data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
     }else{
-      vals <- nlm(dts_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
+      vals <- stats::nlm(dts_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
     }
     model <- put_par(vals$minimum, model)
     model <- dts_solve(model, 3*Tmax)
-    xxx <- F_gof(data, get_stat(model))
+    xxx <- F_gof(data, F_obs(model))
     model <- last_to_inits(model)
   }
   return(model)
 }
 
-#-------------------------------------------------------------- Calculate sum of squared errors
 #' @title Sum of squared errors. Works as F_gof in xde_maximize_gof
 #' @description Compute the sum of squared errors
 #' @param obs a set of observations
