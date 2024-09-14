@@ -12,6 +12,6 @@ xde_scaling_eir(model, N = 25)
 \item{N}{an integer}
 }
 \description{
-This function computes average annual values for the eir, the pr, and other
+This function calls [xde_solve_cohort] computes average annual values for the eir, the pr, and other
 interesting terms and returns a table. It is computed for a model of class "cohort"
 }

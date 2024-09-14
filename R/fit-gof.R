@@ -13,7 +13,7 @@
 xde_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=365, dt=1){
 #  gof <- F_gof(data, F_obs(xde_solve(put_par(ppp, model), Tmax, dt)))
    model <- put_par(ppp, model)
-   model <- xde_solve(model, Tmax, dt)
+   model <- xds_solve(model, Tmax, dt)
    pred <- F_obs(model)
    model <- last_to_inits(model)
    gof <- F_gof(data, pred)
@@ -43,7 +43,7 @@ xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
       vals <- stats::nlm(xde_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
     }
     model <- put_par(vals$minimum, model)
-    model <- xde_solve(model, 3*Tmax)
+    model <- xds_solve(model, 3*Tmax)
     xxx <- F_gof(data, F_obs(model))
     model <- last_to_inits(model)
   }
