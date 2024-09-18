@@ -16,6 +16,10 @@ library(ramp.xds)
 library(ramp.work)
 ```
 
+```{r}
+devtools::load_all()
+```
+
 # 
 
 A dynamical systems model, $\mathcal M$, describing malaria... 
@@ -56,7 +60,7 @@ This function probably needs to get pushed into the code somehow.
 
 ```{r, show_pr}
 show_pr = function(model, get_pr=F_pr, i=1){
-  y = unname(get_inits(model))
+  y = get_inits(model, flatten=TRUE)
   get_pr(list_Xvars(y, model, 1), model$Xpar[[1]])
 }
 ```
@@ -64,7 +68,7 @@ show_pr = function(model, get_pr=F_pr, i=1){
 We set up a model:
 
 ```{r}
-si <- dts_setup(Xname = "SIS", MYZname = "si")
+si <- xds_setup(Xname = "SIS", MYZname = "si")
 ```
 
 Note that the initial conditions are not what we wanted: 
