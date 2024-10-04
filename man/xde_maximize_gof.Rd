@@ -11,8 +11,7 @@ xde_maximize_gof(
   get_par,
   put_par,
   F_gof,
-  Tmax = 365,
-  dt = 1,
+  Tmax = 3650,
   tol = 1e-08
 )
 }
@@ -30,8 +29,6 @@ xde_maximize_gof(
 \item{F_gof}{a function to compute the goodness of fit}
 
 \item{Tmax}{the maximum runtime}
-
-\item{dt}{the time step}
 
 \item{tol}{the desired accuracy}
 }
