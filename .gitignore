@@ -3,6 +3,8 @@
 .Rhistory
 .RData
 .Ruserdata
-docs/
-*.html
 docs
+docs/*
+docs/*.html
+*.html
+*.html
