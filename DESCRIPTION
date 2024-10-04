@@ -9,9 +9,7 @@ Description: More about what it does (maybe more than one line)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Remotes: 
-  github::dd-harp/ramp.xds
-  github::dd-harp/ramp.library
+Remotes:  github::dd-harp/ramp.xds, github::dd-harp/ramp.library
 RoxygenNote: 7.3.2
 Depends:
   ramp.xds,
