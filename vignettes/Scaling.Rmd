@@ -15,7 +15,6 @@ Load the required packages:
 
 ```{r}
 library(ramp.xds)
-library(ramp.library)
 library(deSolve)
 library(rootSolve)
 library(ramp.work)
@@ -125,19 +124,19 @@ with(sis0$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[
 
 ### Drug taking 
 
-```{r}
+```{r, eval=F}
 sip = xds_setup_cohort(Xname = "SIP", F_season=F_sin)
 sip$Xpar[[1]]$eta = 1/40
 xde_scaling_eir(sip, 25) -> sip
 ```
 
 
-```{r}
+```{r, eval=F}
 sip1 = setup_exposure_nb(sip, 1/50)
 xde_scaling_eir(sip1, 25) -> sip1
 ```
 
-```{r}
+```{r, eval=F}
 with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
 axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
 with(sip$outputs$eirpr, lines(aeir, pr, col = "darkorange"))

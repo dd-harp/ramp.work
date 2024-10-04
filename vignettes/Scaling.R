@@ -1,6 +1,5 @@
 ## -----------------------------------------------------------------------------
 library(ramp.xds)
-library(ramp.library)
 library(deSolve)
 library(rootSolve)
 library(ramp.work)
@@ -66,20 +65,20 @@ with(sis0$outputs$eirpr, lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[
 with(sis0$outputs$eirpr, lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15]))
 with(sis0$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20]))
 
-## -----------------------------------------------------------------------------
-sip = xds_setup_cohort(Xname = "SIP", F_season=F_sin)
-sip$Xpar[[1]]$eta = 1/40
-xde_scaling_eir(sip, 25) -> sip
+## ----eval=F-------------------------------------------------------------------
+#  sip = xds_setup_cohort(Xname = "SIP", F_season=F_sin)
+#  sip$Xpar[[1]]$eta = 1/40
+#  xde_scaling_eir(sip, 25) -> sip
 
-## -----------------------------------------------------------------------------
-sip1 = setup_exposure_nb(sip, 1/50)
-xde_scaling_eir(sip1, 25) -> sip1
+## ----eval=F-------------------------------------------------------------------
+#  sip1 = setup_exposure_nb(sip, 1/50)
+#  xde_scaling_eir(sip1, 25) -> sip1
 
-## -----------------------------------------------------------------------------
-with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
-axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
-with(sip$outputs$eirpr, lines(aeir, pr, col = "darkorange"))
-with(sip1$outputs$eirpr, lines(aeir, pr, col = "brown"))
+## ----eval=F-------------------------------------------------------------------
+#  with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
+#  axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
+#  with(sip$outputs$eirpr, lines(aeir, pr, col = "darkorange"))
+#  with(sip1$outputs$eirpr, lines(aeir, pr, col = "brown"))
 
 ## -----------------------------------------------------------------------------
 sis4 <- setup_exposure_nb(sis, 1/50)
