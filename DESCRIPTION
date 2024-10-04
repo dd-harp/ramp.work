@@ -10,6 +10,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Remotes: github::dd-harp/ramp.xds
+Remotes: github::dd-harp/ramp.library
 RoxygenNote: 7.3.2
 Depends:
   ramp.xds,
