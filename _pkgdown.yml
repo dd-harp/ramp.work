@@ -1,4 +1,64 @@
-url: ~
-template:
-  bootstrap: 5
-
+url: https://dd-harp.github.io/ramp.xds
+navbar:
+  left:
+  - text: Articles
+    menu:
+    - text: Scaling
+      href: articles/Scaling.html
+  - text: Functions
+    href: reference/index.html
+  right:
+  - icon: fa-github
+    href: https://github.com/dd-harp/ramp.xds/
+home:
+  sidebar:
+    structure:
+    - links
+    - license
+    - community
+    - citation
+    - authors
+    - dev
+reference:
+- title: No methods yet
+  desc: |
+    Methods do not exist
+- subtitle: No subclass exists
+  desc: |
+    No methods to set subclass
+  contents:
+  - ar_compare
+  - lines_eirVpr
+  - lines_eirpr
+  - mean_phase_peak
+  - ssMYZ
+- title: Fitting
+  desc: |
+    No methods to set subclass
+  contents:
+  - update_by_ar
+  - xde_compute_gof
+  - dts_compute_gof
+  - dts_init_by_pr
+  - dts_maximize_gof
+  - dts_pr2ar_step
+  - dts_pr2ar_ts
+  - F_sse
+- title: Scaling
+  desc: |
+    No methods to set subclass
+  contents:
+  - plot_eirVpr
+  - plot_eirpr
+  - pr2Lambda
+  - xde_eir2ni
+  - xde_eir2pr
+  - xde_maximize_gof
+  - xde_pr2eir
+  - xde_pr2lambda
+  - xde_pr2m
+  - xde_pr2ni
+  - xde_scaling
+  - xde_scaling_Z
+  - xde_scaling_eir
+  - xde_scaling_lambda
