@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-07-18" />
+<meta name="date" content="2024-10-04" />
 
 <title>Time Series PR to EIR</title>
 
@@ -376,7 +376,7 @@ display: none;
 <h1 class="title toc-ignore">Time Series PR to EIR</h1>
 <h3 class="subtitle">Computing a fitted EIR time series from PR time
 series data</h3>
-<h4 class="date">July 18, 2024</h4>
+<h4 class="date">October 04, 2024</h4>
 
 </div>
 
@@ -423,29 +423,23 @@ x_{t+1}\)</span></p></li>
 <h2>Verification</h2>
 <p>This function probably needs to get pushed into the code somehow.</p>
 <pre class="r"><code>show_pr = function(model, get_pr=F_pr, i=1){
-  y = unname(get_inits(model))
+  y = get_inits(model, flatten=TRUE)
   get_pr(list_Xvars(y, model, 1), model$Xpar[[1]])
 }</code></pre>
 <p>We set up a model:</p>
-<pre class="r"><code>si &lt;- dts_setup(Xname = &quot;SIS&quot;, MYZname = &quot;si&quot;)</code></pre>
+<pre class="r"><code>SI &lt;- xds_setup(Xname = &quot;SIS&quot;, MYZname = &quot;SI&quot;)</code></pre>
 <p>Note that the initial conditions are not what we wanted:</p>
-<pre class="r"><code>show_pr(si)</code></pre>
-<pre><code>## [1] 0.001</code></pre>
+<pre class="r"><code>show_pr(SI)</code></pre>
 <p>We initialize the model to have a <em>Pr</em>PR</p>
-<pre class="r"><code>si &lt;- dts_init_by_pr(.4, si, F_pr, 365)
-show_pr(si)</code></pre>
-<pre><code>## [1] 0.4000001</code></pre>
+<pre class="r"><code>SI &lt;- dts_init_by_pr(.4, SI, F_pr, 365)
+show_pr(SI)</code></pre>
 <p>We find the attack rate at the steady state:</p>
 <pre class="r"><code>ar &lt;- dts_pr2ar_step(.4, si, F_pr)
 ar</code></pre>
-<pre><code>## [1] 0.003679845</code></pre>
 <p>and we generate a time series:</p>
 <pre class="r"><code>set.seed(230)
 ar_ts &lt;- ar*c(1, rlnorm(14, 1, 1))
 ar_ts</code></pre>
-<pre><code>##  [1] 0.003679845 0.007909271 0.011068883 0.013895328 0.014362449 0.015572926
-##  [7] 0.010419518 0.017605048 0.008673036 0.004731395 0.011421354 0.038356086
-## [13] 0.001983812 0.023036875 0.012163434</code></pre>
 <p>We use it to create a <em>Pf</em>PR time series:</p>
 <pre class="r"><code>si1 = si
 pr_ts = show_pr(si1)
@@ -455,15 +449,11 @@ for(i in 2:length(ar_ts)){
   pr_ts = c(pr_ts, show_pr(si1))
 }
 pr_ts</code></pre>
-<pre><code>##  [1] 0.4000001 0.4025471 0.4069548 0.4129721 0.4191482 0.4259077 0.4295545
-##  [8] 0.4372593 0.4397385 0.4399646 0.4439514 0.4629140 0.4614200 0.4713297
-## [15] 0.4751807</code></pre>
 <p>Now, we pass the <em>Pf</em>PR time series to
 <code>dts_pr2ar_ts</code> and test that it returns our AR time
 series:</p>
 <pre class="r"><code>ar_t &lt;- dts_pr2ar_ts(pr_ts, si, F_pr)
 sum((ar_ts-ar_t)^2) &lt; 1e-9</code></pre>
-<pre><code>## [1] TRUE</code></pre>
 </div>
 </div>
 

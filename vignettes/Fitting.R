@@ -5,16 +5,16 @@ require(rootSolve)
 require(ramp.work)
 
 ## ----echo=F-------------------------------------------------------------------
-devtools::load_all()
+#devtools::load_all()
 
 ## -----------------------------------------------------------------------------
-sis_si <- xds_setup(MYZname = "si")
+sis_si <- xds_setup(MYZname = "SI")
 sis_si <- xds_solve(sis_si)
 
 ## -----------------------------------------------------------------------------
 #F_obs
 get_stat = function(pars){
-  pr = tail(sis_si$outputs$orbits$XH[[1]]$true_pr, 1)
+  pr = tail(pars$outputs$orbits$XH[[1]]$true_pr, 1)
   return(pr)
 }
 
@@ -26,4 +26,24 @@ put_par = function(x, pars){
   pars$Lpar[[1]]$Lambda = x
   return(pars)
 }
+
+## -----------------------------------------------------------------------------
+xde_compute_gof(20, .4, sis_si, get_stat, put_par, F_sse)
+xde_compute_gof(30, .4, sis_si, get_stat, put_par, F_sse)
+xde_compute_gof(40, .4, sis_si, get_stat, put_par, F_sse)
+
+## -----------------------------------------------------------------------------
+optimize(xde_compute_gof, interval = c(1, 500), data=c(0.4), model=sis_si, F_obs=get_stat, put_par=put_par, F_gof=F_sse, Tmax=1000) -> vals
+vals
+
+## -----------------------------------------------------------------------------
+sis_si <- put_par(vals$minimum, sis_si)
+sis_si <- last_to_inits(sis_si)
+optimize(xde_compute_gof, interval = c(1, 500), data=c(0.4), model=sis_si, F_obs=get_stat, put_par=put_par, F_gof=F_sse, Tmax=1000) -> vals
+vals
+get_stat(sis_si)
+
+## -----------------------------------------------------------------------------
+sis_si_fit <- xde_maximize_gof(c(0.4), sis_si, get_stat, get_par, put_par, F_sse, Tmax=1000)
+get_stat(sis_si_fit)
 

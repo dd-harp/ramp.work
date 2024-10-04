@@ -4,7 +4,7 @@
 \alias{xde_compute_gof}
 \title{sum of squared errors}
 \usage{
-xde_compute_gof(ppp, data, model, F_obs, put_par, F_gof, Tmax = 365, dt = 1)
+xde_compute_gof(ppp, data, model, F_obs, put_par, F_gof, Tmax = 3650)
 }
 \arguments{
 \item{ppp}{the parameters to be fitted}
@@ -20,8 +20,6 @@ xde_compute_gof(ppp, data, model, F_obs, put_par, F_gof, Tmax = 365, dt = 1)
 \item{F_gof}{a function to compute the goodness of fit}
 
 \item{Tmax}{the maximum runtime}
-
-\item{dt}{the time step}
 }
 \value{
 the sum of squared errors

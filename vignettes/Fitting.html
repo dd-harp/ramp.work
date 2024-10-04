@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-07-18" />
+<meta name="date" content="2024-10-04" />
 
 <title>Fitting Models to Data</title>
 
@@ -374,7 +374,7 @@ display: none;
 
 
 <h1 class="title toc-ignore">Fitting Models to Data</h1>
-<h4 class="date">July 18, 2024</h4>
+<h4 class="date">October 04, 2024</h4>
 
 </div>
 
@@ -386,32 +386,49 @@ require(deSolve)</code></pre>
 <pre class="r"><code>require(rootSolve)</code></pre>
 <pre><code>## Loading required package: rootSolve</code></pre>
 <pre class="r"><code>require(ramp.work)</code></pre>
-<pre class="r"><code>sis_si &lt;- xde_setup(MYZname = &quot;si&quot;)
-sis_si &lt;- xde_solve(sis_si)
-sis_si &lt;- update_inits(sis_si$outputs$orbits$y_last, sis_si)</code></pre>
+<pre class="r"><code>sis_si &lt;- xds_setup(MYZname = &quot;SI&quot;)
+sis_si &lt;- xds_solve(sis_si)</code></pre>
 <pre class="r"><code>#F_obs
 get_stat = function(pars){
-  y = pars$outputs$orbits$y_last
-  return(F_pr(list_Xvars(y, pars, 1), pars$Xpar[[1]]))
+  pr = tail(pars$outputs$orbits$XH[[1]]$true_pr, 1)
+  return(pr)
 }
 
 get_par = function(pars){
-  return(pars$Lpar[[1]]$scale)
+  return(pars$Lpar[[1]]$Lambda)
 }
 
 put_par = function(x, pars){
-  pars$Lpar[[1]]$scale = x
+  pars$Lpar[[1]]$Lambda = x
   return(pars)
 }</code></pre>
-<pre class="r"><code>sis_si_fit &lt;- xde_maximize_gof(c(0.8), sis_si, get_stat, get_par, put_par, F_sse, Tmax=100)
+<pre class="r"><code>xde_compute_gof(20, .4, sis_si, get_stat, put_par, F_sse)</code></pre>
+<pre><code>## [1] 0.09226452</code></pre>
+<pre class="r"><code>xde_compute_gof(30, .4, sis_si, get_stat, put_par, F_sse)</code></pre>
+<pre><code>## [1] 0.0005140863</code></pre>
+<pre class="r"><code>xde_compute_gof(40, .4, sis_si, get_stat, put_par, F_sse)</code></pre>
+<pre><code>## [1] 0.01144681</code></pre>
+<pre class="r"><code>optimize(xde_compute_gof, interval = c(1, 500), data=c(0.4), model=sis_si, F_obs=get_stat, put_par=put_par, F_gof=F_sse, Tmax=1000) -&gt; vals
+vals</code></pre>
+<pre><code>## $minimum
+## [1] 40.08968
+## 
+## $objective
+## [1] 6.638996e-14</code></pre>
+<pre class="r"><code>sis_si &lt;- put_par(vals$minimum, sis_si)
+sis_si &lt;- last_to_inits(sis_si)
+optimize(xde_compute_gof, interval = c(1, 500), data=c(0.4), model=sis_si, F_obs=get_stat, put_par=put_par, F_gof=F_sse, Tmax=1000) -&gt; vals
+vals</code></pre>
+<pre><code>## $minimum
+## [1] 31.17937
+## 
+## $objective
+## [1] 5.434034e-14</code></pre>
+<pre class="r"><code>get_stat(sis_si)</code></pre>
+<pre><code>## [1] 0.9765101</code></pre>
+<pre class="r"><code>sis_si_fit &lt;- xde_maximize_gof(c(0.4), sis_si, get_stat, get_par, put_par, F_sse, Tmax=1000)
 get_stat(sis_si_fit)</code></pre>
-<pre><code>## [1] 0.7999626</code></pre>
-<pre class="r"><code>sis_si_fit2 &lt;- xde_maximize_gof(c(0.8), sis_si_fit, get_stat, get_par, put_par, F_sse, Tmax=100)
-get_stat(sis_si_fit2)</code></pre>
-<pre><code>## [1] 0.8000077</code></pre>
-<pre class="r"><code>sis_si_fit3 &lt;- xde_maximize_gof(c(0.8), sis_si_fit2, get_stat, get_par, put_par, F_sse, Tmax=100)
-get_stat(sis_si_fit3)</code></pre>
-<pre><code>## [1] 0.7999984</code></pre>
+<pre><code>## [1] 0.4000522</code></pre>
 
 
 
