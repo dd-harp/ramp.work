@@ -8,3 +8,5 @@ docs/*
 docs/*.html
 *.html
 *.html
+/docs
+docs/reference/ar_compare.html
