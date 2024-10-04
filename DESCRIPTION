@@ -14,7 +14,7 @@ Remotes:
   github::dd-harp/ramp.library
 RoxygenNote: 7.3.2
 Depends:
-  ramp.xds,
+  ramp.xds
 Imports:
   stats
 Suggests:
