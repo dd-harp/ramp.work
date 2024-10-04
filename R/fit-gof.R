@@ -7,13 +7,11 @@
 #' @param put_par a function to put the parameters to be fitted
 #' @param F_gof a function to compute the goodness of fit
 #' @param Tmax the maximum runtime
-#' @param dt the time step
 #' @return the sum of squared errors
 #' @export
-xde_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=365, dt=1){
-#  gof <- F_gof(data, F_obs(xde_solve(put_par(ppp, model), Tmax, dt)))
+xde_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=3650){
    model <- put_par(ppp, model)
-   model <- xds_solve(model, Tmax, dt)
+   model <- xds_solve(model, Tmax, Tmax)
    pred <- F_obs(model)
    model <- last_to_inits(model)
    gof <- F_gof(data, pred)
@@ -29,18 +27,17 @@ xde_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof,  Tmax=365, d
 #' @param put_par a function to put the parameters to be fitted
 #' @param F_gof a function to compute the goodness of fit
 #' @param Tmax the maximum runtime
-#' @param dt the time step
 #' @param tol the desired accuracy
 #' @return the sum of squared errors
 #' @export
-xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=365, dt=1, tol = 1e-8){
+xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=3650, tol = 1e-8){
   xxx = 1
   while(xxx > tol){
     ppp <- get_par(model)
     if(length(ppp)==1){
-      vals <- stats::optimize(xde_compute_gof, interval = c(1/5*ppp, 5*ppp), data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
+      vals <- stats::optimize(xde_compute_gof, interval = c(1, 5*ppp), data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax)
     } else {
-      vals <- stats::nlm(xde_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
+      vals <- stats::nlm(xde_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax)
     }
     model <- put_par(vals$minimum, model)
     model <- xds_solve(model, 3*Tmax)
@@ -63,12 +60,12 @@ xde_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
 #' @export
 dts_compute_gof = function(ppp, data, model, F_obs, put_par, F_gof, Tmax=365){
   model <- put_par(ppp, model)
-  model <- dts_solve(model, Tmax)
+  model <- xds_solve(model, Tmax)
   pred <- F_obs(model)
   model <- last_to_inits(model)
   gof <- F_gof(data, pred)
   return(gof)
-  #  F_gof(data, F_obs(dts_solve(put_par(ppp, model), Tmax, dt)))
+  #  F_gof(data, F_obs(xds_solve(put_par(ppp, model), Tmax, dt)))
 }
 
 #' @title sum of squared errors
@@ -94,7 +91,7 @@ dts_maximize_gof = function(data, model, F_obs, get_par, put_par, F_gof, Tmax=36
       vals <- stats::nlm(dts_compute_gof, ppp, data=data, model=model, F_obs=F_obs, put_par=put_par, F_gof=F_gof, Tmax=Tmax, dt=dt)
     }
     model <- put_par(vals$minimum, model)
-    model <- dts_solve(model, 3*Tmax)
+    model <- xds_solve(model, 3*Tmax)
     xxx <- F_gof(data, F_obs(model))
     model <- last_to_inits(model)
   }

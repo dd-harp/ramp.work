@@ -16,8 +16,8 @@ library(ramp.xds)
 library(ramp.work)
 ```
 
-```{r}
-devtools::load_all()
+```{r, echo=F}
+#devtools::load_all()
 ```
 
 # 
@@ -68,32 +68,32 @@ show_pr = function(model, get_pr=F_pr, i=1){
 We set up a model:
 
 ```{r}
-si <- xds_setup(Xname = "SIS", MYZname = "si")
+SI <- xds_setup(Xname = "SIS", MYZname = "SI")
 ```
 
 Note that the initial conditions are not what we wanted: 
 
-```{r}
-show_pr(si)
+```{r, eval=F}
+show_pr(SI)
 ```
 
 We initialize the model to have a *Pr*PR 
 
-```{r}
-si <- dts_init_by_pr(.4, si, F_pr, 365)
-show_pr(si)
+```{r, eval=F}
+SI <- dts_init_by_pr(.4, SI, F_pr, 365)
+show_pr(SI)
 ```
 
 We find the attack rate at the steady state:   
 
-```{r}
+```{r, eval=F}
 ar <- dts_pr2ar_step(.4, si, F_pr)
 ar
 ```
 
 and we generate a time series:
 
-```{r}
+```{r, eval=F}
 set.seed(230)
 ar_ts <- ar*c(1, rlnorm(14, 1, 1))
 ar_ts
@@ -101,7 +101,7 @@ ar_ts
 
 We use it to create a *Pf*PR time series:
 
-```{r}
+```{r, eval=F}
 si1 = si
 pr_ts = show_pr(si1)
 for(i in 2:length(ar_ts)){
@@ -114,7 +114,7 @@ pr_ts
 
 Now, we pass the *Pf*PR time series to `dts_pr2ar_ts` and test that it returns our AR time series:  
 
-```{r}
+```{r, eval=F}
 ar_t <- dts_pr2ar_ts(pr_ts, si, F_pr)
 sum((ar_ts-ar_t)^2) < 1e-9
 ```

@@ -24,7 +24,7 @@ update_by_ar = function(ar, model, n=365){
   y = get_inits(model)
   for(i in 1:n){
     model$AR[[1]] = ar
-    Xt = DT_Xt(t, y, model, 1)
+    Xt = Update_Xt(t, y, model, 1)
     y <- put_Xvars(Xt, y, model, 1)
   }
   return(y)

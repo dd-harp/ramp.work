@@ -15,13 +15,14 @@ Load the required packages:
 
 ```{r}
 library(ramp.xds)
+library(ramp.library)
 library(deSolve)
 library(rootSolve)
 library(ramp.work)
 ```
 
 ```{r, echo=F}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 # Scaling
@@ -39,20 +40,6 @@ The cohort trace functions in `ramp.xds` take the form of `F(a, bday=0, scale=1)
 F_sin = function(t){(1.01 + sin(2*pi*t/365))}
 F_1 = function(t){0*t + 1/365}
 ```
-
-```{r}
-scl = integrate(F_sin, 0, 365)$value
-```
-
-```{r}
-F_sin= function(t){(1.01 + sin(2*pi*t/365))/scl}
-```
-
-```{r}
-integrate(F_sin, 0, 365)$value
-integrate(F_1, 0, 365)$value
-```
-
 
 ```{r}
 xds_setup_cohort(Xname = "SIS", F_season=F_1) -> sis
