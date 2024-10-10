@@ -10,3 +10,4 @@ docs/*.html
 *.html
 /docs
 docs/reference/ar_compare.html
+*.html

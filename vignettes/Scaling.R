@@ -5,14 +5,16 @@ library(rootSolve)
 library(ramp.work)
 
 ## ----echo=F-------------------------------------------------------------------
-#devtools::load_all()
+devtools::load_all()
+
+## ----Fsin---------------------------------------------------------------------
+tt <- seq(0, 730, by=5) 
+p1 <- makepar_F_sin(floor=0.1)
+Fsin <- make_function(p1)
+plot(tt, Fsin(tt), type="l")
 
 ## -----------------------------------------------------------------------------
-F_sin = function(t){(1.01 + sin(2*pi*t/365))}
-F_1 = function(t){0*t + 1/365}
-
-## -----------------------------------------------------------------------------
-xds_setup_cohort(Xname = "SIS", F_season=F_1) -> sis
+xds_setup_cohort(Xname = "SIS", F_season=Fsin) -> sis
 
 ## -----------------------------------------------------------------------------
 xds_solve_cohort(sis) -> sis
@@ -50,7 +52,7 @@ with(sis$outputs$eirpr, points(aeir, pr, pch = 15))
 with(preir_i, points(365*eir, pr, pch = 19, col = "red"))
 
 ## -----------------------------------------------------------------------------
-sis0 <- xds_setup_cohort(Xname = "SIS", F_season = F_sin)
+sis0 <- xds_setup_cohort(Xname = "SIS", F_season = Fsin)
 xde_scaling_eir(sis0, 25) -> sis0
 
 ## -----------------------------------------------------------------------------
@@ -66,7 +68,7 @@ with(sis0$outputs$eirpr, lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[
 with(sis0$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20]))
 
 ## ----eval=F-------------------------------------------------------------------
-#  sip = xds_setup_cohort(Xname = "SIP", F_season=F_sin)
+#  sip = xds_setup_cohort(Xname = "SIP", F_season=Fsin)
 #  sip$Xpar[[1]]$eta = 1/40
 #  xde_scaling_eir(sip, 25) -> sip
 
