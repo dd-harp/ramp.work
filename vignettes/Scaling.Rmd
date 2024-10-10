@@ -15,42 +15,47 @@ Load the required packages:
 
 ```{r}
 library(ramp.xds)
-library(deSolve)
-library(rootSolve)
 library(ramp.work)
+library(deSolve)
 ```
 
 ```{r, echo=F}
 #devtools::load_all()
 ```
+An important question in malaria is the relationship between various metrics, especially the relationship between the annual entomological inoculation rate (aEIR) and the parasite rate (PR). To facilitate analysis of malaria data, we have developed some functions to compute scaling relationships.  
 
-# Scaling
 
-This is a dog.
 
 ## xde_scaling 
 
-The function `xde_scaling()` defines the relationship between the EIR and the PR, and it outputs stable orbits for each value of aEIR in a mesh from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
-Do we need two versions?
+The function `xde_scaling()` defines the relationship between the EIR and the PR. It analyzes stable orbits and outputs the average annual EIR and average annual PR for an even mesh of `log(aEIR)` values running from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
 
-The cohort trace functions in `ramp.xds` take the form of `F(a, bday=0, scale=1).` 
+To illustrate, we pick a function describing a seasonal pattern using `ramp.xds::make_F_sin`
 
-```{r}
-F_sin = function(t){(1.01 + sin(2*pi*t/365))}
-F_1 = function(t){0*t + 1/365}
+```{r Fsin}
+tt <- seq(0, 730, by=5) 
+p1 <- makepar_F_sin(floor=0.1)
+Fsin <- make_function(p1)
+plot(tt, Fsin(tt), type="l")
 ```
 
+Next, we set up a cohort model: 
+
 ```{r}
-xds_setup_cohort(Xname = "SIS", F_season=F_1) -> sis
+xds_setup_cohort(Xname = "SIS", F_season=Fsin) -> sis
 ```
 
 ```{r}
 xds_solve_cohort(sis) -> sis
 ```
 
+The function `xde_scaling_eir` runs the model over a mesh of `N=25` values: 
+
 ```{r}
 xde_scaling_eir(sis, 25) -> sis
 ```
+
+The results are attached as `sis$outputs$eirpr` 
 
 ```{r}
 plot_eirpr(sis)
@@ -98,77 +103,4 @@ with(sis$outputs$eirpr, points(aeir, pr, pch = 15))
 with(preir_i, points(365*eir, pr, pch = 19, col = "red"))
 ```
 
-
-## Scaling {.tabset}
-
-### Seasonality
-
-```{r}
-sis0 <- xds_setup_cohort(Xname = "SIS", F_season = F_sin)
-xde_scaling_eir(sis0, 25) -> sis0
-```
-
-
-```{r}
-clrs = turbo(25)
-with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
-axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
-lines(sis$outputs$eirpr$aeir, sis0$outputs$eirpr$pr, col = "tomato", lwd=2) 
-
-with(sis0$outputs$eirpr, points(aeir, pr, col = clrs))
-with(sis0$outputs$eirpr, lines(scaling[[5]]$aeir, scaling[[5]]$pr, col = clrs[5]))
-with(sis0$outputs$eirpr, lines(scaling[[10]]$aeir, scaling[[10]]$pr, col = clrs[10]))
-with(sis0$outputs$eirpr, lines(scaling[[15]]$aeir, scaling[[15]]$pr, col = clrs[15]))
-with(sis0$outputs$eirpr, lines(scaling[[20]]$aeir, scaling[[20]]$pr, col = clrs[20]))
-```
-
-### Drug taking 
-
-```{r, eval=F}
-sip = xds_setup_cohort(Xname = "SIP", F_season=F_sin)
-sip$Xpar[[1]]$eta = 1/40
-xde_scaling_eir(sip, 25) -> sip
-```
-
-
-```{r, eval=F}
-sip1 = setup_exposure_nb(sip, 1/50)
-xde_scaling_eir(sip1, 25) -> sip1
-```
-
-```{r, eval=F}
-with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
-axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
-with(sip$outputs$eirpr, lines(aeir, pr, col = "darkorange"))
-with(sip1$outputs$eirpr, lines(aeir, pr, col = "brown"))
-``` 
-
-### Environmental Heterogeneity 
-
-```{r}
-sis4 <- setup_exposure_nb(sis, 1/50)
-xde_scaling_eir(sis4, 25) -> sis4
-```
-
-```{r}
-with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
-axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
-#with(sis2$outputs$eir, lines(aeir, pr, col = "blue"))
-#with(sis3$outputs$eir, lines(aeir, pr, col = "purple"))
-with(sis4$outputs$eir, lines(aeir, pr, col = "darkblue"))
-```
-
-### Travel
-
-```{r}
-sis5 <- setup_travel_static(sis, delta = 1/5/365)
-xde_scaling_eir(sis5, 25) -> sis5
-```
-
-
-```{r}
-with(sis$outputs$eirpr, plot(aeir, pr, type = "l", log = "x", xaxt= "n", xlab = "aEIR", ylab = "PR"))
-axis(1, 10^(-1:3), c(0.1, 1, 10, 100, 1000))
-with(sis5$outputs$eir, lines(aeir, pr, col = "darkgreen")) 
-```
 
