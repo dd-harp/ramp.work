@@ -62,3 +62,8 @@ reference:
   - xde_scaling_Z
   - xde_scaling_eir
   - xde_scaling_lambda
+- title: Demography
+  desc: |
+    No methods to set subclass
+  contents:
+  - UnevenAgingMatrix

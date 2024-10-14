@@ -17,11 +17,10 @@ xde_scaling_eir = function(model, N=25){
   for(i in 1:N){
     model$EIRpar$eir <- aEIR[i]/365
     model <- ramp.xds::xds_solve_cohort(model, A=10, da=1)
-    XH <- model$outputs$orbits$XH[[1]]
-    terms <- model$outputs$orbits$terms
+    XH <- get_XH(model, 1)
     pr_t = tail(XH$true_pr, 365); pr[i] = mean(pr_t)
     ni_t = tail(XH$ni, 365);  ni[i]= mean(ni_t)
-    eir_t = tail(terms$EIR, 365); eir[i] = mean(eir_t)
+    eir_t = tail(XH$eir, 365); eir[i] = mean(eir_t)
     scaling[[i]] = list(aeir = eir_t*365, eir = eir_t, pr = pr_t, ni = ni_t)
   }
 
