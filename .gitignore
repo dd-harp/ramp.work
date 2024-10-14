@@ -11,3 +11,5 @@ docs/*.html
 /docs
 docs/reference/ar_compare.html
 *.html
+/docs/articles
+/docs
