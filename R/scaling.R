@@ -10,14 +10,14 @@
 xde_scaling_eir = function(model, N=25){
 
   aEIR = 10^seq(-1,3, length.out=N)
-  pr = 0*aEIR
-  ni = 0*aEIR
-  eir = 0*aEIR
+  pr = rep(0, N)
+  ni = rep(0, N)
+  eir = rep(0, N)
   scaling = list()
   for(i in 1:N){
-    model$EIRpar$eir <- aEIR[i]/365
+    model <- ramp.xds::set_eir(aEIR[i]/365, model)
     model <- ramp.xds::xds_solve_cohort(model, A=10, da=1)
-    XH <- get_XH(model, 1)
+    XH <- ramp.xds::get_XH(model, 1)
     pr_t = tail(XH$true_pr, 365); pr[i] = mean(pr_t)
     ni_t = tail(XH$ni, 365);  ni[i]= mean(ni_t)
     eir_t = tail(XH$eir, 365); eir[i] = mean(eir_t)
@@ -27,6 +27,61 @@ xde_scaling_eir = function(model, N=25){
   model$outputs$eirpr <- list(aeir=365*eir, eir=eir, pr=pr, ni=ni, scaling=scaling)
 
   return(model)
+}
+
+#' @title Compute scaling relationships
+#' @description This function calls [xde_solve_cohort] computes average annual values for the eir, the pr, and other
+#' interesting terms and returns a table. It is computed for a model of class "cohort"
+#' @param model a **`ramp.xds`** model object
+#' @param N an integer
+#' @importFrom ramp.xds set_eir
+#' @importFrom utils tail
+#' @return **`xds`** model object
+#' @export
+xde_scaling_Lambda = function(model, N=25){
+  low_high = log10(bracket_Lambda(model))
+  lambda = 10^seq(low_high[1], low_high[2], length.out=N)
+  pr = rep(0, N)
+  ni = rep(0, N)
+  eir = rep(0, N)
+  lambda = rep(0, N)
+  scaling = list()
+  H = get_H(model)
+  for(i in 1:N){
+    Lambda = lambda[i]*H
+    model <- ramp.xds::set_Lambda(Lambda, model)
+    model <- ramp.xds::xds_solve(model, Tmax=10, dt=1)
+    XH <- ramp.xds::get_XH(model, 1)
+    pr_t = tail(XH$true_pr, 365); pr[i] = mean(pr_t)
+    ni_t = tail(XH$ni, 365);  ni[i]= mean(ni_t)
+    eir_t = tail(XH$eir, 365); eir[i] = mean(eir_t)
+    eir_t = tail(XH$eir, 365); eir[i] = mean(eir_t)
+    scaling[[i]] = list(aeir = eir_t*365, eir = eir_t, pr = pr_t, ni = ni_t)
+  }
+
+  model$outputs$eirpr <- list(aeir=365*eir, eir=eir, pr=pr, ni=ni, scaling=scaling)
+
+  return(model)
+}
+
+#' @title Get High/Low Values for Lambda
+#' @param model a **`ramp.xds`** model object
+#' @return a pair of values
+#' @export
+bracket_lambda = function(model){
+  model <- xds_solve(model, 3650, 3650)
+  y <- get_last(model)
+  b <- F_b(y,model,1)
+  f <- get_f(model, 1)
+  q <- get_q(model, 1)
+  g <- model$MYZpar[[1]]$g
+  eip <- model$MYZpar[[1]]$eip
+  VC <- f^2*q^2/g^2*exp(-g*eip)
+  D <- HTC(model, 1)
+  R0 <- b*VC*D
+  low = 1/R0/10
+  high = 1000/R0
+  c(low, high)
 }
 
 #' @title Compute eir-pr scaling relationships

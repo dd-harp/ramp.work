@@ -4,7 +4,7 @@
 \alias{mean_phase_peak}
 \title{Compute the phase of the peak}
 \usage{
-mean_phase_peak(t, X, window = 180)
+mean_phase_peak(t, X, window = 170)
 }
 \arguments{
 \item{t}{the times}
@@ -12,6 +12,9 @@ mean_phase_peak(t, X, window = 180)
 \item{X}{the data}
 
 \item{window}{days around t}
+}
+\value{
+a list with the mean peak and the values
 }
 \description{
 For a time series \eqn{X,} compute the
