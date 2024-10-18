@@ -28,8 +28,6 @@ reference:
     No methods to set subclass
   contents:
   - ar_compare
-  - lines_eirVpr
-  - lines_eirpr
   - mean_phase_peak
   - ssMYZ
 - title: Fitting
@@ -50,7 +48,10 @@ reference:
   contents:
   - plot_eirVpr
   - plot_eirpr
+  - lines_eirVpr
+  - lines_eirpr
   - pr2Lambda
+  - xde_eir2lambda
   - xde_eir2ni
   - xde_eir2pr
   - xde_maximize_gof

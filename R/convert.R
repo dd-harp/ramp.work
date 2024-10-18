@@ -1,4 +1,6 @@
 
+
+
 #' @title Convert pr to eir
 #' @description Use the outputs$eirpr table to convert a set of pr values into eir values
 #' @param pr a [vector]
