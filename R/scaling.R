@@ -1,3 +1,4 @@
+
 #' @title Compute eir-pr scaling relationships
 #' @description This function calls [xde_solve_cohort] computes average annual values for the eir, the pr, and other
 #' interesting terms and returns a table. It is computed for a model of class "cohort"
@@ -38,8 +39,10 @@ xde_scaling_eir = function(model, N=25, rbr=1){
 #' @return **`xds`** model object
 #' @export
 xde_scaling_Lambda = function(model, N=25){
-  low_high = log10(bracket_Lambda(model))
-  lambda = 10^seq(low_high[1], low_high[2], length.out=N)
+  Ltot <- sum(model$Lpar$Lambda)
+  Htot <- get_H(model)
+  scale = Htot/Ltot
+  factor = 10^seq(-3, 3, length.out=N)*scale
   pr = rep(0, N)
   ni = rep(0, N)
   eir = rep(0, N)
@@ -48,7 +51,7 @@ xde_scaling_Lambda = function(model, N=25){
   H = get_H(model)
   for(i in 1:N){
     Lambda = lambda[i]*H
-    model <- ramp.xds::set_Lambda(Lambda, model)
+    model$Lpar[[1]]$Lambda <- model$Lpar[[1]]$Lambda*scale
     model <- ramp.xds::xds_solve(model, Tmax=10, dt=1)
     XH <- ramp.xds::get_XH(model, 1)
     pr_t = tail(XH$true_pr, 365); pr[i] = mean(pr_t)
