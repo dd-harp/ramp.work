@@ -11,7 +11,7 @@ xde_scaling_eir(model, N = 25, rbr = 1)
 
 \item{N}{an integer}
 
-\item{rbr}{the relative biting rate}
+\item{rbr}{the relative biting rate for a population stratum}
 }
 \value{
 **`xds`** model object
