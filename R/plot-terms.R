@@ -72,3 +72,53 @@ plot_eirpr <- function(pars, clrs= "black", llty = 1){
 lines_eirpr <- function(pars, clrs= "black", llty = 1){
   with(pars$outputs$eirpr, graphics::lines(aeir, pr, col = clrs, lty = llty))
 }
+
+#' Draw the orbit for the \eqn{i^{th}} element of
+#' eirpr$scaling.
+#'
+#' @param ix the subset of with orbits to plot
+#' @param pars an **`xds`** object
+#' @param clrs a [character] vector of colors
+eirpr_seasonal_profile = function(ix, pars, clrs){
+  plot_eirpr(pars)
+  with(pars$outputs$eirpr, points(aeir, pr, col = clrs))
+  for(i in ix) add_orbits(i, pars, clrs[i])
+}
+
+#' Draw the orbit for the \eqn{i^{th}} element of
+#' eirpr$scaling.
+#'
+#' @param pars an **`xds`** object
+#' @param clrs a [character] vector of colors
+#' @param llty a [list]
+#'
+#' @export
+add_orbits = function(i, pars, clr){
+  with(pars$output$eirpr$scaling[[i]],{
+    lines(aeir, pr, col = clr)
+    points(mean(aeir), mean(pr), pch=19, col=clr)
+  })}
+
+#' Draw the orbit for the \eqn{i^{th}} element of
+#' eirpr$scaling, and add points at the
+#' minimum and maximum eir and pr
+#'
+#' @param pars an **`xds`** object
+#' @param clrs a [character] vector of colors
+#' @param llty a [list]
+#'
+#' @export
+add_orbits_px = function(i, pars, clr){
+  add_orbits(i, pars, clr)
+  with(pars$output$eirpr$scaling[[i]],{
+    ix = which.max(aeir)
+    points(aeir[ix], pr[ix], pch=15, col=clr)
+    ix = which.min(aeir)
+    points(aeir[ix], pr[ix], pch=15, col=clr)
+    ix = which.max(pr)
+    points(aeir[ix], pr[ix], pch=15, col=clr)
+    ix = which.min(pr)
+    points(aeir[ix], pr[ix], pch=15, col=clr)
+  })}
+
+
