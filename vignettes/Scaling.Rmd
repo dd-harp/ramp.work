@@ -11,7 +11,7 @@ vignette: >
 ---
 
 ***
-Also see [**SimBA**](https://faculty.washington.edu/smitdave/simba/_site/index.html)
+Also see [**SimBA**](https://faculty.washington.edu/smitdave/simba/scaling.html)
 
 ***
 
@@ -24,8 +24,10 @@ library(deSolve)
 library(viridisLite)
 ```
 
+Scaling
+
 ```{r, echo=F}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 An important question in malaria is the relationship between various metrics, especially the relationships between mosquito density, the annual entomological inoculation rate (aEIR), the parasite rate (PR), and malaria reproductive numbers. To facilitate analysis of malaria data, we have developed some functions to compute scaling relationships. These are some of the key algorithms we use to generate malaria intelligence assets, and we have two versions:
@@ -70,7 +72,7 @@ plot_eirpr(sis)
 ```
 
 
-```{r, fig.height=4, fig.width=7}
+```{r, fig.height=4, fig.width=7, eval=F}
 eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
 ```
 
@@ -89,7 +91,6 @@ xds_solve(sis_full) -> sis_full
 ```
 
 ```{r}
-devtools::load_all()
 xde_scaling_lambda(sis_full, 1.1, 30) -> sis_full
 ```
 

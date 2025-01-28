@@ -2,8 +2,7 @@
 title: "Fitting Models to Data" 
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
-  html_document: 
-    theme: paper 
+  html_document 
 vignette: >
   %\VignetteIndexEntry{Fitting Models to Data}
   %\VignetteEngine{knitr::rmarkdown}

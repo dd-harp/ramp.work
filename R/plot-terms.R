@@ -88,9 +88,9 @@ eirpr_seasonal_profile = function(ix, pars, clrs){
 #' Draw the orbit for the \eqn{i^{th}} element of
 #' eirpr$scaling.
 #'
+#' @param i the index of the orbit to plot
 #' @param pars an **`xds`** object
-#' @param clrs a [character] vector of colors
-#' @param llty a [list]
+#' @param clr a [character] vector of colors
 #'
 #' @export
 add_orbits = function(i, pars, clr){
@@ -103,9 +103,9 @@ add_orbits = function(i, pars, clr){
 #' eirpr$scaling, and add points at the
 #' minimum and maximum eir and pr
 #'
+#' @param i the index of the orbit to plot
 #' @param pars an **`xds`** object
-#' @param clrs a [character] vector of colors
-#' @param llty a [list]
+#' @param clr a [character] vector of colors
 #'
 #' @export
 add_orbits_px = function(i, pars, clr){

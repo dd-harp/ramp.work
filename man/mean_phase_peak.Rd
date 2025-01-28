@@ -9,7 +9,7 @@ mean_phase_peak(t, X, window = 170)
 \arguments{
 \item{t}{the times}
 
-\item{X}{the data}
+\item{X}{the variable}
 
 \item{window}{days around t}
 }
@@ -17,6 +17,6 @@ mean_phase_peak(t, X, window = 170)
 a list with the mean peak and the values
 }
 \description{
-For a time series \eqn{X,} compute the
+For a time series of paired values \eqn{c(t,X)} compute the
 phase, the time of the year when there is a peak
 }
