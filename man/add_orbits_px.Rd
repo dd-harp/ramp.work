@@ -9,11 +9,11 @@ minimum and maximum eir and pr}
 add_orbits_px(i, pars, clr)
 }
 \arguments{
+\item{i}{the index of the orbit to plot}
+
 \item{pars}{an **`xds`** object}
 
-\item{clrs}{a [character] vector of colors}
-
-\item{llty}{a [list]}
+\item{clr}{a [character] vector of colors}
 }
 \description{
 Draw the orbit for the \eqn{i^{th}} element of

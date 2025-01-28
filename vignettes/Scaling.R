@@ -5,7 +5,7 @@ library(deSolve)
 library(viridisLite)
 
 ## ----echo=F-------------------------------------------------------------------
-devtools::load_all()
+#devtools::load_all()
 
 ## ----Fsin, fig.height=4, fig.width=7------------------------------------------
 tt <- seq(0, 730, by=5) 
@@ -25,8 +25,8 @@ xde_scaling_eir(sis, 25) -> sis
 ## ----fig.height=4, fig.width=7------------------------------------------------
 plot_eirpr(sis)
 
-## ----fig.height=4, fig.width=7------------------------------------------------
-eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
+## ----fig.height=4, fig.width=7, eval=F----------------------------------------
+#  eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
 
 ## -----------------------------------------------------------------------------
 Lo = list(
@@ -38,7 +38,6 @@ xds_setup(Xname = "SIS", Lopts = Lo) -> sis_full
 xds_solve(sis_full) -> sis_full
 
 ## -----------------------------------------------------------------------------
-devtools::load_all()
 xde_scaling_lambda(sis_full, 1.1, 30) -> sis_full
 
 ## -----------------------------------------------------------------------------

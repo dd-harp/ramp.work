@@ -8,11 +8,7 @@ F(t) over one year.}
 compute_IoD_F(F)
 }
 \arguments{
-\item{pars}{an **`xds`** object}
-
-\item{clrs}{a [character] vector of colors}
-
-\item{llty}{a [list]}
+\item{F}{a function describing a seasonality function (possibly not normalized)}
 }
 \description{
 Compute the Index of Dispersal for a function
