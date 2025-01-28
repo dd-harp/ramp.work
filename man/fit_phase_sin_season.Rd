@@ -20,5 +20,5 @@ a list with the mean peak and the values
 }
 \description{
 For a time series \eqn{X,} compute the
-phase, the time of the year when there is a peak
+phase of a seasonal pattern for the EIR
 }

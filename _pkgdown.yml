@@ -5,6 +5,8 @@ navbar:
     menu:
     - text: Scaling
       href: articles/Scaling.html
+    - text: Seasonality
+      href: articles/Seasonality.html
   - text: Functions
     href: reference/index.html
   right:
@@ -51,7 +53,6 @@ reference:
   - lines_eirVpr
   - lines_eirpr
   - pr2Lambda
-  - xde_eir2lambda
   - xde_eir2ni
   - xde_eir2pr
   - xde_maximize_gof
@@ -60,9 +61,23 @@ reference:
   - xde_pr2m
   - xde_pr2ni
   - xde_scaling
-  - xde_scaling_Z
   - xde_scaling_eir
   - xde_scaling_lambda
+- title: Seasonality
+  desc: |
+    No methods to set subclass
+  contents:
+  - add_orbits
+  - add_orbits_px
+  - bracket_lambda
+  - compute_IoD_F
+  - compute_IoD_S
+  - compute_IoD_pr
+  - eirpr_seasonal_profile
+  - fit_amplitude_sin_season
+  - fit_phase_sin_season
+  - fit_sin_season
+  - sse_season
 - title: Demography
   desc: |
     No methods to set subclass

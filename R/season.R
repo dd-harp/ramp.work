@@ -113,23 +113,28 @@ fit_sin_season <- function(data, times, model){
 #' @export
 fit_phase_sin_season <- function(data, times, model, Fp=NULL){
   if(is.null(Fp)) Fp <- makepar_F_sin()
-  ph <- seq(0, 360, length.out=9)[-9]
+  ph <- seq(0, 360, by = 45)
   ss = ph*0
   for(i in 1:length(ph)){
     Fp$phase <- ph[i]
     ss[i] <- sse_season(Fp, data, times, model)
   }
   ix = which.min(ss)
+  ff <- ss[ix]
+  best <- ph[ix]
 
-  ph1 <- seq(ph[ix-1], ph[ix+1], length.out=9)[-9]
+  ph1 <- seq(ph[ix]-40, ph[ix]+40, by=10)
   ss1 = ph1*0
   for(i in 1:length(ph1)){
     Fp$phase <- ph1[i]
     ss1[i] <- sse_season(Fp, data, times, model)
   }
   ix1 <- which.min(ss1)
+  ff1 <- ss1[ix1]
+  best1 <- ph1[ix1]
 
-  ph2 <- seq(ph1[ix1-1], ph1[ix1+1], length.out=9)[-9]
+  if(ff1<ff) best=best1
+  ph2 <- seq(best-4, best+4, by=1)
   ss2 = ph2*0
   for(i in 1:length(ph2)){
     Fp$phase <- ph2[i]
