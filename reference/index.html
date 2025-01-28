@@ -31,6 +31,9 @@
   <ul class="dropdown-menu" role="menu"><li>
       <a href="../articles/Scaling.html">Scaling</a>
     </li>
+    <li>
+      <a href="../articles/Seasonality.html">Seasonality</a>
+    </li>
   </ul></li>
 <li>
   <a href="../reference/index.html">Functions</a>
@@ -65,14 +68,6 @@
           <p><code><a href="ar_compare.html">ar_compare()</a></code> </p>
         </td>
         <td><p>Compute the attack rate to get</p></td>
-      </tr><tr><td>
-          <p><code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> </p>
-        </td>
-        <td><p>Add lines for the EIR(t) *vs.* the PR(t)</p></td>
-      </tr><tr><td>
-          <p><code><a href="lines_eirpr.html">lines_eirpr()</a></code> </p>
-        </td>
-        <td><p>Add lines for an eir-pr scaling relationship</p></td>
       </tr><tr><td>
           <p><code><a href="mean_phase_peak.html">mean_phase_peak()</a></code> </p>
         </td>
@@ -130,6 +125,14 @@
         </td>
         <td><p>Plot the eir-pr scaling relationship</p></td>
       </tr><tr><td>
+          <p><code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> </p>
+        </td>
+        <td><p>Add lines for the EIR(t) *vs.* the PR(t)</p></td>
+      </tr><tr><td>
+          <p><code><a href="lines_eirpr.html">lines_eirpr()</a></code> </p>
+        </td>
+        <td><p>Add lines for an eir-pr scaling relationship</p></td>
+      </tr><tr><td>
           <p><code><a href="pr2Lambda.html">pr2Lambda()</a></code> </p>
         </td>
         <td><p>Using the eirpr matrix and a RM model, convert pr to Lambda</p></td>
@@ -166,17 +169,65 @@
         </td>
         <td><p>Construct an eirpr object for an arbitary model</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_scaling_Z.html">xde_scaling_Z()</a></code> </p>
-        </td>
-        <td><p>Compute eir-pr scaling relationships</p></td>
-      </tr><tr><td>
           <p><code><a href="xde_scaling_eir.html">xde_scaling_eir()</a></code> </p>
         </td>
         <td><p>Compute eir-pr scaling relationships</p></td>
       </tr><tr><td>
           <p><code><a href="xde_scaling_lambda.html">xde_scaling_lambda()</a></code> </p>
         </td>
-        <td><p>Compute lambda from an eirpr object using the Ross-Macdonald model</p></td>
+        <td><p>Compute scaling relationships from mosquito emergence through PfPR</p></td>
+      </tr><tr><td>
+          <p><code><a href="pr_ts2eir_history.html">pr_ts2eir_history()</a></code> </p>
+        </td>
+        <td><p>Reconstruct a history of exposure from a PR time series</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="seasonality">Seasonality <a href="#seasonality" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>No methods to set subclass</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="add_orbits.html">add_orbits()</a></code> </p>
+        </td>
+        <td><p>Draw the orbit for the \(i^{th}\) element of eirpr$scaling.</p></td>
+      </tr><tr><td>
+          <p><code><a href="add_orbits_px.html">add_orbits_px()</a></code> </p>
+        </td>
+        <td><p>Draw the orbit for the \(i^{th}\) element of eirpr$scaling, and add points at the minimum and maximum eir and pr</p></td>
+      </tr><tr><td>
+          <p><code><a href="bracket_lambda.html">bracket_lambda()</a></code> </p>
+        </td>
+        <td><p>Get High/Low Values for Lambda</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_IoD_F.html">compute_IoD_F()</a></code> </p>
+        </td>
+        <td><p>Compute the Index of Dispersal for a function F(t) over one year.</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_IoD_S.html">compute_IoD_S()</a></code> </p>
+        </td>
+        <td><p>Compute the Index of Dispersal for a seasonal pattern \(S(t)\) over one year. This assumes that $$\int_0^{365} S(t)dt = 365$$</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_IoD_pr.html">compute_IoD_pr()</a></code> </p>
+        </td>
+        <td><p>Compute the Index of Dispersal for a PR seasonal orbit for the \(i^{th}\) element of `eirpr$scaling`</p></td>
+      </tr><tr><td>
+          <p><code><a href="eirpr_seasonal_profile.html">eirpr_seasonal_profile()</a></code> </p>
+        </td>
+        <td><p>Draw the orbit for the \(i^{th}\) element of eirpr$scaling.</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_amplitude_sin_season.html">fit_amplitude_sin_season()</a></code> </p>
+        </td>
+        <td><p>Fit the amplitude for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_phase_sin_season.html">fit_phase_sin_season()</a></code> </p>
+        </td>
+        <td><p>Fit the phase for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_sin_season.html">fit_sin_season()</a></code> </p>
+        </td>
+        <td><p>Fit the phase for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="sse_season.html">sse_season()</a></code> </p>
+        </td>
+        <td><p>Given data, compute GoF for a seasonal function</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="demography">Demography <a href="#demography" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>No methods to set subclass</p>
