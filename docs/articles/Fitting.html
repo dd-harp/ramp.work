@@ -49,6 +49,9 @@
 <li>
       <a href="../articles/Scaling.html">Scaling</a>
     </li>
+    <li>
+      <a href="../articles/Seasonality.html">Seasonality</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -77,7 +80,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Fitting Models to Data</h1>
             
-            <h4 data-toc-skip class="date">October 15, 2024</h4>
+            <h4 data-toc-skip class="date">January 28, 2025</h4>
       
       
       <div class="hidden name"><code>Fitting.Rmd</code></div>
@@ -131,17 +134,17 @@
 <span><span class="co">## [1] 40.08968</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $objective</span></span>
-<span><span class="co">## [1] 6.638996e-14</span></span></code></pre>
+<span><span class="co">## [1] 6.637225e-14</span></span></code></pre>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sis_si</span> <span class="op">&lt;-</span> <span class="fu">put_par</span><span class="op">(</span><span class="va">vals</span><span class="op">$</span><span class="va">minimum</span>, <span class="va">sis_si</span><span class="op">)</span></span>
 <span><span class="va">sis_si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/last_to_inits.html">last_to_inits</a></span><span class="op">(</span><span class="va">sis_si</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/optimize.html" class="external-link">optimize</a></span><span class="op">(</span><span class="va">xde_compute_gof</span>, interval <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">500</span><span class="op">)</span>, data<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.4</span><span class="op">)</span>, model<span class="op">=</span><span class="va">sis_si</span>, F_obs<span class="op">=</span><span class="va">get_stat</span>, put_par<span class="op">=</span><span class="va">put_par</span>, F_gof<span class="op">=</span><span class="va">F_sse</span>, Tmax<span class="op">=</span><span class="fl">1000</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">vals</span></span>
 <span><span class="va">vals</span></span></code></pre></div>
 <pre><code><span><span class="co">## $minimum</span></span>
-<span><span class="co">## [1] 31.17937</span></span>
+<span><span class="co">## [1] 31.17941</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## $objective</span></span>
-<span><span class="co">## [1] 5.434034e-14</span></span></code></pre>
+<span><span class="co">## [1] 2.714222e-14</span></span></code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">get_stat</span><span class="op">(</span><span class="va">sis_si</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## [1] 0.9765101</span></span></code></pre>

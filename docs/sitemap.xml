@@ -22,6 +22,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/articles/Scaling.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/Seasonality.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/index.html</loc>
   </url>
   <url>
@@ -37,7 +40,25 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/UnevenAgingMatrix.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/add_orbits.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/add_orbits_px.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/ar_compare.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/bracket_lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_IoD_F.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_IoD_S.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_IoD_pr.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_compute_gof.html</loc>
@@ -53,6 +74,21 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_pr2ar_ts.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/eirpr_seasonal_profile.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_amplitude_sin_season.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase_sin_season.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase_sin_season_1.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_sin_season.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/hello.html</loc>
@@ -83,6 +119,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/ssMYZ.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/sse_season.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_by_ar.html</loc>

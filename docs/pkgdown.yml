@@ -6,7 +6,8 @@ articles:
   Fitting_pr2eir: Fitting_pr2eir.html
   Fitting: Fitting.html
   Scaling: Scaling.html
-last_built: 2024-10-15T18:59Z
+  Seasonality: Seasonality.html
+last_built: 2025-01-28T18:29Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles
