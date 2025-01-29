@@ -28,7 +28,10 @@ mean_phase_peak = function(t, X, window=170){
 #' @return a list with the mean peak and the values
 #' @export
 fit_phase_sin_season <- function(data, times, model, Fp=NULL){
-  if(is.null(Fp)) Fp <- makepar_F_sin()
+
+  if(is.null(Fp)) Fp<-makepar_F_sin()
+
+  # 45 days
   ph <- seq(0, 360, by = 45)
   ss = ph*0
   for(i in 1:length(ph)){
@@ -39,6 +42,7 @@ fit_phase_sin_season <- function(data, times, model, Fp=NULL){
   ff <- ss[ix]
   best <- ph[ix]
 
+  # 10 days apart
   ph1 <- seq(ph[ix]-40, ph[ix]+40, by=10)
   ss1 = ph1*0
   for(i in 1:length(ph1)){
@@ -49,6 +53,7 @@ fit_phase_sin_season <- function(data, times, model, Fp=NULL){
   ff1 <- ss1[ix1]
   best1 <- ph1[ix1]
 
+  # 1 day apart
   if(ff1<ff) best=best1
   ph2 <- seq(best-4, best+4, by=1)
   ss2 = ph2*0
@@ -73,6 +78,7 @@ sse_season <- function(Fpar, data, times, model){
   model$EIRpar$F_season <- make_function(Fpar)
   model <- xds_solve_cohort(model, times=times)
   pr <- get_XH(model)$true_pr
+  if(length(pr) != length(data)) browser()
   return(sum((data - pr)^2))
 }
 

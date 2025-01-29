@@ -7,6 +7,8 @@ navbar:
       href: articles/Scaling.html
     - text: Seasonality
       href: articles/Seasonality.html
+    - text: Trends
+      href: articles/Trend.html
   - text: Functions
     href: reference/index.html
   right:
@@ -79,6 +81,8 @@ reference:
   - fit_phase_sin_season
   - fit_sin_season
   - sse_season
+  - fit_splinef
+  - sse_splinef
 - title: Demography
   desc: |
     No methods to set subclass
