@@ -28,7 +28,7 @@ pr_ts2eir_history <- function(pr_ts, times, model){
 
   # First pass: fit the inter-annual variability
   N = diff(range(round(times/365)))+1
-  fit_splinef(N, obs_pr, tt, model) -> Ts1
+  fit_splinef(N, pr_ts, times, model) -> Ts1
 
   # Second pass: adjust eir
   fac = mean(Ts1$yy)
@@ -43,7 +43,7 @@ pr_ts2eir_history <- function(pr_ts, times, model){
   model$EIRpar$F_season <- make_function(Fs2)
 
   # Second pass: refit interannual variability
-  fit_splinef(N, obs_pr, tt, model) -> Ts2
+  fit_splinef(N, pr_ts, times, model) -> Ts2
   model$EIRpar$F_trend <- make_function(Ts2)
   model$fits <- list()
   model$fits$par_season <- Fs2
