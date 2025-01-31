@@ -14,7 +14,7 @@
 #' @return an `xds` object
 #' @export
 pr_ts2eir_history <- function(pr_ts, times, model){
-
+  stopifnot(length(pr_ts) == length(times))
   # First pass: set the mean eir from the mean pr
   model <- xde_scaling_eir(model, 25)
   mean_pr <- mean(pr_ts)
@@ -48,6 +48,8 @@ pr_ts2eir_history <- function(pr_ts, times, model){
   model$fits <- list()
   model$fits$par_season <- Fs2
   model$fits$par_trend  <- Ts2
+
+  model <- xds_solve_cohort(model, times=times)
 
   return(model)
 }
