@@ -83,7 +83,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Scaling Relationships for Malaria Metrics</h1>
             
-            <h4 data-toc-skip class="date">January 28, 2025</h4>
+            <h4 data-toc-skip class="date">February 11, 2025</h4>
       
       
       <div class="hidden name"><code>Scaling.Rmd</code></div>
@@ -132,15 +132,15 @@ average annual EIR and average annual PR for an even mesh of
 <code>ramp.xds::make_F_sin</code></p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">730</span>, by<span class="op">=</span><span class="fl">5</span><span class="op">)</span> </span>
-<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/makepar_F_sin.html">makepar_F_sin</a></span><span class="op">(</span>floor<span class="op">=</span><span class="fl">0.2</span>, pw<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span></span>
-<span><span class="va">Fsin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/make_function.html">make_function</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
+<span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/makepar_F_sin.html" class="external-link">makepar_F_sin</a></span><span class="op">(</span>floor<span class="op">=</span><span class="fl">0.2</span>, pw<span class="op">=</span><span class="fl">1.2</span><span class="op">)</span></span>
+<span><span class="va">Fsin</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="va">p1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span>, <span class="fu">Fsin</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type<span class="op">=</span><span class="st">"l"</span>, xlab <span class="op">=</span> <span class="st">"Time (Days)"</span>, ylab <span class="op">=</span> <span class="st">"Seasonal Pattern"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Scaling_files/figure-html/Fsin-1.png" width="672"></p>
 <p>Next, we set up a cohort model:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup_cohort.html">xds_setup_cohort</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, F_season<span class="op">=</span><span class="va">Fsin</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup_cohort.html" class="external-link">xds_setup_cohort</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, F_season<span class="op">=</span><span class="va">Fsin</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve_cohort.html">xds_solve_cohort</a></span><span class="op">(</span><span class="va">sis</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">sis</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis</span></span></code></pre></div>
 <p>The function <code>xde_scaling_eir</code> runs the model over a mesh
 of <code>N=25</code> values:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
@@ -159,9 +159,9 @@ of <code>N=25</code> values:</p>
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  F_season <span class="op">=</span> <span class="va">Fsin</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup.html" class="external-link">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html">xds_solve</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_scaling_lambda.html">xde_scaling_lambda</a></span><span class="op">(</span><span class="va">sis_full</span>, <span class="fl">1.1</span>, <span class="fl">30</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">

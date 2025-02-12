@@ -1,6 +1,7 @@
 ## -----------------------------------------------------------------------------
 library(ramp.xds)
-library(ramp.work)
+#library(ramp.work)
+devtools::load_all()
 
 ## -----------------------------------------------------------------------------
 tt <- round(seq(0, 2500, by = 365/12)) 
@@ -23,27 +24,20 @@ mod1 <- xds_setup_cohort(eir = 1/365)
 mod1 <- xds_solve_cohort(mod1, times=tt)
 
 ## -----------------------------------------------------------------------------
-fit_phase_sin_season(obs_pr, tt, mod1) -> phase_fit
-phase_fit
+fit_phase_sin_season(obs_pr, tt, mod1) -> mod1 
+mod1$EIRpar$season_par$phase 
 
 ## -----------------------------------------------------------------------------
-Fp0 <- makepar_F_sin(phase=phase_fit)
-Fp_fit <- fit_amplitude_sin_season(Fp0, obs_pr, tt, mod1)
-Fp_fit
+mod1 <- fit_amplitude_sin_season(obs_pr, tt, mod1)
+mod1$EIRpar$season_par
 
 ## -----------------------------------------------------------------------------
-fit_phase_sin_season(obs_pr, tt, mod1, Fp_fit) -> phase_fit1
-Fp1 <- makepar_F_sin(phase=phase_fit1)
-Fp_fit1 <- fit_amplitude_sin_season(Fp1, obs_pr, tt, mod1)
-Fp_fit1
-
-## -----------------------------------------------------------------------------
-mod1$EIRpar$F_season <- make_function(Fp_fit1)
+fit_phase_sin_season(obs_pr, tt, mod1) -> mod1 
+fit_amplitude_sin_season(obs_pr, tt, mod1) -> mod1
 
 ## -----------------------------------------------------------------------------
 mod1 <- xds_solve_cohort(mod1, times=tt)
 
-## -----------------------------------------------------------------------------
 xds_plot_PR(mod)
 xds_plot_PR(mod1, clrs="darkred", add=TRUE)
 lines(tt, obs_pr)

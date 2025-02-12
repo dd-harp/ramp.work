@@ -19,6 +19,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/articles/Fitting_pr2eir.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/History.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/Scaling.html</loc>
   </url>
   <url>
@@ -94,6 +97,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_sin_season.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_spline.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_splinef.html</loc>
   </url>
   <url>
@@ -121,6 +127,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/pr2Lambda.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/pr2eir_history.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/pr_ts2eir_history.html</loc>
   </url>
   <url>
@@ -131,6 +140,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/sse_season.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/sse_spline.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/sse_splinef.html</loc>

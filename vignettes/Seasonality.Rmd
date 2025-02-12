@@ -11,7 +11,8 @@ vignette: >
 
 ```{r}
 library(ramp.xds)
-library(ramp.work)
+#library(ramp.work)
+devtools::load_all()
 ```
 
 Here, we illustrate the use of functions that fit parameters for a seasonal pattern. 
@@ -52,33 +53,22 @@ mod1 <- xds_solve_cohort(mod1, times=tt)
 The first step is to fit the phase, using default parameter values for the amplitude. 
 
 ```{r}
-fit_phase_sin_season(obs_pr, tt, mod1) -> phase_fit
-phase_fit
+fit_phase_sin_season(obs_pr, tt, mod1) -> mod1 
+mod1$EIRpar$season_par$phase 
 ```
 
 Next, we set the phase for a parameter set defining a seasonal pattern, and we fit the amplitude. We modify the function to have this fitted 
 
 ```{r}
-Fp0 <- makepar_F_sin(phase=phase_fit)
-Fp_fit <- fit_amplitude_sin_season(Fp0, obs_pr, tt, mod1)
-Fp_fit
+mod1 <- fit_amplitude_sin_season(obs_pr, tt, mod1)
+mod1$EIRpar$season_par
 ```
 
 Note that if we pass this new parameter set to `fit_phase_sin_season,`  we get a slightly different phase. 
 
 ```{r}
-fit_phase_sin_season(obs_pr, tt, mod1, Fp_fit) -> phase_fit1
-Fp1 <- makepar_F_sin(phase=phase_fit1)
-Fp_fit1 <- fit_amplitude_sin_season(Fp1, obs_pr, tt, mod1)
-Fp_fit1
-```
-
-```{r}
-mod1$EIRpar$F_season <- make_function(Fp_fit1)
-```
-
-```{r}
-mod1 <- xds_solve_cohort(mod1, times=tt)
+fit_phase_sin_season(obs_pr, tt, mod1) -> mod1 
+fit_amplitude_sin_season(obs_pr, tt, mod1) -> mod1
 ```
 
 ## Accuracy 
@@ -86,6 +76,8 @@ mod1 <- xds_solve_cohort(mod1, times=tt)
 The algorithm fits the seasonal *Pf*PR pattern with reasonable accuracy. 
 
 ```{r}
+mod1 <- xds_solve_cohort(mod1, times=tt)
+
 xds_plot_PR(mod)
 xds_plot_PR(mod1, clrs="darkred", add=TRUE)
 lines(tt, obs_pr)

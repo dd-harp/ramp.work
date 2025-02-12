@@ -11,10 +11,10 @@ fit_sin_season(data, times, model)
 
 \item{times}{the times of the observations}
 
-\item{model}{an `xds` model}
+\item{model}{an `xds` object}
 }
 \value{
-a list with the mean peak and the values
+an `xds` object
 }
 \description{
 For a time series \eqn{X,} compute the
