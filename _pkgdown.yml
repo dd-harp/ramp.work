@@ -65,7 +65,7 @@ reference:
   - xde_scaling
   - xde_scaling_eir
   - xde_scaling_lambda
-  - pr_ts2eir_history
+  - pr2eir_history
 - title: Seasonality
   desc: |
     No methods to set subclass
@@ -81,8 +81,8 @@ reference:
   - fit_phase_sin_season
   - fit_sin_season
   - sse_season
-  - fit_splinef
-  - sse_splinef
+  - fit_spline
+  - sse_spline
 - title: Demography
   desc: |
     No methods to set subclass

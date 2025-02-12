@@ -4,11 +4,9 @@
 \alias{sse_season}
 \title{Given data, compute GoF for a seasonal function}
 \usage{
-sse_season(Fpar, data, times, model)
+sse_season(data, times, model)
 }
 \arguments{
-\item{Fpar}{parameters defining a seasonal pattern function}
-
 \item{data}{the PR observed}
 
 \item{times}{the times of the observations}
@@ -20,6 +18,5 @@ a list with the mean peak and the values
 }
 \description{
 For a time series c(`times`,`data`),
-compute the sum of squared errors for a seasonal
-pattern defined by `Fpar`
+and a model, compute the sum of squared errors
 }

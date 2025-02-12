@@ -1,0 +1,91 @@
+---
+title: "History" 
+subtitle: "Modeling the History of Exposure" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document 
+vignette: >
+  %\VignetteIndexEntry{History}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, echo=F}
+library(ramp.xds)
+#library(ramp.work)
+devtools::load_all()
+```
+
+In malaria, the immune status of the population depends on the history of exposure. Here, we develop a method to estimate the history of exposure from a time series describing the *Pf*PR in a population over time. The algorithm is called `pr2eir_history` that fits the signal. 
+
+## Pseudocode
+
+1. Make an initial guess about the average annual EIR. 
+
+2. Set initial conditions for the model to the steady state using the average EIR from the first six months of data.  
+
+3. Choose a function family, and fit the seasonal pattern: 
+
+    a. Given an initial seasonality pattern, fit the phase.  
+    
+    b. Fit the amplitude.
+
+4. Fit a spline function to describe inter-annual variability. 
+
+5. At this point, the model should be reasonably close to the data, but we might want to adjust:
+
+    a. Refit the average annual EIR
+    
+    b. Refit the phase 
+    
+    c. Refit the amplitude 
+    
+    c. Refit the trend 
+    
+6. Return a model, fitted to the data
+    
+## Example 
+
+```{r read}
+dt <- read.csv("pseudo.csv", header=T)
+with(dt, {
+  plot(tt/365, obs_pr, xlab = "Time (in years)", ylab = "PR")
+  lines(tt/365, pr)  
+})
+```
+
+The first step is to set up the model we want to use. This uses the default **X** component model, `SIS,` and we set up the model using the built-in sin function family from `ramp.xds`: 
+
+```{r shell}
+mod  <- xds_setup_cohort(season_par = makepar_F_sin())
+```
+
+To call the function, we pass the observed pr time series, the times, and the model:  
+
+```{r pr2eir_history}
+mod1 <- with(dt, pr2eir_history(obs_pr, tt, mod, twice=FALSE))
+```
+
+```{r}
+Fx <- mod1$EIRpar$F_trend
+with(dt, integrate(Fx,min(tt), max(tt))$val/(max(tt)-min(tt))) 
+```
+
+
+```{r}
+mod2 <- with(dt, pr2eir_history(obs_pr, tt, mod, twice=TRUE))
+```
+
+We can visualize the results: 
+
+```{r vis}
+ttn = seq(-365, max(dt$tt), length.out=600)
+xds_plot_PR(mod1)
+xds_plot_PR(mod2, clrs="blue", add=TRUE)
+with(dt, {
+  lines(tt, obs_pr, xlab = "Time (in years)", ylab = "PR")
+  lines(tt, pr, col = "red")  
+})
+
+```
+

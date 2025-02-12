@@ -11,12 +11,12 @@ fit_phase_sin_season(data, times, model, Fp = NULL)
 
 \item{times}{the times of the observations}
 
-\item{model}{an `xds` model}
+\item{model}{an `xds` object}
 
-\item{Fp}{parameters for}
+\item{Fp}{initial parameters for seasonality}
 }
 \value{
-a list with the mean peak and the values
+an `xds` object
 }
 \description{
 For a time series \eqn{X,} compute the

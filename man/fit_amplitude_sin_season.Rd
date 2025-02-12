@@ -4,19 +4,19 @@
 \alias{fit_amplitude_sin_season}
 \title{Fit the amplitude for a time series}
 \usage{
-fit_amplitude_sin_season(Fpar, data, times, model)
+fit_amplitude_sin_season(data, times, model, Fpar = NULL)
 }
 \arguments{
-\item{Fpar}{parameters from `makepar_F_sin`}
-
 \item{data}{the PR observed}
 
 \item{times}{the times of the observations}
 
 \item{model}{an `xds` model}
+
+\item{Fpar}{parameters from `makepar_F_sin`}
 }
 \value{
-a list with the mean peak and the values
+an `xds` object
 }
 \description{
 For a time series \eqn{X,} compute the
