@@ -100,7 +100,7 @@ fit_amplitude_sin_season <- function(data, times, model, Fpar=NULL){
   Fpw = function(x){1 + 8*exp(x)/(1+exp(x))}
 
   F_eval = function(X, data, times, model){
-    model$EIRpar$season_par$floor = X[1]^2
+    model$EIRpar$season_par$bottom = X[1]^2
     model$EIRpar$season_par$pw = Fpw(X[2])
     sse_season(data, times, model)
   }
@@ -116,14 +116,14 @@ fit_amplitude_sin_season <- function(data, times, model, Fpar=NULL){
   model <- xds_solve_cohort(model, times=times)
   pr <- get_XH(model)$true_pr
   stopifnot(length(pr)-1 == length(data))
-  inits = with(model$EIRpar$season_par, c(floor=floor, pw=pw))
 
-  pars_seas <- stats::optim(inits, F_eval,
+  pars_seas <- stats::optim(c(1, 1), F_eval,
     data=data, times=times, model=model, method="L-BFGS-B")$par
 
-  model$EIRpar$season_par$floor = pars_seas[1]^2
+  model$EIRpar$season_par$bottom = pars_seas[1]^2
   model$EIRpar$season_par$pw = Fpw(pars_seas[2])
   model <- xds_solve_cohort(model, times=times)
+
   return(model)
 }
 
@@ -133,13 +133,16 @@ fit_amplitude_sin_season <- function(data, times, model, Fpar=NULL){
 #' @param data the PR observed
 #' @param times the times of the observations
 #' @param model an `xds` object
+#' @param Fpar parameters from `makepar_F_sin`
 #' @return an `xds` object
 #' @export
-fit_sin_season <- function(data, times, model){
+fit_sin_season <- function(data, times, model, Fpar=NULL){
+
+  Fpw = function(x){1 + 8*exp(x)/(1+exp(x))}
 
   F_eval = function(X, data, times, model){
-    model$EIRpar$season_par$floor = X[1]^2
-    model$EIRpar$season_par$pw = 1 + X[2]^2
+    model$EIRpar$season_par$bottom = X[1]^2
+    model$EIRpar$season_par$pw = Fpw(X[2])
     model$EIRpar$season_par$phase = X[3]
     sse_season(data, times, model)
   }
@@ -147,12 +150,12 @@ fit_sin_season <- function(data, times, model){
   if(length(model$EIRpar$season_par)==0)
     model$EIRpar$season_par <- makepar_F_sin()
 
-  pars_seas <- stats::optim(c(sqrt(Fpar$floor), log(Fpar$pw), 0), F_eval,
+  pars_seas <- stats::optim(c(sqrt(Fpar$bottom), log(Fpar$pw), 0), F_eval,
                      data = data, times = times, model = model)$par
 
-  model$EIRpar$season_par$floor = pars_seas[1]^2
-  model$EIRpar$season_par$pw = exp(pars_seas[2])
-  model$EIRpar$season_par$phase = Fpar$phase + shift
+  model$EIRpar$season_par$bottom = pars_seas[1]^2
+  model$EIRpar$season_par$pw = Fpw(X[2])
+  model$EIRpar$season_par$phase = X[3]
   model <- xds_solve_cohort(model, times=times)
   return(model)
 }

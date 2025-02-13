@@ -9,6 +9,8 @@ navbar:
       href: articles/Seasonality.html
     - text: Trends
       href: articles/Trend.html
+    - text: History
+      href: articles/History.html
   - text: Functions
     href: reference/index.html
   right:
