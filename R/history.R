@@ -49,7 +49,7 @@ pr2eir_history <- function(pr_ts, times, model, twice=TRUE){
 
   if(twice == TRUE){
     Ft <- model$EIRpar$F_trend
-    adjust = integrate(Ft, min(times), max(times))$val/(max(times)-min(times))
+    adjust = stats::integrate(Ft, min(times), max(times))$val/(max(times)-min(times))
     model <- set_eir(eir1/adjust, model)
     # Second pass: refit phase & amplitude
     model <- fit_phase_sin_season(pr_ts, times, model)

@@ -9,7 +9,7 @@ library(viridisLite)
 
 ## ----Fsin, fig.height=4, fig.width=7------------------------------------------
 tt <- seq(0, 730, by=5) 
-p1 <- makepar_F_sin(floor=0.2, pw=1.2)
+p1 <- makepar_F_sin(bottom=0.2, pw=1.2)
 Fsin <- make_function(p1)
 plot(tt, Fsin(tt), type="l", xlab = "Time (Days)", ylab = "Seasonal Pattern")
 

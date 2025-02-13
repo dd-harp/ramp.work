@@ -26,21 +26,24 @@ sse_spline <- function(data, times, model){
 #' @export
 fit_spline <- function(data, times, model, splinef=2){
   F_eval = function(X, data, times, model){
-    model$EIRpar$trend_par$yy = X
+ #   last = tail(X)[1]
+    model$EIRpar$trend_par$yy = c(X[1], X)
     sse_spline(data, times, model)
   }
 
+  stopifnot(length(model$EIRpar$season_par)>0)
+  model$EIRpar$season_par$phase -> phase
+
   times <- c(-365, times)
-  knots <- seq(floor(min(times)/365), ceiling(max(times)/365), by=1)*365
+  knots <- seq(floor(min(times)/365), ceiling(max(times)/365), by=1)*365 + phase
   yy <- 1+0*knots
   par0 <- makepar_F_spline(knots, yy, X=2)
   model$EIRpar$trend_par <- par0
+  ll = length(yy)-1
 
-  #model <- xds_solve_cohort(model, times=times)
-
-  X <- stats::optim(yy, F_eval, data=data, times=times,
+  X <- stats::optim(rep(1, ll), F_eval, data=data, times=times,
                                 model=model)$par
-  model$EIRpar$trend_par$yy = X
+  model$EIRpar$trend_par$yy = c(X[1], X)
   model <- xds_solve_cohort(model, times=times)
   return(model)
 }

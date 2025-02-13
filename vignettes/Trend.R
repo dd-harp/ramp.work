@@ -1,13 +1,13 @@
 ## -----------------------------------------------------------------------------
 library(ramp.xds)
-#library(ramp.work)
+library(ramp.work)
 
 ## -----------------------------------------------------------------------------
-devtools::load_all()
+#devtools::load_all()
 
 ## -----------------------------------------------------------------------------
 tt <- round(seq(0, 2500, by = 365/12)) 
-Fpar <- makepar_F_sin(pw=3, floor=0.3, phase=133)
+Fpar <- makepar_F_sin(pw=3, bottom=0.3, phase=133)
 Tpar <- makepar_F_spline(c(0:7)*365, c(1,2,1,1/2,1,3,1,1/3))
 Fs0 <- make_function(Fpar) 
 Ts0 <- make_function(Tpar) 
@@ -36,7 +36,7 @@ dt <- data.frame(tt, pr, obs_pr)
 write.csv(dt, "pseudo.csv")
 
 ## ----plot pseudo_data---------------------------------------------------------
-mod1 <- xds_setup_cohort(eir = 1/365, F_season = Fs0) 
+mod1 <- xds_setup_cohort(eir = 1/365, season_par = Fpar) 
 mod1 <- xds_solve_cohort(mod1, times=tt)
 xds_plot_PR(mod1)
 lines(tt, obs_pr)
