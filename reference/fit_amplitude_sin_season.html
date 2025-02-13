@@ -38,6 +38,9 @@ phase, the time of the year when there is a peak `dog`"><!-- mathjax --><script 
     <li>
       <a href="../articles/Trend.html">Trends</a>
     </li>
+    <li>
+      <a href="../articles/History.html">History</a>
+    </li>
   </ul></li>
 <li>
   <a href="../reference/index.html">Functions</a>
@@ -68,18 +71,14 @@ phase, the time of the year when there is a peak `dog`</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fit_amplitude_sin_season</span><span class="op">(</span><span class="va">Fpar</span>, <span class="va">data</span>, <span class="va">times</span>, <span class="va">model</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">fit_amplitude_sin_season</span><span class="op">(</span><span class="va">data</span>, <span class="va">times</span>, <span class="va">model</span>, Fpar <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
 
 
-<dl><dt id="arg-fpar">Fpar<a class="anchor" aria-label="anchor" href="#arg-fpar"></a></dt>
-<dd><p>parameters from `makepar_F_sin`</p></dd>
-
-
-<dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
+<dl><dt id="arg-data">data<a class="anchor" aria-label="anchor" href="#arg-data"></a></dt>
 <dd><p>the PR observed</p></dd>
 
 
@@ -90,10 +89,14 @@ phase, the time of the year when there is a peak `dog`</p>
 <dt id="arg-model">model<a class="anchor" aria-label="anchor" href="#arg-model"></a></dt>
 <dd><p>an `xds` model</p></dd>
 
+
+<dt id="arg-fpar">Fpar<a class="anchor" aria-label="anchor" href="#arg-fpar"></a></dt>
+<dd><p>parameters from `makepar_F_sin`</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a list with the mean peak and the values</p>
+    <p>an `xds` object</p>
     </div>
 
   </div>

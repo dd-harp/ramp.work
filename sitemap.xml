@@ -5,6 +5,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Analysis.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Fitting.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Fitting_pr2eir.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/articles/History.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Scaling.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Seasonality.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/articles/Trend.html</loc></url>
@@ -29,7 +30,7 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/fit_amplitude_sin_season.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase_sin_season.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/fit_sin_season.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/fit_splinef.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/fit_spline.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/lines_eirVpr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/lines_eirpr.html</loc></url>
@@ -37,10 +38,10 @@
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/plot_eirVpr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/plot_eirpr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/pr2Lambda.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/pr_ts2eir_history.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/pr2eir_history.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/ssMYZ.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/sse_season.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.xds/reference/sse_splinef.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.xds/reference/sse_spline.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/update_by_ar.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_compute_gof.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.xds/reference/xde_eir2ni.html</loc></url>

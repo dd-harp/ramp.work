@@ -5,10 +5,11 @@ articles:
   Analysis: Analysis.html
   Fitting_pr2eir: Fitting_pr2eir.html
   Fitting: Fitting.html
+  History: History.html
   Scaling: Scaling.html
   Seasonality: Seasonality.html
   Trend: Trend.html
-last_built: 2025-01-31T15:42Z
+last_built: 2025-02-13T17:05Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

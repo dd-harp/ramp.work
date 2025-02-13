@@ -54,6 +54,9 @@
     <li>
       <a href="../articles/Trend.html">Trends</a>
     </li>
+    <li>
+      <a href="../articles/History.html">History</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -82,7 +85,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Trends</h1>
             
-            <h4 data-toc-skip class="date">January 31, 2025</h4>
+            <h4 data-toc-skip class="date">February 13, 2025</h4>
       
 
       <div class="hidden name"><code>Trend.Rmd</code></div>
@@ -94,84 +97,63 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ramp.work</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">#devtools::load_all()</span></span></code></pre></div>
 <p>Here, we illustrate the use of functions that fit parameters for a
 seasonal pattern.</p>
 <div class="section level2">
 <h2 id="pseudo-data">Pseudo Data<a class="anchor" aria-label="anchor" href="#pseudo-data"></a>
 </h2>
 <p>We generate a seasonal signal for the <em>Pf</em>EIR.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">tt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">2500</span>, by <span class="op">=</span> <span class="fl">365</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span> </span>
-<span><span class="va">Fpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/makepar_F_sin.html" class="external-link">makepar_F_sin</a></span><span class="op">(</span>pw<span class="op">=</span><span class="fl">3</span>, floor<span class="op">=</span><span class="fl">0.3</span>, phase<span class="op">=</span><span class="fl">93</span><span class="op">)</span></span>
-<span><span class="va">Tpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/makepar_F_splinef.html" class="external-link">makepar_F_splinef</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">*</span><span class="fl">365</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">Fpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/makepar_F_sin.html" class="external-link">makepar_F_sin</a></span><span class="op">(</span>pw<span class="op">=</span><span class="fl">3</span>, bottom<span class="op">=</span><span class="fl">0.3</span>, phase<span class="op">=</span><span class="fl">133</span><span class="op">)</span></span>
+<span><span class="va">Tpar</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/makepar_F_spline.html" class="external-link">makepar_F_spline</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span><span class="op">:</span><span class="fl">7</span><span class="op">)</span><span class="op">*</span><span class="fl">365</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">2</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">1</span><span class="op">/</span><span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">Fs0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="va">Fpar</span><span class="op">)</span> </span>
 <span><span class="va">Ts0</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="va">Tpar</span><span class="op">)</span> </span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">tt</span><span class="op">/</span><span class="fl">365</span>, <span class="fu">Fs0</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">*</span><span class="fu">Ts0</span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, type <span class="op">=</span> <span class="st">"l"</span>, xlab <span class="op">=</span> <span class="st">"Time (Years)"</span>, ylab <span class="op">=</span> <span class="st">"EIR"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Trend_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup_cohort.html" class="external-link">xds_setup_cohort</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, F_season <span class="op">=</span> <span class="va">Fs0</span>, F_trend<span class="op">=</span> <span class="va">Ts0</span><span class="op">)</span></span>
-<span><span class="va">mod</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod</span>, times<span class="op">=</span><span class="va">tt</span><span class="op">)</span>  </span>
-<span><span class="va">pr</span> <span class="op">&lt;-</span> <span class="va">mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">XH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">true_pr</span> </span></code></pre></div>
+<p><img src="Trend_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup_cohort.html" class="external-link">xds_setup_cohort</a></span><span class="op">(</span><span class="fl">1</span><span class="op">/</span><span class="fl">365</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod</span>, times <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">3650</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">mod</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/last_to_inits.html" class="external-link">last_to_inits</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_season</span> <span class="op">&lt;-</span> <span class="va">Fs0</span></span>
+<span><span class="va">mod</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">&lt;-</span> <span class="va">Ts0</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod</span>, times<span class="op">=</span><span class="va">tt</span><span class="op">)</span>  </span>
+<span><span class="va">pr</span> <span class="op">&lt;-</span> <span class="va">mod</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">orbits</span><span class="op">$</span><span class="va">XH</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">$</span><span class="va">true_pr</span> </span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">obs_pr</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">pmax</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, <span class="va">pr</span>, <span class="fl">.08</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Trend_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup_cohort.html" class="external-link">xds_setup_cohort</a></span><span class="op">(</span>eir <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, F_season <span class="op">=</span> <span class="va">Fs0</span><span class="op">)</span> </span>
+<p><img src="Trend_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">pr</span>, <span class="va">obs_pr</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">dt</span>, <span class="st">"pseudo.csv"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="fitting-the-trend">Fitting the Trend<a class="anchor" aria-label="anchor" href="#fitting-the-trend"></a>
+</h2>
+<p>In the first step, we define a model with the right average EIR and
+seasonal pattern.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup_cohort.html" class="external-link">xds_setup_cohort</a></span><span class="op">(</span>eir <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, season_par <span class="op">=</span> <span class="va">Fpar</span><span class="op">)</span> </span>
 <span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod1</span>, times<span class="op">=</span><span class="va">tt</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Trend_files/figure-html/unnamed-chunk-5-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_splinef.html">fit_splinef</a></span><span class="op">(</span><span class="fl">8</span>, <span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">Ts1</span></span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod1</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_trend</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="va">Ts1</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod1</span>, times<span class="op">=</span><span class="va">tt</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod1</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Trend_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span>  <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup_cohort.html" class="external-link">xds_setup_cohort</a></span><span class="op">(</span>F_season <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/make_function.html" class="external-link">make_function</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/makepar_F_sin.html" class="external-link">makepar_F_sin</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pr_ts2eir_history.html">pr_ts2eir_history</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Trend_files/figure-html/plot%20pseudo_data-1.png" width="700"></p>
+<p>A function is then called that fits a spline to the data. The
+algorithm is modifying the EIR signal to fit the PR signal.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">$</span><span class="va">fits</span><span class="op">$</span><span class="va">par_season</span></span></code></pre></div>
-<pre><code><span><span class="co">## $phase</span></span>
-<span><span class="co">## [1] 100</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $floor</span></span>
-<span><span class="co">## [1] 0</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $pw</span></span>
-<span><span class="co">## [1] 2.603746</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $norm</span></span>
-<span><span class="co">## [1] 365</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $N</span></span>
-<span><span class="co">## [1] 1</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## attr(,"class")</span></span>
-<span><span class="co">## [1] "sin"</span></span></code></pre>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span><span class="op">$</span><span class="va">fits</span><span class="op">$</span><span class="va">par_trend</span></span></code></pre></div>
-<pre><code><span><span class="co">## $tt</span></span>
-<span><span class="co">## [1] -365    0  365  730 1095 1460 1825 2190 2555</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## $yy</span></span>
-<span><span class="co">## [1] 1.3033530 1.0920316 1.3880927 0.7609762 0.4119508 0.8590218 2.2011150</span></span>
-<span><span class="co">## [8] 0.7383245 0.8835093</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">## attr(,"class")</span></span>
-<span><span class="co">## [1] "splinef"</span></span></code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod2</span>, times<span class="op">=</span><span class="va">tt</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod2</span>, clrs<span class="op">=</span><span class="st">"darkred"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">pr</span>, lwd<span class="op">=</span><span class="fl">2</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span>, col <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/grDevices/gray.html" class="external-link">grey</a></span><span class="op">(</span><span class="fl">0.2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Trend_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_spline.html">fit_spline</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">ttp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">365</span>, <span class="fl">2500</span>, by <span class="op">=</span> <span class="fl">365</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod1</span>, times<span class="op">=</span><span class="va">ttp</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod1</span>, clrs <span class="op">=</span> <span class="st">"darkred"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_plot_PR.html" class="external-link">xds_plot_PR</a></span><span class="op">(</span><span class="va">mod</span>, add<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Trend_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
 </div>
   </div>
 
