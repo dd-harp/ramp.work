@@ -87,7 +87,7 @@
             <h3 data-toc-skip class="subtitle">Modeling the History of
 Exposure</h3>
             
-            <h4 data-toc-skip class="date">February 13, 2025</h4>
+            <h4 data-toc-skip class="date">February 15, 2025</h4>
       
 
       <div class="hidden name"><code>History.Rmd</code></div>
@@ -153,7 +153,7 @@ and the model:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">Fx</span> <span class="op">&lt;-</span> <span class="va">mod1</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">F_trend</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">dt</span>, <span class="fu"><a href="https://rdrr.io/r/stats/integrate.html" class="external-link">integrate</a></span><span class="op">(</span><span class="va">Fx</span>,<span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">tt</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">)</span><span class="op">$</span><span class="va">val</span><span class="op">/</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">-</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">tt</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> </span></code></pre></div>
-<pre><code><span><span class="co">## [1] 1.040489</span></span></code></pre>
+<pre><code><span><span class="co">## [1] 1.043781</span></span></code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">dt</span>, <span class="fu"><a href="../reference/pr2eir_history.html">pr2eir_history</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod</span>, twice<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>We can visualize the results:</p>
