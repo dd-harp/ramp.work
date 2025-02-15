@@ -97,7 +97,7 @@ sse_season <- function(data, times, model){
 #' @export
 fit_amplitude_sin_season <- function(data, times, model, Fpar=NULL){
 
-  Fpw = function(x){1 + 8*exp(x)/(1+exp(x))}
+  Fpw = function(x){1 + 8*x^2/(1+x^2)}
 
   F_eval = function(X, data, times, model){
     model$EIRpar$season_par$bottom = X[1]^2
@@ -138,7 +138,7 @@ fit_amplitude_sin_season <- function(data, times, model, Fpar=NULL){
 #' @export
 fit_sin_season <- function(data, times, model, Fpar=NULL){
 
-  Fpw = function(x){1 + 8*exp(x)/(1+exp(x))}
+  Fpw = function(x){1 + 8*x^2/(1+x^2)}
 
   F_eval = function(X, data, times, model){
     model$EIRpar$season_par$bottom = X[1]^2
