@@ -4,7 +4,7 @@
 \alias{fit_sin_season}
 \title{Fit the phase for a time series}
 \usage{
-fit_sin_season(data, times, model)
+fit_sin_season(data, times, model, Fpar = NULL)
 }
 \arguments{
 \item{data}{the PR observed}
@@ -12,6 +12,8 @@ fit_sin_season(data, times, model)
 \item{times}{the times of the observations}
 
 \item{model}{an `xds` object}
+
+\item{Fpar}{parameters from `makepar_F_sin`}
 }
 \value{
 an `xds` object
