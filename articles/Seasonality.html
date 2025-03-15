@@ -57,6 +57,9 @@
     <li>
       <a href="../articles/History.html">History</a>
     </li>
+    <li>
+      <a href="../articles/Forecast.html">Forecast</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -85,7 +88,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Seasonality</h1>
             
-            <h4 data-toc-skip class="date">February 15, 2025</h4>
+            <h4 data-toc-skip class="date">March 15, 2025</h4>
       
 
       <div class="hidden name"><code>Seasonality.Rmd</code></div>
@@ -145,18 +148,18 @@ pattern, but it has the right mean.</p>
 <p>The first step is to fit the phase, using default parameter values
 for the amplitude.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_phase_sin_season.html">fit_phase_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_EIR_phase_sin_season.html">fit_EIR_phase_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span>
 <span><span class="va">mod1</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">season_par</span><span class="op">$</span><span class="va">phase</span> </span></code></pre></div>
 <pre><code><span><span class="co">## [1] 182</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_phase_sin_season.html">fit_phase_sin_season</a></span><span class="op">(</span><span class="va">obs_prn</span>, <span class="va">tt</span>, <span class="va">mod2</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod2</span> </span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_EIR_phase_sin_season.html">fit_EIR_phase_sin_season</a></span><span class="op">(</span><span class="va">obs_prn</span>, <span class="va">tt</span>, <span class="va">mod2</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod2</span> </span>
 <span><span class="va">mod2</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">season_par</span><span class="op">$</span><span class="va">phase</span> </span></code></pre></div>
 <pre><code><span><span class="co">## [1] 251</span></span></code></pre>
 <p>Next, we set the phase for a parameter set defining a seasonal
 pattern, and we fit the amplitude. We modify the function to have this
 fitted</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_amplitude_sin_season.html">fit_amplitude_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_EIR_amplitude_sin_season.html">fit_EIR_amplitude_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span></span>
 <span><span class="va">mod1</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">season_par</span></span></code></pre></div>
 <pre><code><span><span class="co">## $phase</span></span>
 <span><span class="co">## [1] 182</span></span>
@@ -176,7 +179,7 @@ fitted</p>
 <span><span class="co">## attr(,"class")</span></span>
 <span><span class="co">## [1] "sin"</span></span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_amplitude_sin_season.html">fit_amplitude_sin_season</a></span><span class="op">(</span><span class="va">obs_prn</span>, <span class="va">tt</span>, <span class="va">mod2</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">mod2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/fit_EIR_amplitude_sin_season.html">fit_EIR_amplitude_sin_season</a></span><span class="op">(</span><span class="va">obs_prn</span>, <span class="va">tt</span>, <span class="va">mod2</span><span class="op">)</span></span>
 <span><span class="va">mod2</span><span class="op">$</span><span class="va">EIRpar</span><span class="op">$</span><span class="va">season_par</span></span></code></pre></div>
 <pre><code><span><span class="co">## $phase</span></span>
 <span><span class="co">## [1] 251</span></span>
@@ -199,8 +202,8 @@ fitted</p>
 <code>fit_phase_sin_season,</code> we get a slightly different
 phase.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_phase_sin_season.html">fit_phase_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span>
-<span><span class="fu"><a href="../reference/fit_amplitude_sin_season.html">fit_amplitude_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_EIR_phase_sin_season.html">fit_EIR_phase_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span>
+<span><span class="fu"><a href="../reference/fit_EIR_amplitude_sin_season.html">fit_EIR_amplitude_sin_season</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="accuracy">Accuracy<a class="anchor" aria-label="anchor" href="#accuracy"></a>

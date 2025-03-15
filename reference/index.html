@@ -40,6 +40,9 @@
     <li>
       <a href="../articles/History.html">History</a>
     </li>
+    <li>
+      <a href="../articles/Forecast.html">Forecast</a>
+    </li>
   </ul></li>
 <li>
   <a href="../reference/index.html">Functions</a>
@@ -186,6 +189,10 @@
           <p><code><a href="pr2eir_history.html">pr2eir_history()</a></code> </p>
         </td>
         <td><p>Reconstruct a history of exposure from a PR time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="pr2Lambda_history.html">pr2Lambda_history()</a></code> </p>
+        </td>
+        <td><p>Reconstruct a history of exposure from a PR time series</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="seasonality">Seasonality <a href="#seasonality" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>No methods to set subclass</p>
@@ -199,7 +206,7 @@
         </td>
         <td><p>Draw the orbit for the \(i^{th}\) element of eirpr$scaling, and add points at the minimum and maximum eir and pr</p></td>
       </tr><tr><td>
-          <p><code><a href="bracket_lambda.html">bracket_lambda()</a></code> </p>
+          <p><code><a href="compute_threshold.html">compute_threshold()</a></code> </p>
         </td>
         <td><p>Get High/Low Values for Lambda</p></td>
       </tr><tr><td>
@@ -219,29 +226,69 @@
         </td>
         <td><p>Draw the orbit for the \(i^{th}\) element of eirpr$scaling.</p></td>
       </tr><tr><td>
-          <p><code><a href="fit_amplitude_sin_season.html">fit_amplitude_sin_season()</a></code> </p>
+          <p><code><a href="fit_EIR_amplitude_sin_season.html">fit_EIR_amplitude_sin_season()</a></code> </p>
         </td>
         <td><p>Fit the amplitude for a time series</p></td>
       </tr><tr><td>
-          <p><code><a href="fit_phase_sin_season.html">fit_phase_sin_season()</a></code> </p>
+          <p><code><a href="fit_EIR_phase_sin_season.html">fit_EIR_phase_sin_season()</a></code> </p>
         </td>
         <td><p>Fit the phase for a time series</p></td>
       </tr><tr><td>
-          <p><code><a href="fit_sin_season.html">fit_sin_season()</a></code> </p>
+          <p><code><a href="fit_EIR_sin_season.html">fit_EIR_sin_season()</a></code> </p>
         </td>
         <td><p>Fit the phase for a time series</p></td>
       </tr><tr><td>
-          <p><code><a href="sse_season.html">sse_season()</a></code> </p>
+          <p><code><a href="sse_EIR_season.html">sse_EIR_season()</a></code> </p>
         </td>
         <td><p>Given data, compute GoF for a seasonal function</p></td>
       </tr><tr><td>
-          <p><code><a href="fit_spline.html">fit_spline()</a></code> </p>
+          <p><code><a href="fit_EIR_spline.html">fit_EIR_spline()</a></code> </p>
         </td>
         <td><p>Fit the amplitude for a time series</p></td>
       </tr><tr><td>
-          <p><code><a href="sse_spline.html">sse_spline()</a></code> </p>
+          <p><code><a href="sse_EIR_spline.html">sse_EIR_spline()</a></code> </p>
         </td>
         <td><p>Given data, compute GoF for a spline function</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_Lambda_amplitude_sin_season.html">fit_Lambda_amplitude_sin_season()</a></code> </p>
+        </td>
+        <td><p>Fit the amplitude for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_Lambda_phase_sin_season.html">fit_Lambda_phase_sin_season()</a></code> </p>
+        </td>
+        <td><p>Fit the phase for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_Lambda_sin_season.html">fit_Lambda_sin_season()</a></code> </p>
+        </td>
+        <td><p>Fit the phase for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="sse_Lambda_season.html">sse_Lambda_season()</a></code> </p>
+        </td>
+        <td><p>Given data, compute GoF for a seasonal function</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_Lambda_spline.html">fit_Lambda_spline()</a></code> </p>
+        </td>
+        <td><p>Fit the amplitude for a time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="sse_Lambda_spline.html">sse_Lambda_spline()</a></code> </p>
+        </td>
+        <td><p>Given data, compute GoF for a spline function</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="forecasting">Forecasting <a href="#forecasting" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>No methods to set subclass</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="forecast_spline.html">forecast_spline()</a></code> </p>
+        </td>
+        <td><p>Add a "forecast"</p></td>
+      </tr><tr><td>
+          <p><code><a href="forecast_spline_EIR.html">forecast_spline_EIR()</a></code> </p>
+        </td>
+        <td><p>Add a "forecast"</p></td>
+      </tr><tr><td>
+          <p><code><a href="forecast_spline_Lambda.html">forecast_spline_Lambda()</a></code> </p>
+        </td>
+        <td><p>Add a "forecast"</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="demography">Demography <a href="#demography" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>No methods to set subclass</p>

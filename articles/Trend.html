@@ -57,6 +57,9 @@
     <li>
       <a href="../articles/History.html">History</a>
     </li>
+    <li>
+      <a href="../articles/Forecast.html">Forecast</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -85,7 +88,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Trends</h1>
             
-            <h4 data-toc-skip class="date">February 15, 2025</h4>
+            <h4 data-toc-skip class="date">March 15, 2025</h4>
       
 
       <div class="hidden name"><code>Trend.Rmd</code></div>
@@ -129,8 +132,7 @@ seasonal pattern.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Trend_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">pr</span>, <span class="va">obs_pr</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/write.table.html" class="external-link">write.csv</a></span><span class="op">(</span><span class="va">dt</span>, <span class="st">"pseudo.csv"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">tt</span>, <span class="va">pr</span>, <span class="va">obs_pr</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="fitting-the-trend">Fitting the Trend<a class="anchor" aria-label="anchor" href="#fitting-the-trend"></a>
@@ -146,7 +148,7 @@ seasonal pattern.</p>
 <p>A function is then called that fits a spline to the data. The
 algorithm is modifying the EIR signal to fit the PR signal.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_spline.html">fit_spline</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/fit_EIR_spline.html">fit_EIR_spline</a></span><span class="op">(</span><span class="va">obs_pr</span>, <span class="va">tt</span>, <span class="va">mod1</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">mod1</span> </span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ttp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="op">-</span><span class="fl">365</span>, <span class="fl">2500</span>, by <span class="op">=</span> <span class="fl">365</span><span class="op">/</span><span class="fl">12</span><span class="op">)</span><span class="op">)</span> </span>
 <span><span class="va">mod1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve_cohort.html" class="external-link">xds_solve_cohort</a></span><span class="op">(</span><span class="va">mod1</span>, times<span class="op">=</span><span class="va">ttp</span><span class="op">)</span></span>
