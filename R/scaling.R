@@ -42,12 +42,13 @@ xde_scaling_eir = function(model, N=25, rbr=1){
 #' @export
 xde_scaling_lambda = function(model, fac=1.2, N=30){
 
-  # start with R0 < 0.01
-  Lambda = model$Lpar[[1]]$Lambda
-  Ltot <- sum(Lambda)
-  Htot <- sum(get_H(model))
-  scale = Htot/Ltot/100
-  factor = fac^c(0:N)*scale
+  # get R0
+  thresh <- compute_threshold(model)
+  factor = c(1/100,3/100,1/10,1/5,1/2,2/3,4/5, 9/10, .95, .98, 1, 1.01, 1.02, 1.04, 1.08, 1.12, 1.2, 1.5, 2, 4, 8, 16, 32, 64, 128)
+  #ff = function(n){(1.01 + 0.02*n)^n}
+  #vv =  ff(1:16)
+  #factor = c(1/ff(seq(12, 2, by=-2)), 1, vv)
+  N = length(factor)
 
   # setup
   M = rep(0, N)
@@ -56,13 +57,14 @@ xde_scaling_lambda = function(model, fac=1.2, N=30){
   eir = rep(0, N)
   scaling = list()
 
+  model0=model
   for(i in 1:N){
+    model <- model0
     # Run it for awhile
-    model$Lpar[[1]]$Lambda <- Lambda*factor[i]
-    model <- ramp.xds::xds_solve(model, Tmax=3650, dt=3650)
+    model$Lpar[[1]]$Lambda <- thresh*factor[i]
+    model <- ramp.xds::xds_solve(model, Tmax=7300, dt=7300)
     model <- last_to_inits(model)
     model <- ramp.xds::xds_solve(model, Tmax=3*365, dt=1)
-
     average_PR_true(model) -> pr_t; pr_t <- tail(pr_t, 365)
     pr[i] <- mean(pr_t)
     average_EIR(model) -> eir_t; eir_t <- tail(eir_t, 365)
@@ -74,9 +76,9 @@ xde_scaling_lambda = function(model, fac=1.2, N=30){
     M[i] <- mean(M_t)
     XH <- get_XH(model)
     ni_t = tail(XH$ni, 365);  ni[i]= mean(ni_t)
-    scaling[[i]] = list(aeir = eir_t*365, M = M_t, eir = eir_t, pr = pr_t, ni = ni_t)
+    scaling[[i]] = list(Lambda = thresh*factor[i], aeir = eir_t*365, M = M_t, eir = eir_t, pr = pr_t, ni = ni_t)
   }
-  model$outputs$eirpr <- list(aeir=365*eir, eir=eir, M=M, pr=pr, ni=ni, scaling=scaling)
+  model$outputs$eirpr <- list(Ro=factor, Lambda = thresh*factor,  aeir=365*eir, eir=eir, M=M, pr=pr, ni=ni, scaling=scaling)
 
   return(model)
 }
@@ -85,20 +87,19 @@ xde_scaling_lambda = function(model, fac=1.2, N=30){
 #' @param model a **`ramp.xds`** model object
 #' @return a pair of values
 #' @export
-bracket_lambda = function(model){
+compute_threshold = function(model){
   model <- xds_solve(model, 3650, 3650)
   y <- get_last(model)
   b <- F_b(y,model,1)
   f <- get_f(model, 1)
   q <- get_q(model, 1)
-  g <- model$MYZpar[[1]]$g
+  g <- get_g(model, 1)
   eip <- model$MYZpar[[1]]$eip
   VC <- f^2*q^2/g^2*exp(-g*eip)
+  H <- get_H(model)
   D <- HTC(model, 1)
-  R0 <- b*VC*D
-  low = 1/R0/10
-  high = 1000/R0
-  c(low, high)
+  R <- b*VC*D/H
+  return(1/R)
 }
 
 #' @title Set up the MYZss object for `xde_scaling_lambda`

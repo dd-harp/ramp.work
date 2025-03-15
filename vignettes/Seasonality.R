@@ -41,20 +41,20 @@ mod1 <- xds_solve_cohort(mod1, times=tt)
 mod2 <- mod1
 
 ## -----------------------------------------------------------------------------
-fit_phase_sin_season(obs_pr, tt, mod1) -> mod1 
+fit_EIR_phase_sin_season(obs_pr, tt, mod1) -> mod1 
 mod1$EIRpar$season_par$phase 
-fit_phase_sin_season(obs_prn, tt, mod2) -> mod2 
+fit_EIR_phase_sin_season(obs_prn, tt, mod2) -> mod2 
 mod2$EIRpar$season_par$phase 
 
 ## -----------------------------------------------------------------------------
-mod1 <- fit_amplitude_sin_season(obs_pr, tt, mod1)
+mod1 <- fit_EIR_amplitude_sin_season(obs_pr, tt, mod1)
 mod1$EIRpar$season_par
-mod2 <- fit_amplitude_sin_season(obs_prn, tt, mod2)
+mod2 <- fit_EIR_amplitude_sin_season(obs_prn, tt, mod2)
 mod2$EIRpar$season_par
 
 ## -----------------------------------------------------------------------------
-fit_phase_sin_season(obs_pr, tt, mod1) -> mod1 
-fit_amplitude_sin_season(obs_pr, tt, mod1) -> mod1
+fit_EIR_phase_sin_season(obs_pr, tt, mod1) -> mod1 
+fit_EIR_amplitude_sin_season(obs_pr, tt, mod1) -> mod1
 
 ## -----------------------------------------------------------------------------
 mod1 <- xds_solve_cohort(mod1, times=tt)
