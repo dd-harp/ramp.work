@@ -33,7 +33,6 @@ lines(tt, obs_pr)
 
 ## -----------------------------------------------------------------------------
 dt <- data.frame(tt, pr, obs_pr)
-write.csv(dt, "pseudo.csv")
 
 ## ----plot pseudo_data---------------------------------------------------------
 mod1 <- xds_setup_cohort(eir = 1/365, season_par = Fpar) 
@@ -42,7 +41,7 @@ xds_plot_PR(mod1)
 lines(tt, obs_pr)
 
 ## ----fit_spline---------------------------------------------------------------
-fit_spline(obs_pr, tt, mod1) -> mod1 
+fit_EIR_spline(obs_pr, tt, mod1) -> mod1 
 
 ## -----------------------------------------------------------------------------
 ttp <- round(seq(-365, 2500, by = 365/12)) 

@@ -11,6 +11,8 @@ navbar:
       href: articles/Trend.html
     - text: History
       href: articles/History.html
+    - text: Forecast
+      href: articles/Forecast.html
   - text: Functions
     href: reference/index.html
   right:
@@ -68,23 +70,37 @@ reference:
   - xde_scaling_eir
   - xde_scaling_lambda
   - pr2eir_history
+  - pr2Lambda_history
 - title: Seasonality
   desc: |
     No methods to set subclass
   contents:
   - add_orbits
   - add_orbits_px
-  - bracket_lambda
+  - compute_threshold
   - compute_IoD_F
   - compute_IoD_S
   - compute_IoD_pr
   - eirpr_seasonal_profile
-  - fit_amplitude_sin_season
-  - fit_phase_sin_season
-  - fit_sin_season
-  - sse_season
-  - fit_spline
-  - sse_spline
+  - fit_EIR_amplitude_sin_season
+  - fit_EIR_phase_sin_season
+  - fit_EIR_sin_season
+  - sse_EIR_season
+  - fit_EIR_spline
+  - sse_EIR_spline
+  - fit_Lambda_amplitude_sin_season
+  - fit_Lambda_phase_sin_season
+  - fit_Lambda_sin_season
+  - sse_Lambda_season
+  - fit_Lambda_spline
+  - sse_Lambda_spline
+- title: Forecasting
+  desc: |
+    No methods to set subclass
+  contents:
+  - forecast_spline
+  - forecast_spline_EIR
+  - forecast_spline_Lambda
 - title: Demography
   desc: |
     No methods to set subclass

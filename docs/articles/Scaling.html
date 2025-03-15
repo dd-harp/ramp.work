@@ -58,6 +58,9 @@
     <li>
       <a href="../articles/History.html">History</a>
     </li>
+    <li>
+      <a href="../articles/Forecast.html">Forecast</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -86,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Scaling Relationships for Malaria Metrics</h1>
             
-            <h4 data-toc-skip class="date">February 12, 2025</h4>
+            <h4 data-toc-skip class="date">March 15, 2025</h4>
       
       
       <div class="hidden name"><code>Scaling.Rmd</code></div>
@@ -162,14 +165,21 @@ of <code>N=25</code> values:</p>
 <code class="sourceCode R"><span><span class="va">Lo</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>  F_season <span class="op">=</span> <span class="va">Fsin</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup.html" class="external-link">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, Lopts <span class="op">=</span> <span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_setup.html" class="external-link">xds_setup</a></span><span class="op">(</span>Xname <span class="op">=</span> <span class="st">"SIS"</span>, Lopts<span class="op">=</span><span class="va">Lo</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/ramp.xds/man/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/xde_scaling_lambda.html">xde_scaling_lambda</a></span><span class="op">(</span><span class="va">sis_full</span>, <span class="fl">1.1</span>, <span class="fl">30</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">sis_full</span></span></code></pre></div>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_eirpr.html">plot_eirpr</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Scaling_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
+<p><img src="Scaling_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">eirpr</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">Ro</span>, <span class="va">pr</span>, type <span class="op">=</span> <span class="st">"l"</span>, log<span class="op">=</span><span class="st">"x"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Scaling_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">eirpr</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">M</span>, <span class="va">pr</span>, type <span class="op">=</span> <span class="st">"l"</span>, log <span class="op">=</span> <span class="st">"x"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">sis_full</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">eirpr</span><span class="op">$</span><span class="va">scaling</span><span class="op">[[</span><span class="fl">18</span><span class="op">]</span><span class="op">]</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/lines.html" class="external-link">lines</a></span><span class="op">(</span><span class="va">M</span>, <span class="va">pr</span>, type <span class="op">=</span> <span class="st">"l"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Scaling_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="xde_pr2eir">
@@ -181,22 +191,22 @@ predicted value of the eir, for any given value of the pr. The code is
 in <code>mob_library/Work</code></p>
 <p>We can run this for 50 randomly chosen values of the
 <em>Pf</em>PR.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">preir_i</span> <span class="op">=</span> <span class="fu"><a href="../reference/xde_pr2eir.html">xde_pr2eir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0.001</span>, <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html" class="external-link">runif</a></span><span class="op">(</span><span class="fl">25</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>, <span class="fl">0.999</span><span class="op">)</span>, <span class="va">sis</span><span class="op">)</span></span></code></pre></div>
 <p>The function flags any values that are outside of the acceptable
 range. This may not seem important for the SIS model, but the range of
 other models can be bounded, so we don’t want to return nonsense
 values.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">preir_i</span><span class="op">$</span><span class="va">errors</span></span></code></pre></div>
 <pre><code><span><span class="co">##         pr1         pr2         pr3 </span></span>
 <span><span class="co">## 0.001000000 0.007399441 0.999000000</span></span></code></pre>
 <p>We can plot the others:</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_eirpr.html">plot_eirpr</a></span><span class="op">(</span><span class="va">sis</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">sis</span><span class="op">$</span><span class="va">outputs</span><span class="op">$</span><span class="va">eirpr</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">aeir</span>, <span class="va">pr</span>, pch <span class="op">=</span> <span class="fl">15</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/with.html" class="external-link">with</a></span><span class="op">(</span><span class="va">preir_i</span>, <span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="fl">365</span><span class="op">*</span><span class="va">eir</span>, <span class="va">pr</span>, pch <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"red"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Scaling_files/figure-html/unnamed-chunk-14-1.png" width="700"></p>
+<p><img src="Scaling_files/figure-html/unnamed-chunk-17-1.png" width="700"></p>
 </div>
   </div>
 

@@ -13,6 +13,7 @@ vignette: >
 library(ramp.xds)
 library(ramp.work)
 ```
+
 ```{r}
 #devtools::load_all()
 ```
@@ -60,8 +61,8 @@ lines(tt, obs_pr)
 
 ```{r}
 dt <- data.frame(tt, pr, obs_pr)
-write.csv(dt, "pseudo.csv")
 ```
+
 
 ## Fitting the Trend 
 
@@ -77,7 +78,7 @@ lines(tt, obs_pr)
 A function is then called that fits a spline to the data. The algorithm is modifying the EIR signal to fit the PR signal. 
 
 ```{r fit_spline}
-fit_spline(obs_pr, tt, mod1) -> mod1 
+fit_EIR_spline(obs_pr, tt, mod1) -> mod1 
 ```
 
 ```{r}

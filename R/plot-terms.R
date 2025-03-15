@@ -54,9 +54,10 @@ lines_eirVpr <- function(eir, pr, nStrata, clrs= "black", llty = 1){
 #' @export
 plot_eirpr <- function(pars, clrs= "black", llty = 1){
   with(pars$outputs$eirpr, {
-    plot(aeir, pr, type = "l", xaxt="n", lty = llty,
+    ix = which(aeir>0)
+    plot(aeir[ix], pr[ix], type = "l", xaxt="n", lty = llty,
          xlab = "aEIR", ylab = "PR", log="x",
-         xlim = range(aeir), ylim = c(0,1),
+         xlim = range(10^-2, 10^3), ylim = c(0,1),
          col = clrs)
     graphics::axis(1, 10^c(-1:3), c(".1", "1", "10", "100","1000"))
   })
