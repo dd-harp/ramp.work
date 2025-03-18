@@ -101,6 +101,7 @@ reference:
   - forecast_spline
   - forecast_spline_EIR
   - forecast_spline_Lambda
+  - gam_sample
 - title: Demography
   desc: |
     No methods to set subclass

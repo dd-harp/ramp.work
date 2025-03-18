@@ -4,12 +4,14 @@
 \alias{forecast_spline}
 \title{Add a "forecast"}
 \usage{
-forecast_spline(spline_par, N = 5)
+forecast_spline(spline_par, N = 5, x_last = 0)
 }
 \arguments{
 \item{spline_par}{parameters to set up a spline function}
 
 \item{N}{the number of years ahead to forecast}
+
+\item{x_last}{the number of last knot points to exclude}
 }
 \description{
 Use the nodes of a trend function, defined as a spline, to
