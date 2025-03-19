@@ -31,6 +31,7 @@ forecast_spline= function(spline_par, N=5, x_last=0){
 #' "forecast" the future by sub-sampling from a fitted gamma
 #' @param yy the knots
 #' @param N the number of years ahead to forecast
+#' @importFrom stats dgamma rgamma optimize
 #' @export
 gam_sample <- function(yy, N){
   gam_lik <- function(shp, yy){
