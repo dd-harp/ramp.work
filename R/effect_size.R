@@ -53,7 +53,8 @@ sse_effect_sizes <- function(X, data, times, model, irs_rounds, itn_rounds){
 
 
 #' @title Set the zap parameters
-#' @description
+#' @description Set the zap parameters
+#' to fit effect sizes
 #'
 #' @param X a set of parameters to be fit
 #' @param model a **`ramp.xds`** model object

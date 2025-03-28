@@ -1,6 +1,7 @@
 ## -----------------------------------------------------------------------------
 suppressMessages(library(ramp.xds))
 suppressMessages(library(ramp.work))
+suppressMessages(library(ramp.control))
 
 ## ----echo=F-------------------------------------------------------------------
 devtools::load_all()
@@ -55,8 +56,8 @@ Lo <- list(
 )
 
 ## -----------------------------------------------------------------------------
-mod <- xds_setup(Lopts = Lo)
-mod <- setup_travel_eir(mod, travelEIR = 1/3650)
+mod <- xds_setup(Lopts = Lo, MYZname = "SI")
+mod <- setup_travel_eir(mod, travelEIR = 1/3650/5)
 
 ## -----------------------------------------------------------------------------
 mod <- xds_solve(mod, 3650, 3650)
@@ -68,5 +69,34 @@ xds_plot_PR(mod)
 #  mod <- pr2Lambda_history(obs_pr, tt, mod, twice=TRUE)
 
 ## -----------------------------------------------------------------------------
-xds_plot_PR(mod)
+xds_plot_PR(mod, clrs = "darkred")
+xds_plot_PR(mod1, clrs="darkblue", add=TRUE)
+lines(tt, obs_pr, col = "darkblue", type = "b", pch=15)
+
+## -----------------------------------------------------------------------------
+irs1 <- list(
+  t_init = c(900, 1265), 
+  irs_type = c("actellic", "bendiocarb"), 
+  coverage = c(0.9, 0.9), 
+  zap = c(0.5, .3) 
+)
+rounds <- setup_irs_multiround(opts=irs1)
+
+## -----------------------------------------------------------------------------
+mod_irs <- setup_irs(mod, effectsizes_name = "simple", 
+                          coverage_name = "func", 
+                          coverage_opts = list(mx=1, trend_par=rounds))
+
+## -----------------------------------------------------------------------------
+devtools::load_all()
+
+## -----------------------------------------------------------------------------
+mod_est <- estimate_effect_sizes(mod_irs, c(4,5), obs_pr[-1], tt, irs_rounds=irs1)
+
+## -----------------------------------------------------------------------------
+mod_est <- xds_solve(mod_est, 2190, 10) 
+xds_plot_PR(mod_est, clrs= "darkred")
+#xds_plot_PR(mod, clrs = "darkred", add=TRUE)
+xds_plot_PR(mod1, clrs="darkblue", add=TRUE)
+lines(tt, obs_pr, col = "darkblue", type = "b", pch=15)
 

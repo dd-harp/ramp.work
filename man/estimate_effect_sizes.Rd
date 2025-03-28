@@ -4,10 +4,23 @@
 \alias{estimate_effect_sizes}
 \title{Estimate the effect sizes of vector control}
 \usage{
-estimate_effect_sizes(model, irs_rounds = list(), itn_rounds = list())
+estimate_effect_sizes(
+  model,
+  base_ix,
+  data,
+  times,
+  irs_rounds = list(),
+  itn_rounds = list()
+)
 }
 \arguments{
 \item{model}{a **`ramp.xds`** model object}
+
+\item{base_ix}{counterfactual baseline knots}
+
+\item{data}{the PR observed}
+
+\item{times}{the times of the observations}
 
 \item{irs_rounds}{a list to configure irs_multiround}
 
