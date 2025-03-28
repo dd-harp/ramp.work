@@ -6,3 +6,5 @@ docs
 ^docs$
 ^pkgdown$
 ^\.github$
+^index\.Rmd$
+^index\.html$

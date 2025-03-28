@@ -107,3 +107,8 @@ reference:
     No methods to set subclass
   contents:
   - UnevenAgingMatrix
+- title: Estimate Effect Size
+  desc: |
+    No methods to set subclass
+  contents:
+  - estimate_effect_size

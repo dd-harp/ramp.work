@@ -1,0 +1,6 @@
+---
+title: "ramp.work"
+output: html_document
+---
+
+[GitHub Pages](docs/index.html)

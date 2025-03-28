@@ -78,7 +78,7 @@ fit_Lambda_spline <- function(data, times, model, splinef=2){
     sse_Lambda_spline(data, times, model)
   }
   times <- c(-365, times)
-  phase <- model$Lpar[[1]]$trend_par$phase
+  phase <- model$Lpar[[1]]$season_par$phase
   knots <- seq(floor(min(times)/365), ceiling(max(times)/365), by=1)*365 + phase
   yy <- 1+0*knots
   par0 <- makepar_F_spline(knots, yy, X=2)
@@ -90,6 +90,6 @@ fit_Lambda_spline <- function(data, times, model, splinef=2){
                                 model=model)$par
   model$Lpar[[1]]$trend_par$yy = c(X[1], X)
   model$Lpar[[1]]$F_trend <- make_function(model$Lpar[[1]]$trend_par)
-  model <- xds_solve_cohort(model, times=times)
+  model <- xds_solve(model, times=times)
   return(model)
 }
