@@ -81,6 +81,7 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
   stopifnot(length(pr_ts) == length(times))
 
   # First pass: run the scaling algorithm
+  print("scaling")
   mod1 <- model
   mod1$Lpar[[1]]$F_trend <- F_flat
   mod1 <- xde_scaling_lambda(mod1, 25)
@@ -90,10 +91,10 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
   # to match the start of the data
   ix = which(times < t_min + 180)
   init_pr <- mean(pr_ts[ix])
-  lambda0 <- xde_pr2lambda(init_pr, mod1, TRUE)$lambda
+  lambda0 <- xde_pr2Lambda(init_pr, mod1, TRUE)$Lambda
 
   mod0 <- model
-  mod0$Lpar[[1]]$lambda <- lambda0
+  mod0$Lpar[[1]]$Lambda <- lambda0
   mod0$Lpar[[1]]$F_season <- F_flat
   mod0$Lpar[[1]]$F_trend  <- F_flat
   mod0 <- xds_solve(mod0, times = c(0, 3650))
@@ -104,12 +105,15 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
   # Set the mean lambda for the model to be the average lambda
   # from the PR time series
   mean_pr <- mean(pr_ts)
-  lambda1 <- xde_pr2lambda(mean_pr, mod1, TRUE)$lambda
+  lambda1 <- xde_pr2Lambda(mean_pr, mod1, TRUE)$Lambda
   model$Lpar[[1]]$Lambda <- lambda1
 
   # First pass
+  print("phase1")
   model <- fit_Lambda_phase_sin_season(pr_ts, times, model)
+  print("amplitude1")
   model <- fit_Lambda_amplitude_sin_season(pr_ts, times, model)
+  print("trend1")
   model <- fit_Lambda_spline(pr_ts, times, model)
 
   if(twice == TRUE){
@@ -117,8 +121,11 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
     adjust = stats::integrate(Ft, min(times), max(times))$val/(max(times)-min(times))
     model$Lpar[[1]]$Lambda <- lambda1/adjust
     # Second pass: refit phase & amplitude
+    print("phase2")
     model <- fit_Lambda_phase_sin_season(pr_ts, times, model)
+    print("amplitude2")
     model <- fit_Lambda_amplitude_sin_season(pr_ts, times, model)
+    print("trend2")
     model <- fit_Lambda_spline(pr_ts, times, model)
   }
 

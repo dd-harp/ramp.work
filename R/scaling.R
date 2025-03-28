@@ -78,7 +78,9 @@ xde_scaling_lambda = function(model, fac=1.2, N=30){
     ni_t = tail(XH$ni, 365);  ni[i]= mean(ni_t)
     scaling[[i]] = list(Lambda = thresh*factor[i], aeir = eir_t*365, M = M_t, eir = eir_t, pr = pr_t, ni = ni_t)
   }
-  model$outputs$eirpr <- list(Ro=factor, Lambda = thresh*factor,  aeir=365*eir, eir=eir, M=M, pr=pr, ni=ni, scaling=scaling)
+  Lambda <- thresh*factor
+  lambda <- Lambda/get_H(model)
+  model$outputs$eirpr <- list(Ro=factor, Lambda = Lambda, lambda=lambda, aeir=365*eir, eir=eir, M=M, pr=pr, ni=ni, scaling=scaling)
 
   return(model)
 }

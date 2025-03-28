@@ -158,26 +158,27 @@ xde_pr2m = function(pr, model, extend=FALSE){
 #' @param model a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_pr2lambda = function(pr, model, extend=FALSE){
+xde_pr2Lambda = function(pr, model, extend=FALSE){
   with(model$outputs, stopifnot(exists("eirpr")))
   PR = model$outputs$eirpr$pr
-  lambda = model$outputs$eirpr$lambda
+  Lambda = model$outputs$eirpr$Lambda
   if(extend==TRUE){
     PR = c(0, PR, 1)
-    lambda = c(0, lambda, 5*10^3/365)
+    Lambda = c(0, Lambda, 5*10^3/365)
   }
   ix = which(pr<=max(PR) & pr>=min(PR))
-  get_lambda = function(pr){
-    if(pr == min(PR)) return(min(lambda))
-    if(pr == max(PR)) return(max(lambda))
+  get_Lambda = function(pr){
+    if(pr == min(PR)) return(min(Lambda))
+    if(pr == max(PR)) return(max(Lambda))
     ix = max(which(PR<pr))
     ff = (pr-PR[ix])/(PR[ix+1]-PR[ix])
-    lambda=lambda[ix] + ff*(lambda[ix+1]-lambda[ix])
-    return(lambda)
+    LLambda=Lambda[ix] + ff*(Lambda[ix+1]-Lambda[ix])
+    return(LLambda)
   }
-  llambda = 0*pr-1
-  llambda[ix] = sapply(pr[ix], get_lambda)
-  pr2lambda = list(pr=pr[ix], lambda=llambda[ix])
-  if(length(ix)>0) pr2lambda$errors = c(pr=pr[-ix])
-  return(pr2lambda)
+  lLambda = 0*pr-1
+  lLambda[ix] = sapply(pr[ix], get_Lambda)
+  pr2Lambda = list(pr=pr[ix], Lambda=lLambda[ix])
+  if(length(ix)>0) pr2Lambda$errors = c(pr=pr[-ix])
+  return(pr2Lambda)
 }
+
