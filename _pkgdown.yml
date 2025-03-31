@@ -13,6 +13,8 @@ navbar:
       href: articles/History.html
     - text: Forecast
       href: articles/Forecast.html
+    - text: Effect Sizes
+      href: articles/Effect_Sizes.html
   - text: Functions
     href: reference/index.html
   right:
