@@ -72,4 +72,4 @@ The software was designed around a rigorous mathematical framework for modular m
 
 ## Functions
 
-[Functions](https://dd-harp.github.io/ramp.work/reference/index.html)
+[Functions](docs/reference/index.html)
