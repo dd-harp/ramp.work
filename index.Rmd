@@ -6,12 +6,13 @@ output: html_document
 
 # {.tabset}
 
-## $\odot$
-
 <!-- badges: start -->
 [![PLoS Computational Biology](https://img.shields.io/badge/doi%3A10.1371%2Fjournal.pcbi.1010684-cornflowerblue?style=for-the-badge&logoColor=cornflowerblue&label=PLoS%20Comp%20Bio&labelColor=slategrey&link=https%3A%2F%2Fjournals.plos.org%2Fploscompbiol%2Farticle%3Fid%3D10.1371%2Fjournal.pcbi.1010684)](https://doi.org/10.1371/journal.pcbi.1010684)
-
 <!-- badges: end -->
+
+## $\odot$
+
+
 
 
 ### Installation  
@@ -61,7 +62,7 @@ The software was designed around a rigorous mathematical framework for modular m
 
 + [Seasonality](vignettes/Seasonality.html) 
 
-+ [Trends](vignettes/Trends.html) 
++ [Trends](vignettes/Trend.html) 
 
 + [Effect_Sizes](vignettes/Effect_Sizes.html) 
 
