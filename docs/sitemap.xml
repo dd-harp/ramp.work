@@ -13,6 +13,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/articles/Analysis.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/Effect_Sizes.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/Fitting.html</loc>
   </url>
   <url>
@@ -88,10 +91,16 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/dts_pr2ar_ts.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/effect_sizes_set_zap.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/eirpr_seasonal_profile.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/estimate_effect_size.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/estimate_effect_sizes.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_EIR_amplitude_sin_season.html</loc>
@@ -197,6 +206,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/sse_Lambda_spline.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/sse_effect_sizes.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/sse_season.html</loc>
