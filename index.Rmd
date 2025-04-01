@@ -56,19 +56,18 @@ The software was designed around a rigorous mathematical framework for modular m
 
 ## Vignettes 
 
-+ [Scaling](https://dd-harp.github.io/ramp.work/articles/Scaling.html) 
 
 + [Scaling](vignettes/Scaling.html) 
 
-+ [Seasonality](https://dd-harp.github.io/ramp.work/articles/Seasonality.html) 
++ [Seasonality](vignettes/Seasonality.html) 
 
-+ [Trends](https://dd-harp.github.io/ramp.work/articles/Trends.html) 
++ [Trends](vignettes/Trends.html) 
 
-+ [Effect Sizes](https://dd-harp.github.io/ramp.work/articles/Effect_Sizes.html) 
++ [Effect_Sizes](vignettes/Effect_Sizes.html) 
 
-+ [History](https://dd-harp.github.io/ramp.work/articles/History.html) 
++ [History](vignettes/History.html) 
 
-+ [Forecast](https://dd-harp.github.io/ramp.work/articles/Forecast.html) 
++ [Forecast](vignettes/Forecast.html) 
 
 ## Functions
 
