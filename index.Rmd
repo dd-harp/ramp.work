@@ -58,6 +58,8 @@ The software was designed around a rigorous mathematical framework for modular m
 
 + [Scaling](https://dd-harp.github.io/ramp.work/articles/Scaling.html) 
 
++ [Scaling](vignettes/Scaling.html) 
+
 + [Seasonality](https://dd-harp.github.io/ramp.work/articles/Seasonality.html) 
 
 + [Trends](https://dd-harp.github.io/ramp.work/articles/Trends.html) 
