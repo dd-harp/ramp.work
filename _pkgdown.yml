@@ -65,7 +65,7 @@ reference:
   - xde_eir2pr
   - xde_maximize_gof
   - xde_pr2eir
-  - xde_pr2lambda
+  - xde_pr2Lambda
   - xde_pr2m
   - xde_pr2ni
   - xde_scaling
@@ -113,4 +113,8 @@ reference:
   desc: |
     No methods to set subclass
   contents:
-  - estimate_effect_size
+  - estimate_effect_sizes
+  - sse_effect_sizes
+  - effect_sizes_set_zap
+
+
