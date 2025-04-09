@@ -69,7 +69,7 @@ yy1 <- yy2 <- yy3 <- yy0
 yy1[ix] <- gam_sample(yy0[-ix], 2)
 yy2[ix] <- gam_sample(yy0[-ix], 2)
 mv <- mean(yy0[-ix]) 
-yy3[ix] <- rep(mv, 2)
+yy3[ix] <- rep(mv, 2)011
 rbind(yy1, yy2)
 rbind(yy1, yy2, yy3)
 ```
