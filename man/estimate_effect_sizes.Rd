@@ -8,8 +8,6 @@ estimate_effect_sizes(
   model,
   data,
   times,
-  base_tt,
-  base_yy,
   irs_rounds = list(),
   itn_rounds = list()
 )
@@ -20,10 +18,6 @@ estimate_effect_sizes(
 \item{data}{the PR observed}
 
 \item{times}{the times of the observations}
-
-\item{base_tt}{the index of the years with a modified baseline}
-
-\item{base_yy}{the putative baseline}
 
 \item{irs_rounds}{a list to configure irs_multiround}
 

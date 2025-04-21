@@ -37,7 +37,7 @@ This picture:
 ```{r}
 set.seed(136)
 tt0 <-  365*(0:6)
-yy0 <-  c(.7, 2, 1.8, .2, .3, 1.4, 1.1)
+yy0 <-  c(.9, 2.2, 1.8, .2, .3, 1.4, 1.1)
 yy0 <- yy0/mean(yy0)
 mod1 <- xds_setup_cohort(
   eir = 2/365,
@@ -65,32 +65,25 @@ We would like to reconstruct the pre-control baseline. In this exam, the 4th and
 
 ```{r}
 ix = c(4,5)
-yy1 <- yy2 <- yy3 <- yy0
-yy1[ix] <- gam_sample(yy0[-ix], 2)
-yy2[ix] <- gam_sample(yy0[-ix], 2)
-mv <- mean(yy0[-ix]) 
-yy3[ix] <- rep(mv, 2)
-rbind(yy1, yy2)
-rbind(yy1, yy2, yy3)
+cf_max <- make_cf_base_max(ix, mod1)
+cf_min <- make_cf_base_min(ix, mod1)
+cf_median <- make_cf_base_median(ix, mod1)
+cf_mean <- make_cf_base_mean(ix, mod1)
 ```
 
 ```{r}
-mod1a <- mod1
-mod1b <- mod1
-mod1c <- mod1
-mod1a$EIRpar$trend_par <- makepar_F_spline(tt=tt0, yy=yy1)
-mod1b$EIRpar$trend_par <- makepar_F_spline(tt=tt0, yy=yy2)
-mod1c$EIRpar$trend_par <- makepar_F_spline(tt=tt0, yy=yy3)
-mod1a <- xds_solve_cohort(mod1a, times=tt)
-mod1b <- xds_solve_cohort(mod1b, times=tt)
-mod1c <- xds_solve_cohort(mod1c, times=tt)
+mod1a <- modify_baseline(mod1, cf_max) 
+mod1b <- modify_baseline(mod1, cf_min) 
+mod1c <- modify_baseline(mod1, cf_median) 
+mod1d <- modify_baseline(mod1, cf_mean) 
 base_pr <- get_XH(mod1c)$true_pr
-xds_plot_PR(mod1a)
+xds_plot_PR(mod1, clrs="darkblue")
+xds_plot_PR(mod1a, clrs = "darkred", add=TRUE)
 xds_plot_PR(mod1b, clrs = "darkgreen", add=TRUE)
 xds_plot_PR(mod1c, clrs = "purple4", add=TRUE)
+xds_plot_PR(mod1d, clrs = "darkorange", add=TRUE)
 segments(1000, 0, 1000, 1, col = "darkred")
 segments(1365, 0, 1365, 1, col = "darkred")
-xds_plot_PR(mod1, clrs="darkblue", add=TRUE) 
 lines(tt, obs_pr, col = "darkblue", type = "b", pch=15)
 ```
 
@@ -148,7 +141,7 @@ devtools::load_all()
 
 
 ```{r}
-mod_est <- estimate_effect_sizes(mod_irs, obs_pr[-1], tt, c(4,5), c(1.4, 1.4), irs_rounds=irs1)
+mod_est <- estimate_effect_sizes(mod_irs, obs_pr[-1], tt, irs_rounds=irs1)
 ```
 
 ```{r}
