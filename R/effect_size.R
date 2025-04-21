@@ -11,22 +11,15 @@
 #' @param model a **`ramp.xds`** model object
 #' @param data the PR observed
 #' @param times the times of the observations
-#' @param base_tt the index of the years with a modified baseline
-#' @param base_yy the putative baseline
 #' @param irs_rounds a list to configure irs_multiround
 #' @param itn_rounds a list to configure itn_multiround
 #' @export
-estimate_effect_sizes = function(model, data, times, base_tt, base_yy, irs_rounds = list(), itn_rounds=list()){
+estimate_effect_sizes = function(model, data, times, irs_rounds = list(), itn_rounds=list()){
 
   if(length(irs_rounds)>0){n_irs_zap = length(irs_rounds$zap)}else{n_irs_zap=0}
   if(length(itn_rounds)>0){n_itn_zap = length(itn_rounds$zap)}else{n_itn_zap=0}
   n_zap = n_irs_zap + n_itn_zap
   stopifnot(n_zap > 0)
-
-  yy <- model$Lpar[[1]]$trend_par$yy
-  yy[base_tt] <- base_yy
-  model$Lpar[[1]]$trend_par$yy <- yy
-  model$Lpar[[1]]$F_trend <- make_function(model$Lpar[[1]]$trend_par)
 
   x_init <- rep(.5, n_zap)
   X <- stats::optim(x_init, sse_effect_sizes,

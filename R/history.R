@@ -17,12 +17,14 @@ pr2eir_history <- function(pr_ts, times, model, twice=TRUE){
 
   # First pass: run the scaling algorithm
   mod1 <- model
-  mod1$EIRpar$F_trend <- F_flat
-  mod1 <- xde_scaling_eir(mod1, 25)
-  t_min <- min(times)
+  if(with(model$outputs, !exists("eirpr"))){
+    mod1$EIRpar$F_trend <- F_flat
+    mod1 <- xde_scaling_eir(mod1, 25)
+  }
 
   # Initialize the model to get the initial PR
   # to match the start of the data
+  t_min <- min(times)
   ix = which(times < t_min + 180)
   init_pr <- mean(pr_ts[ix])
   eir0 <- xde_pr2eir(init_pr, mod1, TRUE)$eir
@@ -81,14 +83,15 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
   stopifnot(length(pr_ts) == length(times))
 
   # First pass: run the scaling algorithm
-  print("scaling")
   mod1 <- model
-  mod1$Lpar[[1]]$F_trend <- F_flat
-  mod1 <- xde_scaling_lambda(mod1, 25)
-  t_min <- min(times)
+  if(with(model$outputs, !exists("eirpr"))){
+    mod1$EIRpar$F_trend <- F_flat
+    mod1 <- xde_scaling_lambda(mod1, 25)
+  }
 
   # Initialize the model to get the initial PR
   # to match the start of the data
+  t_min <- min(times)
   ix = which(times < t_min + 180)
   init_pr <- mean(pr_ts[ix])
   lambda0 <- xde_pr2Lambda(init_pr, mod1, TRUE)$Lambda
@@ -109,11 +112,8 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
   model$Lpar[[1]]$Lambda <- lambda1
 
   # First pass
-  print("phase1")
   model <- fit_Lambda_phase_sin_season(pr_ts, times, model)
-  print("amplitude1")
   model <- fit_Lambda_amplitude_sin_season(pr_ts, times, model)
-  print("trend1")
   model <- fit_Lambda_spline(pr_ts, times, model)
 
   if(twice == TRUE){
@@ -121,11 +121,8 @@ pr2Lambda_history <- function(pr_ts, times, model, twice=TRUE){
     adjust = stats::integrate(Ft, min(times), max(times))$val/(max(times)-min(times))
     model$Lpar[[1]]$Lambda <- lambda1/adjust
     # Second pass: refit phase & amplitude
-    print("phase2")
     model <- fit_Lambda_phase_sin_season(pr_ts, times, model)
-    print("amplitude2")
     model <- fit_Lambda_amplitude_sin_season(pr_ts, times, model)
-    print("trend2")
     model <- fit_Lambda_spline(pr_ts, times, model)
   }
 

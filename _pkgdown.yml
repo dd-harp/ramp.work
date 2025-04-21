@@ -104,11 +104,6 @@ reference:
   - forecast_spline_EIR
   - forecast_spline_Lambda
   - gam_sample
-- title: Demography
-  desc: |
-    No methods to set subclass
-  contents:
-  - UnevenAgingMatrix
 - title: Estimate Effect Size
   desc: |
     No methods to set subclass
@@ -116,5 +111,20 @@ reference:
   - estimate_effect_sizes
   - sse_effect_sizes
   - effect_sizes_set_zap
-
-
+- title: Modify Baselin
+  desc: |
+    No methods to set subclass
+  contents:
+  - modify_baseline
+  - modify_baseline.full
+  - modify_baseline.cohort
+  - get_spline_yy
+  - get_spline_yy.full
+  - get_spline_yy.cohort
+  - make_cf_base_ttyy
+  - make_cf_base_max
+  - make_cf_base_min
+  - make_cf_base_median
+  - make_cf_base_mean
+  - make_cf_base_gam
+  - make_cf_base_subsamp
