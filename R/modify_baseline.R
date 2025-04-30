@@ -46,6 +46,20 @@ modify_baseline.cohort = function(model, counterfactual){
     return(model)
 })}
 
+#' @title Create a modify Baseline
+#' @description
+#' This function modifies
+#'
+#' @inheritParams modify_baseline
+#'
+#' @returns a function object
+#' @export
+modify_baseline.func= function(model, counterfactual){
+  with(counterfactual,{
+    model$Tpar$yy[knot_ix] <- cc_yy
+    return(model)
+  })}
+
 #' @title Modify the Baseline
 #' @description
 #' This function modifies the parameters
@@ -53,7 +67,7 @@ modify_baseline.cohort = function(model, counterfactual){
 #'
 #' @param model a **`ramp.xds`** model object
 #'
-#' @returns a **`ramp.xds`** model
+#' @returns a [vector]
 #' @export
 get_spline_yy = function(model){
   UseMethod("get_spline_yy", model$frame)
@@ -67,7 +81,7 @@ get_spline_yy = function(model){
 #' @param model a **`ramp.xds`** model object
 #' @param counterfactual
 #'
-#' @returns a **`ramp.xds`** model
+#' @returns a [vector]
 #' @export
 get_spline_yy.full = function(model){
   model$Lpar[[1]]$trend_par$yy
@@ -81,10 +95,23 @@ get_spline_yy.full = function(model){
 #' @param model a **`ramp.xds`** model object
 #' @param counterfactual
 #'
-#' @returns a **`ramp.xds`** model
+#' @returns a [vector]
 #' @export
 get_spline_yy.cohort = function(model){
   model$EIRpar$trend_par$yy
+}
+
+#' @title Modify the Baseline
+#' @description
+#' This function modifies the parameters
+#' in a model to set up a counter
+#'
+#' @inheritParams get_spline_yy
+#'
+#' @returns a [vector]
+#' @export
+get_spline_yy.func= function(model){
+  model$Tpar$yy
 }
 
 
@@ -117,6 +144,22 @@ make_cf_base_ttyy = function(ix, yy){
 make_cf_base_max = function(ix, model){
   yy <- get_spline_yy(model)
   ymax <- max(yy[-ix])
+  make_cf_base_ttyy(ix, rep(ymax, length(ix)))
+}
+
+#' @title Use Max for No Unmodified Baseline
+#' @description
+#' This function modifies
+#'
+#' @param ix the indices for the knots to be modified
+#' @param model a **`ramp.xds`** model
+#'
+#' @returns an object to dispatch
+#' @export
+make_cf_no_base = function( model){
+  yy <- get_spline_yy(model)
+  ymax <- max(yy)
+  ix = 1:length(yy)
   make_cf_base_ttyy(ix, rep(ymax, length(ix)))
 }
 

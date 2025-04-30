@@ -10,7 +10,7 @@ get_spline_yy(model)
 \item{model}{a **`ramp.xds`** model object}
 }
 \value{
-a **`ramp.xds`** model
+a [vector]
 }
 \description{
 This function modifies the parameters

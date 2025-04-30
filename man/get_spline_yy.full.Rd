@@ -12,7 +12,7 @@
 \item{counterfactual}{}
 }
 \value{
-a **`ramp.xds`** model
+a [vector]
 }
 \description{
 This function modifies the parameters

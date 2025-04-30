@@ -118,9 +118,11 @@ reference:
   - modify_baseline
   - modify_baseline.full
   - modify_baseline.cohort
+  - modify_baseline.func
   - get_spline_yy
   - get_spline_yy.full
   - get_spline_yy.cohort
+  - get_spline_yy.func
   - make_cf_base_ttyy
   - make_cf_base_max
   - make_cf_base_min

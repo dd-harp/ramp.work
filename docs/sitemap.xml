@@ -157,6 +157,15 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/gam_sample.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.full.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/hello.html</loc>
   </url>
   <url>
@@ -169,7 +178,37 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/lines_eirpr.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_gam.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_max.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_mean.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_median.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_min.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_subsamp.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_ttyy.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/mean_phase_peak.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.full.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/plot_eirVpr.html</loc>
