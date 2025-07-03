@@ -7,7 +7,7 @@
 #' @param N the number of years ahead to forecast
 #' @param x_last the number of last knot points to exclude
 #' @export
-forecast_spline= function(spline_par, N=5, x_last=0){
+forecast_spline = function(spline_par, N=5, x_last=0){
   # Time points
   tt <- spline_par$tt
   tt_new = max(tt) + 365*c(1:(N+2))
@@ -19,8 +19,8 @@ forecast_spline= function(spline_par, N=5, x_last=0){
     yy = yy[1:ll]
     N = N+x_last
   }
-  #yy_new <- sample(yy, N+2, replace=TRUE)
-  yy_new <- gam_sample(yy, N+2)
+  yy_new <- sample(yy, N+2, replace=TRUE)
+  #yy_new <- gam_sample(yy, N+2)
   spline_par$yy = c(yy, yy_new)
   return(spline_par)
 }

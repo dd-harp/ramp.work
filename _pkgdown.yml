@@ -130,3 +130,4 @@ reference:
   - make_cf_base_mean
   - make_cf_base_gam
   - make_cf_base_subsamp
+  - make_cf_no_base

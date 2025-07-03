@@ -21,7 +21,7 @@ estimate_effect_sizes = function(model, data, times, irs_rounds = list(), itn_ro
   n_zap = n_irs_zap + n_itn_zap
   stopifnot(n_zap > 0)
 
-  x_init <- rep(.5, n_zap)
+  x_init <- rep(1, n_zap)
   X <- stats::optim(x_init, sse_effect_sizes,
                     data=data, times=times, model=model,
                     irs_rounds=irs_rounds, itn_rounds=itn_rounds)$par
@@ -74,3 +74,4 @@ effect_sizes_set_zap = function(X, model, irs_rounds, itn_rounds){
   }
   return(model)
 }
+
