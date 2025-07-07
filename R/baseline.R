@@ -48,7 +48,7 @@ reconstruct_baseline = function(model, data, times, irs_rounds, bednets_rounds, 
 #' @export
 make_vc_event_list = function(model){
 
-  knots <- work_mod$Lpar[[1]]$trend_par$tt
+  knots <- model$Lpar[[1]]$trend_par$tt
 
   event_list = list()
 
@@ -92,9 +92,9 @@ make_vc_event_list = function(model){
   times = c(times, t_init)
 
   ot <- order(times)
-  events = event_list
+  events = list()
   knots = c(knot_n,knot_m)[ot]
-  for(i in 1:n){
+  for(i in 1:(n+m)){
     events[[i]] = event_list[[ot[i]]]
   }
   conflicts=rep(FALSE, n+m)
@@ -163,14 +163,12 @@ sse_effect_size <- function(X, data, times, model, event){
 #' @export
 estimate_effect_size.irs = function(model, data, times, event){
 
-  X <- stats::optimize(sse_effect_size, c(0,100),
+  X <- stats::optimize(sse_effect_size, c(0,1),
                        data=data, times=times, model=model, event=event)$minimum
 
-  model$irs$coverage_mod$zap[event$i] <- X
-  model$irs$coverage_mod$rounds[[event$i]]$zap <- X
-  rounds_par <- with(model$irs$coverage_mod, makepar_F_multiround(nRounds, rounds))
-  model$irs$coverage_mod$rounds_par = rounds_par
-  model$irs$coverage_mod$F_cover = make_function(rounds_par)
+  model$irs$coverage_mod$coverage[[event$i]] <- X
+  model$irs$coverage_mod <- setup_F_cover_irs(model$irs$coverage_mod)
+  model <- xds_solve(model, times=c(0, times))
 
   return(model)
 }
@@ -186,14 +184,12 @@ estimate_effect_size.irs = function(model, data, times, event){
 #' @export
 sse_effect_size.irs <- function(X, data, times, model, event){
 
-  model$irs$coverage_mod$rounds[[event$i]]$zap <- X
-  rounds_par <- with(model$irs$coverage_mod, makepar_F_multiround(nRounds, rounds))
-  model$irs$coverage_mod$F_cover = make_function(rounds_par)
+  model$irs$coverage_mod$coverage[[event$i]] <- X
+  model$irs$coverage_mod <- setup_F_cover_irs(model$irs$coverage_mod)
 
   model <- xds_solve(model, times=c(0,times))
   pr <- get_XH(model)$true_pr[-1]
-  return(-sum((data - pr)^2))
-#  return(sum((data - pr)^2))
+  return(sum((data - pr)^2))
 }
 
 #' @title Estimate the effect size for a single round of mass bed net distribution
@@ -206,14 +202,12 @@ sse_effect_size.irs <- function(X, data, times, model, event){
 estimate_effect_size.bednets = function(model, data, times, event){
 
 
-  X <- stats::optimize(sse_effect_size, c(0,100),
+  X <- stats::optimize(sse_effect_size, c(0,1),
                        data=data, times=times, model=model, event=event)$minimum
 
-  model$bednets$coverage_mod$zap[event$i] <- X
-  model$bednets$coverage_mod$rounds[[event$i]]$zap <- X
-  rounds_par <- with(model$bednets$coverage_mod, makepar_F_multiround(nRounds, rounds))
-  model$bednets$coverage_mod$rounds_par = rounds_par
-  model$bednets$coverage_mod$F_cover = make_function(rounds_par)
+  model$bednets$coverage_mod$coverage[[event$i]] <- X
+  model$bednets$coverage_mod <- setup_F_cover_bednet(model$bednets$coverage_mod)
+  model <- xds_solve(model, times=c(0, times))
 
   return(model)
 }
@@ -229,14 +223,11 @@ estimate_effect_size.bednets = function(model, data, times, event){
 #' @export
 sse_effect_size.bednets <- function(X, data, times, model, event){
 
-
-  model$bednets$coverage_mod$rounds[[event$i]]$zap <- X
-  rounds_par <- with(model$bednets$coverage_mod, makepar_F_multiround(nRounds, rounds))
-  model$bednets$coverage_mod$F_cover = make_function(rounds_par)
+  model$bednets$coverage_mod$coverage[[event$i]] <- X
+  model$bednets$coverage_mod <- setup_F_cover_bednet(model$bednets$coverage_mod)
 
   model <- xds_solve(model, times=c(0,times))
   pr <- get_XH(model)$true_pr[-1]
 
-  return(-sum((data - pr)^2))
-#  return(sum((data - pr)^2))
+  return(sum((data - pr)^2))
 }

@@ -4,12 +4,14 @@
 \alias{impute_baseline.median}
 \title{Use Median for Modify Baseline}
 \usage{
-\method{impute_baseline}{median}(ix, model)
+\method{impute_baseline}{median}(name, model, ix)
 }
 \arguments{
-\item{ix}{the index of the node to replace}
+\item{name}{the indices for the knots to be modified}
 
 \item{model}{a **`ramp.xds`** model}
+
+\item{ix}{the index of the node to replace}
 }
 \value{
 an object to dispatch [modify_baseline.ttyy]

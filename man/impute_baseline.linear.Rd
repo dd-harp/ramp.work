@@ -4,12 +4,12 @@
 \alias{impute_baseline.linear}
 \title{Create a modify Baseline}
 \usage{
-\method{impute_baseline}{linear}(ix, model)
+\method{impute_baseline}{linear}(name, model, ix)
 }
 \arguments{
-\item{ix}{the indices for the knots to be modified}
-
 \item{model}{a **`ramp.xds`** model}
+
+\item{ix}{the indices for the knots to be modified}
 }
 \value{
 an object to dispatch [modify_baseline.ttyy]

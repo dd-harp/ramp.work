@@ -58,7 +58,7 @@ impute_baseline.max = function(name, model, ix){
 #'
 #' @returns an object to dispatch [modify_baseline.ttyy]
 #' @export
-impute_baseline.min = function(ix, model){
+impute_baseline.min = function(name, model, ix){
   yy <- head(model$Lpar[[1]]$trend_par$yy, ix-1)
   tt <- head(model$Lpar[[1]]$trend_par$tt, ix-1)
   tpos <- which(tt>0)
@@ -76,7 +76,7 @@ impute_baseline.min = function(ix, model){
 #'
 #' @returns an object to dispatch [modify_baseline.ttyy]
 #' @export
-impute_baseline.median = function(ix, model){
+impute_baseline.median = function(name, model, ix){
   yy <- head(model$Lpar[[1]]$trend_par$yy, ix-1)
   tt <- head(model$Lpar[[1]]$trend_par$tt, ix-1)
   tpos <- which(tt>0)
@@ -94,7 +94,7 @@ impute_baseline.median = function(ix, model){
 #'
 #' @returns an object to dispatch [modify_baseline.ttyy]
 #' @export
-impute_baseline.gam = function(ix, model){
+impute_baseline.gam = function(name, model, ix){
   yy <- head(model$Lpar[[1]]$trend_par$yy, ix-1)
   tt <- head(model$Lpar[[1]]$trend_par$tt, ix-1)
   tpos <- which(tt>0)
@@ -112,7 +112,7 @@ impute_baseline.gam = function(ix, model){
 #'
 #' @returns an object to dispatch [modify_baseline.ttyy]
 #' @export
-impute_baseline.subsamp = function(ix, model){
+impute_baseline.subsamp = function(name, model, ix){
   yy <- head(model$Lpar[[1]]$trend_par$yy, ix-1)
   tt <- head(model$Lpar[[1]]$trend_par$tt, ix-1)
   tpos <- which(tt>0)
@@ -130,7 +130,7 @@ impute_baseline.subsamp = function(ix, model){
 #'
 #' @returns an object to dispatch [modify_baseline.ttyy]
 #' @export
-impute_baseline.linear = function(ix, model){
+impute_baseline.linear = function(name, model, ix){
   yy <- head(model$Lpar[[1]]$trend_par$yy, ix-1)
   tt <- head(model$Lpar[[1]]$trend_par$tt, ix-1)
   yyv <- yy[which(tt>0)]

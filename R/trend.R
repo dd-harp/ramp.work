@@ -30,7 +30,6 @@ sse_Lambda_spline <- function(data, times, model){
 }
 
 
-
 #' @title Fit the amplitude for a time series
 #' @description For a time series \eqn{X,} compute the
 #' inter-annual variability
@@ -49,10 +48,14 @@ fit_EIR_spline <- function(data, times, model, splinef=2){
   times <- c(-365, times)
   phase <- model$Lpar[[1]]$season_par$phase
   if(is.null(phase)) phase = 0
+
+  ## Each year gets a knot
   knots <- seq(floor(min(times)/365), ceiling(max(times)/365), by=1)*365 + phase
+
+  ## The initial values for the control points are all set to 1
   yy <- 1+0*knots
-  par0 <- makepar_F_spline(knots, yy, X=2)
-  model$EIRpar$trend_par <- par0
+
+  model$EIRpar$trend_par <-  makepar_F_spline(knots, yy, X=2)
   ll = length(yy)-1
   X <- stats::optim(rep(1, ll), F_eval, data=data, times=times,
                                 model=model)$par
