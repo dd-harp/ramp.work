@@ -1,5 +1,6 @@
 ---
-title: "Fitting Models to Data" 
+title: "Setup for Fitting" 
+subtitle: "Fitting a Dynamical System to a PfPR Time Series" 
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document 
@@ -9,26 +10,207 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
-Load the required packages:
+```{r}
+library(ramp.xds)
+library(ramp.work)
+```
 
 ```{r}
+devtools::load_all()
+```
+
+*** 
+
+Algorithms in **`ramp.work`** have been developed to fit malaria models -- a dynamical system of malaria epidemiology, transmission dynamics, and control -- to *Pf*PR time series. In doing so, we want to have some flexibility in the way we do the analytics. Given a *Pf*PR time series, we might want to:
+  
++ estimate *exposure,* the *Pf*EIR; 
+
++ fit a model with transmission forced by mosquito emergence;  
+
++ fit a model with mosquito ecology forced by changes in mosquito carrying capacity. 
+
+To do the fitting in a sensible way, we need to have some ways of setting and modifying parameters describing *interannual variability,* and we need to pay attention to some of the details. This means understanding malaria in its historical context. This presents us with a set of challenges:
+
++ **Hindcasting** -- Model fitting will be sensitive to the *initial conditions,* so we will need to be attentive to the way the fitting handles a *burn-in* period to set the initial conditions.  
+
++ **Imputing a Baseline** -- In years where the baseline has been modified by vector control, we need to impute the value of a counterfactual, unmodified baseline. 
+
++ **Forecasting** -- To set up models for scenario planning, we need the ability to do short-term forecasting.  
+
+If we can do all that, we want to evaluate vector control We use models fitted to data and a basic understanding of the timing of vector control -- mass bed net distributions, or mass spraying events for IRS -- to: 
+
++ **Effect Sizes of Control** - estimate the effect size of the event, which involves imputing the baseline for years that have been modified by control and comparing the observed to the baseline. 
+
++ **Counterfactual Baseline** - Fit a model that represents malaria as a **changing baseline** that has been **modified by control**
+    
+If we have done all of this, then **scenario planning** is straightforward.  
+
+*** 
+
+## The Model Fitting Object 
+
+To handle all the tasks seamlessly, we call `setup_fitting` to create a **model fitting** object, attached to the **`ramp.xds`** model object, `model` as `model$fitting.`  We use spline functions to handle the interannual variability. The spline is configured by passing a set of interpolation points $t, y$ (or `ty`) The full set of interpolation points includes three sets: one for the burn-in period; one for the observational period; and one for forecasting. 
+
+To make all of this work generically, we store the object in a generic format to use for model fitting. The data from `model$fitting` are used to recompute a forcing function in any context. 
+
+The model fitting object has this structure:
+
++ `model$` :: the **`ramp.xds`** model object
+    
+    + `fitting$` :: sets up interpolation points for the observation period, as well as pre- and post-observation. 
+    
+        + `tt` :: the full set of $t$ values for interpolation 
+    
+        + `yy` :: the full set of $y$ values for interpolation
+        
+        + `n_ty` :: the length of `yy` and `tt` 
+    
+        + `forced_by` :: a string to dispatch functions called during fitting gets stored
+  
+        - `data$`
+        
+            - `tt` :: the set of $t$ values for interpolation during the observational period 
+            - `yy` :: the set of $y$ values for interpolation during the observational period 
+        - `pre$`
+        
+            - `tt` :: the set of $t$ values for burning, set by hindcasting 
+            
+            - `yy` :: the set of $y$ values for burning, set by hindcasting 
+            
+        - `post$`
+        
+            - `tt` :: the set of $t$ values for a forecast 
+            
+            - `yy` :: the set of $y$ values for a forecast 
+            
+This gangly object makes it possible to write other functions that handle all the cases generically. 
+
+
+## Fitting Tasks
+
++ Fit the forcing function to a *Pf*PR time series, a naive history
+
++ `pr2history`  in `history.R` 
+
+    - forced by EIR
+   
+    - forced by Lambda 
+
++ With a  
+
+    - mean 
+    
+    - seasonal component (fitted separately)
+   
+    - interannual pattern (fitted separately)
+
++ Now reconstruct the history as a baseline modified by control
+
+    - impute the baseline
+    
+    - fit the spline 
+
+## Example
+
+```{r}
+mod <- readRDS("sis_si.rds")
+```
+
+```{r prts}
+library(ramp.uganda)
+get_district_pfpr_i(124) -> prts
+```
+
+```{r run setup_fitting}
+mod <- setup_fitting(mod, prts$pfpr, prts$jdate)
+```
+
+```{r}
+show_trend(mod)
+```
+
+```{r, eval=F, echo=F}
 library(ramp.xds)
 require(deSolve)
 require(rootSolve)
 require(ramp.work)
+require(ramp.uganda)
 ```
 
-```{r, echo=F}
-#devtools::load_all()
+```{r, echo=F, eval=F}
+devtools::load_all()
+devtools::load_all("~/git/ramp.uganda")
+devtools::load_all("~/git/ramp.xds")
 ```
+## Configure a Model 
 
-```{r}
+```{r build, eval=F}
 sis_si <- xds_setup(MYZname = "SI")
-sis_si <- xds_solve(sis_si)
+```
+
+```{r scaling, eval=F}
+sis_si <- xde_scaling_lambda(sis_si)
+saveRDS(sis_si, "sis_si.rds")
 ```
 
 ```{r}
+sis_si <- readRDS("sis_si.rds")
+```
+
+```{r setup fitting, eval=F}
+sis_si = setup_fitting_Lambda(sis_si, prts$pfpr, prts$jdate)
+```
+
+
+```{r, eval=F}
+profile_pr(sis_si, prts, 2015)
+```
+
+
+
+
+```{r, eval=F}
+sis_si1 <- change_F_trend_cp(c(1.002, 1.003), c(2,3), sis_si)
+sis_si1 <- update_F_trend(sis_si1)
+sis_si2 <- change_F_trend_cp(.995, 1, sis_si)
+sis_si2 <- update_F_trend(sis_si2)
+```
+
+```{r, eval=F}
+tt <- seq(-10*365, 20*365, by = 10)
+plot(tt, sis_si$Lpar[[1]]$F_trend(tt), type = "l")
+lines(tt, sis_si1$Lpar[[1]]$F_trend(tt), type = "l", col = "darkred")
+lines(tt, sis_si2$Lpar[[1]]$F_trend(tt), type = "l", col = "darkblue")
+```
+
+```{r, eval=F}
+mean(prts$pfpr) -> mpr
+sis_si$Lpar[[1]]$Lambda <- xde_pr2Lambda(mpr, sis_si)$Lambda
+sis_si <- xds_solve(sis_si, 3650, 3650)
+sis_si <- last_to_inits(sis_si)
+sis_si <- xds_solve(sis_si, 3650, 10)
+profile_pr(sis_si, prts, 2015)
+```
+
+
+```{r, eval=F}
+# Set up a basic model and the scaling table 
+sis_si <- xds_setup(MYZname = "SI")
+sis_si <- xde_scaling_lambda(sis_si)
+
+prts$pfpr = prts$pfpr*1.5
+
+# Set up the scaling table  
+sis_si <- setup_fitting_Lambda(sis_si, prts$pfpr, prts$jdate)
+
+#sis_si <- xds_solve(sis_si, times = c(-3650, 0))
+#sis_si <- last_to_inits(sis_si)
+#sis_si <- xds_solve(sis_si, times = c(-365, prts$jdate, 3700))
+profile_pr(sis_si, prts, 2015)
+```
+
+
+```{r, eval=F}
 #F_obs
 get_stat = function(pars){
   pr = tail(pars$outputs$orbits$XH[[1]]$true_pr, 1)
@@ -45,20 +227,20 @@ put_par = function(x, pars){
 }
 ```
 
-```{r}
+```{r, eval=F}
 xde_compute_gof(20, .4, sis_si, get_stat, put_par, F_sse)
 xde_compute_gof(30, .4, sis_si, get_stat, put_par, F_sse)
 xde_compute_gof(40, .4, sis_si, get_stat, put_par, F_sse)
 ```
 
 
-```{r}
+```{r, eval=F}
 optimize(xde_compute_gof, interval = c(1, 500), data=c(0.4), model=sis_si, F_obs=get_stat, put_par=put_par, F_gof=F_sse, Tmax=1000) -> vals
 vals
 ```
 
 
-```{r}
+```{r, eval=F}
 sis_si <- put_par(vals$minimum, sis_si)
 sis_si <- last_to_inits(sis_si)
 optimize(xde_compute_gof, interval = c(1, 500), data=c(0.4), model=sis_si, F_obs=get_stat, put_par=put_par, F_gof=F_sse, Tmax=1000) -> vals
@@ -67,7 +249,7 @@ get_stat(sis_si)
 ```
 
 
-```{r}
+```{r, eval=F}
 sis_si_fit <- xde_maximize_gof(c(0.4), sis_si, get_stat, get_par, put_par, F_sse, Tmax=1000)
 get_stat(sis_si_fit)
 ```

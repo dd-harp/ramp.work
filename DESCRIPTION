@@ -1,7 +1,7 @@
 Package: ramp.work
 Type: Package
 Title: Algorithms to support workflows and analytics pipelines for RAMP (Robust Analytics for Malaria Policy)
-Version: 0.1.0
+Version: 0.8.0
 Authors@R: 
       c(person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849")))
 Description: More about what it does (maybe more than one line)
@@ -15,7 +15,8 @@ RoxygenNote: 7.3.2
 Depends:
   ramp.xds
 Imports:
-  stats
+  stats, 
+  ramp.control
 Suggests:
   deSolve,
   viridisLite,

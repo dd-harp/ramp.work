@@ -15,6 +15,8 @@ navbar:
       href: articles/Forecast.html
     - text: Effect Sizes
       href: articles/Effect_Sizes.html
+    - text: Hindcasting
+      href: articles/Hindcasting.html
   - text: Functions
     href: reference/index.html
   right:

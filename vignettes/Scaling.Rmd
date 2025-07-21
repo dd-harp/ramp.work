@@ -23,6 +23,12 @@ library(deSolve)
 library(viridisLite)
 ```
 
+```{r}
+model <- xds_setup_eir(eir = 1/365, season_par = makepar_F_sin())
+model <- xds_solve(model)
+xds_plot_PR(model)
+```
+
 Scaling
 
 ```{r, echo=F}
