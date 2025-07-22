@@ -77,11 +77,11 @@ lines(tt, obs_pr)
 
 A function is then called that fits a spline to the data. The algorithm is modifying the EIR signal to fit the PR signal. 
 
-```{r fit_spline}
+```{r fit_spline, eval=F}
 fit_EIR_spline(obs_pr, tt, mod1) -> mod1 
 ```
 
-```{r}
+```{r, eval=F}
 ttp <- round(seq(-365, 2500, by = 365/12)) 
 mod1 <- xds_solve_cohort(mod1, times=ttp)
 xds_plot_PR(mod1, clrs = "darkred")

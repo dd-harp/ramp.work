@@ -63,7 +63,7 @@ segments(1365, 0, 1365, 1, col = "darkred")
 
 We would like to reconstruct the pre-control baseline. In this exam, the 4th and 5th knots have been modified by control. Using the flanking values, we use `gam_sample` to fill in sensible values. We do it twice to emphasize that, since we don't know what the baseline would have been, we are introducing some uncertainty:  
 
-```{r}
+```{r, eval=F}
 ix = c(4,5)
 cf_max <- make_cf_base_max(ix, mod1)
 cf_min <- make_cf_base_min(ix, mod1)
@@ -71,7 +71,7 @@ cf_median <- make_cf_base_median(ix, mod1)
 cf_mean <- make_cf_base_mean(ix, mod1)
 ```
 
-```{r}
+```{r, eval=F}
 mod1a <- modify_baseline(mod1, cf_max) 
 mod1b <- modify_baseline(mod1, cf_min) 
 mod1c <- modify_baseline(mod1, cf_median) 
@@ -89,7 +89,7 @@ lines(tt, obs_pr, col = "darkblue", type = "b", pch=15)
 
 Everything we've done so far has worked with an EIR-forced model. If we want to estimate effect sizes of control in some sensible way, we will need to fit a model that is forced by mosquito ecology: 
 
-```{r}
+```{r, eval=F}
 Lo <- list(
   Lambda = 50,
   season_par = makepar_F_sin(),
@@ -98,27 +98,27 @@ Lo <- list(
 ```
 
 
-```{r}
+```{r, eval=F}
 mod <- xds_setup(Lopts = Lo, MYZname = "SI")
 mod <- setup_travel_eir(mod, travelEIR = 1/3650/5)
 mod <- xds_solve(mod, 3650, 3650)
 mod <- last_to_inits(mod)
 ```
 
-```{r}
+```{r, eval=F}
 mod <- pr2Lambda_history(obs_pr, tt, mod, twice=TRUE)
 ```
 
-```{r}
+```{r, eval=F}
 mod <- xds_solve(mod, 6*365, 10)
 ```
 
-```{r}
+```{r, eval=F}
 xds_plot_PR(mod, clrs = "darkred")
 xds_plot_PR(mod1, clrs="darkblue", add=TRUE)
 lines(tt, obs_pr, col = "darkblue", type = "b", pch=15)
 ```
-```{r}
+```{r, eval=F}
 irs1 <- list(
   t_init = c(1000, 1365), 
   irs_type = c("actellic", "bendiocarb"), 
@@ -129,22 +129,22 @@ rounds <- setup_irs_multiround(opts=irs1)
 ```
 
 
-```{r}
+```{r, eval=F}
 mod_irs <- setup_irs(mod, effectsizes_name = "simple", 
                           coverage_name = "func", 
                           coverage_opts = list(mx=1, trend_par=rounds))
 ```
 
-```{r}
+```{r, eval=F}
 devtools::load_all()
 ```
 
 
-```{r}
+```{r, eval=F}
 mod_est <- estimate_effect_sizes(mod_irs, obs_pr[-1], tt, irs_rounds=irs1)
 ```
 
-```{r}
+```{r, eval=F}
 mod_est <- xds_solve(mod_est, 2190, 10) 
 xds_plot_PR(mod_est, clrs= "darkred")
 #xds_plot_PR(mod, clrs = "darkred", add=TRUE)

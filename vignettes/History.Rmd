@@ -1,6 +1,6 @@
 ---
 title: "History" 
-subtitle: "Modeling the History of Exposure" 
+subtitle: "Fitting Models & the History of Exposure" 
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document 
@@ -64,29 +64,31 @@ lines(tt/365, pr, lwd=2)
 
 The first step is to set up the model we want to use. This uses the default **X** component model, `SIS,` and we set up the model using the built-in sin function family from `ramp.xds`: 
 
-```{r shell}
-mod  <- xds_setup_cohort(season_par = makepar_F_sin())
+```{r shell, eval=F}
+mod <- xds_setup_eir(season_par = makepar_F_sin())
+mod <- xds_setup_eir(season_par = makepar_F_sin())
+mod <- setup_fitting(mod, obs_pr, tt)
 ```
 
 To call the function, we pass the observed pr time series, the times, and the model:  
 
-```{r pr2eir_history}
-mod1 <- pr2eir_history(obs_pr, tt, mod, twice=FALSE)
+```{r pr2eir_history, eval=F}
+mod1 <- pr2history(obs_pr, tt, mod, twice=FALSE)
 ```
 
-```{r}
+```{r, eval=F}
 Fx <- mod1$EIRpar$F_trend
 integrate(Fx,min(tt), max(tt))$val/(max(tt)-min(tt)) 
 ```
 
 
-```{r}
+```{r, eval=F}
 mod2 <- pr2eir_history(obs_pr, tt, mod, twice=TRUE)
 ```
 
 We can visualize the results: 
 
-```{r vis}
+```{r vis, eval=F}
 ttn = seq(-365, max(tt), length.out=600)
 xds_plot_PR(mod1)
 xds_plot_PR(mod2, clrs="blue", add=TRUE)

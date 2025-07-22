@@ -13,6 +13,9 @@
     <loc>https://dd-harp.github.io/ramp.xds/articles/Analysis.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/Baseline.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/Effect_Sizes.html</loc>
   </url>
   <url>
@@ -25,13 +28,22 @@
     <loc>https://dd-harp.github.io/ramp.xds/articles/Forecast.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/Hindcast.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/History.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/Pipeline.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/Scaling.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/Seasonality.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/articles/TestFit.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/articles/Trend.html</loc>
@@ -64,6 +76,33 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/bracket_lambda.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/burnin.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season.eir.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season_amplitude.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season_amplitude.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season_phase.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_F_season_phase.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/change_yy.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_IoD_F.html</loc>
   </url>
   <url>
@@ -71,6 +110,12 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_IoD_pr.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_gof.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/compute_gof.sse.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/compute_threshold.html</loc>
@@ -97,7 +142,13 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/eirpr_seasonal_profile.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/estimate_effect_size.bednet.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/estimate_effect_size.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/estimate_effect_size.irs.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/estimate_effect_sizes.html</loc>
@@ -127,13 +178,31 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_Lambda_spline.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_amplitude.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_amplitude_sin_season.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_mean.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_mean.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase_alt.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase_sin_season.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_phase_sin_season_1.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_season.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_sin_season.html</loc>
@@ -145,6 +214,12 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/fit_splinef.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_trend.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/fit_trend_spline.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/forecast_spline.html</loc>
   </url>
   <url>
@@ -154,10 +229,103 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/forecast_spline_Lambda.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/forecast_ty.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/gam_forecast.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/gam_sample.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_predicted_pr.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_predicted_pr.lm.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_predicted_pr.rdt.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_predicted_pr.true.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.full.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.func.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_spline_yy.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.all.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.first.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.ix.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.last.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.nix.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.tix.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/get_trusted_ty.unmodified.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/hello.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/hindcast_ty.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_baseline_ty.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.all.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.first.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.gam.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.last.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.max.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.mean.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.median.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.min.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.reverse.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/impute_value.subsamp.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/index.html</loc>
@@ -169,7 +337,46 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/lines_eirpr.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_gam.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_max.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_mean.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_median.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_min.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_subsamp.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_base_ttyy.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_cf_no_base.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/make_vc_event_list.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/mean_phase_peak.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.cohort.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.full.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.func.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/modify_baseline.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/plot_eirVpr.html</loc>
@@ -187,7 +394,70 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/pr2eir_history.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/pr2history.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/pr_ts2eir_history.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/reconstruct_baseline.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/scaling_init_ty.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/scaling_init_ty.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/set_post_obs_y.asis.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/set_post_obs_y.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/set_post_obs_y.value.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/set_pre_obs_y.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/set_pre_obs_y.mirror.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/set_pre_obs_y.value.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_fitting.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_forecast.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_hindcast.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_imputation.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/setup_vc_eval.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/show_season.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/show_season.eir.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/show_season.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.eir.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/show_trend.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/split_stratum_by_biting.html</loc>
@@ -220,7 +490,19 @@
     <loc>https://dd-harp.github.io/ramp.xds/reference/sse_splinef.html</loc>
   </url>
   <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_F_trend.Lambda.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_F_trend.eir.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_F_trend.html</loc>
+  </url>
+  <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/update_by_ar.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/update_fitting_ty.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_compute_gof.html</loc>
@@ -254,6 +536,9 @@
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_scaling_Z.html</loc>
+  </url>
+  <url>
+    <loc>https://dd-harp.github.io/ramp.xds/reference/xde_scaling_cohort.html</loc>
   </url>
   <url>
     <loc>https://dd-harp.github.io/ramp.xds/reference/xde_scaling_eir.html</loc>
