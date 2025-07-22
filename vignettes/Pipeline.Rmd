@@ -48,7 +48,7 @@ file_name <- paste(save_to, save_as, sep="")
 saveRDS(sip_si, file_name)
 ```
 
-```{r}
+```{r, eval=F}
 sis_si_base <- readRDS(file_name)
 ```
 
@@ -74,29 +74,29 @@ with(prts, {
 devtools::load_all()
 ```
 
-```{r}
+```{r, eval=F}
 sis_si_base <- readRDS(file_name)
 sis_si_base$Lpar[[1]]$Lambda
 ```
 
-```{r}
+```{r, eval=F}
 sis_si_base$Lpar[[1]]$season_par <- makepar_F_sin(bottom=1, phase=180) 
 sis_si_base$Lpar[[1]]$F_season <- make_function(makepar_F_sin(bottom=1,phase=180))
 ```
 
 
-```{r}
+```{r, eval=F}
 fit_mod <- setup_fitting(sis_si_base, prts$pfpr, prts$jdate)
 
 fit_mod$Lpar[[1]]$Lambda
 ```
 
-```{r}
+```{r, eval=F}
 fit_mod <- xds_solve(fit_mod, times = prts$jdate)
 profile_pr(fit_mod, prts, y1=TRUE)
 ```
 
-```{r}
+```{r, eval=F}
 fit_mod1 <- fit_mean(prts$pfpr, prts$jdate, fit_mod)
 fit_mod1$Lpar[[1]]$Lambda
 ```
@@ -104,7 +104,7 @@ fit_mod1$Lpar[[1]]$Lambda
 
 
 
-```{r}
+```{r, eval=F}
 fit_mod <- last_to_inits(fit_mod) 
 profile_pr(fit_mod, prts, y1=TRUE)
 ```
@@ -113,19 +113,19 @@ profile_pr(fit_mod, prts, y1=TRUE)
 devtools::load_all()
 ```
 
-```{r}
+```{r, eval=F}
 t0 <- Sys.time()
 fit_mod1 <- fit_mean(prts$pfpr, prts$jdate, fit_mod)
 Sys.time()-t0
 ```
 
 
-```{r}
+```{r, eval=F}
 t0 <- Sys.time()
 fit_mod1 <- pr2history(prts$pfpr, prts$jdate, fit_mod)
 Sys.time()-t0
 ```
-```{r}
+```{r, eval=F}
 fit_mod1 <- xds_solve(fit_mod1, times = prts$jdate)
 profile_pr(fit_mod1, prts, y1=TRUE)
 ```
@@ -140,7 +140,7 @@ Sys.time()-t0
 devtools::load_all()
 ```
 
-```{r}
+```{r, eval=F}
 irs_history <- make_irs_history(district_name)
 bednet_history <- make_bednet_history(district_name)
 ```
@@ -149,22 +149,18 @@ bednet_history <- make_bednet_history(district_name)
 devtools::load_all()
 ```
 
-```{r}
+```{r, eval=F}
 recon <- setup_vector_control_evaluation(fit_mod, irs_history, bednet_history)
 ```
 
-```{r}
+```{r, eval=F}
 recon$fitting$data$modified
 ```
 
 ## Setup Imputation 
 
-```{r}
+```{r, eval=F}
 recon <- setup_imputation(recon)
-```
-
-```{r}
-
 ```
 
 ## Setup Imputation 
@@ -237,7 +233,7 @@ pipeline_i = function(i, base_model_name, wd_name, impute="mean"){
 
 this is ugly 
 
-```{r}
+```{r, eval=F}
 i = 132
 base_mod = "sip_si_base" 
 wd = "/Users/smitdave/git/ramp.uganda/models/"

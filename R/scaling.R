@@ -46,7 +46,7 @@ xde_scaling_eir = function(model, N=25, rbr=1){
   scaling = list()
   for(i in 1:N){
     model <- ramp.xds::set_eir(rbr*aEIR[i]/365, model)
-    model <- ramp.xds::xds_solve(model, 3650, da=1)
+    model <- ramp.xds::xds_solve(model, 3650, 1)
     XH <- ramp.xds::get_XH(model, 1)
     pr_t = tail(XH$true_pr, 365); pr[i] = mean(pr_t)
     ni_t = tail(XH$ni, 365);  ni[i]= mean(ni_t)

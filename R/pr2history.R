@@ -35,5 +35,11 @@ pr2history = function(pfpr_ts, jdates, model, twice=FALSE){
     model <- fit_trend_spline(pfpr_ts, jdates, model)
   }
 
+  model$history = list()
+  model$history$data <- model$data
+  model$history$fitting <- model$fitting
+  model$history$hindcast <- model$hindcast
+  model$history$forecast <- model$forecast
+
   return(model)
 }

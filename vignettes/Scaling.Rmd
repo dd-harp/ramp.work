@@ -57,11 +57,11 @@ plot(tt, Fsin(tt), type="l", xlab = "Time (Days)", ylab = "Seasonal Pattern")
 Next, we set up a cohort model: 
 
 ```{r}
-xds_setup_cohort(Xname = "SIS", F_season=Fsin) -> sis
+xds_setup_eir(Xname = "SIS", F_season=Fsin) -> sis
 ```
 
 ```{r}
-xds_solve_cohort(sis) -> sis
+xds_solve(sis) -> sis
 ```
 
 The function `xde_scaling_eir` runs the model over a mesh of `N=25` values: 

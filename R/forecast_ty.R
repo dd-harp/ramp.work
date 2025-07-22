@@ -22,16 +22,16 @@ setup_forecast = function(model, N=0,
   forecast$impute_ty <- impute_ty
   forecast$trust_ty <- trust_ty
 
-  if(N==0) N=length(model$fitting$post$tt)
+  if(N==0) N=length(model$forecast$tt)
   forecast$N <- N
 
-  model$fitting$forecast <- forecast
 
-  post_yrs = max(model$fitting$data$years) + c(1:N)
-  post = list()
-  post$tt = post_yrs*365
-  post$yy = rep(1, N)
-  model$fitting$post=post
+  post_yrs = max(model$data$years) + c(1:N)
+  forecast$yrs = post_yrs
+  forecast$tt = post_yrs*365
+  forecast$yy = rep(1, N)
+
+  model$forecast <- forecast
 
   model <- forecast_ty(model)
 
@@ -46,7 +46,7 @@ setup_forecast = function(model, N=0,
 #' @returns a **`ramp.xds`** model object
 #'
 #' @export
-forecast_ty = function(model, ix=c()){with(model$fitting$forecast,{
+forecast_ty = function(model, ix=c()){with(model$forecast,{
   yy <- impute_value(ix, model, impute_ty, trust_ty, N)
   model <- set_post_obs_y(yy, model)
   return(model)
@@ -61,7 +61,7 @@ forecast_ty = function(model, ix=c()){with(model$fitting$forecast,{
 #'
 #' @export
 set_post_obs_y = function(y, model){
-  UseMethod("set_post_obs_y", model$fitting$forecast$method)
+  UseMethod("set_post_obs_y", model$forecast$method)
 }
 
 #' @title Set forecast interpolation points
@@ -72,8 +72,8 @@ set_post_obs_y = function(y, model){
 #'
 #' @export
 set_post_obs_y.value = function(y, model){
-  N <- model$fitting$forecast$N
-  model$fitting$post$yy = rep(y, N)
+  N <- model$forecast$N
+  model$forecast$yy = rep(y, N)
   return(model)
 }
 

@@ -11,8 +11,6 @@ library(ramp.control)
 devtools::load_all("~/git/ramp.uganda")
 ```
 
-
-
 ## Working Directory
 
 ```{r}
@@ -74,7 +72,21 @@ bednet_history <- make_bednet_history(district_name)
 devtools::load_all()
 ```
 
-```{r}
+```{r, eval=F}
 recon <- reconstruct_baseline(fit_mod, prts$pfpr, prts$jdate, irs_history, bednet_history)
 ```
 
+```{r, eval=F}
+file_name <- paste(save_to, "recon.rds", sep="")
+saveRDS(recon, file_name)
+```
+
+```{r}
+file_name <- paste(save_to, "recon.rds", sep="")
+recon <- readRDS(file_name)
+```
+
+```{r}
+recon <- xds_solve(recon, times = prts$jdate)
+profile_pr(recon, prts)
+```

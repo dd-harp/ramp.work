@@ -13,7 +13,7 @@
 #' @export
 impute_baseline_ty = function(ix, model, impute_ty, trust_ty){
   value <- impute_value(ix, model, impute_ty, trust_ty)
-  model$fitting$data$yy[ix] = value
+  model$data$yy[ix] = value
   model <- update_F_trend(model)
   model <- burnin(model)
   return(model)

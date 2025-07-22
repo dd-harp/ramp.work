@@ -10,7 +10,7 @@
 #'
 #' @export
 burnin = function(model){
-  times = c(model$fitting$pre$tt, 0)
+  times = c(model$hindcast$tt, 0)
   model <- xds_solve(model, times=times)
   model <- last_to_inits(model)
   return(model)

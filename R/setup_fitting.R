@@ -23,17 +23,18 @@ setup_fitting = function(model, pfpr, jdates, N=10,
   model$Lpar[[1]]$season_par = Sp
   model$Lpar[[1]]$F_season <- ramp.xds::make_function(Sp)
 
-  analysis = list()
   class(forced_by) = forced_by
-  analysis$forced_by = forced_by
-  model$analysis = analysis
+  model$forced_by = forced_by
 
   fitting = list()
-  class(fitting) = forced_by
+  class(fitting) <- forced_by
+
   class(pr_diagnostic) <- pr_diagnostic
   fitting$pr_diagnostic <- pr_diagnostic
+
   class(gof) <- gof
   fitting$gof <- gof
+
   class(trend_par) <- trend_par
   fitting$trend_par <- trend_par
 
@@ -50,7 +51,9 @@ setup_fitting = function(model, pfpr, jdates, N=10,
   dta$years = data_yrs
   dta$tt = data_yrs*365
   dta$yy = rep(1, n_ty)
-  model$fitting$data = dta
+  model$data = dta
+
+
   model <- scaling_init_ty(model, pfpr, jdates)
 
   model <- setup_hindcast(model, N, method = "value",
@@ -62,6 +65,7 @@ setup_fitting = function(model, pfpr, jdates, N=10,
                           trust_ty = "last")
 
   model <- update_F_trend(model)
+
   model <- burnin(model)
 
   return(model)
@@ -81,7 +85,7 @@ setup_fitting = function(model, pfpr, jdates, N=10,
 #' @export
 #'
 scaling_init_ty = function(model, pfpr, jdates){
-  UseMethod("scaling_init_ty", model$fitting)
+  UseMethod("scaling_init_ty", model$forced_by)
 }
 
 #' Use scaling to set initial guesses
@@ -102,8 +106,8 @@ scaling_init_ty.Lambda = function(model, pfpr, jdates){
   L = xde_pr2Lambda(mean_pr, model)$Lambda
   model$Lpar[[1]]$Lambda = L
 
-  yy <- model$fitting$data$yy
-  tt <- model$fitting$data$tt
+  yy <- model$data$yy
+  tt <- model$data$tt
 
   for(i in 1:length(tt)){
     ix = which(abs(jdates-tt[i]) < 365)
@@ -111,7 +115,9 @@ scaling_init_ty.Lambda = function(model, pfpr, jdates){
     L_loc = xde_pr2Lambda(loc_mn, model)$Lambda
     yy[i] = L_loc/L
   }
-  model$fitting$data$yy <- yy
+
+ model$data$yy <- yy
+
   return(model)
 }
 

@@ -24,26 +24,30 @@ reconstruct_baseline = function(model, pfpr_ts, jdates,
                                 impute_ty="mean", trust_ty="unmodified"){
 
   model <- setup_vc_eval(model, irs_history, bednet_history)
-  model$analysis <- list()
-  model$analysis$impute_ty = impute_ty
-  model$analysis$trust_ty = trust_ty
 
-  model$fitting$naive_history = model$fitting$data
   with(model$vc_events,{
     for(i in 1:length(model$vc_events$t_init)){
       val = impute_value(t_ix[i], model, impute_ty, trust_ty)
-      yy  =  model$fitting$data$yy[t_ix[i]]
+      yy  =  model$data$yy[t_ix[i]]
       tm = t_init[i]
-      print(c(i=i, tm=tm,
+      print(c(i=i, tm=tm, yy=yy, t_ix = t_ix[i],
               val=round(1000*val)/1000,
               yy=round(1000*yy)/1000,
               t_init=round(1000*t_init[i]/1000),
               event=event[i]))
-      if(tm > 0 & val > yy){
-        model <- impute_baseline_ty(t_ix[i], model, impute_ty, trust_ty)
-        model <- estimate_effect_size(i, model, pfpr_ts, jdates)
+      if(t_ix[i] > 0)
+        if(val > yy){
+          model <- impute_baseline_ty(t_ix[i], model, impute_ty, trust_ty)
+          model <- estimate_effect_size(i, model, pfpr_ts, jdates)
       }
     }
+
+    model$baseline = list()
+    model$baseline$data <- model$data
+    model$baseline$fitting <- model$fitting
+    model$baseline$hindcast <- model$hindcast
+    model$baseline$forecast <- model$forecast
+
     return(model)
 })}
 

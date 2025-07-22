@@ -12,12 +12,12 @@ vignette: >
 
 ```{r, echo=F}
 library(ramp.xds)
-#library(ramp.work)
+library(ramp.work)
 ```
 
 
 ```{r, echo=F}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 In malaria, the immune status of the population depends on the history of exposure. Here, we develop a method to estimate the history of exposure from a time series describing the *Pf*PR in a population over time. The algorithm is called `pr2eir_history` that fits the signal. 
@@ -64,31 +64,31 @@ lines(tt/365, pr, lwd=2)
 
 The first step is to set up the model we want to use. This uses the default **X** component model, `SIS,` and we set up the model using the built-in sin function family from `ramp.xds`: 
 
-```{r shell}
+```{r shell, eval=F}
 mod <- xds_setup_eir(season_par = makepar_F_sin())
-mod <- 
+mod <- xds_setup_eir(season_par = makepar_F_sin())
 mod <- setup_fitting(mod, obs_pr, tt)
 ```
 
 To call the function, we pass the observed pr time series, the times, and the model:  
 
-```{r pr2eir_history}
+```{r pr2eir_history, eval=F}
 mod1 <- pr2history(obs_pr, tt, mod, twice=FALSE)
 ```
 
-```{r}
+```{r, eval=F}
 Fx <- mod1$EIRpar$F_trend
 integrate(Fx,min(tt), max(tt))$val/(max(tt)-min(tt)) 
 ```
 
 
-```{r}
+```{r, eval=F}
 mod2 <- pr2eir_history(obs_pr, tt, mod, twice=TRUE)
 ```
 
 We can visualize the results: 
 
-```{r vis}
+```{r vis, eval=F}
 ttn = seq(-365, max(tt), length.out=600)
 xds_plot_PR(mod1)
 xds_plot_PR(mod2, clrs="blue", add=TRUE)

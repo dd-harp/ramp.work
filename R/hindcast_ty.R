@@ -34,13 +34,13 @@ setup_hindcast = function(model, N=0,
   if(N==0) N=length(model$fitting$pre$tt)
   hindcast$N <- N
 
-  model$fitting$hindcast <- hindcast
 
-  pre_yrs = min(model$fitting$data$years) - c(N:1)
-  pre = list()
-  pre$tt = pre_yrs*365
-  pre$yy = rep(1, N)
-  model$fitting$pre=pre
+  pre_yrs = min(model$data$years) - c(N:1)
+
+  hindcast$yrs = pre_yrs
+  hindcast$tt = pre_yrs*365
+  hindcast$yy = rep(1, N)
+  model$hindcast <- hindcast
 
   model <- hindcast_ty(model)
 
@@ -63,7 +63,7 @@ setup_hindcast = function(model, N=0,
 #'
 #' @export
 #'
-hindcast_ty = function(model, ix=c()){with(model$fitting$hindcast,{
+hindcast_ty = function(model, ix=c()){with(model$hindcast,{
   yy <- impute_value(ix, model, impute_ty, trust_ty, N)
   model  <- set_pre_obs_y(yy, model)
   return(model)
@@ -77,7 +77,7 @@ hindcast_ty = function(model, ix=c()){with(model$fitting$hindcast,{
 #' @returns a **`ramp.xds** model object
 #' @export
 set_pre_obs_y = function(y, model){
-  UseMethod("set_pre_obs_y", model$fitting$hindcast$method)
+  UseMethod("set_pre_obs_y", model$hindcast$method)
 }
 
 
@@ -92,8 +92,8 @@ set_pre_obs_y = function(y, model){
 #' @returns a **`ramp.xds** model object
 #' @export
 set_pre_obs_y.value = function(y, model){
-  N <- model$fitting$hindcast$N
-  model$fitting$pre$yy = rep(y, N)
+  N <- model$hindcast$N
+  model$hindcast$yy = rep(y, N)
   return(model)
 }
 

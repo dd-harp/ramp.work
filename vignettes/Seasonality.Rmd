@@ -74,7 +74,7 @@ mod2 <- mod1
 
 The first step is to fit the phase, using default parameter values for the amplitude. 
 
-```{r}
+```{r, eval=F}
 fit_EIR_phase_sin_season(obs_pr, tt, mod1) -> mod1 
 mod1$EIRpar$season_par$phase 
 fit_EIR_phase_sin_season(obs_prn, tt, mod2) -> mod2 
@@ -83,7 +83,7 @@ mod2$EIRpar$season_par$phase
 
 Next, we set the phase for a parameter set defining a seasonal pattern, and we fit the amplitude. We modify the function to have this fitted 
 
-```{r}
+```{r, eval=F}
 mod1 <- fit_EIR_amplitude_sin_season(obs_pr, tt, mod1)
 mod1$EIRpar$season_par
 mod2 <- fit_EIR_amplitude_sin_season(obs_prn, tt, mod2)
@@ -92,7 +92,7 @@ mod2$EIRpar$season_par
 
 Note that if we pass this new parameter set to `fit_phase_sin_season,`  we get a slightly different phase. 
 
-```{r}
+```{r, eval=F}
 fit_EIR_phase_sin_season(obs_pr, tt, mod1) -> mod1 
 fit_EIR_amplitude_sin_season(obs_pr, tt, mod1) -> mod1
 ```
@@ -103,7 +103,7 @@ fit_EIR_amplitude_sin_season(obs_pr, tt, mod1) -> mod1
 
 The algorithm fits the seasonal *Pf*PR pattern with reasonable accuracy. 
 
-```{r}
+```{r, eval=F}
 mod1 <- xds_solve_cohort(mod1, times=tt)
 
 xds_plot_PR(mod)
@@ -111,7 +111,7 @@ xds_plot_PR(mod1, clrs="darkred", add=TRUE)
 lines(tt, obs_pr)
 ```
 
-```{r}
+```{r, eval=F}
 mod2 <- xds_solve_cohort(mod2, times=tt)
 
 xds_plot_PR(modn)

@@ -40,7 +40,6 @@ reference:
     No methods to set subclass
   contents:
   - ar_compare
-  - mean_phase_peak
   - ssMYZ
 - title: Fitting
   desc: |
@@ -73,8 +72,7 @@ reference:
   - xde_scaling
   - xde_scaling_eir
   - xde_scaling_lambda
-  - pr2eir_history
-  - pr2Lambda_history
+  - pr2history
 - title: Seasonality
   desc: |
     No methods to set subclass
@@ -86,50 +84,82 @@ reference:
   - compute_IoD_S
   - compute_IoD_pr
   - eirpr_seasonal_profile
-  - fit_EIR_amplitude_sin_season
-  - fit_EIR_phase_sin_season
-  - fit_EIR_sin_season
-  - sse_EIR_season
-  - fit_EIR_spline
-  - sse_EIR_spline
-  - fit_Lambda_amplitude_sin_season
-  - fit_Lambda_phase_sin_season
-  - fit_Lambda_sin_season
-  - sse_Lambda_season
-  - fit_Lambda_spline
-  - sse_Lambda_spline
-- title: Forecasting
+- title: Added, needs sorting
   desc: |
     No methods to set subclass
   contents:
-  - forecast_spline
-  - forecast_spline_EIR
-  - forecast_spline_Lambda
-  - gam_sample
-- title: Estimate Effect Size
-  desc: |
-    No methods to set subclass
-  contents:
-  - estimate_effect_sizes
-  - sse_effect_sizes
-  - effect_sizes_set_zap
-- title: Modify Baselin
-  desc: |
-    No methods to set subclass
-  contents:
-  - modify_baseline
-  - modify_baseline.full
-  - modify_baseline.cohort
-  - modify_baseline.func
-  - get_spline_yy
-  - get_spline_yy.full
-  - get_spline_yy.cohort
-  - get_spline_yy.func
-  - make_cf_base_ttyy
-  - make_cf_base_max
-  - make_cf_base_min
-  - make_cf_base_median
-  - make_cf_base_mean
-  - make_cf_base_gam
-  - make_cf_base_subsamp
-  - make_cf_no_base
+  - burnin
+  - change_F_season.Lambda
+  - change_F_season
+  - change_F_season.eir
+  - change_F_season_amplitude.Lambda
+  - change_F_season_amplitude
+  - change_F_season_phase.Lambda
+  - change_F_season_phase
+  - change_yy
+  - compute_gof
+  - compute_gof.sse
+  - estimate_effect_size
+  - estimate_effect_size.bednet
+  - estimate_effect_size.irs
+  - fit_amplitude
+  - fit_mean.Lambda
+  - fit_mean
+  - fit_phase
+  - fit_phase_alt
+  - fit_season
+  - fit_trend
+  - fit_trend_spline
+  - forecast_ty
+  - gam_forecast
+  - get_predicted_pr
+  - get_predicted_pr.lm
+  - get_predicted_pr.rdt
+  - get_predicted_pr.true
+  - get_trusted_ty
+  - get_trusted_ty.all
+  - get_trusted_ty.first
+  - get_trusted_ty.ix
+  - get_trusted_ty.last
+  - get_trusted_ty.nix
+  - get_trusted_ty.tix
+  - get_trusted_ty.unmodified
+  - hindcast_ty
+  - impute_baseline_ty
+  - impute_value
+  - impute_value.all
+  - impute_value.first
+  - impute_value.gam
+  - impute_value.last
+  - impute_value.max
+  - impute_value.mean
+  - impute_value.median
+  - impute_value.min
+  - impute_value.reverse
+  - impute_value.subsamp
+  - make_vc_event_list
+  - reconstruct_baseline
+  - scaling_init_ty.Lambda
+  - scaling_init_ty
+  - set_post_obs_y
+  - set_post_obs_y.asis
+  - set_post_obs_y.value
+  - set_pre_obs_y
+  - set_pre_obs_y.mirror
+  - set_pre_obs_y.value
+  - setup_fitting
+  - setup_forecast
+  - setup_hindcast
+  - setup_imputation
+  - setup_vc_eval
+  - show_season.Lambda
+  - show_season
+  - show_season.eir
+  - show_trend.Lambda
+  - show_trend
+  - show_trend.eir
+  - update_F_trend.Lambda
+  - update_F_trend
+  - update_F_trend.eir
+  - update_fitting_ty
+  - xde_scaling_cohort

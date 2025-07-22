@@ -20,8 +20,8 @@ get_trusted_ty = function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.ix = function(ix, model, trust_ty){
-  tt <- model$fitting$data$tt[ix]
-  yy <- model$fitting$data$yy[ix]
+  tt <- model$data$tt[ix]
+  yy <- model$data$yy[ix]
   return(list(tt=tt, yy=yy, ix=ix))
 }
 
@@ -34,10 +34,10 @@ get_trusted_ty.ix = function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.unmodified = function(ix, model, trust_ty){
-  tix = which(model$fitting$data$modified == 0)
-  if(length(tix)==0) tix = which.max(model$fitting$data$yy)
-  tt <- model$fitting$data$tt[tix]
-  yy <- model$fitting$data$yy[tix]
+  tix = which(model$data$modified == 0)
+  if(length(tix)==0) tix = which.max(model$data$yy)
+  tt <- model$data$tt[tix]
+  yy <- model$data$yy[tix]
  return(list(tt=tt, yy=yy))
 }
 
@@ -52,8 +52,8 @@ get_trusted_ty.unmodified = function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.nix = function(ix, model, trust_ty){
-  tt <- model$fitting$data$tt[-ix]
-  yy <- model$fitting$data$yy[-ix]
+  tt <- model$data$tt[-ix]
+  yy <- model$data$yy[-ix]
   return(list(tt=tt, yy=yy))
 }
 
@@ -66,8 +66,8 @@ get_trusted_ty.nix = function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.first = function(ix, model, trust_ty){
-  tt = head(model$fitting$data$tt,1)
-  yy = head(model$fitting$data$yy,1)
+  tt = head(model$data$tt,1)
+  yy = head(model$data$yy,1)
   return(list(tt=tt, yy=yy))
 }
 
@@ -84,10 +84,10 @@ get_trusted_ty.first = function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.tix = function(ix, model, trust_ty){
-  tt <- model$fitting$data$tt[ix]
+  tt <- model$data$tt[ix]
   tix = 0
-  tt <- model$fitting$data$tt[ix[tix]]
-  yy <- model$fitting$data$yy[ix[tix]]
+  tt <- model$data$tt[ix[tix]]
+  yy <- model$data$yy[ix[tix]]
   return(list(tt=tt, yy=yy))
 }
 
@@ -101,8 +101,8 @@ get_trusted_ty.tix = function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.last= function(ix, model, trust_ty){
-  tt = tail(model$fitting$data$tt,1)
-  yy = tail(model$fitting$data$yy,1)
+  tt = tail(model$data$tt,1)
+  yy = tail(model$data$yy,1)
   return(list(tt=tt, yy=yy))
 }
 
@@ -115,7 +115,7 @@ get_trusted_ty.last= function(ix, model, trust_ty){
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
 get_trusted_ty.all = function(ix, model, trust_ty){
-  tt = model$fitting$data$tt
-  yy = model$fitting$data$yy
+  tt = model$data$tt
+  yy = model$data$yy
   return(list(tt=tt, yy=yy))
 }

@@ -74,11 +74,12 @@ fit_trend_spline <- function(pfpr_ts, jdates, model, ix=c()){
 #'
 #' @returns a **`ramp.xds`** model object
 #' @export
-update_fitting_ty = function(model){with(model$fitting,{
+update_fitting_ty = function(model){
   model <- hindcast_ty(model)
   model <- forecast_ty(model)
-  model$fitting$tt = c(pre$tt, data$tt, post$tt)
-  model$fitting$yy = c(pre$yy, data$yy, post$yy)
+  with(model,{
+    model$fitting$tt = c(hindcast$tt, data$tt, forecast$tt)
+    model$fitting$yy = c(hindcast$yy, data$yy, forecast$yy)
   return(model)
 })}
 

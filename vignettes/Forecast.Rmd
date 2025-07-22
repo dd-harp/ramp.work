@@ -46,7 +46,7 @@ xds_plot_PR(mod1)
 If we want to use the model to forecast a few years ahead, we need to add knots. To do this, a gamma distribution with mean 1 is fit to the knots, and we sub-sample from it. The function is called `gam_sample`:
 
 
-```{r}
+```{r, eval=F}
 yy <- mod1$EIRpar$trend_par$yy
 hist(gam_sample(yy, 5000),55)
 points(yy, yy*0, pch = 20, col = "red")
@@ -55,7 +55,7 @@ points(yy, yy*0, pch = 20, col = "red")
 
 The functions `forecast_spline_EIR` and `forecast_spline_Lambda` do this for $N$ years ahead. The forecasting function allows us to exclude the last `x_last` knots when we sub-sample: 
 
-```{r}
+```{r, eval=F}
 mod1a <- forecast_spline_EIR(mod1, 5, x_last=1)
 mod1a <- xds_solve_cohort(mod1a, times=tt)
 clrs <- viridis::turbo(8)
@@ -69,7 +69,7 @@ for(i in 1:8){
 xds_plot_PR(mod1a, add=TRUE, clrs = "black")
 segments(5*365, 0, 5*365, 1, lty = 2)
 ```
-```{r}
+```{r, eval=F}
 mod1c <- forecast_spline_EIR(mod1, 15, x_last=1)
 tt <- seq(0, 365*20, by = 30)
 mod1c <- xds_solve_cohort(mod1c, times=tt)
@@ -79,7 +79,7 @@ segments(5*365, 0, 5*365, 1, lty = 2)
 
 Without the exclusion, the last knot can have a serious effect on our forecast. We should leave it in if it's real, but if it doesn't have any real information, it might be best to leave it out. 
 
-```{r}
+```{r, eval=F}
 mod1a <- forecast_spline_EIR(mod1, 15)
 mod1b <- forecast_spline_EIR(mod1, 15, x_last=1)
 mod1a <- xds_solve_cohort(mod1a, times=tt)
