@@ -1,3 +1,4 @@
+
 #' @title Reconstruct a history of exposure from a PR time series
 #'
 #' @description Construct a function describing the EIR, including
@@ -5,41 +6,95 @@
 #'
 #' For set of paired a time series \eqn{X,} compute the
 #' phase of a seasonal pattern for the EIR
-#' @note This utility relies on `xds_cohort`
-#' @param pfpr_ts the PR observed
-#' @param jdates the jdates of the observations
-#' @param model an `xds` model
+#'
+#' @param xds_obj an `xds` xds_obj
 #' @param twice cycle through a second time
-#' @return an `xds` object
+#'
+#' @return the **`ramp.xds`** model object, fitted to a time series.
+#' The state at the end is saved as `xds_obj$history`
 #' @export
-pr2history = function(pfpr_ts, jdates, model, twice=FALSE){
-  stopifnot(length(pfpr_ts) == length(jdates))
+pr2history_xm = function(xds_obj, twice=FALSE){
 
-  t0 <- min(model$fitting$tt)
-  times = c(t0, jdates)
-
-  print("mean")
-  model <- fit_mean(pfpr_ts, jdates, model)
-
-  print("phase")
-  model <- fit_phase(pfpr_ts, jdates, model)
-  print("amplitude")
-  model <- fit_amplitude(pfpr_ts, jdates, model)
-  print("trend")
-  model <- fit_trend_spline(pfpr_ts, jdates, model)
+  xds_obj <- fit_model(xds_obj, "season")
+  xds_obj <- fit_model(xds_obj, "trend")
 
   if(twice == TRUE){
-    print("season")
-    model <- fit_season(pfpr_ts, jdates, model)
-    print("trend")
-    model <- fit_trend_spline(pfpr_ts, jdates, model)
+    xds_obj <- fit_model(xds_obj, "season")
+    xds_obj <- fit_model(xds_obj, "trend")
   }
 
-  model$history = list()
-  model$history$data <- model$data
-  model$history$fitting <- model$fitting
-  model$history$hindcast <- model$hindcast
-  model$history$forecast <- model$forecast
+  xds_obj <- save_pr2history(xds_obj)
 
-  return(model)
+  return(xds_obj)
+}
+
+#' @title Reconstruct a history of exposure from a PR time series
+#'
+#' @description Construct a function describing the EIR, including
+#' the mean EIR, the seasonal pattern, and the i
+#'
+#' For set of paired a time series \eqn{X,} compute the
+#' phase of a seasonal pattern for the EIR
+#'
+#' @param xds_obj an `xds` xds_obj
+#'
+#' @return the **`ramp.xds`** model object, fitted to a time series.
+#' The state at the end is saved as `xds_obj$history`
+#' @export
+pr2history = function(xds_obj){
+
+  xds_obj <- fit_model(xds_obj, c("season", "trend"))
+  xds_obj <- save_pr2history(xds_obj)
+
+  return(xds_obj)
+}
+
+#' @title Save the history fitting
+#'
+#' @description After fitting a model
+#' to data, save the history. To restore
+#' that history, use []
+#'
+#'
+#' For set of paired a time series \eqn{X,} compute the
+#' phase of a seasonal pattern for the EIR
+#' @note This utility relies on `xds_cohort`
+#'
+#' @param xds_obj an `xds` xds_obj
+#'
+#' @return an `xds` object
+#' @export
+save_pr2history = function(xds_obj){
+  xds_obj$history = list()
+  xds_obj$mean_forcing <- get_mean_forcing(xds_obj)
+  xds_obj$season <- get_season(xds_obj)
+  xds_obj$history$data     <- xds_obj$data
+  xds_obj$history$fitting  <- xds_obj$fitting
+  xds_obj$history$hindcast <- xds_obj$hindcast
+  xds_obj$history$forecast <- xds_obj$forecast
+  return(xds_obj)
+}
+
+#' @title Reconstruct a history of exposure from a PR time series
+#'
+#' @description Construct a function describing the EIR, including
+#' the mean EIR, the seasonal pattern, and the i
+#'
+#' For set of paired a time series \eqn{X,} compute the
+#' phase of a seasonal pattern for the EIR
+#'
+#' @note This utility relies on `xds_scaling`
+#'
+#' @param xds_obj an `xds` xds_obj
+#'
+#' @return an `xds` object
+#' @export
+restore_pr2history = function(xds_obj){
+  xds_obj <- set_mean_forcing(xds_obj$history$mean_forcing, xds_obj)
+  xds_obj <- set_season(xds_obj$history$season, xds_obj)
+  xds_obj$data     <- xds_obj$history$data
+  xds_obj$fitting  <- xds_obj$history$fitting
+  xds_obj$hindcast <- xds_obj$history$hindcast
+  xds_obj$forecast <- xds_obj$history$forecast
+  return(xds_obj)
 }

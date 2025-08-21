@@ -39,15 +39,15 @@ set.seed(136)
 tt0 <-  365*(0:6)
 yy0 <-  c(.9, 2.2, 1.8, .2, .3, 1.4, 1.1)
 yy0 <- yy0/mean(yy0)
-mod1 <- xds_setup_cohort(
+mod1 <- xds_setup_eir(
   eir = 2/365,
   season_par = makepar_F_sin(bottom=.1),
   trend_par = makepar_F_spline(tt=tt0, yy=yy0)
 )
 tt <- seq(0, 365*6, by = 30)
-mod1 <- xds_solve_cohort(mod1, times=tt)
+mod1 <- xds_solve(mod1, times=tt)
 mod1 <- last_to_inits(mod1)
-mod1 <- xds_solve_cohort(mod1, times=tt)
+mod1 <- xds_solve(mod1, times=tt)
 true_pr <- get_XH(mod1)$true_pr
 obs_pr = true_pr*rlnorm(length(tt), 0, .3)
 ```

@@ -23,23 +23,25 @@ library(deSolve)
 library(viridisLite)
 ```
 
+```{r, echo=F}
+#devtools::load_all()
+```
+
 ```{r}
 model <- xds_setup_eir(eir = 1/365, season_par = makepar_F_sin())
 model <- xds_solve(model)
 xds_plot_PR(model)
 ```
 
-Scaling
 
-```{r, echo=F}
-#devtools::load_all()
-```
+An important question in malaria is the relationship between various metrics, especially the relationships between mosquito density, the annual entomological inoculation rate (aEIR), the parasite rate (PR), and malaria reproductive numbers. To facilitate analysis of malaria data, we have developed some functions to compute scaling relationships. 
 
-An important question in malaria is the relationship between various metrics, especially the relationships between mosquito density, the annual entomological inoculation rate (aEIR), the parasite rate (PR), and malaria reproductive numbers. To facilitate analysis of malaria data, we have developed some functions to compute scaling relationships. These are some of the key algorithms we use to generate malaria intelligence assets, and we have two versions:
++ `xds_scaling` is a wrapper for `xde_scaling` and `dts_scaling` 
 
-+ `xde_scaling_eir` uses the cohort functions in **`ramp.xds.`** These cohort functions have some advantages in working with exposure in a multiple cohorts as they age, exposed to a common EIR signal.  
++ `xde_scaling` and `dts_scaling` dispatch on `xds_obj$forced_by` 
 
-+ `xde_scaling_lambda` uses `xde_solve` in **`ramp.xds.`** These use the trivial **L**-component module to force emergence, and they examine the relationship between mosquito density and all the other metrics.  
+The functions create a mesh over mean forcing and for each value, they compute stable orbits and the annual average values of the metrics.  These are attached as `xds_obj$scaling.`
+
 
 ## xde_scaling_eir 
 
@@ -67,7 +69,7 @@ xds_solve(sis) -> sis
 The function `xde_scaling_eir` runs the model over a mesh of `N=25` values: 
 
 ```{r}
-xde_scaling_eir(sis, 25) -> sis
+xds_scaling(sis, 25) -> sis
 ```
 
 The results are attached as `sis$outputs$eirpr` 
@@ -78,7 +80,8 @@ plot_eirpr(sis)
 
 
 ```{r, fig.height=4, fig.width=7, eval=F}
-eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
+plot_eirpr(sis)
+add_eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
 ```
 
 ## xde_scaling_lambda
@@ -98,20 +101,21 @@ xds_setup(Xname = "SIS", Lopts=Lo) -> sis_full
 xds_solve(sis_full) -> sis_full
 ```
 
-```{r}
-xde_scaling_lambda(sis_full, 1.1, 30) -> sis_full
+```{r, xde_scaling.Lambda}
+xde_scaling(sis_full, 1.1, 30) -> sis_full
 ```
 
 ```{r}
 plot_eirpr(sis_full)
 ```
+
 ```{r}
-with(sis_full$outputs$eirpr, plot(Ro, pr, type = "l", log="x"))
+with(sis_full$scaling, plot(Ro, pr, type = "l", log="x"))
 ```
 
 ```{r}
-with(sis_full$outputs$eirpr, plot(M, pr, type = "l", log = "x"))
-with(sis_full$outputs$eirpr$scaling[[18]], lines(M, pr, type = "l"))
+with(sis_full$scaling, plot(M, pr, type = "l", log = "x"))
+with(sis_full$scaling$stable_orbits[[18]], lines(M, pr, type = "l"))
 ```
 
 ## `xde_pr2eir()`
@@ -135,7 +139,7 @@ We can plot the others:
 
 ```{r}
 plot_eirpr(sis)
-with(sis$outputs$eirpr, points(aeir, pr, pch = 15))
+with(sis$scaling, points(aeir, pr, pch = 15))
 with(preir_i, points(365*eir, pr, pch = 19, col = "red"))
 ```
 

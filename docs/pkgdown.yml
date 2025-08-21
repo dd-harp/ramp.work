@@ -5,6 +5,7 @@ articles:
   Analysis: Analysis.html
   Baseline: Baseline.html
   Effect_Sizes: Effect_Sizes.html
+  fitting_demo: fitting_demo.html
   Fitting_pr2eir: Fitting_pr2eir.html
   Fitting: Fitting.html
   Forecast: Forecast.html
@@ -12,10 +13,11 @@ articles:
   History: History.html
   Pipeline: Pipeline.html
   Scaling: Scaling.html
+  Scratch: Scratch.html
   Seasonality: Seasonality.html
   TestFit: TestFit.html
   Trend: Trend.html
-last_built: 2025-07-22T01:31Z
+last_built: 2025-08-21T20:35Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

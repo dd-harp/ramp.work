@@ -7,9 +7,9 @@
 setup_imputation(impute_ty = "mean", trusted_ty = "unmodified")
 }
 \arguments{
-\item{impute_ty}{a text string to dispatch `impute_baseline_ty`}
+\item{impute_ty}{a text string to dispatch \code{impute_baseline_ty}}
 
-\item{trusted_ty}{a text string to dispatch `get_trusted_ty`}
+\item{trusted_ty}{a text string to dispatch \code{get_trusted_ty}}
 }
 \value{
 an imputation model object

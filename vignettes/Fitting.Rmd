@@ -12,20 +12,37 @@ vignette: >
 
 *** 
 
-# How To 
+**QUICK START** 
 
-To set up fitting, we need `ramp.xds` and `ramp.work` 
+**1. Set Up a Model**
+
+First, we set up a model using **`ramp.xds`** setup functions, so we load `ramp.xds.`
 
 ```{r}
 library(ramp.xds)
+```
+
+We choose simple models:
+
+```{r, eval=F}
+model <- xds_setup(model, MYZname = "SI") 
+```
+
+**2. Run Scaling**
+
+For differential equation models, we run `xde_scaling` to set up `model$outputs$eirpr.` This makes it possible to make some good initial guesses for the parameter we will want to fit. This is in `ramp.work,` so we load it: 
+
+```{r}
 library(ramp.work)
 ```
 
-Assuming we have set up a **`ramp.xds`** model object, called `model.` For differential equation models, we run `xde_scaling` to set up `model$outputs$eirpr.` This makes it possible to make some good initial guesses for the parameter we will want to fit: 
+and we run `xde_scaling`
 
 ```{r, eval=F}
 model <- xde_scaling(model) 
 ```
+
+**3. Set Up Fitting**
 
 Now, we set up fitting, and we pass the `pfpr` time series and the paired `jdates`:  
 
@@ -33,10 +50,14 @@ Now, we set up fitting, and we pass the `pfpr` time series and the paired `jdate
 model <- setup_fitting_model(model, pfpr, jdates)
 ```
 
+During fitting, the *Pf*PR time series `pfpr` and the julian dates `jdates` are stored on the `fitting` object, along with a set of options. 
+
+**4. Fit the model using `pr2history`** 
+
 At this point, we're ready to fit the model: 
 
 ```{r, eval=F}
-model <- pr2history(model, pfpr, jdates)
+model <- pr2history(model)
 ```
 
 In the following, we present a longer introduction, a fully worked example, and a discussion of the implementation (for `dev` nerds).
@@ -45,7 +66,7 @@ In the following, we present a longer introduction, a fully worked example, and 
 
 # Introduction 
 
-**`ramp.work`** was developed with the goal of fitting a malaria -- a dynamical system of malaria epidemiology, transmission dynamics, and control -- to a *Pf*PR time series. What are we fitting? 
+**`ramp.work`** was developed with the goal of fitting a malaria model -- a dynamical system of malaria epidemiology, transmission dynamics, and control -- to a *Pf*PR time series. What are we fitting? 
 
 In all these models, we assume that malaria epidemiology is being *forced* by something. When we do the analytics, we want to have some flexibility in choosing what is forcing malaria epidemiology. Given a *Pf*PR time series, we might want to:
   
@@ -96,6 +117,7 @@ Once we have done this, we have a model that is ready for **scenario planning.**
 
 ### Build 
 
+
 ```{r build, eval=F}
 sis_si <- xds_setup(MYZname = "SI")
 ```
@@ -110,6 +132,9 @@ saveRDS(sis_si, "sis_si.rds")
 
 ```{r, echo=F}
 sis_si <- readRDS("sis_si.rds")
+forced_by <- "Lambda"
+class(forced_by) <- "Lambda"
+sis_si$forced_by <- forced_by
 ```
 
 ### Data 
