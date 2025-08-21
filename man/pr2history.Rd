@@ -4,19 +4,14 @@
 \alias{pr2history}
 \title{Reconstruct a history of exposure from a PR time series}
 \usage{
-pr2history(pfpr_ts, jdates, model, twice = FALSE)
+pr2history(xds_obj)
 }
 \arguments{
-\item{pfpr_ts}{the PR observed}
-
-\item{jdates}{the jdates of the observations}
-
-\item{model}{an `xds` model}
-
-\item{twice}{cycle through a second time}
+\item{xds_obj}{an \code{xds} xds_obj}
 }
 \value{
-an `xds` object
+the \strong{\code{ramp.xds}} model object, fitted to a time series.
+The state at the end is saved as \code{xds_obj$history}
 }
 \description{
 Construct a function describing the EIR, including
@@ -24,7 +19,4 @@ the mean EIR, the seasonal pattern, and the i
 
 For set of paired a time series \eqn{X,} compute the
 phase of a seasonal pattern for the EIR
-}
-\note{
-This utility relies on `xds_cohort`
 }

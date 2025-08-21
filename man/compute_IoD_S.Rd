@@ -12,5 +12,5 @@ compute_IoD_S(S)
 \item{S}{a function describing a seasonal pattern}
 }
 \description{
-If in doubt, use [compute_IoD_F]
+If in doubt, use \link{compute_IoD_F}
 }

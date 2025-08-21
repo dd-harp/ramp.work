@@ -3,16 +3,16 @@
 \name{compute_IoD_pr}
 \alias{compute_IoD_pr}
 \title{Compute the Index of Dispersal for a PR seasonal orbit
-for the \eqn{i^{th}} element of `eirpr$scaling`}
+for the \eqn{i^{th}} element of \code{eirpr$scaling}}
 \usage{
 compute_IoD_pr(i, pars)
 }
 \arguments{
 \item{i}{the index of the orbit to be evaluated}
 
-\item{pars}{an **`xds`** object}
+\item{pars}{an \strong{\code{xds}} object}
 }
 \description{
 Compute the Index of Dispersal for a PR seasonal orbit
-for the \eqn{i^{th}} element of `eirpr$scaling`
+for the \eqn{i^{th}} element of \code{eirpr$scaling}
 }

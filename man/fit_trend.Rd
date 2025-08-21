@@ -4,19 +4,17 @@
 \alias{fit_trend}
 \title{Fit interannual variability using splines}
 \usage{
-fit_trend(pfpr_ts, jdates, model)
+fit_trend(xds_obj, ix = c())
 }
 \arguments{
-\item{pfpr_ts}{a PfPR time series}
+\item{xds_obj}{an \code{xds} xds_obj}
 
-\item{jdates}{the times of the observations}
-
-\item{model}{an `xds` model}
+\item{ix}{index of the \eqn{y} values of interpolation points}
 }
 \value{
 a list with the mean peak and the values
 }
 \description{
-For a *Pf*PR time series, \eqn{x}, fit
+For a \emph{Pf}PR time series, \eqn{x}, fit
 a spline function
 }

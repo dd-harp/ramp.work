@@ -1,0 +1,130 @@
+---
+title: "Scratch"
+output: html_document
+---
+
+```{r}
+devtools::load_all("~/git/ramp.xds")
+devtools::load_all("~/git/ramp.control")
+devtools::load_all("~/git/ramp.library")
+devtools::load_all("~/git/ramp.work")
+devtools::load_all("~/git/ramp.uganda")
+```
+
+**Set up a model** 
+
+```{r, eval=F}
+mod <- xds_setup(Xname = "SIP", MYZname = "SI")
+```
+
+**Run *scaling*** 
+
+```{r, eval=F}
+mod <- xde_scaling_lambda(mod)
+```
+
+**Get the Data** 
+
+```{r}
+prts <- get_district_pfpr_i(132)
+prts$district_name[1]
+```
+
+
+```{r}
+mod <- setup_fitting(mod, prts$pfpr, prts$jdate)
+show_fit(mod)
+```
+
+```{r}
+mod1 <- fit_phase(mod)
+show_fit(mod1)
+```
+
+```{r}
+mod2 <- fit_amplitude(mod1)
+```
+
+```{r}
+show_season(mod2)
+```
+
+```{r}
+show_fit(mod2)
+```
+```{r}
+devtools::load_all("~/git/ramp.xds")
+devtools::load_all("~/git/ramp.work")
+```
+
+```{r fit_trend_spline}
+mod3 <- fit_trend_spline(1, mod2)
+show_fit(mod3)
+```
+
+```{r fit_trend_spline}
+mod3a <- fit_trend_spline(c(), mod2)
+show_fit(mod3a)
+```
+
+```{r}
+show_fit(mod3)
+```
+
+
+```{r}
+mod1<- set_season_phase(10, mod)
+mod1 <- xds_solve(mod1, times = c(0, mod$data$jdates))
+show_fit(mod1)
+```
+
+```{r}
+mod2 <- setup_fitting(mod1, prts$pfpr, prts$jdate)
+show_fit(mod2)
+```
+
+
+
+```{r}
+mod <- fit_season(mod)
+show_fit(mod)
+```
+
+```{r}
+devtools::load_all()
+mod <- fit_trend_spline(c(), mod)
+```
+
+
+```{r}
+show_fit(mod)
+```
+```{r}
+devtools::load_all()
+mod1 <- pr2history(mod)
+mod2 <- pr2history(mod1)
+```
+
+
+```{r}
+show_fit(mod1)
+show_fit(mod2, add=TRUE)
+
+```
+
+```{r}
+devtools::load_all()
+get_mean_forcing(mod1)
+```
+```{r}
+devtools::load_all("~/git/ramp.xds")
+devtools::load_all("~/git/ramp.work")
+mod1 <- fit_mean_forcing(mod)
+show_fit(mod1)
+show_fit(mod, add=TRUE)
+```
+
+```{r}
+get_mean_forcing(mod1)
+```
+

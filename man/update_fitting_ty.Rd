@@ -4,23 +4,30 @@
 \alias{update_fitting_ty}
 \title{Update Interpolation Points}
 \usage{
-update_fitting_ty(model)
+update_fitting_ty(xds_obj)
 }
 \arguments{
-\item{model}{a **`ramp.xds`** model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 }
 \value{
-a **`ramp.xds`** model object
+a \strong{\code{ramp.xds}} xds_obj object
 }
 \description{
-During fitting, the algorithm changes
-one or more of the control points in
-`model$fitting$data$yy.` The full set of control points
-at `model$fitting$tt` and `model$fitting$yy` includes
-some pre-observation interpolation points for burn-in, a set that
-brackets the observation period, and post-observation
-interpolation points to ensure continuity.
-
 This function copies the interpolation points from the
-separate sets to the master set
+\code{hindcast} and \code{data} and \code{forecast} to \code{fitting.}
+
+During fitting, the algorithm changes
+one or more of the \eqn{y} values of the
+interpolation points in
+\code{xds_obj$data$yy.} The xds_obj then calls
+\code{hindcast_ty} and \code{forecast_ty} to update \code{xds_obj$hindcast$y} (the
+pre-observation interpolation points for burn-in) and \code{xds_obj$hindcast$y}
+(post-observation interpolation points).
+These are copied to the
+full set of control points stored at
+at \code{xds_obj$fitting$tt} and \code{xds_obj$fitting$yy.}
+
+The rules for \code{hindcast_ty}  and \code{forecast_ty}
+are setup
+by \code{setup_hindcast} and \code{setup_forecast.}
 }

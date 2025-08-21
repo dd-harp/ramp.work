@@ -20,7 +20,7 @@ library(ramp.work)
 #devtools::load_all()
 ```
 
-In malaria, the immune status of the population depends on the history of exposure. Here, we develop a method to estimate the history of exposure from a time series describing the *Pf*PR in a population over time. The algorithm is called `pr2eir_history` that fits the signal. 
+In malaria, the immune status of the population depends on the history of exposure. Here, we develop a method to estimate the history of exposure from a time series describing the *Pf*PR in a population over time. The algorithm is called `pr2history` and it can be run in two ways: 
 
 ## Pseudocode
 
@@ -65,7 +65,6 @@ lines(tt/365, pr, lwd=2)
 The first step is to set up the model we want to use. This uses the default **X** component model, `SIS,` and we set up the model using the built-in sin function family from `ramp.xds`: 
 
 ```{r shell, eval=F}
-mod <- xds_setup_eir(season_par = makepar_F_sin())
 mod <- xds_setup_eir(season_par = makepar_F_sin())
 mod <- setup_fitting(mod, obs_pr, tt)
 ```

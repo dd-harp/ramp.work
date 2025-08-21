@@ -39,24 +39,18 @@ reference:
   desc: |
     No methods to set subclass
   contents:
-  - ar_compare
   - ssMYZ
-- title: Fitting
-  desc: |
-    No methods to set subclass
-  contents:
-  - update_by_ar
-  - xde_compute_gof
-  - dts_compute_gof
-  - dts_init_by_pr
-  - dts_maximize_gof
-  - dts_pr2ar_step
-  - dts_pr2ar_ts
-  - F_sse
 - title: Scaling
   desc: |
     No methods to set subclass
   contents:
+  - xds_scaling
+  - xds_scaling.xde
+  - xds_scaling.dts
+  - xde_scaling
+  - xde_scaling.eir
+  - xde_scaling.Lambda
+  - dts_scaling
   - plot_eirVpr
   - plot_eirpr
   - lines_eirVpr
@@ -64,15 +58,12 @@ reference:
   - pr2Lambda
   - xde_eir2ni
   - xde_eir2pr
-  - xde_maximize_gof
   - xde_pr2eir
   - xde_pr2Lambda
   - xde_pr2m
   - xde_pr2ni
-  - xde_scaling
-  - xde_scaling_eir
-  - xde_scaling_lambda
   - pr2history
+  - pr2history_xm
 - title: Seasonality
   desc: |
     No methods to set subclass
@@ -83,47 +74,31 @@ reference:
   - compute_IoD_F
   - compute_IoD_S
   - compute_IoD_pr
-  - eirpr_seasonal_profile
-- title: Added, needs sorting
+  - add_eirpr_seasonal_profile
+- title: Added - needs sorting
   desc: |
     No methods to set subclass
   contents:
-  - burnin
-  - change_F_season.Lambda
-  - change_F_season
-  - change_F_season.eir
-  - change_F_season_amplitude.Lambda
-  - change_F_season_amplitude
-  - change_F_season_phase.Lambda
-  - change_F_season_phase
-  - change_yy
   - compute_gof
   - compute_gof.sse
-  - estimate_effect_size
-  - estimate_effect_size.bednet
-  - estimate_effect_size.irs
-  - fit_amplitude
-  - fit_mean.Lambda
-  - fit_mean
-  - fit_phase
-  - fit_phase_alt
+  - fit_mean_forcing
   - fit_season
+  - fit_season_amplitude
+  - fit_season_phase
+  - fit_season_bottom
+  - fit_season_pw
+  - fit_season_phase_alt
   - fit_trend
-  - fit_trend_spline
   - forecast_ty
   - gam_forecast
-  - get_predicted_pr
-  - get_predicted_pr.lm
-  - get_predicted_pr.rdt
-  - get_predicted_pr.true
-  - get_trusted_ty
-  - get_trusted_ty.all
-  - get_trusted_ty.first
-  - get_trusted_ty.ix
-  - get_trusted_ty.last
-  - get_trusted_ty.nix
-  - get_trusted_ty.tix
-  - get_trusted_ty.unmodified
+  - get_ty
+  - get_ty.all
+  - get_ty.first
+  - get_ty.ix
+  - get_ty.last
+  - get_ty.nix
+  - get_ty.tix
+  - get_ty.unmodified
   - hindcast_ty
   - impute_baseline_ty
   - impute_value
@@ -137,8 +112,6 @@ reference:
   - impute_value.min
   - impute_value.reverse
   - impute_value.subsamp
-  - make_vc_event_list
-  - reconstruct_baseline
   - scaling_init_ty.Lambda
   - scaling_init_ty
   - set_post_obs_y
@@ -151,15 +124,71 @@ reference:
   - setup_forecast
   - setup_hindcast
   - setup_imputation
-  - setup_vc_eval
-  - show_season.Lambda
-  - show_season
-  - show_season.eir
-  - show_trend.Lambda
-  - show_trend
-  - show_trend.eir
-  - update_F_trend.Lambda
-  - update_F_trend
-  - update_F_trend.eir
   - update_fitting_ty
-  - xde_scaling_cohort
+  - approx_phase
+  - check_season_par.Lambda
+  - check_season_par
+  - check_season_par.eir
+  - compute_gof_X
+  - fit_bednet_coverage
+  - fit_irs_coverage
+  - fit_model
+  - get_init_X
+  - get_init_X.amplitude
+  - get_init_X.bednet_coverage
+  - get_init_X.bottom
+  - get_init_X.irs_coverage
+  - get_init_X.mean_forcing
+  - get_init_X.multifit
+  - get_init_X.phase
+  - get_init_X.pw
+  - get_init_X.season
+  - get_init_X.trend
+  - get_limits_X
+  - get_limits_X.bednet_coverage
+  - get_limits_X.bottom
+  - get_limits_X.irs_coverage
+  - get_limits_X.mean_forcing
+  - get_limits_X.phase
+  - get_limits_X.pw
+  - get_limits_X.trend
+  - impute_value.asis
+  - make_fit_ix
+  - make_fit_ix.amplitude
+  - make_fit_ix.bednet_coverage
+  - make_fit_ix.bottom
+  - make_fit_ix.irs_coverage
+  - make_fit_ix.mean_forcing
+  - make_fit_ix.phase
+  - make_fit_ix.pw
+  - make_fit_ix.season
+  - make_fit_ix.trend
+  - make_fit_ix_opts
+  - modify_vector_X.NULL
+  - modify_vector_X
+  - modify_vector_X.list
+  - modify_vector_X.numeric
+  - preset_phase
+  - restore_pr2history
+  - save_pr2history
+  - scaling_init_ty.eir
+  - set_pre_obs_y.asis
+  - setup_season
+  - setup_season.list
+  - setup_season.sin
+  - setup_spline_fit
+  - setup_trend_par.Lambda
+  - setup_trend_par
+  - setup_trend_par.eir
+  - show_fit
+  - update_function_X
+  - update_function_X.mean_forcing
+  - update_function_X.phase
+  - update_function_X.bottom
+  - update_function_X.pw
+  - update_function_X.season
+  - update_function_X.amplitude
+  - update_function_X.trend
+  - update_function_X.irs_coverage
+  - update_function_X.bednet_coverage
+  - update_function_X.multifit

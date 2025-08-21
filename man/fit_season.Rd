@@ -4,19 +4,15 @@
 \alias{fit_season}
 \title{Fit a seasonal pattern}
 \usage{
-fit_season(pfpr_ts, jdates, model)
+fit_season(xds_obj)
 }
 \arguments{
-\item{pfpr_ts}{a PfPR time series}
-
-\item{jdates}{the times of the observations}
-
-\item{model}{an `xds` model}
+\item{xds_obj}{an \code{xds} xds_obj}
 }
 \value{
 a list with the mean peak and the values
 }
 \description{
-For a *Pf*PR time series, \eqn{x}, fit
+For a \emph{Pf}PR time series, \eqn{x}, fit
 a spline function
 }

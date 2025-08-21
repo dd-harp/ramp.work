@@ -80,57 +80,45 @@
           <p class="section-desc"></p><p>No methods to set subclass</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="ar_compare.html">ar_compare()</a></code> </p>
-        </td>
-        <td><p>Compute the attack rate to get</p></td>
-      </tr><tr><td>
           <p><code><a href="ssMYZ.html">ssMYZ()</a></code> </p>
         </td>
-        <td><p>Set up the MYZss object for `xde_scaling_lambda`</p></td>
-      </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="fitting">Fitting <a href="#fitting" class="anchor" aria-hidden="true"></a></h2>
-          <p class="section-desc"></p><p>No methods to set subclass</p>
-        </th>
-      </tr></tbody><tbody><tr><td>
-          <p><code><a href="update_by_ar.html">update_by_ar()</a></code> </p>
-        </td>
-        <td><p>Compute the next y</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_compute_gof.html">xde_compute_gof()</a></code> </p>
-        </td>
-        <td><p>sum of squared errors</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_compute_gof.html">dts_compute_gof()</a></code> </p>
-        </td>
-        <td><p>sum of squared errors</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_init_by_pr.html">dts_init_by_pr()</a></code> </p>
-        </td>
-        <td><p>Initialize a dts model such that</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_maximize_gof.html">dts_maximize_gof()</a></code> </p>
-        </td>
-        <td><p>sum of squared errors</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_pr2ar_step.html">dts_pr2ar_step()</a></code> </p>
-        </td>
-        <td><p>Compute the attack rates for a set of strata for a step-ahead algorithm</p></td>
-      </tr><tr><td>
-          <p><code><a href="dts_pr2ar_ts.html">dts_pr2ar_ts()</a></code> </p>
-        </td>
-        <td><p>Compute the attack rate to get</p></td>
-      </tr><tr><td>
-          <p><code><a href="F_sse.html">F_sse()</a></code> </p>
-        </td>
-        <td><p>Sum of squared errors. Works as F_gof in xde_maximize_gof</p></td>
+        <td><p>Set up the MYZss object for <code>xds_scaling_lambda</code></p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="scaling">Scaling <a href="#scaling" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>No methods to set subclass</p>
         </th>
       </tr></tbody><tbody><tr><td>
+          <p><code><a href="xds_scaling.html">xds_scaling()</a></code> </p>
+        </td>
+        <td><p>Scaling for Malaria Metrics</p></td>
+      </tr><tr><td>
+          <p><code><a href="xds_scaling.xde.html">xds_scaling(<i>&lt;xde&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Scaling for Malaria Metrics</p></td>
+      </tr><tr><td>
+          <p><code><a href="xds_scaling.dts.html">xds_scaling(<i>&lt;dts&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Scaling for Malaria Metrics</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_scaling.html">xde_scaling()</a></code> </p>
+        </td>
+        <td><p>Scaling for Malaria Metrics</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_scaling.eir.html">xde_scaling(<i>&lt;eir&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute eir-pr scaling relationships</p></td>
+      </tr><tr><td>
+          <p><code><a href="xde_scaling.Lambda.html">xde_scaling(<i>&lt;Lambda&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute scaling relationships from mosquito emergence through PfPR</p></td>
+      </tr><tr><td>
+          <p><code><a href="dts_scaling.html">dts_scaling()</a></code> </p>
+        </td>
+        <td><p>Scaling for Malaria Metrics</p></td>
+      </tr><tr><td>
           <p><code><a href="plot_eirVpr.html">plot_eirVpr()</a></code> </p>
         </td>
-        <td><p>Plot EIR(t) *vs.* the PR(t)</p></td>
+        <td><p>Plot EIR(t) <em>vs.</em> the PR(t)</p></td>
       </tr><tr><td>
           <p><code><a href="plot_eirpr.html">plot_eirpr()</a></code> </p>
         </td>
@@ -138,7 +126,7 @@
       </tr><tr><td>
           <p><code><a href="lines_eirVpr.html">lines_eirVpr()</a></code> </p>
         </td>
-        <td><p>Add lines for the EIR(t) *vs.* the PR(t)</p></td>
+        <td><p>Add lines for the EIR(t) <em>vs.</em> the PR(t)</p></td>
       </tr><tr><td>
           <p><code><a href="lines_eirpr.html">lines_eirpr()</a></code> </p>
         </td>
@@ -146,7 +134,7 @@
       </tr><tr><td>
           <p><code><a href="pr2Lambda.html">pr2Lambda()</a></code> </p>
         </td>
-        <td><p>Using the eirpr matrix and a RM model, convert pr to Lambda</p></td>
+        <td><p>Using the eirpr matrix and a RM xds_obj, convert pr to Lambda</p></td>
       </tr><tr><td>
           <p><code><a href="xde_eir2ni.html">xde_eir2ni()</a></code> </p>
         </td>
@@ -155,10 +143,6 @@
           <p><code><a href="xde_eir2pr.html">xde_eir2pr()</a></code> </p>
         </td>
         <td><p>Convert eir to pr</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_maximize_gof.html">xde_maximize_gof()</a></code> </p>
-        </td>
-        <td><p>sum of squared errors</p></td>
       </tr><tr><td>
           <p><code><a href="xde_pr2eir.html">xde_pr2eir()</a></code> </p>
         </td>
@@ -176,19 +160,11 @@
         </td>
         <td><p>Convert pr to ni</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_scaling.html">xde_scaling()</a></code> </p>
-        </td>
-        <td><p>Construct an eirpr object for an arbitary model</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_scaling_eir.html">xde_scaling_eir()</a></code> </p>
-        </td>
-        <td><p>Compute eir-pr scaling relationships</p></td>
-      </tr><tr><td>
-          <p><code><a href="xde_scaling_lambda.html">xde_scaling_lambda()</a></code> </p>
-        </td>
-        <td><p>Compute scaling relationships from mosquito emergence through PfPR</p></td>
-      </tr><tr><td>
           <p><code><a href="pr2history.html">pr2history()</a></code> </p>
+        </td>
+        <td><p>Reconstruct a history of exposure from a PR time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="pr2history_xm.html">pr2history_xm()</a></code> </p>
         </td>
         <td><p>Reconstruct a history of exposure from a PR time series</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -218,52 +194,16 @@
       </tr><tr><td>
           <p><code><a href="compute_IoD_pr.html">compute_IoD_pr()</a></code> </p>
         </td>
-        <td><p>Compute the Index of Dispersal for a PR seasonal orbit for the \(i^{th}\) element of `eirpr$scaling`</p></td>
+        <td><p>Compute the Index of Dispersal for a PR seasonal orbit for the \(i^{th}\) element of <code>eirpr$scaling</code></p></td>
       </tr><tr><td>
-          <p><code><a href="eirpr_seasonal_profile.html">eirpr_seasonal_profile()</a></code> </p>
+          <p><code><a href="add_eirpr_seasonal_profile.html">add_eirpr_seasonal_profile()</a></code> </p>
         </td>
         <td><p>Draw the orbit for the \(i^{th}\) element of eirpr$scaling.</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
-          <h2 id="added-needs-sorting">Added, needs sorting <a href="#added-needs-sorting" class="anchor" aria-hidden="true"></a></h2>
+          <h2 id="added-needs-sorting">Added - needs sorting <a href="#added-needs-sorting" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>No methods to set subclass</p>
         </th>
       </tr></tbody><tbody><tr><td>
-          <p><code><a href="burnin.html">burnin()</a></code> </p>
-        </td>
-        <td><p>Burn-in</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season.Lambda.html">change_F_season(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season.html">change_F_season()</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season.eir.html">change_F_season(<i>&lt;eir&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season_amplitude.Lambda.html">change_F_season_amplitude(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season_amplitude.html">change_F_season_amplitude()</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season_phase.Lambda.html">change_F_season_phase(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_F_season_phase.html">change_F_season_phase()</a></code> </p>
-        </td>
-        <td><p>Change F_season</p></td>
-      </tr><tr><td>
-          <p><code><a href="change_yy.html">change_yy()</a></code> </p>
-        </td>
-        <td><p>Update `F_trend`</p></td>
-      </tr><tr><td>
           <p><code><a href="compute_gof.html">compute_gof()</a></code> </p>
         </td>
         <td><p>Compute GoF</p></td>
@@ -272,47 +212,35 @@
         </td>
         <td><p>Compute GoF by LSS</p></td>
       </tr><tr><td>
-          <p><code><a href="estimate_effect_size.html">estimate_effect_size()</a></code> </p>
+          <p><code><a href="fit_mean_forcing.html">fit_mean_forcing()</a></code> </p>
         </td>
-        <td><p>Estimate the effect size for a single round of IRS</p></td>
-      </tr><tr><td>
-          <p><code><a href="estimate_effect_size.bednet.html">estimate_effect_size(<i>&lt;bednet&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Estimate the effect size for a single round of mass bed net distribution</p></td>
-      </tr><tr><td>
-          <p><code><a href="estimate_effect_size.irs.html">estimate_effect_size(<i>&lt;irs&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Estimate the effect size for a single round of IRS</p></td>
-      </tr><tr><td>
-          <p><code><a href="fit_amplitude.html">fit_amplitude()</a></code> </p>
-        </td>
-        <td><p>Fit a seasonal pattern</p></td>
-      </tr><tr><td>
-          <p><code><a href="fit_mean.Lambda.html">fit_mean(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Fit a seasonal pattern</p></td>
-      </tr><tr><td>
-          <p><code><a href="fit_mean.html">fit_mean()</a></code> </p>
-        </td>
-        <td><p>Fit a seasonal pattern</p></td>
-      </tr><tr><td>
-          <p><code><a href="fit_phase.html">fit_phase()</a></code> </p>
-        </td>
-        <td><p>Fit the phase</p></td>
-      </tr><tr><td>
-          <p><code><a href="fit_phase_alt.html">fit_phase_alt()</a></code> </p>
-        </td>
-        <td><p>Fit a seasonal pattern</p></td>
+        <td><p>Fit mean forcing</p></td>
       </tr><tr><td>
           <p><code><a href="fit_season.html">fit_season()</a></code> </p>
         </td>
         <td><p>Fit a seasonal pattern</p></td>
       </tr><tr><td>
-          <p><code><a href="fit_trend.html">fit_trend()</a></code> </p>
+          <p><code><a href="fit_season_amplitude.html">fit_season_amplitude()</a></code> </p>
         </td>
-        <td><p>Fit interannual variability using splines</p></td>
+        <td><p>Fit a seasonal pattern</p></td>
       </tr><tr><td>
-          <p><code><a href="fit_trend_spline.html">fit_trend_spline()</a></code> </p>
+          <p><code><a href="fit_season_phase.html">fit_season_phase()</a></code> </p>
+        </td>
+        <td><p>Fit a seasonal pattern</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_season_bottom.html">fit_season_bottom()</a></code> </p>
+        </td>
+        <td><p>Fit a seasonal pattern</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_season_pw.html">fit_season_pw()</a></code> </p>
+        </td>
+        <td><p>Fit a seasonal pattern</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_season_phase_alt.html">fit_season_phase_alt()</a></code> </p>
+        </td>
+        <td><p>Fit the phase</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_trend.html">fit_trend()</a></code> </p>
         </td>
         <td><p>Fit interannual variability using splines</p></td>
       </tr><tr><td>
@@ -324,51 +252,35 @@
         </td>
         <td><p>Fit and draw</p></td>
       </tr><tr><td>
-          <p><code><a href="get_predicted_pr.html">get_predicted_pr()</a></code> </p>
-        </td>
-        <td><p>Title</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_predicted_pr.lm.html">get_predicted_pr(<i>&lt;lm&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Title</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_predicted_pr.rdt.html">get_predicted_pr(<i>&lt;rdt&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Title</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_predicted_pr.true.html">get_predicted_pr(<i>&lt;true&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Title</p></td>
-      </tr><tr><td>
-          <p><code><a href="get_trusted_ty.html">get_trusted_ty()</a></code> </p>
+          <p><code><a href="get_ty.html">get_ty()</a></code> </p>
         </td>
         <td><p>Get a set of trusted interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.all.html">get_trusted_ty(<i>&lt;all&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.all.html">get_ty(<i>&lt;all&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.first.html">get_trusted_ty(<i>&lt;first&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.first.html">get_ty(<i>&lt;first&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.ix.html">get_trusted_ty(<i>&lt;ix&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.ix.html">get_ty(<i>&lt;ix&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.last.html">get_trusted_ty(<i>&lt;last&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.last.html">get_ty(<i>&lt;last&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.nix.html">get_trusted_ty(<i>&lt;nix&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.nix.html">get_ty(<i>&lt;nix&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.tix.html">get_trusted_ty(<i>&lt;tix&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.tix.html">get_ty(<i>&lt;tix&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get interpolation points</p></td>
       </tr><tr><td>
-          <p><code><a href="get_trusted_ty.unmodified.html">get_trusted_ty(<i>&lt;unmodified&gt;</i>)</a></code> </p>
+          <p><code><a href="get_ty.unmodified.html">get_ty(<i>&lt;unmodified&gt;</i>)</a></code> </p>
         </td>
         <td><p>Get the interpolation points</p></td>
       </tr><tr><td>
@@ -424,14 +336,6 @@
         </td>
         <td><p>Create a modify Baseline</p></td>
       </tr><tr><td>
-          <p><code><a href="make_vc_event_list.html">make_vc_event_list()</a></code> </p>
-        </td>
-        <td><p>Make an events list</p></td>
-      </tr><tr><td>
-          <p><code><a href="reconstruct_baseline.html">reconstruct_baseline()</a></code> </p>
-        </td>
-        <td><p>Reconstruct History as a Baseline Modified by Control</p></td>
-      </tr><tr><td>
           <p><code><a href="scaling_init_ty.Lambda.html">scaling_init_ty(<i>&lt;Lambda&gt;</i>)</a></code> </p>
         </td>
         <td><p>Use scaling to set initial guesses</p></td>
@@ -466,7 +370,7 @@
       </tr><tr><td>
           <p><code><a href="setup_fitting.html">setup_fitting()</a></code> </p>
         </td>
-        <td><p>Set up the model fitting object</p></td>
+        <td><p>Set up the xds_obj fitting object</p></td>
       </tr><tr><td>
           <p><code><a href="setup_forecast.html">setup_forecast()</a></code> </p>
         </td>
@@ -480,53 +384,277 @@
         </td>
         <td><p>Setup Imputation</p></td>
       </tr><tr><td>
-          <p><code><a href="setup_vc_eval.html">setup_vc_eval()</a></code> </p>
-        </td>
-        <td><p>Setup Vector Control for Evaluation</p></td>
-      </tr><tr><td>
-          <p><code><a href="show_season.Lambda.html">show_season(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the Fitted season</p></td>
-      </tr><tr><td>
-          <p><code><a href="show_season.html">show_season()</a></code> </p>
-        </td>
-        <td><p>Plot the Fitted season</p></td>
-      </tr><tr><td>
-          <p><code><a href="show_season.eir.html">show_season(<i>&lt;eir&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the Fitted season</p></td>
-      </tr><tr><td>
-          <p><code><a href="show_trend.Lambda.html">show_trend(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the Fitted Trend</p></td>
-      </tr><tr><td>
-          <p><code><a href="show_trend.html">show_trend()</a></code> </p>
-        </td>
-        <td><p>Plot the Fitted Trend</p></td>
-      </tr><tr><td>
-          <p><code><a href="show_trend.eir.html">show_trend(<i>&lt;eir&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Plot the Fitted Trend</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_F_trend.Lambda.html">update_F_trend(<i>&lt;Lambda&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update `F_trend`</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_F_trend.html">update_F_trend()</a></code> </p>
-        </td>
-        <td><p>Update `F_trend`</p></td>
-      </tr><tr><td>
-          <p><code><a href="update_F_trend.eir.html">update_F_trend(<i>&lt;eir&gt;</i>)</a></code> </p>
-        </td>
-        <td><p>Update `F_trend`</p></td>
-      </tr><tr><td>
           <p><code><a href="update_fitting_ty.html">update_fitting_ty()</a></code> </p>
         </td>
         <td><p>Update Interpolation Points</p></td>
       </tr><tr><td>
-          <p><code><a href="xde_scaling_cohort.html">xde_scaling_cohort()</a></code> </p>
+          <p><code><a href="approx_phase.html">approx_phase()</a></code> </p>
         </td>
-        <td><p>Compute eir-pr scaling relationships</p></td>
+        <td><p>Compute the observed phase</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_season_par.Lambda.html">check_season_par(<i>&lt;Lambda&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Check the seasonal setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_season_par.html">check_season_par()</a></code> </p>
+        </td>
+        <td><p>Check the seasonal setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="check_season_par.eir.html">check_season_par(<i>&lt;eir&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Check the seasonal setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="compute_gof_X.html">compute_gof_X()</a></code> </p>
+        </td>
+        <td><p>Compute the GoF for <code>X</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_bednet_coverage.html">fit_bednet_coverage()</a></code> </p>
+        </td>
+        <td><p>Fit bed net coverage</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_irs_coverage.html">fit_irs_coverage()</a></code> </p>
+        </td>
+        <td><p>Fit irs coverage</p></td>
+      </tr><tr><td>
+          <p><code><a href="fit_model.html">fit_model()</a></code> </p>
+        </td>
+        <td><p>Fit a model to data</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.html">get_init_X()</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.amplitude.html">get_init_X(<i>&lt;amplitude&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.bednet_coverage.html">get_init_X(<i>&lt;bednet_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get initial X: Bed net coverage</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.bottom.html">get_init_X(<i>&lt;bottom&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.irs_coverage.html">get_init_X(<i>&lt;irs_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get initial X: IRS coverage</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.mean_forcing.html">get_init_X(<i>&lt;mean_forcing&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.multifit.html">get_init_X(<i>&lt;multifit&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the GoF for <code>X</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.phase.html">get_init_X(<i>&lt;phase&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.pw.html">get_init_X(<i>&lt;pw&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.season.html">get_init_X(<i>&lt;season&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_init_X.trend.html">get_init_X(<i>&lt;trend&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.html">get_limits_X()</a></code> </p>
+        </td>
+        <td><p>Get Limits</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.bednet_coverage.html">get_limits_X(<i>&lt;bednet_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get limits for IRS coverage parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.bottom.html">get_limits_X(<i>&lt;bottom&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.irs_coverage.html">get_limits_X(<i>&lt;irs_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.mean_forcing.html">get_limits_X(<i>&lt;mean_forcing&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.phase.html">get_limits_X(<i>&lt;phase&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.pw.html">get_limits_X(<i>&lt;pw&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="get_limits_X.trend.html">get_limits_X(<i>&lt;trend&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Get Initial Values for Parameters</p></td>
+      </tr><tr><td>
+          <p><code><a href="impute_value.asis.html">impute_value(<i>&lt;asis&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Use Mean for Modify Baseline</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.html">make_fit_ix()</a></code> </p>
+        </td>
+        <td><p>Set up indices for model fitting</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.amplitude.html">make_fit_ix(<i>&lt;amplitude&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for seasonality</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.bednet_coverage.html">make_fit_ix(<i>&lt;bednet_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for Bednet Models</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.bottom.html">make_fit_ix(<i>&lt;bottom&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for seasonality</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.irs_coverage.html">make_fit_ix(<i>&lt;irs_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for IRS Models</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.mean_forcing.html">make_fit_ix(<i>&lt;mean_forcing&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for mean forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.phase.html">make_fit_ix(<i>&lt;phase&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for seasonality</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.pw.html">make_fit_ix(<i>&lt;pw&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for seasonality</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.season.html">make_fit_ix(<i>&lt;season&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for seasonality</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix.trend.html">make_fit_ix(<i>&lt;trend&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Indices for trends</p></td>
+      </tr><tr><td>
+          <p><code><a href="make_fit_ix_opts.html">make_fit_ix_opts()</a></code> </p>
+        </td>
+        <td><p>A utility to set up indices for fitting</p></td>
+      </tr><tr><td>
+          <p><code><a href="modify_vector_X.NULL.html">modify_vector_X(<i>&lt;NULL&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Replace Values in a List</p></td>
+      </tr><tr><td>
+          <p><code><a href="modify_vector_X.html">modify_vector_X()</a></code> </p>
+        </td>
+        <td><p>Modify some values in a vector</p></td>
+      </tr><tr><td>
+          <p><code><a href="modify_vector_X.list.html">modify_vector_X(<i>&lt;list&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Replace Values in a List</p></td>
+      </tr><tr><td>
+          <p><code><a href="modify_vector_X.numeric.html">modify_vector_X(<i>&lt;numeric&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Replace Values in a List</p></td>
+      </tr><tr><td>
+          <p><code><a href="preset_phase.html">preset_phase()</a></code> </p>
+        </td>
+        <td><p>Initialize the phase parameter</p></td>
+      </tr><tr><td>
+          <p><code><a href="restore_pr2history.html">restore_pr2history()</a></code> </p>
+        </td>
+        <td><p>Reconstruct a history of exposure from a PR time series</p></td>
+      </tr><tr><td>
+          <p><code><a href="save_pr2history.html">save_pr2history()</a></code> </p>
+        </td>
+        <td><p>Save the history fitting</p></td>
+      </tr><tr><td>
+          <p><code><a href="scaling_init_ty.eir.html">scaling_init_ty(<i>&lt;eir&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Use scaling to set initial guesses</p></td>
+      </tr><tr><td>
+          <p><code><a href="set_pre_obs_y.asis.html">set_pre_obs_y(<i>&lt;asis&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up the pre-observation interpolating points</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_season.html">setup_season()</a></code> </p>
+        </td>
+        <td><p>Set up the seasonal pattern</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_season.list.html">setup_season(<i>&lt;list&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up the seasonal pattern</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_season.sin.html">setup_season(<i>&lt;sin&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Set up the seasonal pattern</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_spline_fit.html">setup_spline_fit()</a></code> </p>
+        </td>
+        <td><p>Title</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_trend_par.Lambda.html">setup_trend_par(<i>&lt;Lambda&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Check the trend setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_trend_par.html">setup_trend_par()</a></code> </p>
+        </td>
+        <td><p>Check the trend setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="setup_trend_par.eir.html">setup_trend_par(<i>&lt;eir&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Check the trend setup</p></td>
+      </tr><tr><td>
+          <p><code><a href="show_fit.html">show_fit()</a></code> </p>
+        </td>
+        <td><p>Plot the model and the data</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.html">update_function_X()</a></code> </p>
+        </td>
+        <td><p>Update a function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.mean_forcing.html">update_function_X(<i>&lt;mean_forcing&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update Mean Forcing</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.phase.html">update_function_X(<i>&lt;phase&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update a function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.bottom.html">update_function_X(<i>&lt;bottom&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update a function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.pw.html">update_function_X(<i>&lt;pw&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update a function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.season.html">update_function_X(<i>&lt;season&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update <code>F_season</code></p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.amplitude.html">update_function_X(<i>&lt;amplitude&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update a function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.trend.html">update_function_X(<i>&lt;trend&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update a function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.irs_coverage.html">update_function_X(<i>&lt;irs_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update the irs coverage function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.bednet_coverage.html">update_function_X(<i>&lt;bednet_coverage&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Update the bed net coverage function</p></td>
+      </tr><tr><td>
+          <p><code><a href="update_function_X.multifit.html">update_function_X(<i>&lt;multifit&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Compute the GoF for <code>X</code></p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

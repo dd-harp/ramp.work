@@ -97,7 +97,7 @@
             <h3 data-toc-skip class="subtitle">Fitting a Dynamical
 System to a PfPR Time Series</h3>
             
-            <h4 data-toc-skip class="date">July 21, 2025</h4>
+            <h4 data-toc-skip class="date">August 20, 2025</h4>
       
       
       <div class="hidden name"><code>Fitting.Rmd</code></div>
@@ -107,38 +107,46 @@ System to a PfPR Time Series</h3>
     
     
 <hr>
-<div class="section level2">
-<h2 id="how-to">How To<a class="anchor" aria-label="anchor" href="#how-to"></a>
-</h2>
-<p>To set up fitting, we need <code>ramp.xds</code> and
-<code>ramp.work</code></p>
+<p><strong>QUICK START</strong></p>
+<p><strong>1. Set Up a Model</strong></p>
+<p>First, we set up a model using <strong><code>ramp.xds</code></strong>
+setup functions, so we load <code>ramp.xds.</code></p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ramp.work</span><span class="op">)</span></span></code></pre></div>
-<p>Assuming we have set up a <strong><code>ramp.xds</code></strong>
-model object, called <code>model.</code> For differential equation
-models, we run <code>xde_scaling</code> to set up
-<code>model$outputs$eirpr.</code> This makes it possible to make some
-good initial guesses for the parameter we will want to fit:</p>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.xds/">ramp.xds</a></span><span class="op">)</span></span></code></pre></div>
+<p>We choose simple models:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span><span class="va">model</span>, MYZname <span class="op">=</span> <span class="st">"SI"</span><span class="op">)</span> </span></code></pre></div>
+<p><strong>2. Run Scaling</strong></p>
+<p>For differential equation models, we run <code>xde_scaling</code> to
+set up <code>model$outputs$eirpr.</code> This makes it possible to make
+some good initial guesses for the parameter we will want to fit. This is
+in <code>ramp.work,</code> so we load it:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">ramp.work</span><span class="op">)</span></span></code></pre></div>
+<p>and we run <code>xde_scaling</code></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_scaling.html">xde_scaling</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span> </span></code></pre></div>
+<p><strong>3. Set Up Fitting</strong></p>
 <p>Now, we set up fitting, and we pass the <code>pfpr</code> time series
 and the paired <code>jdates</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu">setup_fitting_model</span><span class="op">(</span><span class="va">model</span>, <span class="va">pfpr</span>, <span class="va">jdates</span><span class="op">)</span></span></code></pre></div>
+<p>During fitting, the <em>Pf</em>PR time series <code>pfpr</code> and
+the julian dates <code>jdates</code> are stored on the
+<code>fitting</code> object, along with a set of options.</p>
+<p><strong>4. Fit the model using <code>pr2history</code></strong></p>
 <p>At this point, we’re ready to fit the model:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pr2history.html">pr2history</a></span><span class="op">(</span><span class="va">model</span>, <span class="va">pfpr</span>, <span class="va">jdates</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pr2history.html">pr2history</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
 <p>In the following, we present a longer introduction, a fully worked
 example, and a discussion of the implementation (for <code>dev</code>
 nerds).</p>
 <hr>
-</div>
 <div class="section level2">
 <h2 id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <p><strong><code>ramp.work</code></strong> was developed with the goal
-of fitting a malaria – a dynamical system of malaria epidemiology,
+of fitting a malaria model – a dynamical system of malaria epidemiology,
 transmission dynamics, and control – to a <em>Pf</em>PR time series.
 What are we fitting?</p>
 <p>In all these models, we assume that malaria epidemiology is being
@@ -241,26 +249,26 @@ imputed baseline.</p></li>
 <div class="section level4">
 <h4 id="build">Build<a class="anchor" aria-label="anchor" href="#build"></a>
 </h4>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sis_si</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup.html">xds_setup</a></span><span class="op">(</span>MYZname <span class="op">=</span> <span class="st">"SI"</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">sis_si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/xde_scaling_lambda.html">xde_scaling_lambda</a></span><span class="op">(</span><span class="va">sis_si</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sis_si</span> <span class="op">&lt;-</span> <span class="fu">xde_scaling_lambda</span><span class="op">(</span><span class="va">sis_si</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="data">Data<a class="anchor" aria-label="anchor" href="#data"></a>
 </h4>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dd-harp.github.io/ramp.uganda/" class="external-link">ramp.uganda</a></span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/ramp.uganda/man/get_district_pfpr_i.html" class="external-link">get_district_pfpr_i</a></span><span class="op">(</span><span class="fl">124</span><span class="op">)</span> <span class="op">-&gt;</span> <span class="va">prts</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="set-up-fitting">Set Up Fitting<a class="anchor" aria-label="anchor" href="#set-up-fitting"></a>
 </h4>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">sis_si</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/setup_fitting.html">setup_fitting</a></span><span class="op">(</span><span class="va">sis_si</span>, <span class="va">prts</span><span class="op">$</span><span class="va">pfpr</span>, <span class="va">prts</span><span class="op">$</span><span class="va">jdate</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/show_trend.html">show_trend</a></span><span class="op">(</span><span class="va">sis_si</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Fitting_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/show_trend.html">show_trend</a></span><span class="op">(</span><span class="va">sis_si</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Fitting_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
 </div>
 </div>
 <div class="section level3">
