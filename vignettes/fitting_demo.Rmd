@@ -53,7 +53,7 @@ sipsi_emergence <- xds_setup(Xname = "SIP", MYZname = "SI")
 Next, we run an algorithm that computes the steady state scaling relationships for the model family at the steady state. The function takes a mesh over mean forcing, and it computes the average annual value of various metrics, including the *Pf*PR.  At this point, we have not configured a seasonal pattern, so the average will be slightly wrong, but it will be *close* enough to ensure that the fitting algorithms work converge to sensible values. 
 
 ```{r set up emerge scaling, eval=F}
-sipsi_emerge <- xde_scaling_lambda(sipsi_emerge)
+sipsi_emerge <- xde_scaling(sipsi_emergence)
 sipsi_emerge_base <- sipsi_emerge
 ```
 
@@ -68,7 +68,7 @@ sipsi_emerge <- sipsi_emerge_base
 
 
 ```{r set up eir scaling, eval=F}
-sipsi_eir <- xde_scaling_eir(sipsi_eir)
+sipsi_eir <- xde_scaling(sipsi_eir)
 sipsi_eir_base <- sipsi_eir
 ```
 
