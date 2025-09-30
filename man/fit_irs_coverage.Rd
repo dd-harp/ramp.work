@@ -4,10 +4,12 @@
 \alias{fit_irs_coverage}
 \title{Fit irs coverage}
 \usage{
-fit_irs_coverage(xds_obj)
+fit_irs_coverage(xds_obj, options = list())
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+
+\item{options}{setup options for the irs rounds indexing}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

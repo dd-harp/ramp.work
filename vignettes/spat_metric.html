@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Spatial Metrics</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Spatial Metrics</h1>
+
+
+
+<p>All state components are assumed to be column vectors. Additionally,
+<span class="math inline">\(n\)</span> will always denote the number of
+strata in the human population, <span class="math inline">\(l\)</span>
+the number of aquatic habitats and <span class="math inline">\(p\)</span> the number of patches.</p>
+<div id="human-movement" class="section level2">
+<h2>Human Movement</h2>
+<p>We start with the fundamental matrix <span class="math inline">\(\Psi\)</span> which is of dimension <span class="math inline">\(p\times n\)</span> , where each column <span class="math inline">\(i\)</span> gives the distribution of time at risk
+for that strata over places (rows). If all strata are considered to be
+potentially at risk 100% of the time, then the columns will sum to one,
+which is the convention we will adopt for this document.</p>
+<p>Then <span class="math inline">\(\Psi_{ji}\)</span> is the fraction
+of time that strata <span class="math inline">\(i\)</span> spends in
+patch <span class="math inline">\(j\)</span>.</p>
+</div>
+<div id="ambient-human-population" class="section level2">
+<h2>Ambient Human Population</h2>
+<p>Let <span class="math inline">\(H\)</span> be a length <span class="math inline">\(n\)</span> column vector giving the population
+size of each strata. Let <span class="math inline">\(w_{f}\)</span> be a
+length <span class="math inline">\(n\)</span> column vector giving the
+biting weights on each strata (the null value is <span class="math inline">\(1\)</span>). We want to know <span class="math inline">\(W\)</span>, a length <span class="math inline">\(p\)</span> column vector which tells us how many
+people are at each patch (summing over all strata who are there).</p>
+<p><span class="math display">\[
+W =\begin{bmatrix}
+\sum_{i} \Psi_{1i}w_{f1}H_{i} \\ \vdots \\ \sum_{i} \Psi_{pi}w_{fi}H_{i}
+\end{bmatrix} = \Psi \cdot w_{f} H
+\]</span> Each element of <span class="math inline">\(W\)</span> then
+gives the total weighted person-time spent by all strata at that
+location.</p>
+</div>
+<div id="biting-distribution-matrix" class="section level2">
+<h2>Biting Distribution Matrix</h2>
+<p>The biting distribution matrix <span class="math inline">\(\beta\)</span> is a <span class="math inline">\(n
+\times p\)</span> matrix which is central to formulating mathematically
+consistent models of bloodfeeding, and, by extension, consistent models
+of mosquito-borne pathogen transmission.</p>
+<p>It is given mathematically as:</p>
+<p><span class="math display">\[
+\beta = \mbox{diag}(w_{f}) \cdot \Psi^{\top} \cdot \mbox{diag}(1/W)
+\]</span></p>
+<p>And it can be written out component-wise as:</p>
+<p><span class="math display">\[
+\beta = \begin{bmatrix}
+\frac{\Psi_{11}w_{f1}}{\sum_{i}\Psi_{1i}w_{fi}H_{i}} &amp; \cdots &amp;
+\frac{\Psi_{p1}w_{f1}}{\sum_{i}\Psi_{pi}w_{fi}H_{i}} \\
+\vdots &amp; &amp; \vdots \\
+\frac{\Psi_{1n}w_{fn}}{\sum_{i}\Psi_{1i}w_{fi}H_{i}} &amp; \cdots &amp;
+\frac{\Psi_{pn}w_{fn}}{\sum_{i}\Psi_{pi}w_{fi}H_{i}}
+\end{bmatrix}
+\]</span></p>
+<p>Now we can get a clearer impression of what <span class="math inline">\(\beta_{ij}\)</span> is. It is the probability a
+bite from mosquitoes in patch <span class="math inline">\(j\)</span>
+lands on any particular person in strata <span class="math inline">\(i\)</span>. Another way say this is that it is the
+proportion of person-time spent by a single person in strata <span class="math inline">\(i\)</span> at patch <span class="math inline">\(j\)</span>, out of all person-time spent at that
+patch.</p>
+<p>If we wanted to look at a matrix whose columns sum to unity and
+elements give the probability of a bite taken on the ambient population
+in patch <span class="math inline">\(j\)</span> to land on strata <span class="math inline">\(i\)</span>, we could look at the following
+matrix:</p>
+<p><span class="math display">\[
+\mbox{diag}(H) \cdot \beta
+\]</span></p>
+<p>This operation has the effect of multiplying each column in <span class="math inline">\(\beta\)</span> by the diagonal of of the matrix on
+the left, so that the columns sum to one (or the column sums of <span class="math inline">\(\Psi\)</span>, in case the total time at risk is
+<span class="math inline">\(&lt; 1\)</span>).</p>
+<p>Likewise if we want to recover <span class="math inline">\(\Psi^{\top}\)</span>, a <span class="math inline">\(n \times p\)</span> matrix whose rows describe how
+each strata distributes its time across patches, one can simply multiply
+on the right by <span class="math inline">\(\mbox{diag}(W)\)</span>
+which has the effect of multiplying each column of <span class="math inline">\(\beta\)</span> by that element of the diagonal of
+<span class="math inline">\(\mbox{diag}(W)\)</span>.</p>
+<p><span class="math display">\[
+\beta \cdot \mbox{diag}(W)
+\]</span></p>
+</div>
+<div id="human-transmitting-capacity-htc" class="section level2">
+<h2>Human transmitting capacity (HTC)</h2>
+<p>Human transmitting capacity is a vector <span class="math inline">\(D\)</span> of length <span class="math inline">\(n\)</span>, each element of which gives the number
+of net infectious days for an infected individual in each strata. For
+the homogeneous SIS model, it is simply:</p>
+<p><span class="math display">\[
+D = \frac{c}{r}
+\]</span></p>
+</div>
+<div id="parasite-dispersal-by-mosquitoes" class="section level2">
+<h2>Parasite dispersal by mosquitoes</h2>
+<p>The parasite dispersal by mosquitoes matrix, <span class="math inline">\(\mathcal{V}\)</span> is the spatial analogue to
+vectorial capacity, which is the expected number of humans infected per
+infected human, per day, assuming perfect transmission efficiency.</p>
+<p><span class="math display">\[
+\mathcal{V} = fq\Omega^{-1} \cdot e^{-\Omega\tau} \cdot
+\mbox{diag}\left(\frac{fqM}{W}\right)
+\]</span> It can be understood by going from right to left. The matrix
+<span class="math inline">\(\mbox{diag}\left(\frac{fqM}{W}\right)\)</span> is
+a <span class="math inline">\(p\times p\)</span> matrix, the diagonal
+giving the numbers of bloodmeals taken on each person in each patch, per
+day. Multiplying on the left by <span class="math inline">\(e^{-\Omega\tau}\)</span> has the effect of
+multiplying each column of the matrix on the left by the corresponding
+element of the diagonal of the matrix on the right. That intermediate
+matrix will have columns which describe how those bites/person from each
+patch are distributed across other patches over the extrinsic incubation
+period, accounting for mortality during that period. The final
+multiplication on the left distributes those bites after the EIP has
+passed.</p>
+<p>If we only have a single patch, the formula becomes:</p>
+<p><span class="math display">\[
+\frac{fq}{g} e^{-g\tau}fq\frac{M}{H}
+\]</span> Which is equivalent to (after substituting <span class="math inline">\(H=W\)</span>) the classic formula from <a href="https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-3-13">Smith
+and McKenzie (2004)</a>: <span class="math inline">\(\frac{fq}{g}e^{-g\tau}fq\frac{M}{H}\)</span>.</p>
+</div>
+<div id="parasite-dispersal-by-humans" class="section level2">
+<h2>Parasite dispersal by humans</h2>
+<p><span class="math display">\[
+\mathcal{D} = \mbox{diag}\left(W \right) \cdot \beta^T \cdot
+\mbox{diag}\left(bDH\right) \cdot \beta
+\]</span> We can first examine the multiplication of <span class="math inline">\(\mbox{diag}\left(bDH\right) \cdot \beta\)</span>
+on the right. This has the effect of multiplying each column of <span class="math inline">\(\beta\)</span> by the diagonal of <span class="math inline">\(\mbox{diag}\left(bDH\right)\)</span>. This results
+in a <span class="math inline">\(n\times p\)</span> matrix whose columns
+give the distribution of potentially transmitting person-time (<span class="math inline">\(\frac{bc}{r}\)</span>) a person in each strata
+contributes to a patch. It is a <span class="math inline">\(p\times
+p\)</span> matrix.</p>
+<p>On the left <span class="math inline">\(\mbox{diag}\left(W \right)
+\cdot \beta^T\)</span> multiplies each column of <span class="math inline">\(\beta^T\)</span> by the diagonal of that matrix;
+this has the effect of recovering the original movement matrix <span class="math inline">\(\Psi\)</span>. So multiplying the intermediate
+matrix produced by the preceding section by this on the left distributes
+that potentially-transmitting person time across patches. Therefore
+<span class="math inline">\(i\)</span>-th column of <span class="math inline">\(\mathcal{D}\)</span> describes how potentially
+infectious person-time from a person infected in <span class="math inline">\(i\)</span> is distributed across other
+patches.</p>
+<p>In the 1 patch, 1 strata case, it simplifies considerably to:</p>
+<p><span class="math display">\[
+\mathcal{D} = \frac{bc}{r}
+\]</span></p>
+</div>
+<div id="parasite-dispersal-through-one-parasite-generation" class="section level2">
+<h2>Parasite Dispersal through one Parasite Generation</h2>
+<p>One way to look at parasite dispersal is to look at how parasites are
+dispersed through one parasite generation. This can be done with from
+mosquito to mosquito, or human to human. Below we show the equation for
+parasite dispersal through a generation, beginning and ending with a
+human host.</p>
+<p><span class="math display">\[
+\mathcal{R} =   b \beta \cdot {\cal V}  \cdot \mbox{diag}\left(W \right)
+\cdot \beta^T  \cdot \mbox{diag}\left(DH\right)
+\]</span></p>
+<p>Here <span class="math inline">\(\mathcal{R}\)</span> is a <span class="math inline">\(n\times n\)</span> matrix, the columns of which
+describe how infections starting in that strata are disseminated among
+other strata after one generation. Once again we can learn how to
+interpret the equation by walking from left to right. <span class="math inline">\(\mbox{diag}\left(W \right) \cdot \beta^T  \cdot
+\mbox{diag}\left(DH\right)\)</span> produces a <span class="math inline">\(p\times n\)</span> matrix which describes how
+infectious person-time in each strata is spread across patches.
+Multiplication by <span class="math inline">\(\mathcal{V}\)</span> then
+describes how this infectious person-time is transformed into
+potentially infectious bites by mosquitoes, distributed over space and
+accounting for mortality during the EIP. Final multiplication by <span class="math inline">\(\beta\)</span> and <span class="math inline">\(b\)</span> takes into account where persons will
+contact those infectious bites, and the transmission efficiency back to
+human hosts.</p>
+<p>Once again, we can take the 1 patch, 1 strata case to see how this
+formula simplifies:</p>
+<p><span class="math display">\[
+\frac{bc}{r} \cdot \frac{fq}{g} e^{-g\tau}fq\frac{M}{H}
+\]</span></p>
+<p>Which is precisely the formula for <span class="math inline">\(R_{0}\)</span> in <a href="https://malariajournal.biomedcentral.com/articles/10.1186/1475-2875-3-13">Smith
+and McKenzie (2004)</a>. Therefore <span class="math inline">\(\mathcal{R}\)</span> is the “logical” spatial
+version of this threshold metric.</p>
+<p>If we track parasite dispersal from mosquitoes to mosquitoes we
+arrive at the <span class="math inline">\(p\times p\)</span> matrix:</p>
+<p><span class="math display">\[
+\mathcal{Z} = e^{-\Omega\tau} \cdot \mbox{diag}\left( \frac{fq M}{W}
+\right) \cdot {\cal D} \cdot  fq\Omega^{-1}
+\]</span> In the 1 patch 1 strata case this becomes the same equation as
+<span class="math inline">\(\mathcal{R}\)</span>.</p>
+</div>
+<div id="example" class="section level1">
+<h1>Example</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(ramp.xds)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<p>Here we demonstrate how to calculate these metrics using the <a href="ex_534.html">5-3-4 example</a>.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>l <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>calN <span class="ot">&lt;-</span> <span class="fu">matrix</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>  <span class="at">data =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>           <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>           <span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>), </span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>  <span class="at">nrow =</span> p, <span class="at">ncol =</span> l, <span class="at">byrow =</span> <span class="cn">TRUE</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>)</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>xi <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(.<span class="dv">7</span>, .<span class="dv">2</span>, .<span class="dv">1</span>, .<span class="dv">8</span>, .<span class="dv">2</span>), <span class="dv">5</span>, <span class="dv">1</span>) </span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>calU <span class="ot">&lt;-</span> <span class="fu">t</span>(calN <span class="sc">%*%</span> <span class="fu">diag</span>(<span class="fu">as.vector</span>(xi)))</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span>, p) </span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">12</span><span class="sc">/</span><span class="dv">2</span>, p) </span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>calK <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">matrix</span>(</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">0</span>, .<span class="dv">6</span>, .<span class="dv">3</span>), </span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>    <span class="fu">c</span>(.<span class="dv">4</span>, <span class="dv">0</span>, .<span class="dv">7</span>), </span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>    <span class="fu">c</span>(.<span class="dv">6</span>, .<span class="dv">4</span>, <span class="dv">0</span>)), <span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>f <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">3</span>, p) </span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fl">0.9</span>, p) </span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>tau <span class="ot">&lt;-</span> <span class="dv">12</span> </span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">100</span>, p)</span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>Omega <span class="ot">&lt;-</span> <span class="fu">diag</span>(g) <span class="sc">+</span> (<span class="fu">diag</span>(<span class="dv">1</span>,p)<span class="sc">-</span>calK) <span class="sc">%*%</span> <span class="fu">diag</span>(sigma)</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>Lambda <span class="ot">&lt;-</span> Omega <span class="sc">%*%</span> M</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>H <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">10</span>,<span class="dv">90</span>, <span class="dv">100</span>, <span class="dv">900</span>), <span class="dv">4</span>, <span class="dv">1</span>)</span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(<span class="fl">0.2</span><span class="sc">*</span>H)</span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">200</span>, n)</span>
+<span id="cb2-33"><a href="#cb2-33" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fl">0.55</span>, n)</span>
+<span id="cb2-34"><a href="#cb2-34" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.1</span>, .<span class="dv">02</span>, .<span class="dv">1</span>, .<span class="dv">02</span>)</span>
+<span id="cb2-35"><a href="#cb2-35" tabindex="-1"></a></span>
+<span id="cb2-36"><a href="#cb2-36" tabindex="-1"></a>calJ <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">matrix</span>(</span>
+<span id="cb2-37"><a href="#cb2-37" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb2-38"><a href="#cb2-38" tabindex="-1"></a>    <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>),</span>
+<span id="cb2-39"><a href="#cb2-39" tabindex="-1"></a>    <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">1</span>)), n, p</span>
+<span id="cb2-40"><a href="#cb2-40" tabindex="-1"></a>))</span>
+<span id="cb2-41"><a href="#cb2-41" tabindex="-1"></a></span>
+<span id="cb2-42"><a href="#cb2-42" tabindex="-1"></a>Theta <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">matrix</span>(</span>
+<span id="cb2-43"><a href="#cb2-43" tabindex="-1"></a>  <span class="fu">c</span>(<span class="fu">c</span>(<span class="fl">0.01</span>,<span class="fl">0.01</span>,<span class="fl">0.001</span>,<span class="fl">0.001</span>),</span>
+<span id="cb2-44"><a href="#cb2-44" tabindex="-1"></a>    <span class="fu">c</span>(.<span class="dv">95</span>,.<span class="dv">92</span>,.<span class="dv">04</span>,.<span class="dv">02</span>),</span>
+<span id="cb2-45"><a href="#cb2-45" tabindex="-1"></a>    <span class="fu">c</span>(.<span class="dv">04</span>,.<span class="dv">02</span>,.<span class="dv">959</span>,.<span class="dv">929</span>)), n, p</span>
+<span id="cb2-46"><a href="#cb2-46" tabindex="-1"></a>))</span>
+<span id="cb2-47"><a href="#cb2-47" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" tabindex="-1"></a>W <span class="ot">&lt;-</span> Theta <span class="sc">%*%</span> H</span>
+<span id="cb2-49"><a href="#cb2-49" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="fu">t</span>(Theta) <span class="sc">%*%</span> <span class="fu">diag_inverse</span>(W)</span>
+<span id="cb2-50"><a href="#cb2-50" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" tabindex="-1"></a>D <span class="ot">&lt;-</span> c<span class="sc">/</span>r</span>
+<span id="cb2-52"><a href="#cb2-52" tabindex="-1"></a></span>
+<span id="cb2-53"><a href="#cb2-53" tabindex="-1"></a>calV <span class="ot">&lt;-</span> <span class="fu">metric_calV</span>(<span class="at">f =</span> f, <span class="at">q =</span> q, <span class="at">Omega =</span> Omega, <span class="at">tau =</span> tau, <span class="at">M =</span> M, <span class="at">W =</span> W)</span>
+<span id="cb2-54"><a href="#cb2-54" tabindex="-1"></a>calD <span class="ot">&lt;-</span> <span class="fu">metric_calD</span>(<span class="at">W =</span> W, <span class="at">beta =</span> beta, <span class="at">b =</span> b, <span class="at">D =</span> D, <span class="at">H =</span> H)</span>
+<span id="cb2-55"><a href="#cb2-55" tabindex="-1"></a>calR <span class="ot">&lt;-</span> <span class="fu">metric_calR</span>(<span class="at">b =</span> b, <span class="at">beta =</span> beta, <span class="at">calV =</span> calV, <span class="at">W =</span> W, <span class="at">D =</span> D, <span class="at">H =</span> H)</span>
+<span id="cb2-56"><a href="#cb2-56" tabindex="-1"></a>calZ <span class="ot">&lt;-</span> <span class="fu">metric_calZ</span>(<span class="at">Omega =</span> Omega, <span class="at">tau =</span> tau, <span class="at">f =</span> f, <span class="at">q =</span> q, <span class="at">M =</span> M, <span class="at">W =</span> W, <span class="at">calD =</span> calD)</span></code></pre></div>
+<p>We can visualize the matrices as heatmaps.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>calV_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>  <span class="at">value =</span> <span class="fu">as.vector</span>(calV),</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(calV), <span class="at">times =</span> <span class="fu">nrow</span>(calV)),</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(calV), <span class="at">each =</span> <span class="fu">nrow</span>(calV))</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>)</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">ggplot</span>(calV_df, <span class="fu">aes</span>(<span class="at">x=</span>x,<span class="at">y=</span>y,<span class="at">fill=</span><span class="fu">log</span>(value))) <span class="sc">+</span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a>    <span class="fu">geom_raster</span>() <span class="sc">+</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>    <span class="fu">scale_y_reverse</span>() <span class="sc">+</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">fill =</span> <span class="st">&#39;none&#39;</span>) <span class="sc">+</span></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>    <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_blank</span>())</span></code></pre></div>
+<p><img role="img" src="data:image/png;base64,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" width="100%" /></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+---
+title: "Qualitative Analysis" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document 
+vignette: >
+  %\VignetteIndexEntry{Qualitative Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+In dynamical systems, qualitative analysis is studies the long-term, general behavior of systems over time without precise quantitative values. Here, we take a computational approach to qualitative analysis for mosquito-transmitted pathogen persistence: stability analysis including threshold and pseudo-threshold criteria; equilibria and stable orbits; scaling relationships; and response timelines. These are introduced in more detail below.
+
+*** 
+
+## Thresholds
+
+## Stable Orbits  
+
+## Scaling  
+
+## Response Timelines 

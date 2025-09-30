@@ -2,22 +2,22 @@
 % Please edit documentation in R/fit_bednet_coverage.R
 \name{update_function_X.bednet_coverage}
 \alias{update_function_X.bednet_coverage}
-\title{Update the bed net coverage function}
+\title{feature the bed net coverage function}
 \usage{
-\method{update_function_X}{bednet_coverage}(X, xds_obj, update = "bednet_coverage", ix = 1)
+\method{update_function_X}{bednet_coverage}(X, xds_obj, feature = "bednet_coverage", options = list())
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 a \strong{\code{ramp.xds}} model object
 }
 \description{
-Update the bed net coverage function
+feature the bed net coverage function
 }

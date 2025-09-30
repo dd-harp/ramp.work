@@ -4,12 +4,12 @@
 \alias{get_limits_X.irs_coverage}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_limits_X}{irs_coverage}(xds_obj, update = "irs_coverage")
+\method{get_limits_X}{irs_coverage}(xds_obj, feature = "irs_coverage")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 a vector

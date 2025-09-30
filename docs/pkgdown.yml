@@ -12,12 +12,14 @@ articles:
   Hindcast: Hindcast.html
   History: History.html
   Pipeline: Pipeline.html
+  QualitativeAnalysis: QualitativeAnalysis.html
   Scaling: Scaling.html
   Scratch: Scratch.html
   Seasonality: Seasonality.html
+  spat_metric: spat_metric.html
   TestFit: TestFit.html
   Trend: Trend.html
-last_built: 2025-08-21T20:35Z
+last_built: 2025-09-25T21:23Z
 urls:
   reference: https://dd-harp.github.io/ramp.xds/reference
   article: https://dd-harp.github.io/ramp.xds/articles

@@ -16,6 +16,38 @@ library(ramp.uganda)
 devtools::load_all()
 ```
 
+## Set Up Fitting 
+
+1. Set up a model family
+2. Run scaling
+3. Set up fitting
+
+```{r}
+sissi_eir <- xds_setup_eir(Xname = "SIS")
+```
+
+```{r}
+sissi_eir <- xds_scaling(sissi_eir)
+```
+
+```{r get a PR time series}
+prts <- get_district_pfpr_i(132)
+prts$district_name[1]
+```
+
+```{r}
+sissi_eir_terego <- setup_fitting(sissi_eir, prts$pfpr, prts$jdate)
+```
+
+```{r}
+devtools::load_all()
+```
+
+```{r}
+sissi_eir_terego <- pr2history_xm(sissi_eir_terego) 
+```
+
+
 ## Working Directory
 
 ```{r}

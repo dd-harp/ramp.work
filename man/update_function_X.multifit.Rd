@@ -4,16 +4,16 @@
 \alias{update_function_X.multifit}
 \title{Compute the GoF for \code{X}}
 \usage{
-\method{update_function_X}{multifit}(X, xds_obj, update, ix)
+\method{update_function_X}{multifit}(X, xds_obj, feature, options = list())
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch a specific model feature}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 sum of squared differences

@@ -10,40 +10,56 @@ vignette: >
 ---
 
 ***
-Also see [**SimBA**](https://faculty.washington.edu/smitdave/simba/scaling.html)
+
+A core need in malaria epidemiology is to understand the relationship between the *Pf*PR and other metrics, including measures of burden. To address this need, **`ramp.work`** developed a function, called `xds_scaling,` that computes *scaling relationships* for models of malaria epidemiology. The functions do the following:
+
++ create a mesh of values for mean forcing, either 
+
+    - the mean annual EIR, $\bar E$ or `aEIR` or 
+    
+    - the mean daily emergence rate for adult mosquitoes, $\bar \Lambda$ or `Lambda`
+    
++ for each mesh value 
+
+    - compute stable orbits for terms, including the *Pf*PR
+    
+    - compute and record the mean values of the stable orbits 
+
+For a longer discussion, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/scaling.html)
 
 ***
+
+**Demo** 
 
 Load the required packages:
 
 ```{r}
 library(ramp.xds)
 library(ramp.work)
-library(deSolve)
-library(viridisLite)
 ```
 
-```{r, echo=F}
-#devtools::load_all()
+
+We set up a model forced by the EIR with a seasonal pattern: 
+
+```{r}
+model <- xds_setup_eir(eir = 1/365, season_par = makepar_F_sin(bottom = 0.2, pw=2))
+model <- xds_solve(model)
+show_season(model)
+```
+Next, we call `scaling` and plot the *Pf*PR as a function of the average annual *Pf*EIR on a semi-log plot:
+
+```{r}
+xds_scaling(model) -> model
 ```
 
 ```{r}
-model <- xds_setup_eir(eir = 1/365, season_par = makepar_F_sin())
-model <- xds_solve(model)
-xds_plot_PR(model)
+library(viridisLite)
+plot_eirpr(model)
+add_eirpr_seasonal_profile(c(9, 13, 17, 21), model, clrs = turbo(25))
 ```
 
+## Using `xds_scaling`
 
-An important question in malaria is the relationship between various metrics, especially the relationships between mosquito density, the annual entomological inoculation rate (aEIR), the parasite rate (PR), and malaria reproductive numbers. To facilitate analysis of malaria data, we have developed some functions to compute scaling relationships. 
-
-+ `xds_scaling` is a wrapper for `xde_scaling` and `dts_scaling` 
-
-+ `xde_scaling` and `dts_scaling` dispatch on `xds_obj$forced_by` 
-
-The functions create a mesh over mean forcing and for each value, they compute stable orbits and the annual average values of the metrics.  These are attached as `xds_obj$scaling.`
-
-
-## xde_scaling_eir 
 
 The function `xde_scaling_eir()` defines the relationship between the EIR and the PR. It analyzes stable orbits and outputs the average annual EIR and average annual PR for an even mesh of `log(aEIR)` values running from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
 
@@ -84,17 +100,17 @@ plot_eirpr(sis)
 add_eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
 ```
 
-## xde_scaling_lambda
+## Plotting 
 
-```{r, echo=F}
-#devtools::load_all()
+```{r}
+devtools::load_all()
 ```
 
 ```{r}
 Lo = list(
   F_season = Fsin
 )
-xds_setup(Xname = "SIS", Lopts=Lo) -> sis_full
+xds_setup(Xname = "SIS", Loptions=Lo) -> sis_full
 ```
 
 ```{r}
@@ -102,7 +118,7 @@ xds_solve(sis_full) -> sis_full
 ```
 
 ```{r, xde_scaling.Lambda}
-xde_scaling(sis_full, 1.1, 30) -> sis_full
+xds_scaling(sis_full, 30) -> sis_full
 ```
 
 ```{r}

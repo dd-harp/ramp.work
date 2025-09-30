@@ -10,17 +10,39 @@
 #' @export
 fit_season_pw <- function(xds_obj){
 
+  options=list()
+  options$max_ix = 0
+  options <- setup_fitting_indices(xds_obj, "pw", options)
+
   pw = get_init_X(xds_obj, "pw")
   lims = get_limits_X(xds_obj, "pw")
 
   fitit <- stats::optimize(compute_gof_X, lims,
-                           xds_obj=xds_obj, ix=1, update = "pw")
+                           xds_obj=xds_obj, options=options, feature = "pw")
 
   X <- fitit$minimum
-  xds_obj <- update_function_X(X, xds_obj, update="pw")
+  xds_obj <- update_function_X(X, xds_obj, "pw", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }
+
+#' Seasonality: `pw` Indices
+#'
+#' @inheritParams setup_fitting_indices
+#'
+#' @returns options
+#'
+#' @export
+#'
+setup_fitting_indices.pw= function(xds_obj, feature, options){
+
+  options$pw_ix = 1
+  options$pw_ixX = options$max_ix + 1:length(options$pw_ix)
+  options$max_ix = max(options$pw_ixX)
+
+  return(options)
+}
+
 
 #' Get Initial Values for Parameters
 #'
@@ -28,7 +50,7 @@ fit_season_pw <- function(xds_obj){
 #'
 #' @return a vector
 #' @export
-get_limits_X.pw <- function(xds_obj, update="pw"){
+get_limits_X.pw <- function(xds_obj, feature="pw"){
   return(c(0,10))
 }
 
@@ -38,22 +60,21 @@ get_limits_X.pw <- function(xds_obj, update="pw"){
 #'
 #' @return a vector
 #' @export
-get_init_X.pw <- function(xds_obj, update="pw", ix=1){
-  return(get_season(xds_obj)$pw)
+get_init_X.pw <- function(xds_obj, feature, options=list()){
+  return(list(pw=get_season(xds_obj)$pw))
 }
 
-#' Update a function
+#' feature a function
 #'
 #' @inheritParams update_function_X
 #'
 #' @returns sum of squared differences
 #' @export
-update_function_X.pw = function(X, xds_obj, update="pw", ix=1){
+update_function_X.pw = function(X, xds_obj, feature, options){
 
   pw <- get_season_pw(xds_obj)
-  pw <- modify_vector_X(X, ix, pw)
-  xds_obj <- set_season_pw(pw, xds_obj, 1)
-  xds_obj <- update_F_season(xds_obj)
+  pw   <- with(options, modify_vector_X(pw, pw_ix, X, pw_ixX))
+  xds_obj <- change_season_pw(pw, xds_obj, 1)
 
   return(xds_obj)
 }

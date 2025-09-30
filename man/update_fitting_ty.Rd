@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit_trend.R
 \name{update_fitting_ty}
 \alias{update_fitting_ty}
-\title{Update Interpolation Points}
+\title{feature Interpolation Points}
 \usage{
 update_fitting_ty(xds_obj)
 }
@@ -20,7 +20,7 @@ During fitting, the algorithm changes
 one or more of the \eqn{y} values of the
 interpolation points in
 \code{xds_obj$data$yy.} The xds_obj then calls
-\code{hindcast_ty} and \code{forecast_ty} to update \code{xds_obj$hindcast$y} (the
+\code{hindcast_ty} and \code{forecast_ty} to feature \code{xds_obj$hindcast$y} (the
 pre-observation interpolation points for burn-in) and \code{xds_obj$hindcast$y}
 (post-observation interpolation points).
 These are copied to the

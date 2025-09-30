@@ -6,37 +6,58 @@
 #' irs coverage
 #'
 #' @param xds_obj a **`ramp.xds`** model object
+#' @param options setup options for the irs rounds indexing
 #'
 #' @return a **`ramp.xds`** model object
 #'
 #' @export
-fit_irs_coverage <- function(xds_obj){
+fit_irs_coverage <- function(xds_obj, options=list()){
+
+  options$max_ix = 0
+  options <- setup_fitting_indices(xds_obj, "irs_coverage", options)
 
   irs_coverage = get_init_X(xds_obj, "irs_coverage")
 
   lims = get_limits_X(xds_obj, "irs_coverage")
 
-  fitit <- stats::optimize(compute_gof_X, lims,
-                           xds_obj=xds_obj, ix=1, update = "irs_coverage")
+  fitit <- stats::optimize(compute_gof_X, lims, feature = "irs_coverage",
+                           xds_obj=xds_obj, options=options)
 
-  xds_obj <- update_function_X(fitit$minimum, xds_obj, update = "irs_coverage")
+  xds_obj <- update_function_X(fitit$minimum, xds_obj, "irs_coverage", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }
 
-#' Update the irs coverage function
+#' Setup indices for irs coverage
+#'
+#' @inheritParams setup_fitting_indices
+#'
+#' @returns indices
+#' @export
+setup_fitting_indices.irs_coverage = function(xds_obj, feature, options){
+  if(length(options)==0)
+    options$irs_ix =c(1:length(xds_obj$irs_obj$cover_obj$nRounds))
+
+  stopifnot(!is.null(options$irs_ix))
+
+  options$irs_ixX = options$max_ix + 1:length(options$irs_ix)
+  options$max_ix = max(options$irs_cvr_ixX)
+
+  return(options)
+}
+
+#' feature the irs coverage function
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control get_irs_coverage set_irs_coverage setup_F_cover_irs
+#' @importFrom ramp.control get_irs_coverage change_irs_coverage make_F_cover_irs
 #' @returns sum of squared differences
 #' @export
-update_function_X.irs_coverage = function(X, xds_obj, update="irs_coverage", ix=1){
+update_function_X.irs_coverage = function(X, xds_obj, feature="irs_coverage", options=list()){
 
   irs_coverage <- get_irs_coverage(xds_obj)
-  irs_coverage <- modify_vector_X(X, ix, irs_coverage)
-  xds_obj <- set_irs_coverage(irs_coverage, xds_obj)
-  xds_obj$irs$coverage_mod <- setup_F_cover_irs(xds_obj$irs$coverage_mod)
+  irs_coverage <- with(options, modify_vector_X(irs_ix, irs_coverage, X, irs_ixX))
+  xds_obj <- change_irs_coverage(irs_coverage, xds_obj)
 
   return(xds_obj)
 }
@@ -46,8 +67,8 @@ update_function_X.irs_coverage = function(X, xds_obj, update="irs_coverage", ix=
 #' @inheritParams get_init_X
 #' @return IRS coverage levels
 #' @export
-get_init_X.irs_coverage <- function(xds_obj, update="irs_coverage", ix=1){
- return(get_irs_coverage(xds_obj)[ix])
+get_init_X.irs_coverage <- function(xds_obj, feature, options){
+ return(get_irs_coverage(xds_obj)[options$irs_ix])
 }
 
 #' Get Initial Values for Parameters
@@ -56,6 +77,6 @@ get_init_X.irs_coverage <- function(xds_obj, update="irs_coverage", ix=1){
 #'
 #' @return a vector
 #' @export
-get_limits_X.irs_coverage <- function(xds_obj, update="irs_coverage"){
+get_limits_X.irs_coverage <- function(xds_obj, feature="irs_coverage"){
   return(c(0,1))
 }

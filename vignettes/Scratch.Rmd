@@ -4,6 +4,7 @@ output: html_document
 ---
 
 ```{r}
+
 devtools::load_all("~/git/ramp.xds")
 devtools::load_all("~/git/ramp.control")
 devtools::load_all("~/git/ramp.library")

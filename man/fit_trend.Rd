@@ -4,17 +4,18 @@
 \alias{fit_trend}
 \title{Fit interannual variability using splines}
 \usage{
-fit_trend(xds_obj, ix = c())
+fit_trend(xds_obj, options = list())
 }
 \arguments{
 \item{xds_obj}{an \code{xds} xds_obj}
 
-\item{ix}{index of the \eqn{y} values of interpolation points}
+\item{options}{a list to configure the indices}
 }
 \value{
 a list with the mean peak and the values
 }
 \description{
 For a \emph{Pf}PR time series, \eqn{x}, fit
-a spline function
+a spline function. To fit only a subset of the interpolation
+points, define \code{options$trend_ix}
 }

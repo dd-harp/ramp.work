@@ -2,22 +2,22 @@
 % Please edit documentation in R/fit_season_bottom.R
 \name{update_function_X.bottom}
 \alias{update_function_X.bottom}
-\title{Update a function}
+\title{feature a function}
 \usage{
-\method{update_function_X}{bottom}(X, xds_obj, update = "bottom", ix = 1)
+\method{update_function_X}{bottom}(X, xds_obj, feature, options)
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 sum of squared differences
 }
 \description{
-Update a function
+feature a function
 }

@@ -48,7 +48,7 @@ tt <- seq(0, 365*6, by = 30)
 mod1 <- xds_solve(mod1, times=tt)
 mod1 <- last_to_inits(mod1)
 mod1 <- xds_solve(mod1, times=tt)
-true_pr <- get_XH(mod1)$true_pr
+true_pr <- get_XH_out(mod1)$true_pr
 obs_pr = true_pr*rlnorm(length(tt), 0, .3)
 ```
 
@@ -76,7 +76,7 @@ mod1a <- modify_baseline(mod1, cf_max)
 mod1b <- modify_baseline(mod1, cf_min) 
 mod1c <- modify_baseline(mod1, cf_median) 
 mod1d <- modify_baseline(mod1, cf_mean) 
-base_pr <- get_XH(mod1c)$true_pr
+base_pr <- get_XH_out(mod1c)$true_pr
 xds_plot_PR(mod1, clrs="darkblue")
 xds_plot_PR(mod1a, clrs = "darkred", add=TRUE)
 xds_plot_PR(mod1b, clrs = "darkgreen", add=TRUE)

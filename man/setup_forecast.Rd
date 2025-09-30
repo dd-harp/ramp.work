@@ -17,7 +17,7 @@ setup_forecast(
 
 \item{N}{the number of years to forecast}
 
-\item{method}{to dispatch set_post_obs_y}
+\item{method}{to dispatch setup_post_obs_y}
 
 \item{impute_ty}{to dispatch \code{impute_baseline_ty}}
 

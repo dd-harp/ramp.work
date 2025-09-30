@@ -4,12 +4,12 @@
 \alias{get_limits_X.pw}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_limits_X}{pw}(xds_obj, update = "pw")
+\method{get_limits_X}{pw}(xds_obj, feature = "pw")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 a vector

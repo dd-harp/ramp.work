@@ -4,18 +4,69 @@
 \alias{fit_model}
 \title{Fit a model to data}
 \usage{
-fit_model(xds_obj, update, ix)
+fit_model(xds_obj, feature, options = list())
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 
-\item{update}{dispatch string(s)}
+\item{feature}{a list of one or more model feature to fit}
 
-\item{ix}{indices, for model fitting}
+\item{options}{a list of options to override feature-specific defaults}
 }
 \value{
-a list with the mean peak and the values
+an \strong{\code{xds}} model object
 }
 \description{
-Fit a model to data
+A function to fit multiple feature of a model at the same time.
+
+The feature of a model to be fit are passed as text
+strings in a list, called \code{feature.}
+
+For some of these feature, \code{fit_model}
+can be configured to fit only some of the parameters or
+to lump some parameters together (\emph{e.g.} IRS rounds that
+use the same pesticide). Each feature sets its own
+default for indexing the subset of parameters to be fit,
+but these can be overridden by passing
+text strings in \code{options.}
+
+If \code{length(feature) == 1} then there is another \code{fit_}
+function in \code{ramp.work} that is equivalent to
+\code{fit_model} where parameter constraints and indexing options
+are described in greater detail.
+These are linked in the bullet points below.
+
+If \code{length(feature) > 1} then \code{class(feature)= "multifit"} and
+each feature in the list gets handled separately.
+
+The function acts only on the following text strings in \code{feature}:
+\itemize{
+\item \strong{\code{mean_forcing}} : fits the mean forcing parameter (also, see \link{fit_mean_forcing})
+\item \strong{\code{trend}} : fits interpolation points for a spline function (also, see \link{fit_trend})
+\itemize{
+\item by default, all \eqn{y} values of interpolation points are fitted
+\item a subset can be configured by setting \code{trend_ix} in \code{options}
+\item if \code{trend}  and \code{mean_forcing} are both called, at least one of the interpolation points should be set to \code{1}
+}
+\item At most one of the following aspects of seasonality:
+\itemize{
+\item \strong{\code{phase}} : the time of year when forcing peaks (also, see \link{fit_season_phase})
+\item \strong{\code{pw}} : a shape parameter affecting the amplitude (also, see \link{fit_season_pw})
+\item \strong{\code{bottom}} : a shape parameter affecting amplitude (also, see \link{fit_season_bottom})
+\item \strong{\code{amplitude}} : fits the shape parameters that affect amplitude: \code{pw} & \code{bottom} (also, see \link{fit_season_amplitude})
+\item \strong{\code{season}} : fits all seasonality shape parameters: \code{pw} & \code{bottom} & \code{phase} (also, see \link{fit_season})
+}
+\item \strong{\code{irs_coverage}} : fit irs coverage parameters (also see \link{fit_irs_coverage})
+\itemize{
+\item by default, coverage levels for all rounds are fitted independently
+\item other options can be fitted by setting \code{irs_ix} in \code{options}
+}
+\item \strong{\code{bednet_coverage}} : fit bed net coverage parameters (also see \link{fit_bednet_coverage})
+\itemize{
+\item by default, coverage levels for all rounds are fitted independently
+\item other options can be fitted by setting \code{bednet_ix} in \code{options}
+}
+}
+
+The \strong{\code{xds}} model object that gets returned by \code{fit_model} has the optimal paramters.
 }

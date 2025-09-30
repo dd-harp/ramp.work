@@ -4,16 +4,16 @@
 \alias{update_function_X.mean_forcing}
 \title{Update Mean Forcing}
 \usage{
-\method{update_function_X}{mean_forcing}(X, xds_obj, update = "mean_forcing", ix = 1)
+\method{update_function_X}{mean_forcing}(X, xds_obj, feature, options)
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 sum of squared differences
