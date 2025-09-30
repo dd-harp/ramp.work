@@ -32,11 +32,6 @@ model <- xds_setup(model, MYname = "SI")
 
 For differential equation models, we run `xde_scaling` to set up `model$outputs$eirpr.` This makes it possible to make some good initial guesses for the parameter we will want to fit. This is in `ramp.work,` so we load it: 
 
-```{r}
-#library(ramp.work)
-devtools::load_all()
-```
-
 and we run `xde_scaling`
 
 ```{r, eval=F}

@@ -4,12 +4,12 @@
 \alias{get_ty}
 \title{Get a set of trusted interpolation points}
 \usage{
-get_ty(ix, model, trust_ty)
+get_ty(ix, xds_obj, trust_ty)
 }
 \arguments{
 \item{ix}{index or indices of interpolation points}
 
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
 \item{trust_ty}{a text string to dispatch \code{get_ty}}
 }

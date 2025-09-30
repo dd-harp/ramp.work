@@ -9,49 +9,14 @@ We want to automate the process of model fitting and baseline reconstruction. It
 library(ramp.xds)
 library(ramp.library)
 library(ramp.control)
+suppressMessages(library(ramp.work))
 library(ramp.uganda)
 ```
-
-```{r, echo=F}
-devtools::load_all()
-```
-
-## Set Up Fitting 
-
-1. Set up a model family
-2. Run scaling
-3. Set up fitting
-
-```{r}
-sissi_eir <- xds_setup_eir(Xname = "SIS")
-```
-
-```{r}
-sissi_eir <- xds_scaling(sissi_eir)
-```
-
-```{r get a PR time series}
-prts <- get_district_pfpr_i(132)
-prts$district_name[1]
-```
-
-```{r}
-sissi_eir_terego <- setup_fitting(sissi_eir, prts$pfpr, prts$jdate)
-```
-
-```{r}
-devtools::load_all()
-```
-
-```{r}
-sissi_eir_terego <- pr2history_xm(sissi_eir_terego) 
-```
-
 
 ## Working Directory
 
 ```{r}
-save_to = "/Users/smitdave/git/ramp.work/vignettes/"
+save_to = "/Users/smitdave/Nextcloud/testing/"
 #save_to = "/Users/smitdave/git/ramp.uganda/models/"
 #save_to = "/Users/smitdave/Library/CloudStorage/Box-Box/RAMP/models/" 
 ```
@@ -64,13 +29,17 @@ We want to work with a model family, so we set one up. We will want to use the `
 ```{r, eval=F}
 # The block sets `eval=F` to avoid having to repeat this step
 x0 <- Sys.time()
-sip_si <- xds_setup(MYZname = "SI", Xname = "SIP")
-sip_si <- xde_scaling_lambda(sis_si)
+sip_si <- xds_setup_eir(Xname = "SIP")
+sip_si <- xds_scaling(sip_si)
 Sys.time()-x0
 ```
 
+```{r}
+plot_eirpr(sip_si)
+```
+
 ```{r, eval=F}
-save_as <- "sis_si.rds" 
+save_as <- "sip_si.rds" 
 file_name <- paste(save_to, save_as, sep="")
 print(file_name)
 ```
@@ -81,7 +50,7 @@ saveRDS(sip_si, file_name)
 ```
 
 ```{r, eval=F}
-sis_si_base <- readRDS(file_name)
+sip_si_from_file <- readRDS(file_name)
 ```
 
 ## Read Data 
@@ -96,81 +65,67 @@ district_name <- prts$district_name[1]
 
 ```{r viz}
 with(prts, {
-  plot(jdate, pfpr, ylim = c(0,0.65), main = "Terego District", xlab = "Julian Date (day 1 is Jan 1, 2015)", ylab = "PR") 
+  plot(jdate, pfpr, ylim = c(0,0.65), main = "Terego District", xlab = "Julian Date (day 1 is Jan 1, 2015)", ylab = "PR", xlim = range(0, jdate)) 
   lines(jdate, pfpr)
 })
 ```
-## Naive History
+## Dynamic Time Series Analysis 
 
-```{r}
-devtools::load_all()
+The idea is to fit the same basic model. If we wanted to, we could use `readRDS` to read in the model. 
+
+```
+sip_si_base <- readRDS(file_name)
 ```
 
-```{r, eval=F}
-sis_si_base <- readRDS(file_name)
-sis_si_base$Lpar[[1]]$Lambda
+```{r setup_fitting}
+fit_mod <- setup_fitting(sip_si, prts$pfpr, prts$jdate)
 ```
 
-```{r, eval=F}
-sis_si_base$Lpar[[1]]$season_par <- makepar_F_sin(bottom=1, phase=180) 
-sis_si_base$Lpar[[1]]$F_season <- make_function(makepar_F_sin(bottom=1,phase=180))
-```
+After setting up, we have a model that looks all right. 
 
-
-```{r, eval=F}
-fit_mod <- setup_fitting(sis_si_base, prts$pfpr, prts$jdate)
-
-fit_mod$Lpar[[1]]$Lambda
-```
-
-```{r, eval=F}
+```{r preview}
 fit_mod <- xds_solve(fit_mod, times = prts$jdate)
-profile_pr(fit_mod, prts, y1=TRUE)
+show_fit(fit_mod)
 ```
 
 ```{r, eval=F}
-fit_mod1 <- fit_mean(prts$pfpr, prts$jdate, fit_mod)
-fit_mod1$Lpar[[1]]$Lambda
+x0 <- Sys.time()
+fit_mod1 <- pr2history_xm(fit_mod) 
+Sys.time()-x0
+```
+```{r}
+show_fit(fit_mod1)
+```
+
+```{r, eval=F}
+x0 <- Sys.time()
+fit_mod1a <- pr2history(fit_mod1) 
+show_fit(fit_mod1a)
+Sys.time()-x0
 ```
 
 
-
-
 ```{r, eval=F}
-fit_mod <- last_to_inits(fit_mod) 
-profile_pr(fit_mod, prts, y1=TRUE)
+x0 <- Sys.time()
+fit_mod2 <- pr2history(fit_mod) 
+Sys.time()-x0
 ```
 
 ```{r}
-devtools::load_all()
+show_fit(fit_mod2)
 ```
 
 ```{r, eval=F}
-t0 <- Sys.time()
-fit_mod1 <- fit_mean(prts$pfpr, prts$jdate, fit_mod)
-Sys.time()-t0
+x0 <- Sys.time()
+fit_mod2a <- pr2history_xm(fit_mod2) 
+Sys.time()-x0
 ```
 
-
-```{r, eval=F}
-t0 <- Sys.time()
-fit_mod1 <- pr2history(prts$pfpr, prts$jdate, fit_mod)
-Sys.time()-t0
-```
-```{r, eval=F}
-fit_mod1 <- xds_solve(fit_mod1, times = prts$jdate)
-profile_pr(fit_mod1, prts, y1=TRUE)
-```
-
-```{r, eval=F}
-t0 <- Sys.time()
-fit_mod2 <- pr2history(prts$pfpr, prts$jdate, fit_mod, twice=TRUE)
-Sys.time()-t0
-```
-## Setup Vector Control
 ```{r}
-devtools::load_all()
+show_fit(fit_mod2a)
 ```
+
+## Evaluation 
 
 ```{r, eval=F}
 irs_history <- make_irs_history(district_name)

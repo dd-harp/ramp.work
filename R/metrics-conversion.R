@@ -9,6 +9,7 @@ xde_pr2eir = function(pr, xds_obj, extend=FALSE){
   with(xds_obj$outputs, stopifnot(exists("scaling")))
   PR = xds_obj$outputs$scaling$pr
   EIR = xds_obj$outputs$scaling$eir
+
   if(extend==TRUE){
     PR = c(0, PR, 1)
     EIR = c(0, EIR, 5*10^3/365)

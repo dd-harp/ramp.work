@@ -4,12 +4,12 @@
 \alias{get_ty.last}
 \title{Get interpolation points}
 \usage{
-\method{get_ty}{last}(ix, model, trust_ty)
+\method{get_ty}{last}(ix, xds_obj, trust_ty)
 }
 \arguments{
 \item{ix}{index or indices of interpolation points}
 
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
 \item{trust_ty}{a text string to dispatch \code{get_ty}}
 }

@@ -20,7 +20,7 @@ fit_season <- function(xds_obj){
                         feature="season")
 
   X <- fitit$par
-  browser()
+
   xds_obj <- update_function_X(X, xds_obj, "season", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
