@@ -2,22 +2,22 @@
 % Please edit documentation in R/fit_trend.R
 \name{update_function_X.trend}
 \alias{update_function_X.trend}
-\title{Update a function}
+\title{Update the Trend Function}
 \usage{
-\method{update_function_X}{trend}(X, xds_obj, update = "trend", ix = c())
+\method{update_function_X}{trend}(X, xds_obj, feature, options)
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 sum of squared differences
 }
 \description{
-Update a function
+Update the Trend Function
 }

@@ -14,7 +14,8 @@
 impute_baseline_ty = function(ix, xds_obj, impute_ty, trust_ty){
   value <- impute_value(ix, xds_obj, impute_ty, trust_ty)
   xds_obj$data$yy[ix] = value
-  xds_obj <- update_F_trend(xds_obj)
+  xds_obj <- update_fitting_ty(xds_obj)
+  xds_obj <- setup_trend_par(xds_obj)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }

@@ -1,0 +1,43 @@
+---
+title: "Model Fitting" 
+subtitle: "Fitting a Dynamical System to a PfPR Time Series" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document 
+vignette: >
+  %\VignetteIndexEntry{Model Fitting}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+This is a guide to using `fit_model`
+
+The function call is `fit_model(xds_obj, update, ix)`
+
+The argument `update` is a list of features, and each one needs a corresponding `ix`  
+
++ If `length(update) == 1`  then `fit_model` fits just one feature. Options are:
+
+    - `mean_forcing` 
+    
+    - Seasonality: Choose one of the following
+
+        - `phase` -- fit the time of the year when the forcing function peaks 
+    
+        - `bottom` -- fit one of the shape parameters for the amplitude of the seasonal pattern 
+    
+        - `pw` -- fit the other shape parameter for the amplitude of the seasonal pattern 
+        
+        - `amplitude` -- fit both shape parameters for the amplitude, `pw` and `bottom` 
+    
+        - `season` -- fit all three parameters affecting seasonality: `phase` and `pw` and `bottom`
+    
+    - `trend` -- `ix` indicates which interpolation points to fit 
+    
+    - `irs_coverage` -- uses `multiround,` and `ix` indexes the rounds to fit 
+    
+    - `bednet_coverage` -- uses `multiround,` and `ix` indexes the rounds to fit 
+    
++ If `length(update) > 1` then `class(update) <- "multifit"`  and `ix` is a list
+
+

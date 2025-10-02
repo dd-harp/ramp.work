@@ -4,12 +4,12 @@
 \alias{get_limits_X.trend}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_limits_X}{trend}(xds_obj, update = "trend")
+\method{get_limits_X}{trend}(xds_obj, feature)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 a vector

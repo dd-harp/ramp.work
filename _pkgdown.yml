@@ -3,20 +3,11 @@ navbar:
   left:
   - text: Articles
     menu:
+    - text: Qualitative Analysis
+      href: articles/QualitativeAnalysis.html
     - text: Scaling
       href: articles/Scaling.html
     - text: Seasonality
-      href: articles/Seasonality.html
-    - text: Trends
-      href: articles/Trend.html
-    - text: History
-      href: articles/History.html
-    - text: Forecast
-      href: articles/Forecast.html
-    - text: Effect Sizes
-      href: articles/Effect_Sizes.html
-    - text: Hindcasting
-      href: articles/Hindcasting.html
   - text: Functions
     href: reference/index.html
   right:
@@ -32,29 +23,23 @@ home:
     - authors
     - dev
 reference:
-- title: No methods yet
-  desc: |
-    Methods do not exist
-- subtitle: No subclass exists
-  desc: |
-    No methods to set subclass
-  contents:
-  - ssMYZ
 - title: Scaling
   desc: |
-    No methods to set subclass
+    Compute Scaling Relationships
   contents:
   - xds_scaling
-  - xds_scaling.xde
-  - xds_scaling.dts
-  - xde_scaling
-  - xde_scaling.eir
-  - xde_scaling.Lambda
-  - dts_scaling
+  - xds_scaling.eir
+  - xds_scaling.Lambda
+  - xds_scaling_Lambda
+  - compute_Lambda_threshold
   - plot_eirVpr
   - plot_eirpr
   - lines_eirVpr
   - lines_eirpr
+- title: Metrics
+  desc: |
+    Metric Conversion
+  contents:
   - pr2Lambda
   - xde_eir2ni
   - xde_eir2pr
@@ -64,23 +49,42 @@ reference:
   - xde_pr2ni
   - pr2history
   - pr2history_xm
+  - eir2fqZ
+  - fqZ2eir
+  - make_HTC_matrix
+  - make_VC_matrix
+  - make_calR
+  - make_calZ
 - title: Seasonality
   desc: |
     No methods to set subclass
   contents:
   - add_orbits
   - add_orbits_px
-  - compute_threshold
-  - compute_IoD_F
-  - compute_IoD_S
-  - compute_IoD_pr
+  - compute_IoSD_F
+  - compute_IoSD_S
+  - compute_IoSD_pr
   - add_eirpr_seasonal_profile
-- title: Added - needs sorting
+- title: Model Fitting
+  desc: |
+    No methods to set subclass
+  contents:
+  - setup_fitting
+  - update_fitting_ty
+  - fit_model
+  - scaling_init_ty.Lambda
+  - scaling_init_ty
+- subtitle: Goodness of Fit
   desc: |
     No methods to set subclass
   contents:
   - compute_gof
   - compute_gof.sse
+  - compute_gof_X
+- subtitle: Fit Part of a Model
+  desc: |
+    No methods to set subclass
+  contents:
   - fit_mean_forcing
   - fit_season
   - fit_season_amplitude
@@ -89,17 +93,101 @@ reference:
   - fit_season_pw
   - fit_season_phase_alt
   - fit_trend
+- subtitle: Update Function
+  desc: |
+    Update function with parameter values
+  contents:
+  - update_function_X
+  - update_function_X.mean_forcing
+  - update_function_X.phase
+  - update_function_X.bottom
+  - update_function_X.pw
+  - update_function_X.season
+  - update_function_X.amplitude
+  - update_function_X.trend
+  - update_function_X.irs_coverage
+  - update_function_X.bednet_coverage
+  - update_function_X.multifit
+- subtitle: Index Parameter Values
+  desc: |
+    Index parameter values for fitting
+  contents:
+  - setup_fitting_indices
+  - setup_fitting_indices.amplitude
+  - setup_fitting_indices.bottom
+  - setup_fitting_indices.mean_forcing
+  - setup_fitting_indices.phase
+  - setup_fitting_indices.pw
+  - setup_fitting_indices.season
+  - setup_fitting_indices.trend
+  - setup_fitting_indices.bednet_coverage
+  - setup_fitting_indices.irs_coverage
+- subtitle: Modify Fitted Parameters Vector
+  desc: |
+    Index parameter values for fitting
+  contents:
+  - modify_vector_X.NULL
+  - modify_vector_X
+  - modify_vector_X.numeric
+- subtitle: Initial Guesses for Parameter Values
+  desc: |
+    Set limits on parameter values for fitting
+  contents:
+  - get_init_X
+  - get_init_X.amplitude
+  - get_init_X.bednet_coverage
+  - get_init_X.bottom
+  - get_init_X.irs_coverage
+  - get_init_X.mean_forcing
+  - get_init_X.multifit
+  - get_init_X.phase
+  - get_init_X.pw
+  - get_init_X.season
+  - get_init_X.trend
+- subtitle: Limits on Parameter Values
+  desc: |
+    Set limits on parameter values for fitting
+  contents:
+  - get_limits_X
+  - get_limits_X.bednet_coverage
+  - get_limits_X.bottom
+  - get_limits_X.irs_coverage
+  - get_limits_X.mean_forcing
+  - get_limits_X.phase
+  - get_limits_X.pw
+  - get_limits_X.trend
+- subtitle: Hindcasting
+  desc: |
+    No methods to set subclass
+  contents:
+  - setup_hindcast
+  - hindcast_ty
+  - setup_pre_obs_y
+  - setup_pre_obs_y.mirror
+  - setup_pre_obs_y.value
+  - setup_pre_obs_y.asis
+- title: Forecasting
+  desc: |
+    No methods to set subclass
+  contents:
   - forecast_ty
   - gam_forecast
+- subtitle: Fitting
+  desc: |
+    No methods to set subclass
+  contents:
+  - show_fit
+  - show_residuals
+  - setup_forecast
+  - setup_post_obs_y
+  - setup_post_obs_y.asis
+  - setup_post_obs_y.value
+- title: Imputation
+  desc: |
+    No methods to set subclass
+  contents:
+  - setup_imputation
   - get_ty
-  - get_ty.all
-  - get_ty.first
-  - get_ty.ix
-  - get_ty.last
-  - get_ty.nix
-  - get_ty.tix
-  - get_ty.unmodified
-  - hindcast_ty
   - impute_baseline_ty
   - impute_value
   - impute_value.all
@@ -112,83 +200,44 @@ reference:
   - impute_value.min
   - impute_value.reverse
   - impute_value.subsamp
-  - scaling_init_ty.Lambda
-  - scaling_init_ty
-  - set_post_obs_y
-  - set_post_obs_y.asis
-  - set_post_obs_y.value
-  - set_pre_obs_y
-  - set_pre_obs_y.mirror
-  - set_pre_obs_y.value
-  - setup_fitting
-  - setup_forecast
-  - setup_hindcast
-  - setup_imputation
-  - update_fitting_ty
+  - impute_value.asis
+- subtitle: Get Spline Interpolation Points
+  desc: |
+    No methods to set subclass
+  contents:
+  - get_ty.all
+  - get_ty.first
+  - get_ty.ix
+  - get_ty.last
+  - get_ty.nix
+  - get_ty.tix
+  - get_ty.unmodified
+- subtitle: Fitting Utilities for Seasonality
+  desc: |
+    Impute the baseline
+  contents:
+  - preset_phase
   - approx_phase
   - check_season_par.Lambda
   - check_season_par
   - check_season_par.eir
-  - compute_gof_X
-  - fit_bednet_coverage
-  - fit_irs_coverage
-  - fit_model
-  - get_init_X
-  - get_init_X.amplitude
-  - get_init_X.bednet_coverage
-  - get_init_X.bottom
-  - get_init_X.irs_coverage
-  - get_init_X.mean_forcing
-  - get_init_X.multifit
-  - get_init_X.phase
-  - get_init_X.pw
-  - get_init_X.season
-  - get_init_X.trend
-  - get_limits_X
-  - get_limits_X.bednet_coverage
-  - get_limits_X.bottom
-  - get_limits_X.irs_coverage
-  - get_limits_X.mean_forcing
-  - get_limits_X.phase
-  - get_limits_X.pw
-  - get_limits_X.trend
-  - impute_value.asis
-  - make_fit_ix
-  - make_fit_ix.amplitude
-  - make_fit_ix.bednet_coverage
-  - make_fit_ix.bottom
-  - make_fit_ix.irs_coverage
-  - make_fit_ix.mean_forcing
-  - make_fit_ix.phase
-  - make_fit_ix.pw
-  - make_fit_ix.season
-  - make_fit_ix.trend
-  - make_fit_ix_opts
-  - modify_vector_X.NULL
-  - modify_vector_X
-  - modify_vector_X.list
-  - modify_vector_X.numeric
-  - preset_phase
-  - restore_pr2history
-  - save_pr2history
-  - scaling_init_ty.eir
-  - set_pre_obs_y.asis
   - setup_season
   - setup_season.list
   - setup_season.sin
+- subtitle: Fitting Utilities for Trends
+  desc: |
+    Impute the baseline
+  contents:
   - setup_spline_fit
   - setup_trend_par.Lambda
   - setup_trend_par
   - setup_trend_par.eir
-  - show_fit
-  - update_function_X
-  - update_function_X.mean_forcing
-  - update_function_X.phase
-  - update_function_X.bottom
-  - update_function_X.pw
-  - update_function_X.season
-  - update_function_X.amplitude
-  - update_function_X.trend
-  - update_function_X.irs_coverage
-  - update_function_X.bednet_coverage
-  - update_function_X.multifit
+- subtitle: Fitting Utilities for Coverage
+  desc: |
+    Impute the baseline
+  contents:
+  - fit_bednet_coverage
+  - fit_irs_coverage
+  - restore_pr2history
+  - save_pr2history
+  - scaling_init_ty.eir

@@ -25,21 +25,17 @@ library(ramp.xds)
 We choose simple models:
 
 ```{r, eval=F}
-model <- xds_setup(model, MYZname = "SI") 
+model <- xds_setup(model, MYname = "SI") 
 ```
 
 **2. Run Scaling**
 
 For differential equation models, we run `xde_scaling` to set up `model$outputs$eirpr.` This makes it possible to make some good initial guesses for the parameter we will want to fit. This is in `ramp.work,` so we load it: 
 
-```{r}
-library(ramp.work)
-```
-
 and we run `xde_scaling`
 
 ```{r, eval=F}
-model <- xde_scaling(model) 
+model <- xds_scaling(model) 
 ```
 
 **3. Set Up Fitting**
@@ -47,7 +43,7 @@ model <- xde_scaling(model)
 Now, we set up fitting, and we pass the `pfpr` time series and the paired `jdates`:  
 
 ```{r, eval=F}
-model <- setup_fitting_model(model, pfpr, jdates)
+model <- setup_fitting(model, pfpr, jdates)
 ```
 
 During fitting, the *Pf*PR time series `pfpr` and the julian dates `jdates` are stored on the `fitting` object, along with a set of options. 

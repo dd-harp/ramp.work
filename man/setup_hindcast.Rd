@@ -5,7 +5,7 @@
 \title{Hindcast a Baseline}
 \usage{
 setup_hindcast(
-  model,
+  xds_obj,
   N = 0,
   method = "value",
   impute_ty = "mean",
@@ -13,18 +13,18 @@ setup_hindcast(
 )
 }
 \arguments{
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
 \item{N}{the number of years to hindcast}
 
-\item{method}{to dispatch set_pre_obs_ty}
+\item{method}{to dispatch setup_pre_obs_ty}
 
 \item{impute_ty}{to dispatch \code{impute_baseline_ty}}
 
 \item{trust_ty}{to dispatch \code{get_trust_ty}}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+a \strong{\code{ramp.xds}} xds_obj object
 }
 \description{
 This function adds N interpolation

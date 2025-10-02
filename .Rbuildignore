@@ -9,3 +9,4 @@ docs
 ^index\.Rmd$
 ^index\.html$
 ^vignettes$
+^repair_shop$

@@ -4,12 +4,12 @@
 \alias{get_limits_X.bednet_coverage}
 \title{Get limits for IRS coverage parameters}
 \usage{
-\method{get_limits_X}{bednet_coverage}(xds_obj, update = "bednet_coverage")
+\method{get_limits_X}{bednet_coverage}(xds_obj, feature = "bednet_coverage")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 bounds on coverage, as \link{numeric}

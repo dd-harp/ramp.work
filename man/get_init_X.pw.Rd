@@ -4,14 +4,14 @@
 \alias{get_init_X.pw}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_init_X}{pw}(xds_obj, update = "pw", ix = 1)
+\method{get_init_X}{pw}(xds_obj, feature, options = list())
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 
-\item{ix}{the index}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 a vector

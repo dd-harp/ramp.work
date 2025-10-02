@@ -4,10 +4,12 @@
 \alias{fit_bednet_coverage}
 \title{Fit bed net coverage}
 \usage{
-fit_bednet_coverage(xds_obj)
+fit_bednet_coverage(xds_obj, options = list())
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+
+\item{options}{setup options for the bed net rounds indexing}
 }
 \value{
 a \strong{\code{ramp.xds}} model object

@@ -4,12 +4,12 @@
 \alias{get_limits_X.phase}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_limits_X}{phase}(xds_obj, update = "phase")
+\method{get_limits_X}{phase}(xds_obj, feature = "phase")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 a vector

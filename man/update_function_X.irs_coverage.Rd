@@ -2,22 +2,22 @@
 % Please edit documentation in R/fit_irs_coverage.R
 \name{update_function_X.irs_coverage}
 \alias{update_function_X.irs_coverage}
-\title{Update the irs coverage function}
+\title{feature the irs coverage function}
 \usage{
-\method{update_function_X}{irs_coverage}(X, xds_obj, update = "irs_coverage", ix = 1)
+\method{update_function_X}{irs_coverage}(X, xds_obj, feature = "irs_coverage", options = list())
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 sum of squared differences
 }
 \description{
-Update the irs coverage function
+feature the irs coverage function
 }

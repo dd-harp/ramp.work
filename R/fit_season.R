@@ -9,18 +9,39 @@
 #' @export
 fit_season <- function(xds_obj){
 
+  options = list()
+  options$max_ix = 0
+  options = setup_fitting_indices(xds_obj, "season", options)
+
   inits = get_init_X(xds_obj, "season")
 
   fitit <- stats::optim(inits, compute_gof_X,
-                        xds_obj=xds_obj, ix=1,
-                        update="season")
+                        xds_obj=xds_obj, options=options,
+                        feature="season")
 
   X <- fitit$par
-  xds_obj <- update_function_X(fitit$par, xds_obj, update = "season")
+
+  xds_obj <- update_function_X(X, xds_obj, "season", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }
 
+#' Seasonality Indices
+#'
+#' @inheritParams setup_fitting_indices
+#'
+#' @returns options
+#'
+#' @export
+#'
+setup_fitting_indices.season = function(xds_obj, feature, options){
+
+  options = setup_fitting_indices(xds_obj, "pw", options)
+  options = setup_fitting_indices(xds_obj, "bottom", options)
+  options = setup_fitting_indices(xds_obj, "phase", options)
+
+  return(options)
+}
 
 #' Get Initial Values for Parameters
 #'
@@ -28,18 +49,14 @@ fit_season <- function(xds_obj){
 #'
 #' @return a vector
 #' @export
-get_init_X.season <- function(xds_obj, update="season", ix=1){
-  season_par <- get_season(xds_obj)
-  phase <- season_par$phase[ix]
-  bottom <- season_par$bottom[ix]
-  pw <- season_par$pw[ix]
-  c(phase=phase, bottom=bottom, pw=pw)
+get_init_X.season <- function(xds_obj, feature, options=list()){
+  return(with(get_season(xds_obj), list(pw=pw, bottom=bottom, phase=phase)))
 }
 
-#' @title Update `F_season`
+#' @title feature `F_season`
 #'
-#' @description This updates three shape parameters
-#' for a function `F_season` using [modify_vector_X] and [update_F_season]
+#' @description This features three shape parameters
+#' for a function `F_season` using [modify_vector_X] and [change_season]
 #'
 #' @note This assumes the vector, `X`, has got
 #' three sets of parameters describing three
@@ -50,27 +67,18 @@ get_init_X.season <- function(xds_obj, update="season", ix=1){
 #'
 #' @returns sum of squared differences
 #' @export
-update_function_X.season = function(X, xds_obj, update="season", ix=1){
-
-  stopifnot(length(X)%%3 == 0)
-  l = length(X)/3
-  X_phase = X[1:l]
-  X_bottom = X[1:l + l]
-  X_pw = X[1:l + 2*l]
+update_function_X.season = function(X, xds_obj, feature="season", options=list()){
 
   phase <- get_season_phase(xds_obj)
-  phase <- modify_vector_X(X_phase, ix, phase)
-  xds_obj <- set_season_phase(phase, xds_obj, s=1)
+  phase <- with(options, modify_vector_X(phase, phase_ix, X, phase_ixX))
 
   bottom <- get_season_bottom(xds_obj)
-  bottom <- modify_vector_X(X_bottom, ix, bottom)
-  xds_obj <- set_season_bottom(bottom, xds_obj, s=1)
+  bottom <- with(options, modify_vector_X(bottom, bottom_ix, X, bottom_ixX))
 
   pw <- get_season_pw(xds_obj)
-  pw <- modify_vector_X(X_pw, ix, phase)
-  xds_obj <- set_season_pw(pw, xds_obj, s=1)
+  pw <- with(options, modify_vector_X(pw, pw_ix, X, pw_ixX))
 
-  xds_obj <- update_F_season(xds_obj)
+  xds_obj <- change_season(list(bottom=bottom, pw=pw, phase=phase), xds_obj, s=1)
 
   return(xds_obj)
 }

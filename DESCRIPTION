@@ -4,17 +4,19 @@ Title: Algorithms to support workflows and analytics pipelines for RAMP (Robust 
 Version: 0.8.0
 Authors@R: 
       c(person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849")))
-Description: More about what it does (maybe more than one line)
+Description: This software 
     Use four spaces when indenting paragraphs within the Description.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Remotes:  
-  github::dd-harp/ramp.xds 
+Remotes: 
+  github::dd-harp/ramp.xds, dd-harp/ramp.control, dd-harp/ramp.library
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends:
-  ramp.xds
+  ramp.xds, 
+  expm, 
+  MASS
 Imports:
   stats, 
   ramp.control
@@ -25,4 +27,3 @@ Suggests:
   viridis,
   rootSolve,
   rmarkdown 
-

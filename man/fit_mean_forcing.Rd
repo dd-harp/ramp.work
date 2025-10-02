@@ -7,12 +7,25 @@
 fit_mean_forcing(xds_obj)
 }
 \arguments{
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{an \strong{\code{xds}} model object}
 }
 \value{
-\code{xds_obj}
+an \strong{\code{xds}} model object
 }
 \description{
-For a \emph{Pf}PR time series, \eqn{x}, fit
-the mean forcing parameter
+Fit the mean
+forcing parameter. Functions
+called by \code{fit_mean_forcing} dispatch
+on \code{class(xds_obj$forced_by)}
+\itemize{
+\item \code{eir} updates the mean daily EIR
+\item \code{Lambda} updates the mean daily emergence rate
+}
+
+The method is designed for fitting a model to
+observed values of \emph{Pf}PR in a time series,
+\eqn{x_t.}
+}
+\note{
+The function parameter \code{options} is not used.
 }

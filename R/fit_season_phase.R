@@ -10,17 +10,38 @@
 #' @export
 fit_season_phase <- function(xds_obj){
 
+  options=list()
+  options$max_ix = 0
+  options <- setup_fitting_indices(xds_obj, "phase", options)
+
   phase = get_init_X(xds_obj, "phase")
   lims = get_limits_X(xds_obj, "phase")
 
 
   fitit <- stats::optimize(compute_gof_X, lims,
-                           xds_obj=xds_obj, ix=1, update = c("phase"))
+                           xds_obj=xds_obj, options=options, feature = c("phase"))
 
   X <- fitit$minimum
-  xds_obj <- update_function_X(X, xds_obj, update = c("phase"))
+  xds_obj <- update_function_X(X, xds_obj, "phase", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
+}
+
+#' Seasonality: `phase` Indices
+#'
+#' @inheritParams setup_fitting_indices
+#'
+#' @returns options
+#'
+#' @export
+#'
+setup_fitting_indices.phase = function(xds_obj, feature, options){
+
+  options$phase_ix = 1
+  options$phase_ixX = options$max_ix + 1:length(options$phase_ix)
+  options$max_ix = max(options$phase_ixX)
+
+  return(options)
 }
 
 #' Get Initial Values for Parameters
@@ -29,8 +50,8 @@ fit_season_phase <- function(xds_obj){
 #'
 #' @return a vector
 #' @export
-get_init_X.phase <- function(xds_obj, update="phase", ix=1){
-  return(get_season(xds_obj)$phase[ix])
+get_init_X.phase <- function(xds_obj, feature, options=list()){
+  return(list(phase = get_season(xds_obj)$phase))
 }
 
 #' Get Initial Values for Parameters
@@ -39,20 +60,20 @@ get_init_X.phase <- function(xds_obj, update="phase", ix=1){
 #'
 #' @return a vector
 #' @export
-get_limits_X.phase <- function(xds_obj, update="phase"){
+get_limits_X.phase <- function(xds_obj, feature="phase"){
   return(c(0,365))
 }
 
-#' Update a function
+#' feature a function
 #'
 #' @inheritParams update_function_X
 #'
 #' @returns sum of squared differences
 #' @export
-update_function_X.phase = function(X, xds_obj, update="phase", ix=1){
+update_function_X.phase = function(X, xds_obj, feature, options){
   phase <- get_season_phase(xds_obj, 1)
-  phase <- modify_vector_X(X, ix, phase)
-  xds_obj <- set_season_phase(phase, xds_obj, 1)
+  phase   <- with(options, modify_vector_X(phase, phase_ix, X, phase_ixX))
+  xds_obj <- change_season(list(phase=phase), xds_obj, 1)
   return(xds_obj)
 }
 
@@ -141,7 +162,7 @@ preset_phase <- function(xds_obj){
   model_phase <- approx_phase(get_PR(xds_obj), times)
   adjust = data_phase - model_phase
   phase <- get_season_phase(xds_obj, 1)
-  xds_obj <- set_season_phase(phase-adjust, xds_obj, s=1)
-  xds_obj <- xds_solve(xds_obj, times = c(0, xds_obj$data$jdates))
+  xds_obj <- change_season(list(phase=adjust-phase), xds_obj, s=1)
+  xds_obj <- xds_solve(xds_obj, times = c(-3650, xds_obj$data$jdates))
   return(xds_obj)
 }

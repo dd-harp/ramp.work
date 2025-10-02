@@ -1,0 +1,41 @@
+---
+title: "Analysis" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document 
+vignette: >
+  %\VignetteIndexEntry{Analysis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+
+Metric conversions: 
+
+### EIR to infective biting rates
+
+The daily EIR is related to human blood feeding by infective mosquitoes in patches by the formula:
+
+$$E = \beta \cdot fqZ$$
+
+Where $E$ is a vector of length $N_h$, $fqZ$ is a vector of length $N_p$, and so $\beta$ is a $N_p \times N_h$ matrix. We note that
+
+$$fqZ = \left(\beta^T \cdot \beta \right)^{-1} \cdot \beta^T \cdot E$$ 
+
+### EIR and Exposure 
+
+The daily FoI is a function of the daily EIR and the 
+
+$$h = F_h(E, b, \ldots)$$
+
+and the 
+
+$$\alpha = F_\alpha(E, b, t, \ldots)$$
+
+In the Poisson case, $h = bE$ so $E = h/b,$ and 
+
+$$ \alpha = 1 - e^{-bE}$$ so 
+
+$$E = \frac{-\ln(1-\alpha)}{b}$$
+

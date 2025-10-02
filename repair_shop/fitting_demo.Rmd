@@ -1,0 +1,44 @@
+---
+title: "Model Fitting"
+subtitle: "A Demo"
+output: html_document
+---
+
+```{r}
+library(ramp.xds)
+library(ramp.work)
+devtools::load_all("~/git/ramp.xds")
+devtools::load_all()
+```
+
+In developing malaria models for malaria analysts, we need to be able to deal with malaria data. 
+
+For most of what we want to do, we need The most with time series describing the prevalence of infection with *Plasmodium falciparum,* also called *P. falciparum* parasite rates (*Pf*PR). We would like to use mathematical models to develop a quantitative understanding of malaria epidemiology, mosquito ecology and malaria transmission, and malaria control. On the one hand, we can think of malaria epidemiology as a system *forced by* exposure. On the other hand, we can think of malaria epidemiology and exposure as a system forced by mosquito ecology. 
+
+A set of algorithms was thus developed in **`ramp.work`** to fit models to data in several ways. The two we will focus on here: 
+
++ Using `xds_setup_eir,` we build a model for the daily EIR, $E(t).$ We do a dynamical time series analysis to reconstruct the history of the putative daily EIR in populations under the assumptions of that model family; 
+
++ Using `xds_setup` with the trivial `Lmodel,` we build a model for daily emergence rate of adult mosquitoes, $\Lambda(t)$. We do a dynamical time series analysis to reconstruct the history of the putative daily mosquito density populations under the assumptions of that model family. 
+
+In doing this, we will deconsruct a time series patterns into: 
+
++ mean forcing, the average daily EIR or daily emergence rate over the period; 
+
++ a seasonal pattern
+
+    - a phase
+    
+    - amplitude
+
++ a trend
+
+
+## Build a Model
+
+To build a model, we use base models from **`ramp.xds`.**  We build two: one forced by the EIR and the other one forced by emergence:
+
+```{r build a model}
+sissi_eir <- xds_setup_eir(Xname = "SIS")
+sissi_eir <- xds_scaling(sissi_eir)
+```

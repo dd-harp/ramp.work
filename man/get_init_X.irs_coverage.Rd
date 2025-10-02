@@ -4,14 +4,14 @@
 \alias{get_init_X.irs_coverage}
 \title{Get initial X: IRS coverage}
 \usage{
-\method{get_init_X}{irs_coverage}(xds_obj, update = "irs_coverage", ix = 1)
+\method{get_init_X}{irs_coverage}(xds_obj, feature, options)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 
-\item{ix}{the index}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 IRS coverage levels

@@ -2,25 +2,25 @@
 % Please edit documentation in R/fit_season.R
 \name{update_function_X.season}
 \alias{update_function_X.season}
-\title{Update \code{F_season}}
+\title{feature \code{F_season}}
 \usage{
-\method{update_function_X}{season}(X, xds_obj, update = "season", ix = 1)
+\method{update_function_X}{season}(X, xds_obj, feature = "season", options = list())
 }
 \arguments{
 \item{X}{new parameter values}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
-\item{update}{a string to dispatch}
+\item{feature}{a string to dispatch}
 
-\item{ix}{indices or a list}
+\item{options}{a list to configure feature-specific indexing}
 }
 \value{
 sum of squared differences
 }
 \description{
-This updates three shape parameters
-for a function \code{F_season} using \link{modify_vector_X} and \link{update_F_season}
+This features three shape parameters
+for a function \code{F_season} using \link{modify_vector_X} and \link[ramp.xds:change_season]{ramp.xds::change_season}
 }
 \note{
 This assumes the vector, \code{X}, has got

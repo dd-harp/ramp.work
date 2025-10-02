@@ -4,12 +4,12 @@
 \alias{get_limits_X.bottom}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_limits_X}{bottom}(xds_obj, update = "bottom")
+\method{get_limits_X}{bottom}(xds_obj, feature = "bottom")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 a vector

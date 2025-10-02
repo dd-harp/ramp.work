@@ -4,12 +4,12 @@
 \alias{get_limits_X.mean_forcing}
 \title{Get Initial Values for Parameters}
 \usage{
-\method{get_limits_X}{mean_forcing}(xds_obj, update = "mean_forcing")
+\method{get_limits_X}{mean_forcing}(xds_obj, feature = "mean_forcing")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 
-\item{update}{the dispatch string}
+\item{feature}{the dispatch string}
 }
 \value{
 a vector

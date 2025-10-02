@@ -4,15 +4,15 @@
 \alias{hindcast_ty}
 \title{Hindcast a Baseline}
 \usage{
-hindcast_ty(model, ix = c())
+hindcast_ty(xds_obj, ix = c())
 }
 \arguments{
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
 \item{ix}{(optional) indices for \link{impute_value}}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+a \strong{\code{ramp.xds}} xds_obj object
 }
 \description{
 This function adds N interpolation

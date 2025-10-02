@@ -2,12 +2,12 @@
 #' Get a set of trusted interpolation points
 #'
 #' @param ix index or indices of interpolation points
-#' @param model a **`ramp.xds`** model object
+#' @param xds_obj a **`ramp.xds`** xds_obj object
 #' @param trust_ty a text string to dispatch `get_ty`
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty = function(ix, model, trust_ty){
+get_ty = function(ix, xds_obj, trust_ty){
   class(trust_ty) <- trust_ty
   UseMethod("get_ty", trust_ty)
 }
@@ -19,9 +19,9 @@ get_ty = function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.ix = function(ix, model, trust_ty){
-  tt <- model$data$tt[ix]
-  yy <- model$data$yy[ix]
+get_ty.ix = function(ix, xds_obj, trust_ty){
+  tt <- xds_obj$data$tt[ix]
+  yy <- xds_obj$data$yy[ix]
   return(list(tt=tt, yy=yy, ix=ix))
 }
 
@@ -33,14 +33,14 @@ get_ty.ix = function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.unmodified = function(ix, model, trust_ty){
-  tix = which(model$data$modified == 0)
+get_ty.unmodified = function(ix, xds_obj, trust_ty){
+  tix = which(xds_obj$data$modified == 0)
   if(length(tix)<=2){
-    yy <- model$data$yy*0 + 1
-    tt <- model$data$tt
+    yy <- xds_obj$data$yy*0 + 1
+    tt <- xds_obj$data$tt
   } else {
-    tt <- model$data$tt[tix]
-    yy <- model$data$yy[tix]
+    tt <- xds_obj$data$tt[tix]
+    yy <- xds_obj$data$yy[tix]
   }
  return(list(tt=tt, yy=yy))
 }
@@ -55,9 +55,9 @@ get_ty.unmodified = function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.nix = function(ix, model, trust_ty){
-  tt <- model$data$tt[-ix]
-  yy <- model$data$yy[-ix]
+get_ty.nix = function(ix, xds_obj, trust_ty){
+  tt <- xds_obj$data$tt[-ix]
+  yy <- xds_obj$data$yy[-ix]
   return(list(tt=tt, yy=yy))
 }
 
@@ -69,9 +69,9 @@ get_ty.nix = function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.first = function(ix, model, trust_ty){
-  tt = head(model$data$tt,1)
-  yy = head(model$data$yy,1)
+get_ty.first = function(ix, xds_obj, trust_ty){
+  tt = head(xds_obj$data$tt,1)
+  yy = head(xds_obj$data$yy,1)
   return(list(tt=tt, yy=yy))
 }
 
@@ -87,11 +87,11 @@ get_ty.first = function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.tix = function(ix, model, trust_ty){
-  tt <- model$data$tt[ix]
+get_ty.tix = function(ix, xds_obj, trust_ty){
+  tt <- xds_obj$data$tt[ix]
   tix = 0
-  tt <- model$data$tt[ix[tix]]
-  yy <- model$data$yy[ix[tix]]
+  tt <- xds_obj$data$tt[ix[tix]]
+  yy <- xds_obj$data$yy[ix[tix]]
   return(list(tt=tt, yy=yy))
 }
 
@@ -104,9 +104,9 @@ get_ty.tix = function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.last= function(ix, model, trust_ty){
-  tt = tail(model$data$tt,1)
-  yy = tail(model$data$yy,1)
+get_ty.last= function(ix, xds_obj, trust_ty){
+  tt = tail(xds_obj$data$tt,1)
+  yy = tail(xds_obj$data$yy,1)
   return(list(tt=tt, yy=yy))
 }
 
@@ -118,8 +118,8 @@ get_ty.last= function(ix, model, trust_ty){
 #'
 #' @returns Interpolation points, \eqn{t,y}, as a list
 #' @export
-get_ty.all = function(ix, model, trust_ty){
-  tt = model$data$tt
-  yy = model$data$yy
+get_ty.all = function(ix, xds_obj, trust_ty){
+  tt = xds_obj$data$tt
+  yy = xds_obj$data$yy
   return(list(tt=tt, yy=yy))
 }
