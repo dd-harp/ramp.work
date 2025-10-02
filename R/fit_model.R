@@ -130,8 +130,10 @@ update_function_X.multifit = function(X, xds_obj, feature, options=list()){
 show_fit = function(xds_obj, clr="black", add=FALSE){
   gof <- round(compute_gof(xds_obj)*1e5)/1e5
   if(add==FALSE)
-    with(xds_obj$data, plot(jdates, pfpr, type = "p", xlab = "Time", ylab = "PfPR", pch=15, main = gof, ylim = range(0, pfpr)))
-  xds_obj <- ramp.xds::xds_solve(xds_obj, times = c(0, xds_obj$data$jdates))
+    with(xds_obj$data, plot(jdates, pfpr, type = "p", xlab = "Time", ylab = "PfPR", pch=15, main = gof, xlim = range(0, jdates), ylim = range(0, pfpr)))
+  xds_obj <- ramp.xds::xds_solve(xds_obj, times = c(-3650, xds_obj$data$jdates[1]))
+  xds_obj <- last_to_inits(xds_obj)
+  xds_obj <- ramp.xds::xds_solve(xds_obj, times = xds_obj$data$jdates)
   ramp.xds::xds_plot_PR(xds_obj, clr=clr, add=TRUE)
   return(invisible(get_PR(xds_obj)))
 }

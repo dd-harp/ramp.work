@@ -74,7 +74,7 @@ update_function_X.pw = function(X, xds_obj, feature, options){
 
   pw <- get_season_pw(xds_obj)
   pw   <- with(options, modify_vector_X(pw, pw_ix, X, pw_ixX))
-  xds_obj <- change_season_pw(pw, xds_obj, 1)
+  xds_obj <- change_season(list(pw=pw), xds_obj, 1)
 
   return(xds_obj)
 }

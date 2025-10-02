@@ -73,7 +73,7 @@ get_limits_X.phase <- function(xds_obj, feature="phase"){
 update_function_X.phase = function(X, xds_obj, feature, options){
   phase <- get_season_phase(xds_obj, 1)
   phase   <- with(options, modify_vector_X(phase, phase_ix, X, phase_ixX))
-  xds_obj <- change_season_phase(phase, xds_obj, 1)
+  xds_obj <- change_season(list(phase=phase), xds_obj, 1)
   return(xds_obj)
 }
 
@@ -162,7 +162,7 @@ preset_phase <- function(xds_obj){
   model_phase <- approx_phase(get_PR(xds_obj), times)
   adjust = data_phase - model_phase
   phase <- get_season_phase(xds_obj, 1)
-  xds_obj <- change_season_phase(adjust-phase, xds_obj, s=1)
+  xds_obj <- change_season(list(phase=adjust-phase), xds_obj, s=1)
   xds_obj <- xds_solve(xds_obj, times = c(-3650, xds_obj$data$jdates))
   return(xds_obj)
 }

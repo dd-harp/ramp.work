@@ -56,7 +56,7 @@ get_init_X.season <- function(xds_obj, feature, options=list()){
 #' @title feature `F_season`
 #'
 #' @description This features three shape parameters
-#' for a function `F_season` using [modify_vector_X] and [update_F_season]
+#' for a function `F_season` using [modify_vector_X] and [change_season]
 #'
 #' @note This assumes the vector, `X`, has got
 #' three sets of parameters describing three
