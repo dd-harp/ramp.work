@@ -1,10 +1,11 @@
 ---
-title: "Scaling Relationships for Malaria Metrics" 
+title: "Scaling" 
+subtitle: "Computing Scaling Relationships for Malaria Metrics" 
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document
 vignette: >
-  %\VignetteIndexEntry{Scaling for Malaria Metrics}
+  %\VignetteIndexEntry{Scaling}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

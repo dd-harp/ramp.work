@@ -74,7 +74,7 @@ update_function_X.bottom = function(X, xds_obj, feature, options){
 
   bottom <- get_season_bottom(xds_obj)
   bottom   <- with(options, modify_vector_X(bottom, bottom_ix, X, bottom_ixX))
-  xds_obj <- change_season_bottom(bottom, xds_obj, s=1)
+  xds_obj <- change_season(list(bottom=bottom), xds_obj, s=1)
 
   return(xds_obj)
 }
