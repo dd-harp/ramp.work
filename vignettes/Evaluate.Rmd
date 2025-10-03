@@ -31,7 +31,7 @@ The vignette has two parts:
 
 + **demo** -- an example that uses **`ramp.work`** to evaluate control 
 
-+ **design** -- for `dev` users 
++ **design** -- for the `dev` users 
 
 ## Demo 
 
@@ -138,10 +138,21 @@ sip_si <- fitting_replace_spline_t(ti, sip_si)
 
 Now we fit the model to the data. 
 
-```{r}
+```{r, eval=F}
 sip_si <- pr2history_xm(sip_si)
+```
+```{r, eval=F, echo=FALSE}
+sip_si <- pr2history_xm(sip_si)
+saveRDS(sip_si, "evaluate.rds")
+```
+
+```{r, echo=FALSE}
+sip_si <- readRDS("evaluate.rds")
+```
+```{r}
 show_events(sip_si, mx=0.4)
 ```
+
 
 ### 5 Counterfactual Baseline
 
@@ -177,8 +188,8 @@ However you decide to impute a new value, you need to update a model with those 
 
 ```{r impute cf baseline}
 fitting_get_spline_ty(sip_si)$yy[my_ix] -> trusted_y
-new_y <- rep(mean(trusted_y), 2)
-fitting_change_spline_y(rep(new_y, 6), c(4,7, 9, 10, 11, 12), sip_si) -> sip_si1 
+new_y <- rep(mean(trusted_y), 6)
+fitting_change_spline_y(new_y, c(4,7, 9, 10, 11, 12), sip_si) -> sip_si1 
 ```
 
 ### 6. Compute Impact
@@ -194,6 +205,8 @@ sip_si1 <- xds_solve(sip_si1, times = tm)
 xds_plot_PR(sip_si, clrs="darkblue")
 xds_plot_PR(sip_si1, clrs="darkred", add=T)
 ```
+
+## Design 
 
 
 ## Ignore 
