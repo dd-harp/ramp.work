@@ -1,90 +1,156 @@
 ---
-title: "Evaluation" 
-subtitle: "A Changing Baseline Modified by Vector Control Control" 
+title: "Evaluating Vector Control" 
+subtitle: "Dynamical Time Series Analysis " 
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document 
 vignette: >
-  %\VignetteIndexEntry{Evaluation}
+  %\VignetteIndexEntry{Evaluating Vector Control}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-## A Fitted Model 
 
-We start with a model that was already fitted to data using the standard options. 
-
-```{r Fitted Model}
-sip_si <- readRDS("sip_si.rds")
-show_fit(sip_si)
+```{r, warning=FALSE, message=FALSE}
+library(ramp.xds)
+library(Matrix)
+library(expm)
+library(ramp.library)
+library(ramp.control)
+library(ramp.work)
 ```
 
-## IRS Events 
 
-This sets up a set of IRS events, with a figure: 
+```{r, echo=FALSE} 
+devtools::load_all()
+```
 
-+ the Julian dates
+Routine evaluation of vector control for malaria presents enormous challenges. This vignette considers the challenge of evaluating the impact of mass bed net distributions and mass indoor house spraying (*i.e.* indoor residual spraying, or IRS). 
 
-+ the IRS pesticide used
+The vignette has two parts:
 
-+ the peak coverage
++ **demo** -- an example that uses **`ramp.work`** to evaluate control 
 
-```{r setup irs events}
++ **design** -- for `dev` users 
+
+## Demo 
+
+
+To evaluate vector control, we need to do the following tasks:
+
+1. Build a model
+
+2. Set up model fitting 
+
+3. Set up vector control
+
+4. Fit the model to data 
+
+5. Construct a counterfactual baseline
+
+6. Compute the impact  
+
+
+### 1. Build a Model
+
+We want to understand malaria as a *changing baseline* that has been *modified by vector control.* The malaria baseline is affected by *mosquito ecology.* To get started, we build a model to understand malaria prevalence in relation to exposure. We set up a model that is forced by the EIR:
+
+```{r xds_setup}
+sip_si <- xds_setup_eir(Xname = "SIP")
+```
+
+### 2. Set Up Model Fitting
+
+The functions that set up model fitting in **`ramp.work`** use `xds_scaling` to make some initial guesses about the mean forcing parameters and the seasonal phase. 
+
+```{r xds_scaling}
+sip_si <- xds_scaling(sip_si)
+plot_eirpr(sip_si)
+```
+
+After fitting the model and getting the seasonal pattern right, it might be worth it to run `xds_scaling` again. 
+
+To set up model fitting, we need some data. We use a time series we have saved locally:
+
+```{r read data}
+prts <- read.table("pfpr_time_series.tbl")
+with(prts, {
+  plot(jdates, pfpr, ylim = c(0,0.65), main = "Example", xlab = "Julian Date (day 1 is Jan 1, 2015)", ylab = "PR", xlim = range(0, jdates)) 
+  lines(jdates, pfpr)
+})
+```
+```{r setup_fitting}
+sip_si <- setup_fitting(sip_si, prts$pfpr, prts$jdate)
+```
+
+### 3. Set Up Vector Control
+
+To set up vector control for IRS, we use `setup_irs_events` and pass it the Julian dates, the pesticides, and the coverage (% of houses sprayed). 
+
+```{r irs events}
 irs_jdates <- c(2861, 3256, 3622) 
 irs_type <- c("fludora_fusion", "actellic", "actellic") 
-irs_peak <- c(.95, .95, .95) 
-sip_si <- setup_irs_events(sip_si, irs_jdates, irs_type, irs_peak)
-show_irs_events(sip_si, mx=0.5)
+frac_sprayed <- c(.95, .95, .95) 
+sip_si <- setup_irs_events(sip_si, irs_jdates, irs_type, frac_sprayed)
 ```
-## Bed Net Mass Distributions  
 
-This sets up a set of mass bed net distributions, with a figure: 
+To set up vector control for bed nets, we use `setup_bednet_events` and pass it the Julian dates, the net types, and peak access: 
 
-+ the Julian dates
-
-+ the IRS pesticide used
-
-+ the peak coverage
-      
-```{r}
-#make_bednet_history("Terego District")
+```{r bed net events}
 bednet_jdates <- c(-200, 776, 2176, 3240)
 bednet_type <- rep("pbo", 4)
 bednet_peak <- rep(0.95, 4)
 sip_si <- setup_bednet_events(sip_si, bednet_jdates, bednet_type, bednet_peak)
-show_bednet_events(sip_si, mx=0.5)
 ```
 
-## Revisiting the Trend
+Before we do any fitting, we want to take a look at the $t$-values of the interpolation points. The default spacing is once a year, but if we want to evaluate vector control, we might want values at sensible points before and after the mass distribution events. There's a lot going on in the following:
 
-The trend is given by a spline function, specified by adding a set of interpolation points. We want some consistency in how we do imputation, so we want to reposition the spline points.  A function to do this is called `event_chop_spline_t` 
++ The *Pf*PR time series is a set of squares
+
++ The line shows the model with preliminary guesses 
+
++ The vertical lines show the timing of mass distribution / spraying events:
+
+    - irs is in blue
+    
+    - bednets is in red
+    
+    - the # describes the round (there's a bednet found before our data start)
+    
+    - the text describes the round
+    
++ the $\oplus$ symbols show the original spline $t$-values
+
++ the purple squares are an alternative spacing for the $t$-values returned by `event_chop_spline_t`  
 
 ```{r}
 show_events(sip_si, mx = 0.4)
-ti <- event_chop_spline_t(sip_si, fu=180, b4=60, mngp =80)
+ti <- event_chop_spline_t(sip_si, fu=180, b4=60, mngp=80)
 points(ti, 0*ti, pch = 15, col = "purple")
 ```
-
-
-We use this function to change the points. Note that it uses the *y* values from the trend function.  
+To set the stage for evaluating, we'll shift the spacing of the time points to the purple squares. 
 
 ```{r}
-sip_si1 <- fitting_replace_spline_t(ti, sip_si)
-show_events(sip_si1, mx=0.4)
+sip_si <- fitting_replace_spline_t(ti, sip_si)
 ```
 
-Now, we can run the model through fitting again. This time around, the fits look a lot better. 
+### 4. Fit the Model 
+
+Now we fit the model to the data. 
 
 ```{r}
-sip_si1 <- pr2history_xm(sip_si1)
-show_events(sip_si1, mx=0.5)
+sip_si <- pr2history_xm(sip_si)
+show_events(sip_si, mx=0.4)
 ```
 
-There's a lot going on in this plot. The redish lines are bed net mass distribution events. The number is the round number, and the text is the type.  The blueish lines are irs spraying events. The number is the round number and the text is the pesticide used.  The $\oplus$ are the $t$ values of the interpolation points, labeled with indices.  Sometimes the index `1` is missing: for bed nets, there were rounds that happened in 2013, but our DHIS2 data starts in 2015. The first node for the interpolating point is at 0.  This is meant to be quick, dirty, and useful -- not beautiful. 
+### 5 Counterfactual Baseline
 
-## Thinking about Trust 
+To evaluate vector control, we have to grapple with the problem of understanding malaria transmission as a *changing baseline* that has been *modified by control.* The challenge for malaria is that every place is different, so we have to learn about each place. The information we have about malaria is limited. What would have happened in the absence of any control?  
 
-Now, to evaluate vector control, we have to grapple with the problem of understanding malaria transmission as a *changing baseline* that has been modified by control.  In the figure above, we have to ask which interpolation points we can use as a basis for imputing the values of the others. This function computes the time since the last event for each time node.  
+> If all we have is a time series that describes a reality that has been modified by control, what information do we have about the unmodified baseline? 
+
+In this time series, we note the large gaps between mass distribution events. Perhaps we can use these gaps to make some good guesses about the baseline. 
+This function computes the time since the last event for each time node.  
 
 ```{r}
 last_event = function(xds_obj){
@@ -98,27 +164,47 @@ last_event = function(xds_obj){
 }
 ```
 
-An arbitrary cutoff of a year. 
+If we use the arbitrary cutoff of a year, we find a set of five values for the interpolation points that we trust.  
 
 ```{r}
-last_event(sip_si1)>365
+last_event(sip_si)
+which(last_event(sip_si)>365) -> my_ix
+my_ix
 ```
 
 
-## Changing the Interpolation Points for Fitting 
+However you decide to impute a new value, you need to update a model with those values. For this there are a few utilities. So what happens if we take the first The first one gets the $t,y$ values and their indices from the object: 
 
-However you decide to impute a new value, you need to update a model with those values. For this there are a few utilities. The first one gets the $t,y$ values and their indices from the object: 
+```{r impute cf baseline}
+fitting_get_spline_ty(sip_si)$yy[my_ix] -> trusted_y
+new_y <- rep(mean(trusted_y), 2)
+fitting_change_spline_y(rep(new_y, 6), c(4,7, 9, 10, 11, 12), sip_si) -> sip_si1 
+```
+
+### 6. Compute Impact
+
+Now we have a model that describes what we observed, and another that imputes a counterfactual baseline. We can plot the imputed prevalence for the two models. Since malaria is dynamically changing, and since the intervention changed the system in one way, with effects that were observed at another, we can simply plot the outputs: 
 
 ```{r}
-fitting_get_spline_ty(sip_si1)
+last_day <- max(prts$jdates)
+first_day <- min(prts$jdates)
+tm <- c(first_day:last_day)
+sip_si <- xds_solve(sip_si, times = tm)
+sip_si1 <- xds_solve(sip_si1, times = tm)
+xds_plot_PR(sip_si, clrs="darkblue")
+xds_plot_PR(sip_si1, clrs="darkred", add=T)
 ```
+
+
+## Ignore 
+
 It might be useful to use `show_events` to figure out which values you might want to change. 
 
 If you want to replace an entire set: 
 
 + `fitting_replace_spline_y` to replace all the $y$ values
 
-```{r}
+```{r, eval=F}
 y1 <- fitting_get_spline_ty(sip_si1)$yy
 sip_si2 <- fitting_replace_spline_y(sqrt(y1), sip_si1)
 y2 <- fitting_get_spline_ty(sip_si2)$yy
@@ -134,7 +220,7 @@ This was demonstrated above.
 
 + `fitting_change_spline_y` to change all some of $y$ values 
 
-```{r}
+```{r, eval=F}
 y1.4 = y1[4]
 sip_si3 <- fitting_change_spline_y(y1.4^2, 4, sip_si1)
 y3.4 <- fitting_get_spline_ty(sip_si3)$yy[4]

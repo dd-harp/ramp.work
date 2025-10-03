@@ -44,6 +44,7 @@ fitting_replace_spline_ty = function(yy, tt, xds_obj){
 fitting_replace_spline_t = function(new_t, xds_obj){
   xds_obj$data$tt = new_t
   xds_obj$data$yy = F_trend(new_t, xds_obj)
+  xds_obj$data$n_ty = length(new_t)
   xds_obj <- update_fitting_ty(xds_obj)
   xds_obj <- setup_trend_par(xds_obj)
   return(xds_obj)
@@ -94,6 +95,7 @@ fitting_change_spline_t = function(new_t, t_ix, xds_obj){
 #' @export
 fitting_change_spline_y = function(new_y, y_ix, xds_obj){
   stopifnot(length(new_y) == length(y_ix))
+  xds_obj$data$yy[y_ix] = new_y
   xds_obj$data$yy[y_ix] = new_y
   xds_obj <- update_fitting_ty(xds_obj)
   xds_obj <- setup_trend_par(xds_obj)
