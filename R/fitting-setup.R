@@ -44,14 +44,10 @@ setup_fitting = function(xds_obj, pfpr, jdates,
   xds_obj <- scaling_init_ty(xds_obj)
 
   xds_obj <- setup_hindcast(xds_obj, N,
-                          method = "value",
-                          impute_ty = "first",
-                          trust_ty = "first")
+                          method = "use_first")
 
   xds_obj <- setup_forecast(xds_obj, N,
-                          method = "value",
-                          impute_ty = "last",
-                          trust_ty = "last")
+                          method = "use_last")
 
   xds_obj <- update_fitting_ty(xds_obj)
 

@@ -4,18 +4,14 @@
 \alias{impute_value}
 \title{Impute the baseline}
 \usage{
-impute_value(ix, xds_obj, impute_ty, trust_ty, N = c())
+impute_value(y, impute_y, N = 1)
 }
 \arguments{
-\item{ix}{the index (or indices) of a node (or nodes) to replace}
+\item{y}{a set of y values}
 
-\item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+\item{impute_y}{a text string to dispatch \code{impute_value}}
 
-\item{impute_ty}{a text string to dispatch \code{impute_value}}
-
-\item{trust_ty}{a text string to dispatch \code{get_ty}}
-
-\item{N}{(optional) the number to return}
+\item{N}{the length of the return value}
 }
 \value{
 numeric
