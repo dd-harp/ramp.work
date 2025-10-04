@@ -4,15 +4,15 @@
 \alias{setup_post_obs_y}
 \title{Forecast a Baseline}
 \usage{
-setup_post_obs_y(y, model)
+setup_post_obs_y(y, xds_obj)
 }
 \arguments{
 \item{y}{the interpolation points}
 
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+a \strong{\code{ramp.xds}} xds_obj object
 }
 \description{
 Forecast a Baseline

@@ -1,90 +1,83 @@
 #' @title Set the forecast interpolation
 #'
-#' @param model a **`ramp.xds`** model object
+#' @param xds_obj a **`ramp.xds`** xds_obj object
 #' @param N the number of years to forecast
 #' @param method to dispatch setup_post_obs_y
-#' @param impute_ty to dispatch `impute_baseline_ty`
-#' @param trust_ty to dispatch `get_trusted_ty`
 #'
-#' @returns a **`ramp.xds`** model object
+#' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_forecast = function(model, N=0,
-                          method = "value",
-                          impute_ty = "last",
-                          trust_ty = "last"){
+setup_forecast = function(xds_obj, N=0,
+                          method = "use_last"){
 
   forecast <- list()
 
   class(method) <- method
   forecast$method = method
 
-  forecast$impute_ty <- impute_ty
-  forecast$trust_ty <- trust_ty
-
-  if(N==0) N=length(model$forecast$tt)
+  if(N==0) N=length(xds_obj$forecast$tt)
   forecast$N <- N
 
 
-  post_yrs = max(model$data$years) + c(1:N)
+  post_yrs = max(xds_obj$data$years) + c(1:N)
   forecast$yrs = post_yrs
   forecast$tt = post_yrs*365
   forecast$yy = rep(1, N)
 
-  model$forecast <- forecast
+  xds_obj$forecast <- forecast
 
-  model <- forecast_ty(model)
+  xds_obj <- forecast_ty(xds_obj)
 
-  return(model)
+  return(xds_obj)
 }
 
 #' @title Set the forecast interpolation
 #'
-#' @param model a **`ramp.xds`** model object
+#' @param xds_obj a **`ramp.xds`** xds_obj object
 #' @param ix (optional) indices for [impute_value]
 #'
-#' @returns a **`ramp.xds`** model object
+#' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-forecast_ty = function(model, ix=c()){with(model$forecast,{
-  yy <- impute_value(ix, model, impute_ty, trust_ty, N)
-  model <- setup_post_obs_y(yy, model)
-  return(model)
+forecast_ty = function(xds_obj, ix=c()){with(xds_obj$forecast,{
+  yy <- xds_obj$data$yy
+  xds_obj <- setup_post_obs_y(yy, xds_obj)
+  return(xds_obj)
 })}
 
 #' @title Forecast a Baseline
 #'
 #' @param y the interpolation points
-#' @param model a **`ramp.xds`** model object
+#' @param xds_obj a **`ramp.xds`** xds_obj object
 #'
-#' @returns a **`ramp.xds`** model object
+#' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_post_obs_y = function(y, model){
-  UseMethod("setup_post_obs_y", model$forecast$method)
+setup_post_obs_y = function(y, xds_obj){
+  UseMethod("setup_post_obs_y", xds_obj$forecast$method)
 }
 
 #' @title Set forecast interpolation points
 #'
 #' @inheritParams setup_post_obs_y
 #'
-#' @returns a **`ramp.xds`** model object
+#' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_post_obs_y.value = function(y, model){
-  N <- model$forecast$N
-  model$forecast$yy = rep(y, N)
-  return(model)
+setup_post_obs_y.use_last = function(y, xds_obj){
+  N <- xds_obj$forecast$N
+  xds_obj$forecast$yy = rep(tail(y,1), N)
+  return(xds_obj)
 }
 
 #' @title Set forecast interpolation points
 #'
 #' @inheritParams setup_post_obs_y
 #'
-#' @returns a **`ramp.xds`** model object
+#' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_post_obs_y.asis= function(y, model){
-  model$fitting$post$yy = y
-  return(model)
+setup_post_obs_y.asis= function(y, xds_obj){
+  xds_obj$fitting$post$yy = y
+  return(xds_obj)
 }

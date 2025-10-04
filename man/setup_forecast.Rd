@@ -4,27 +4,17 @@
 \alias{setup_forecast}
 \title{Set the forecast interpolation}
 \usage{
-setup_forecast(
-  model,
-  N = 0,
-  method = "value",
-  impute_ty = "last",
-  trust_ty = "last"
-)
+setup_forecast(xds_obj, N = 0, method = "use_last")
 }
 \arguments{
-\item{model}{a \strong{\code{ramp.xds}} model object}
+\item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
 
 \item{N}{the number of years to forecast}
 
 \item{method}{to dispatch setup_post_obs_y}
-
-\item{impute_ty}{to dispatch \code{impute_baseline_ty}}
-
-\item{trust_ty}{to dispatch \code{get_trusted_ty}}
 }
 \value{
-a \strong{\code{ramp.xds}} model object
+a \strong{\code{ramp.xds}} xds_obj object
 }
 \description{
 Set the forecast interpolation

@@ -4,13 +4,7 @@
 \alias{setup_hindcast}
 \title{Hindcast a Baseline}
 \usage{
-setup_hindcast(
-  xds_obj,
-  N = 0,
-  method = "value",
-  impute_ty = "mean",
-  trust_ty = "first"
-)
+setup_hindcast(xds_obj, N = 0, method = "use_first")
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} xds_obj object}
@@ -18,10 +12,6 @@ setup_hindcast(
 \item{N}{the number of years to hindcast}
 
 \item{method}{to dispatch setup_pre_obs_ty}
-
-\item{impute_ty}{to dispatch \code{impute_baseline_ty}}
-
-\item{trust_ty}{to dispatch \code{get_trust_ty}}
 }
 \value{
 a \strong{\code{ramp.xds}} xds_obj object

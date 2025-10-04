@@ -3,13 +3,17 @@ title: "Pipeline"
 output: html_document
 ---
 
+
+
 We want to automate the process of model fitting and baseline reconstruction. It is a common enough task to spell it out. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ramp.xds)
+library(Matrix)
+library(expm)
 library(ramp.library)
 library(ramp.control)
-suppressMessages(library(ramp.work))
+library(ramp.work)
 library(ramp.uganda)
 ```
 
@@ -34,6 +38,14 @@ Sys.time()-x0 -> t1
 i = 132
 prts <- get_district_pfpr_i(i)
 district_name <- prts$district_name[1]
+```
+
+```{r}
+local_data <- list()
+local_data$pfpr = prts$pfpr
+local_data$jdates = prts$jdate
+loc <- data.frame(local_data)
+write.table(loc, "pfpr_time_series.tbl")
 ```
 
 
