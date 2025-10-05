@@ -43,7 +43,7 @@ model <- xds_scaling(model)
 Now, we set up fitting, and we pass the `pfpr` time series and the paired `jdates`:  
 
 ```{r, eval=F}
-model <- setup_fitting_model(model, pfpr, jdates)
+model <- setup_fitting(model, pfpr, jdates)
 ```
 
 During fitting, the *Pf*PR time series `pfpr` and the julian dates `jdates` are stored on the `fitting` object, along with a set of options. 

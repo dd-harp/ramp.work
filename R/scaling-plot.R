@@ -82,6 +82,8 @@ lines_eirpr <- function(xds_obj, clrs= "black", llty = 1){
 #' @param ix the subset of with orbits to plot
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param clrs a [character] vector of colors
+#'
+#' @export
 add_eirpr_seasonal_profile = function(ix, xds_obj, clrs){
   with(xds_obj$outputs$scaling, points(aeir, pr, col = clrs))
   for(i in ix) add_orbits(i, xds_obj, clrs[i])

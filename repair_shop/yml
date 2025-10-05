@@ -1,41 +1,3 @@
-template:
-  bootstrap: 5
-  math-rendering: mathjax
-url: https://dd-harp.github.io/ramp.work
-navbar:
-  left:
-  - text: Articles
-    menu:
-    - text: Scaling
-      href: articles/Scaling.html
-  - text: Functions
-    href: reference/index.html
-  right:
-  - icon: fa-github
-    href: https://github.com/dd-harp/ramp.work/
-home:
-  sidebar:
-    structure:
-    - links
-    - license
-    - community
-    - citation
-    - authors
-    - dev
-reference:
-- title: Scaling
-  desc: |
-    Compute Scaling Relationships
-  contents:
-  - xds_scaling
-  - xds_scaling.eir
-  - xds_scaling.Lambda
-  - xds_scaling_Lambda
-  - compute_Lambda_threshold
-  - plot_eirVpr
-  - plot_eirpr
-  - lines_eirVpr
-  - lines_eirpr
 - title: Metrics
   desc: |
     Metric Conversion
@@ -163,8 +125,8 @@ reference:
   - setup_hindcast
   - hindcast_ty
   - setup_pre_obs_y
-  - setup_pre_obs_y.use_first
   - setup_pre_obs_y.mirror
+  - setup_pre_obs_y.value
   - setup_pre_obs_y.asis
 - title: Forecasting
   desc: |
@@ -181,15 +143,16 @@ reference:
   - setup_forecast
   - setup_post_obs_y
   - setup_post_obs_y.asis
-  - setup_post_obs_y.use_last
+  - setup_post_obs_y.value
 - title: Imputation
   desc: |
     No methods to set subclass
   contents:
   - setup_imputation
   - get_ty
-  - impute_spline_y
+  - impute_baseline_ty
   - impute_value
+  - impute_value.all
   - impute_value.first
   - impute_value.gam
   - impute_value.last
@@ -240,27 +203,3 @@ reference:
   - restore_pr2history
   - save_pr2history
   - scaling_init_ty.eir
-  - change_forecast_ix
-  - change_forecast_ty
-  - compute_impact
-  - event_chop_spline_t
-  - fit_shock
-  - fitting_change_spline_t
-  - fitting_change_spline_ty
-  - fitting_change_spline_y
-  - fitting_get_spline_ty
-  - fitting_replace_spline_t
-  - fitting_replace_spline_ty
-  - fitting_replace_spline_y
-  - get_init_X.shock
-  - get_limits_X.shock
-  - get_yix_after_bednet_round
-  - get_yix_after_irs_round
-  - setup_bednet_events
-  - setup_fitting_indices.shock
-  - time_since_event
-  - update_function_X.shock
-  - setup_irs_events
-  - show_bednet_events
-  - show_events
-  - show_irs_events

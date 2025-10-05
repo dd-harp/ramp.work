@@ -3,63 +3,49 @@ title: "Pipeline"
 output: html_document
 ---
 
+
+
 We want to automate the process of model fitting and baseline reconstruction. It is a common enough task to spell it out. 
 
-```{r}
+```{r, warning=FALSE, message=FALSE}
 library(ramp.xds)
+library(Matrix)
+library(expm)
 library(ramp.library)
 library(ramp.control)
-suppressMessages(library(ramp.work))
+library(ramp.work)
 library(ramp.uganda)
 ```
 
-## Working Directory
-
-```{r}
-save_to = "/Users/smitdave/Nextcloud/testing/"
-#save_to = "/Users/smitdave/git/ramp.uganda/models/"
-#save_to = "/Users/smitdave/Library/CloudStorage/Box-Box/RAMP/models/" 
-```
 
 
-## Base Model 
+## Getting Started 
 
 We want to work with a model family, so we set one up. We will want to use the `eirpr` table created by `xde_scaling_lambda`, but we only need to do it once: 
 
-```{r, eval=F}
+```{r}
 # The block sets `eval=F` to avoid having to repeat this step
 x0 <- Sys.time()
 sip_si <- xds_setup_eir(Xname = "SIP")
 sip_si <- xds_scaling(sip_si)
-Sys.time()-x0
-```
-
-```{r}
 plot_eirpr(sip_si)
+Sys.time()-x0 -> t1
 ```
 
-```{r, eval=F}
-save_as <- "sip_si.rds" 
-file_name <- paste(save_to, save_as, sep="")
-print(file_name)
-```
-
-```{r, eval=F}
-file_name <- paste(save_to, save_as, sep="")
-saveRDS(sip_si, file_name)
-```
-
-```{r, eval=F}
-sip_si_from_file <- readRDS(file_name)
-```
-
-## Read Data 
-
+## Time Series Data 
 
 ```{r prts}
 i = 132
 prts <- get_district_pfpr_i(i)
 district_name <- prts$district_name[1]
+```
+
+```{r}
+local_data <- list()
+local_data$pfpr = prts$pfpr
+local_data$jdates = prts$jdate
+loc <- data.frame(local_data)
+write.table(loc, "pfpr_time_series.tbl")
 ```
 
 
@@ -88,142 +74,58 @@ fit_mod <- xds_solve(fit_mod, times = prts$jdate)
 show_fit(fit_mod)
 ```
 
-```{r, eval=F}
+```{r}
 x0 <- Sys.time()
 fit_mod1 <- pr2history_xm(fit_mod) 
-Sys.time()-x0
-```
-```{r}
 show_fit(fit_mod1)
+Sys.time()-x0 -> t2
 ```
+
 
 ```{r, eval=F}
 x0 <- Sys.time()
 fit_mod1a <- pr2history(fit_mod1) 
-show_fit(fit_mod1a)
-Sys.time()-x0
+show_fit(fit_mod1)
+show_fit(fit_mod1a, add=TRUE)
+Sys.time()-x0 -> t3
 ```
 
 
-```{r, eval=F}
+```{r}
 x0 <- Sys.time()
 fit_mod2 <- pr2history(fit_mod) 
-Sys.time()-x0
+show_fit(fit_mod2)
+Sys.time()-x0 -> t4
 ```
 
 ```{r}
-show_fit(fit_mod2)
-```
-
-```{r, eval=F}
 x0 <- Sys.time()
 fit_mod2a <- pr2history_xm(fit_mod2) 
-Sys.time()-x0
+show_fit(fit_mod2)
+show_fit(fit_mod2a, add=TRUE)
+Sys.time()-x0 -> t5
 ```
 
-```{r}
-show_fit(fit_mod2a)
-```
-
-## Evaluation 
+## Saving Models 
 
 ```{r, eval=F}
-irs_history <- make_irs_history(district_name)
-bednet_history <- make_bednet_history(district_name)
-```
-
-```{r}
-devtools::load_all()
+save_to = "../vignettes/"
+#save_to = "/Users/smitdave/Nextcloud/testing/"
+#save_to = "/Users/smitdave/git/ramp.uganda/models/"
+#save_to = "/Users/smitdave/Library/CloudStorage/Box-Box/RAMP/models/" 
 ```
 
 ```{r, eval=F}
-recon <- setup_vector_control_evaluation(fit_mod, irs_history, bednet_history)
+save_as <- "sip_si.rds" 
+file_name <- paste(save_to, save_as, sep="")
+print(file_name)
 ```
 
 ```{r, eval=F}
-recon$fitting$data$modified
+file_name <- paste(save_to, save_as, sep="")
+saveRDS(fit_mod1a, file_name)
 ```
-
-## Setup Imputation 
 
 ```{r, eval=F}
-recon <- setup_imputation(recon)
-```
-
-## Setup Imputation 
-
-## The Pipeline
-
-This is a pipeline for Uganda. 
-
-```{r}
-#' @title Reconstruction Pipeline 
-#' @description 
-#' Run the baseline reconstruction pipeline for the 
-#' \eqn{i^{th}} 
-#' 
-#' @param i the index of a district to pull from  
-#' @param base_model_name the stem name of a model   
-#' @param wd_name the working directory name 
-#' @param impute 
-#'
-#' @returns
-#' @export
-#'
-#' @examples
-pipeline_i = function(i, base_model_name, wd_name, impute="mean"){
-  # read the model from 
-  model_file <- paste(wd_name, base_model_name, ".rds", sep="")
-  model <- readRDS(model_file)
-  print(model_file)
-  
-  # pull a time series  
-  prts <- get_district_pfpr_i(i)
-  district_name <- prts$district_name[1]
-  dir_name <- prts$dir_name[1]
-  
-  # setup the fitting 
-  fit_mod <- setup_fitting(model, prts$pfpr, prts$jdate)
-  fit_mod <- pr2history(prts$pfpr, prts$jdate, fit_mod)
-  filename1 <- paste(base_model_name, "_", dir_name, "_naive_history.rds", sep="") 
-  saveRDS(fit_mod, paste(wd_name, filename1, sep=""))
-  print(filename1)
-  
-  irs_history <- ramp.uganda::make_irs_history(district_name)
-  bednet_history <- ramp.uganda::make_bednet_history(district_name)
-  recon <- setup_vector_control(model, irs_history, bednet_history)
- 
-  recon <- setup_baseline_reconstruction(recon,)
-  
-  recon <- reconstruct_baseline(fit_mod, prts$pfpr, prts$jdate) 
-  recon <- fit_mod
-  filename2 <- paste(base_model_name, "_", dir_name, "_reconstructed_history.rds", sep="") 
-  saveRDS(recon, paste(wd_name, filename2, sep=""))
-  print(filename2)
-  
-  baseline <- fit_mod 
-  filename3 <- paste(base_model_name, "_", dir_name, "_baseline.rds", sep="") 
-  saveRDS(baseline, paste(wd_name, filename3, sep=""))
-  print(filename3)
-  
-
-  return(list(district_name = district_name, 
-              dir_name = dir_name, 
-              prts = prts, 
-              base_model = model,
-              naive_history = filename1, 
-              reconstructed_history = filename2,
-              baseline = filename3)) 
-}
-
-```
-
-this is ugly 
-
-```{r, eval=F}
-i = 132
-base_mod = "sip_si_base" 
-wd = "/Users/smitdave/git/ramp.uganda/models/"
-
-pipeline_i(i, base_mod, wd, impute="mean") -> donkey_doug
-```
+sip_si_from_file <- readRDS(file_name)
+``` 

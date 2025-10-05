@@ -140,7 +140,7 @@ xds_scaling_Lambda = function(Lambda, xds_obj, scaling){
   M_t = tail(MY$M, 365)
   orbits$M = M_t
   M = mean(M_t)
-  N <- length(scaling)
+  N <- length(scaling$orbits)
 
   if(N == 0){
     scaling = list(Lambda=Lambda, pr=pr, ni=ni, eir=eir, M=M)
