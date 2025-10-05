@@ -11,16 +11,12 @@ Encoding: UTF-8
 LazyData: true
 Remotes: 
   github::dd-harp/ramp.xds 
-  github::dd-harp/ramp.control
-  github::dd-harp/ramp.library
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Depends:
   ramp.xds,
   MASS
 Imports:
-  ramp.control,
-  ramp.library,
   expm, 
   stats 
 Suggests:
