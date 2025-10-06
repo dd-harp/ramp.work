@@ -8,6 +8,8 @@ navbar:
     menu:
     - text: Scaling
       href: articles/Scaling.html
+    - text: Metric Conversion
+      href: articles/MetricConversion.html
   - text: Functions
     href: reference/index.html
   right:
@@ -32,8 +34,8 @@ reference:
   - xds_scaling.Lambda
   - xds_scaling_Lambda
   - compute_Lambda_threshold
-  - plot_eirVpr
-  - plot_eirpr
+  - xds_plot_eirVpr
+  - xds_plot_eirpr
   - lines_eirVpr
   - lines_eirpr
 - title: Metrics
@@ -41,12 +43,12 @@ reference:
     Metric Conversion
   contents:
   - pr2Lambda
-  - xde_eir2ni
-  - xde_eir2pr
-  - xde_pr2eir
-  - xde_pr2Lambda
-  - xde_pr2m
-  - xde_pr2ni
+  - xds_eir2ni
+  - xds_eir2pr
+  - xds_pr2eir
+  - xds_pr2Lambda
+  - xds_pr2m
+  - xds_pr2ni
   - pr2history
   - pr2history_xm
   - eir2fqZ
@@ -64,7 +66,7 @@ reference:
   - compute_IoSD_F
   - compute_IoSD_S
   - compute_IoSD_pr
-  - add_eirpr_seasonal_profile
+  - add_eirpr_orbits
 - title: Model Fitting
   desc: |
     No methods to set subclass

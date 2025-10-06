@@ -1,16 +1,16 @@
 
-#' Plot EIR(t) *vs.* the PR(t)
+#' xds_plot EIR(t) *vs.* the PR(t)
 #'
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param i the host species index
-#' @param clrs color(s) for plotting
-#' @param llty an [integer] that specifies `lty` for plotting
+#' @param clrs color(s) for xds_plotting
+#' @param llty an [integer] that specifies `lty` for xds_plotting
 #' @param stable a [logical] set to FALSE for `orbits` and TRUE for `stable_orbits`
-#' @param add_axes a [logical] to plot add_axes only if FALSE
+#' @param add_axes a [logical] to xds_plot add_axes only if FALSE
 #'
 #' @export
-plot_eirVpr <- function(xds_obj, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
-  vars=with(xds_obj$outputs,if(stable==TRUE){stable_orbits}else{orbits})
+xds_plot_eirVpr <- function(xds_obj, i=1, clrs="black", llty=1, stable=FALSE, add_axes=TRUE){
+  vars=with(xds_obj, if(stable==TRUE){stable_orbits}else{orbits})
 
   pr = vars$terms$pr[[i]]
   eir = vars$terms$eir[[i]]
@@ -30,7 +30,7 @@ plot_eirVpr <- function(xds_obj, i=1, clrs="black", llty=1, stable=FALSE, add_ax
 #' @param pr the parasite rate
 #' @param nStrata the number of population strata
 #' @param clrs a [character] vector of colors
-#' @param llty an [integer] (or integers) that specifies `lty` for plotting
+#' @param llty an [integer] (or integers) that specifies `lty` for xds_plotting
 #'
 #' @export
 lines_eirVpr <- function(eir, pr, nStrata, clrs= "black", llty = 1){
@@ -45,15 +45,15 @@ lines_eirVpr <- function(eir, pr, nStrata, clrs= "black", llty = 1){
   }
 }
 
-#' Plot the eir-pr scaling relationship
+#' xds_plot the eir-pr scaling relationship
 #'
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param clrs a [character] vector of colors
 #' @param llty a [list]
 #'
 #' @export
-plot_eirpr <- function(xds_obj, clrs= "black", llty = 1){
-  with(xds_obj$outputs$scaling, {
+xds_plot_eirpr <- function(xds_obj, clrs= "black", llty = 1){
+  with(xds_obj$scaling, {
     ix = which(aeir>0)
     plot(aeir[ix], pr[ix], type = "l", xaxt="n", lty = llty,
          xlab = "aEIR", ylab = "PR", log="x",
@@ -79,26 +79,26 @@ lines_eirpr <- function(xds_obj, clrs= "black", llty = 1){
 #' Draw the orbit for the \eqn{i^{th}} element of
 #' eirpr$scaling.
 #'
-#' @param ix the subset of with orbits to plot
+#' @param ix the subset of with orbits to xds_plot
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param clrs a [character] vector of colors
 #'
 #' @export
-add_eirpr_seasonal_profile = function(ix, xds_obj, clrs){
-  with(xds_obj$outputs$scaling, points(aeir, pr, col = clrs))
+add_eirpr_orbits = function(ix, xds_obj, clrs){
+  with(xds_obj$scaling, points(aeir, pr, col = clrs))
   for(i in ix) add_orbits(i, xds_obj, clrs[i])
 }
 
 #' Draw the orbit for the \eqn{i^{th}} element of
 #' eirpr$scaling.
 #'
-#' @param i the index of the orbit to plot
+#' @param i the index of the orbit to xds_plot
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param clr a [character] vector of colors
 #'
 #' @export
 add_orbits = function(i, xds_obj, clr){
-  with(xds_obj$outputs$stable_orbits[[i]],{
+  with(xds_obj$stable_orbits[[i]],{
     lines(aeir, pr, col = clr)
     points(mean(aeir), mean(pr), pch=19, col=clr)
   })}
@@ -107,7 +107,7 @@ add_orbits = function(i, xds_obj, clr){
 #' eirpr$scaling, and add points at the
 #' minimum and maximum eir and pr
 #'
-#' @param i the index of the orbit to plot
+#' @param i the index of the orbit to xds_plot
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param clr a [character] vector of colors
 #'

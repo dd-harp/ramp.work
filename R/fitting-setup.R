@@ -232,7 +232,7 @@ scaling_init_ty = function(xds_obj){
 scaling_init_ty.Lambda = function(xds_obj){
 
   mean_pr <- mean(xds_obj$data$pfpr)
-  xde_pr2Lambda(mean_pr, xds_obj)$Lambda -> L
+  xds_pr2Lambda(mean_pr, xds_obj)$Lambda -> L
   xds_obj$L_obj[[1]]$Lambda <- L
 
 #  xds_obj <- fit_mean_forcing(xds_obj)
@@ -244,7 +244,7 @@ scaling_init_ty.Lambda = function(xds_obj){
   for(i in 1:length(tt)){
     ix = which(abs(xds_obj$data$jdates-tt[i]) < 365)
     loc_mn = mean(xds_obj$data$pfpr[ix])
-    L_loc = xde_pr2Lambda(loc_mn, xds_obj)$Lambda
+    L_loc = xds_pr2Lambda(loc_mn, xds_obj)$Lambda
     yy[i] = L_loc/L
   }
 
@@ -267,7 +267,7 @@ scaling_init_ty.Lambda = function(xds_obj){
 scaling_init_ty.eir = function(xds_obj){
 
   mean_pr <- mean(xds_obj$data$pfpr)
-  xde_pr2eir(mean_pr, xds_obj)$eir -> E
+  xds_pr2eir(mean_pr, xds_obj)$eir -> E
   xds_obj$EIR_obj$eir <- E
 
   yy <- xds_obj$data$yy
@@ -276,7 +276,7 @@ scaling_init_ty.eir = function(xds_obj){
   for(i in 1:length(tt)){
     ix = which(abs(xds_obj$data$jdates-tt[i]) < 365)
     loc_mn = mean(xds_obj$data$pfpr[ix])
-    E_loc = xde_pr2eir(loc_mn, xds_obj)$eir
+    E_loc = xds_pr2eir(loc_mn, xds_obj)$eir
     yy[i] = E_loc/E
   }
 

@@ -5,10 +5,10 @@
 #' @param xds_obj a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_pr2eir = function(pr, xds_obj, extend=FALSE){
-  with(xds_obj$outputs, stopifnot(exists("scaling")))
-  PR = xds_obj$outputs$scaling$pr
-  EIR = xds_obj$outputs$scaling$eir
+xds_pr2eir = function(pr, xds_obj, extend=FALSE){
+  with(xds_obj, stopifnot(exists("scaling")))
+  PR = xds_obj$scaling$pr
+  EIR = xds_obj$scaling$eir
 
   if(extend==TRUE){
     PR = c(0, PR, 1)
@@ -36,7 +36,7 @@ xde_pr2eir = function(pr, xds_obj, extend=FALSE){
 #' @param xds_obj a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_eir2pr = function(eir, xds_obj, extend=FALSE){
+xds_eir2pr = function(eir, xds_obj, extend=FALSE){
   with(xds_obj$outputs, stopifnot(exists("scaling")))
   PR = xds_obj$outputs$scaling$pr
   EIR = xds_obj$outputs$scaling$eir
@@ -66,7 +66,7 @@ xde_eir2pr = function(eir, xds_obj, extend=FALSE){
 #' @param xds_obj a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_eir2ni = function(eir, xds_obj, extend=FALSE){
+xds_eir2ni = function(eir, xds_obj, extend=FALSE){
   with(xds_obj$outputs, stopifnot(exists("scaling")))
   NI = xds_obj$outputs$scaling$ni
   EIR = xds_obj$outputs$scaling$eir
@@ -96,7 +96,7 @@ xde_eir2ni = function(eir, xds_obj, extend=FALSE){
 #' @param xds_obj a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_pr2ni = function(pr, xds_obj, extend=FALSE){
+xds_pr2ni = function(pr, xds_obj, extend=FALSE){
   with(xds_obj$outputs, stopifnot(exists("scaling")))
   PR = xds_obj$outputs$scaling$pr
   NI = xds_obj$outputs$scaling$ni
@@ -127,7 +127,7 @@ xde_pr2ni = function(pr, xds_obj, extend=FALSE){
 #' @param xds_obj a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_pr2m = function(pr, xds_obj, extend=FALSE){
+xds_pr2m = function(pr, xds_obj, extend=FALSE){
   with(xds_obj, stopifnot(exists("scaling")))
   PR = xds_obj$scaling$pr
   m = xds_obj$scaling$m
@@ -157,7 +157,7 @@ xde_pr2m = function(pr, xds_obj, extend=FALSE){
 #' @param xds_obj a [list]
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
-xde_pr2Lambda = function(pr, xds_obj, extend=FALSE){
+xds_pr2Lambda = function(pr, xds_obj, extend=FALSE){
   with(xds_obj$outputs, stopifnot(exists("scaling")))
   PR = xds_obj$outputs$scaling$pr
   Lambda = xds_obj$outputs$scaling$Lambda

@@ -30,5 +30,10 @@ compute_impact = function(history, counterfactual, times=c(), event_date = c(), 
   pr_averted_ts = pr_base[eval] - pr_hist[eval]
   d_pr_max = max(pr_averted_ts)
   d_pr_mean = mean(pr_averted_ts)
-  list(pr_hist=pr_hist, pr_base=pr_base, pr_averted_ts=pr_averted_ts, d_pr_max=d_pr_max, d_pr_mean=d_pr_mean, t_eval=eval, event_date=event_date)
+  list(pr_hist=pr_hist, pr_base=pr_base,
+       pr_averted_ts=pr_averted_ts,
+       d_pr_max=d_pr_max,
+       d_pr_mean=d_pr_mean,
+       t_eval=eval,
+       event_date=event_date)
 }
