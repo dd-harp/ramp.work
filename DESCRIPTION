@@ -5,7 +5,6 @@ Version: 1.0.0-0
 Authors@R: 
       c(person("David L.", "Smith", email = "smitdave@uw.edu", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-4367-3849")))
 Description: This software implements algorithms to support simulation-based analytics and qualitative analysis of dynamical systems 
-    
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
