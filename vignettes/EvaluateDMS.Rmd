@@ -1,0 +1,155 @@
+---
+title: "Evaluation" 
+subtitle: "A Changing Baseline Modified by Vector Control Control" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document 
+vignette: >
+  %\VignetteIndexEntry{Evaluation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+### libraries
+```{r}
+library(ramp.xds)
+library(ramp.library)
+library(ramp.control)
+suppressMessages(library(ramp.work))
+```
+
+## A Fitted Model 
+
+We start with a model that was already fitted to data using the standard options. 
+
+```{r Fitted Model}
+sip_si <- readRDS("sip_si.rds")
+show_fit(sip_si)
+```
+
+## IRS Events 
+
+This sets up a set of IRS events, with a figure: 
+
++ the Julian dates
+
++ the IRS pesticide used
+
++ the peak coverage
+
+```{r setup irs events}
+irs_jdates <- c(2861, 3256, 3622) 
+irs_type <- c("fludora_fusion", "actellic", "actellic") 
+irs_peak <- c(.95, .95, .95) 
+sip_si <- setup_irs_events(sip_si, irs_jdates, irs_type, irs_peak)
+show_irs_events(sip_si, mx=0.5)
+```
+## Bed Net Mass Distributions  
+
+This sets up a set of mass bed net distributions, with a figure: 
+
++ the Julian dates
+
++ the type of net used
+
++ the peak coverage
+      
+```{r}
+#make_bednet_history("Terego District")
+bednet_jdates <- c(-200, 776, 2176, 3240)
+bednet_type <- rep("pbo", 4)
+bednet_peak <- rep(0.95, 4)
+sip_si <- setup_bednet_events(sip_si, bednet_jdates, bednet_type, bednet_peak)
+show_bednet_events(sip_si, mx=0.5)
+```
+
+## Revisiting the Trend
+
+The trend is given by a spline function, specified by adding a set of interpolation points. We want some consistency in how we do imputation, so we want to reposition the spline points.  A function to do this is called `event_chop_spline_t` 
+
+```{r}
+show_events(sip_si, mx = 0.4)
+ti <- event_chop_spline_t(sip_si, fu=180, b4=60, mngp =80)
+points(ti, 0*ti, pch = 15, col = "purple")
+```
+
+
+We use this function to change the points. Note that it uses the *y* values from the trend function.  
+
+```{r}
+sip_si1 <- fitting_replace_spline_t(ti, sip_si)
+show_events(sip_si1, mx=0.4)
+```
+
+Now, we can run the model through fitting again. This time around, the fits look a lot better. 
+
+```{r}
+sip_si1 <- pr2history_xm(sip_si1)
+show_events(sip_si1, mx=0.5)
+```
+
+There's a lot going on in this plot. The redish lines are bed net mass distribution events. The number is the round number, and the text is the type.  The blueish lines are irs spraying events. The number is the round number and the text is the pesticide used.  The $\oplus$ are the $t$ values of the interpolation points, labeled with indices.  Sometimes the index `1` is missing: for bed nets, there were rounds that happened in 2013, but our DHIS2 data starts in 2015. The first node for the interpolating point is at 0.  This is meant to be quick, dirty, and useful -- not beautiful. 
+
+## Thinking about Trust 
+
+Now, to evaluate vector control, we have to grapple with the problem of understanding malaria transmission as a *changing baseline* that has been modified by control.  In the figure above, we have to ask which interpolation points we can use as a basis for imputing the values of the others. This function computes the time since the last event for each time node.  
+
+```{r}
+last_event = function(xds_obj){
+  N = length(xds_obj$data$tt)
+  last = rep(0, N)
+  for(i in 2:N){
+    delta = xds_obj$data$tt[i] - c(xds_obj$bednet_obj$events$jdate, xds_obj$irs_obj$events$jdate)
+    last[i] = min(delta[delta>0])
+  }
+  return(last)
+}
+```
+
+An arbitrary cutoff of a year. 
+
+```{r}
+last_event(sip_si1)>365
+```
+
+
+## Changing the Interpolation Points for Fitting 
+
+However you decide to impute a new value, you need to update a model with those values. For this there are a few utilities. The first one gets the $t,y$ values and their indices from the object: 
+
+```{r}
+fitting_get_spline_ty(sip_si1)
+```
+It might be useful to use `show_events` to figure out which values you might want to change. 
+
+If you want to replace an entire set: 
+
++ `fitting_replace_spline_y` to replace all the $y$ values
+
+```{r}
+y1 <- fitting_get_spline_ty(sip_si1)$yy
+sip_si2 <- fitting_replace_spline_y(sqrt(y1), sip_si1)
+y2 <- fitting_get_spline_ty(sip_si2)$yy
+sum(y2^2 - y1)+1
+```
+
++ `fitting_replace_spline_t` to replace all the $t$ values (the $y$-values get updated by calling `F_trend`)
+
+This was demonstrated above. 
+
++ `fitting_replace_spline_ty` to replace all the $t,y$ pairs
+
+
++ `fitting_change_spline_y` to change all some of $y$ values 
+
+```{r}
+y1.4 = y1[4]
+sip_si3 <- fitting_change_spline_y(y1.4^2, 4, sip_si1)
+y3.4 <- fitting_get_spline_ty(sip_si3)$yy[4]
+c(y1.4, sqrt(y3.4)) 
+```
+
++ `fitting_change_spline_t` to change some of the $t$ values (the $y$-values get updated by calling `F_trend`)
+
++ `fitting_change_spline_ty` to change some of the $t,y$ pairs
+
+
