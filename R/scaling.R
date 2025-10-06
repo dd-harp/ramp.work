@@ -56,7 +56,7 @@ xds_scaling.eir = function(xds_obj, N=25){
     stable_orbits[[i]]$aeir = 365*tail(XH$eir, 365)
   }
   xds_obj$scaling <- list(aeir=365*dEIR, eir=dEIR, pr=pr, ni=ni)
-  xds_obj$stable_orbits <- stable_orbits
+  xds_obj$scaling$stable_orbits <- stable_orbits
 
   return(xds_obj)
 }
@@ -99,7 +99,7 @@ xds_scaling.Lambda = function(xds_obj, N=30){
 
   xds_obj$scaling <- with(scaling, list(Lambda=Lambda, pr=pr, ni=ni, eir=eir, M=M))
   xds_obj$scaling$aeir = xds_obj$scaling$eir*365
-  xds_obj$stable_orbits <- scaling$orbits
+  xds_obj$scaling$stable_orbits <- scaling$orbits
 
   return(xds_obj)
 }
