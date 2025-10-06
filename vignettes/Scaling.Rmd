@@ -1,6 +1,6 @@
 ---
 title: "Scaling" 
-subtitle: "Computing Scaling Relationships for Malaria Metrics" 
+subtitle: "Compute Scaling Relationships for Malaria Metrics" 
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document
@@ -10,151 +10,88 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-***
+**`ramp.work`** has functions to compute scaling relationships: how do various measures of malaria change across the spectrum of malaria transmission intensity?   
 
-A core need in malaria epidemiology is to understand the relationship between the *Pf*PR and other metrics, including measures of burden. To address this need, **`ramp.work`** developed a function, called `xds_scaling,` that computes *scaling relationships* for models of malaria epidemiology. The functions do the following:
+This vignette explains the functions in **`ramp.work`**  that:
+
++ compute scaling relationships
+
++ visualize scaling relationships
+
+A longer introduction to scaling can be found in [SimBA](https://faculty.washington.edu/smitdave/simba/scaling.html).
+
+`xds_scaling` enables [Metric Conversion](https://dd-harp.github.io/ramp.work/articles/MetricConversion.html)
+
+## Pseudocode
+
+Suppose that we have defined a model family: we modify a single parameter that changes the mean intensity of exposure or transmission, but we leave the rest of the parameters fixed. 
+
++ To study the relationship between exposure and malaria outcomes, we might vary the mean annual EIR. 
+
++ To study the relationship between mosquito density and outcomes, we might vary the average annual emergence rate. $\Lambda.$ 
+
+To compute scaling relationships in systems with a seasonal forcing pattern, we will need to compute the *stable orbits* and link the outputs to the average annual values. 
+
+The function [`xds_scaling`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.html) handles this task. 
 
 + create a mesh of values for mean forcing, either 
 
-    - the mean annual EIR, $\bar E$ or `aEIR` or 
+    - the mean daily EIR, $\bar E.$ 
     
-    - the mean daily emergence rate for adult mosquitoes, $\bar \Lambda$ or `Lambda`
+    - the mean daily emergence rate for adult mosquitoes, $\bar \Lambda$ or `Lambda.` 
     
-+ for each mesh value 
++ for each mesh value:
 
-    - compute stable orbits for terms, including the *Pf*PR
+    - compute and store the stable orbits for important terms
     
-    - compute and record the mean values of the stable orbits 
-
-For a longer discussion, see [**SimBA**](https://faculty.washington.edu/smitdave/simba/scaling.html)
-
-***
-
-**Demo** 
+    - compute and store the mean values of the stable orbits 
+    
+## Example 
 
 Load the required packages:
 
-```{r}
+```{r, message=FALSE}
 library(ramp.xds)
 library(ramp.work)
 ```
 
-
-We set up a model forced by the EIR with a seasonal pattern: 
+Set up a model forced by the EIR with a seasonal pattern, and we use `ramp.xds::show_season` to see the pattern: 
 
 ```{r}
-model <- xds_setup_eir(eir = 1/365, season_par = makepar_F_sin(bottom = 0.2, pw=2))
+Spar  <- makepar_F_sin(bottom = 0.2, pw=2)
+model <- xds_setup_eir(eir = 1/365, season_par = Spar)
 model <- xds_solve(model)
 show_season(model)
 ```
-Next, we call `scaling` and plot the *Pf*PR as a function of the average annual *Pf*EIR on a semi-log plot:
+
+The function [`xds_scaling`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.html) computes and stores the values:
+
++ `xds_scaling$scaling` stores the average annual values by name
+
++ `xds_scaling$scaling$stable_orbits` stores the stable orbits
 
 ```{r}
 xds_scaling(model) -> model
+names(model$scaling)
 ```
+
+A `plot_eirpr` plot the *Pf*PR as a function of the average annual *Pf*EIR on a semi-log plot. A function `add_eirpr_orbits` adds the stable orbits for an indexed subset. We use the `virisLite::turbo` color scheme so it is easy to relate the orbit and the mean value.  
 
 ```{r}
 library(viridisLite)
-plot_eirpr(model)
-add_eirpr_seasonal_profile(c(9, 13, 17, 21), model, clrs = turbo(25))
+xds_plot_eirpr(model)
+ix_subset = c(9, 13, 17, 21)
+add_eirpr_orbits(ix_subset, model, clrs = turbo(25))
 ```
 
-## Using `xds_scaling`
+## Notes 
+
++ `xds_scaling` dispatches on `xds_obj$forced_by,` which is set up either by `xds_setup_eir` or by the `make_L_obj_trivial.` 
+
++ The function `xds_scaling.eir()` creates a mesh over logged values of on an even mesh for values of `log(aEIR)` running from $10^{-2}$ up to $10^{3}.$ 
+
++ The function `xds_scaling.Lambda()` computes a creates a crude mesh. The first step is to compute an approximate pseudo-threshold value $L.$ The initial mesh looks has five values $c(L/100, L/5, L, 5L, 100L).$ Subsequent values are identified by picking a new value in the interval that has the largest change in *Pf*PR. After adding the new value, the  
 
 
-The function `xde_scaling_eir()` defines the relationship between the EIR and the PR. It analyzes stable orbits and outputs the average annual EIR and average annual PR for an even mesh of `log(aEIR)` values running from $10^{-1}$ up to $10^{3}$ The code is in `mob_library/Work`
-
-To illustrate, we pick a function describing a seasonal pattern using `ramp.xds::make_F_sin`
-
-```{r Fsin, fig.height=4, fig.width=7}
-tt <- seq(0, 730, by=5) 
-p1 <- makepar_F_sin(bottom=0.2, pw=1.2)
-Fsin <- make_function(p1)
-plot(tt, Fsin(tt), type="l", xlab = "Time (Days)", ylab = "Seasonal Pattern")
-```
-
-Next, we set up a cohort model: 
-
-```{r}
-xds_setup_eir(Xname = "SIS", F_season=Fsin) -> sis
-```
-
-```{r}
-xds_solve(sis) -> sis
-```
-
-The function `xde_scaling_eir` runs the model over a mesh of `N=25` values: 
-
-```{r}
-xds_scaling(sis, 25) -> sis
-```
-
-The results are attached as `sis$outputs$eirpr` 
-
-```{r, fig.height=4, fig.width=7}
-plot_eirpr(sis)
-```
-
-
-```{r, fig.height=4, fig.width=7, eval=F}
-plot_eirpr(sis)
-add_eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
-```
-
-## Plotting 
-
-```{r}
-#devtools::load_all()
-```
-
-```{r}
-Lo = list(
-  F_season = Fsin
-)
-xds_setup(Xname = "SIS", Loptions=Lo) -> sis_full
-```
-
-```{r}
-xds_solve(sis_full) -> sis_full
-```
-
-```{r, xde_scaling.Lambda}
-xds_scaling(sis_full, 30) -> sis_full
-```
-
-```{r}
-plot_eirpr(sis_full)
-```
-
-
-```{r}
-with(sis_full$outputs$scaling, plot(M, pr, type = "l", log = "x"))
-with(sis_full$outputs$stable_orbits[[18]], lines(M, pr, type = "l"))
-```
-
-## `xde_pr2eir()`
-
-Since `xde_scaling` defines the relationship between the EIR and the PR, we can now run `xde_pr2eir()` to get the predicted value of the eir, for any given value of the pr. The code is in `mob_library/Work`
-
-
-We can run this for 50 randomly chosen values of the *Pf*PR. 
-
-```{r}
-preir_i = xde_pr2eir(c(0.001, runif(25, 0, 1), 0.999), sis)
-```
-
-The function flags any values that are outside of the acceptable range. This may not seem important for the SIS model, but the range of other models can be bounded, so we don't want to return nonsense values.  
-
-```{r}
-preir_i$errors
-```
-
-We can plot the others:  
-
-```{r}
-plot_eirpr(sis)
-with(sis$outputs$scaling, points(aeir, pr, pch = 15))
-with(preir_i, points(365*eir, pr, pch = 19, col = "red"))
-```
 
 

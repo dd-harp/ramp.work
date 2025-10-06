@@ -8,7 +8,7 @@ eirpr$scaling.}
 add_orbits(i, xds_obj, clr)
 }
 \arguments{
-\item{i}{the index of the orbit to plot}
+\item{i}{the index of the orbit to xds_plot}
 
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
 

@@ -15,7 +15,7 @@ lines_eirVpr(eir, pr, nStrata, clrs = "black", llty = 1)
 
 \item{clrs}{a \link{character} vector of colors}
 
-\item{llty}{an \link{integer} (or integers) that specifies \code{lty} for plotting}
+\item{llty}{an \link{integer} (or integers) that specifies \code{lty} for xds_plotting}
 }
 \description{
 Add lines for the EIR(t) \emph{vs.} the PR(t)
