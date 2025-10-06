@@ -104,7 +104,7 @@ add_eirpr_seasonal_profile(c(5,10,15,20), sis, clrs = turbo(25))
 ## Plotting 
 
 ```{r}
-devtools::load_all()
+#devtools::load_all()
 ```
 
 ```{r}
@@ -126,13 +126,10 @@ xds_scaling(sis_full, 30) -> sis_full
 plot_eirpr(sis_full)
 ```
 
-```{r}
-with(sis_full$scaling, plot(Ro, pr, type = "l", log="x"))
-```
 
 ```{r}
-with(sis_full$scaling, plot(M, pr, type = "l", log = "x"))
-with(sis_full$scaling$stable_orbits[[18]], lines(M, pr, type = "l"))
+with(sis_full$outputs$scaling, plot(M, pr, type = "l", log = "x"))
+with(sis_full$outputs$stable_orbits[[18]], lines(M, pr, type = "l"))
 ```
 
 ## `xde_pr2eir()`
@@ -156,7 +153,7 @@ We can plot the others:
 
 ```{r}
 plot_eirpr(sis)
-with(sis$scaling, points(aeir, pr, pch = 15))
+with(sis$outputs$scaling, points(aeir, pr, pch = 15))
 with(preir_i, points(365*eir, pr, pch = 19, col = "red"))
 ```
 

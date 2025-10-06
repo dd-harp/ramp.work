@@ -11,19 +11,19 @@
 #' @return a **`ramp.xds`** model object
 #'
 #' @export
-fit_bednet_coverage <- function(xds_obj, options=list()){
+fit_bednet_contact <- function(xds_obj, options=list()){
 
   options$max_ix = 0
-  options <- setup_fitting_indices(xds_obj, "bednet_coverage", options)
+  options <- setup_fitting_indices(xds_obj, "bednet_contact", options)
 
 
-  bednet_coverage = get_init_X(xds_obj, "bednet_coverage")
-  lims = get_limits_X(xds_obj, "bednet_coverage")
+  bednet_contact = get_init_X(xds_obj, "bednet_contact")
+  lims = get_limits_X(xds_obj, "bednet_contact")
 
-  fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_coverage",
+  fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_contact",
                            xds_obj=xds_obj, options=options)
 
-  xds_obj <- update_function_X(fitit$minimum, xds_obj, "bednet_coverage", options)
+  xds_obj <- update_function_X(fitit$minimum, xds_obj, "bednet_contact", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }
@@ -34,7 +34,7 @@ fit_bednet_coverage <- function(xds_obj, options=list()){
 #'
 #' @returns indices
 #' @export
-setup_fitting_indices.bednet_coverage = function(xds_obj, feature, options){
+setup_fitting_indices.bednet_contact = function(xds_obj, feature, options){
   if(length(options)==0)
     options$bednet_ix =c(1:length(xds_obj$bednet_obj$cover_obj$nRounds))
 
@@ -50,15 +50,15 @@ setup_fitting_indices.bednet_coverage = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control get_bednet_coverage change_bednet_coverage make_F_cover_bednet
+#' @importFrom ramp.control get_bednet_contact change_bednet_contact_multiround make_F_cover_bednet
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
-update_function_X.bednet_coverage = function(X, xds_obj, feature="bednet_coverage", options=list()){
+update_function_X.bednet_contact = function(X, xds_obj, feature="bednet_contact", options=list()){
 
-  bednet_coverage <- get_bednet_coverage(xds_obj)
-  bednet_coverage <- with(options, modify_vector_X(bednet_ix, bednet_coverage, X, bednet_ixX))
-  xds_obj <- change_bednet_coverage(bednet_coverage, xds_obj)
+  bednet_contact <- get_bednet_contact(xds_obj)
+  bednet_contact <- with(options, modify_vector_X(bednet_ix, bednet_contact, X, bednet_ixX))
+  xds_obj <- change_bednet_contact_multiround(bednet_contact, xds_obj)
 
   return(xds_obj)
 }
@@ -70,8 +70,8 @@ update_function_X.bednet_coverage = function(X, xds_obj, feature="bednet_coverag
 #' @return bednet coverage, as [numeric]
 #'
 #' @export
-get_init_X.bednet_coverage <- function(xds_obj, feature, options){
-  return(get_bednet_coverage(xds_obj)[options$bednet_ix])
+get_init_X.bednet_contact <- function(xds_obj, feature, options){
+  return(get_bednet_contact(xds_obj)[options$bednet_ix])
 }
 
 #' Get limits for IRS coverage parameters
@@ -81,6 +81,6 @@ get_init_X.bednet_coverage <- function(xds_obj, feature, options){
 #' @return bounds on coverage, as [numeric]
 #'
 #' @export
-get_limits_X.bednet_coverage <- function(xds_obj, feature="bednet_coverage"){
+get_limits_X.bednet_contact <- function(xds_obj, feature="bednet_contact"){
   return(c(0,1))
 }

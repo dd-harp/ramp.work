@@ -1,41 +1,3 @@
-template:
-  bootstrap: 5
-  math-rendering: mathjax
-url: https://dd-harp.github.io/ramp.work
-navbar:
-  left:
-  - text: Articles
-    menu:
-    - text: Scaling
-      href: articles/Scaling.html
-  - text: Functions
-    href: reference/index.html
-  right:
-  - icon: fa-github
-    href: https://github.com/dd-harp/ramp.work/
-home:
-  sidebar:
-    structure:
-    - links
-    - license
-    - community
-    - citation
-    - authors
-    - dev
-reference:
-- title: Scaling
-  desc: |
-    Compute Scaling Relationships
-  contents:
-  - xds_scaling
-  - xds_scaling.eir
-  - xds_scaling.Lambda
-  - xds_scaling_Lambda
-  - compute_Lambda_threshold
-  - plot_eirVpr
-  - plot_eirpr
-  - lines_eirVpr
-  - lines_eirpr
 - title: Metrics
   desc: |
     Metric Conversion
@@ -106,7 +68,7 @@ reference:
   - update_function_X.amplitude
   - update_function_X.trend
   - update_function_X.irs_coverage
-  - update_function_X.bednet_contact
+  - update_function_X.bednet_coverage
   - update_function_X.multifit
 - subtitle: Index Parameter Values
   desc: |
@@ -120,7 +82,7 @@ reference:
   - setup_fitting_indices.pw
   - setup_fitting_indices.season
   - setup_fitting_indices.trend
-  - setup_fitting_indices.bednet_contact
+  - setup_fitting_indices.bednet_coverage
   - setup_fitting_indices.irs_coverage
 - subtitle: Modify Fitted Parameters Vector
   desc: |
@@ -135,7 +97,7 @@ reference:
   contents:
   - get_init_X
   - get_init_X.amplitude
-  - get_init_X.bednet_contact
+  - get_init_X.bednet_coverage
   - get_init_X.bottom
   - get_init_X.irs_coverage
   - get_init_X.mean_forcing
@@ -149,7 +111,7 @@ reference:
     Set limits on parameter values for fitting
   contents:
   - get_limits_X
-  - get_limits_X.bednet_contact
+  - get_limits_X.bednet_coverage
   - get_limits_X.bottom
   - get_limits_X.irs_coverage
   - get_limits_X.mean_forcing
@@ -163,8 +125,8 @@ reference:
   - setup_hindcast
   - hindcast_ty
   - setup_pre_obs_y
-  - setup_pre_obs_y.use_first
   - setup_pre_obs_y.mirror
+  - setup_pre_obs_y.value
   - setup_pre_obs_y.asis
 - title: Forecasting
   desc: |
@@ -181,15 +143,16 @@ reference:
   - setup_forecast
   - setup_post_obs_y
   - setup_post_obs_y.asis
-  - setup_post_obs_y.use_last
+  - setup_post_obs_y.value
 - title: Imputation
   desc: |
     No methods to set subclass
   contents:
   - setup_imputation
   - get_ty
-  - impute_spline_y
+  - impute_baseline_ty
   - impute_value
+  - impute_value.all
   - impute_value.first
   - impute_value.gam
   - impute_value.last
@@ -235,27 +198,8 @@ reference:
   desc: |
     Impute the baseline
   contents:
-  - fit_bednet_contact
+  - fit_bednet_coverage
   - fit_irs_coverage
   - restore_pr2history
   - save_pr2history
   - scaling_init_ty.eir
-  - change_forecast_ix
-  - change_forecast_ty
-  - compute_impact
-  - event_chop_spline_t
-  - fit_shock
-  - fitting_change_spline_t
-  - fitting_change_spline_ty
-  - fitting_change_spline_y
-  - fitting_get_spline_ty
-  - fitting_replace_spline_t
-  - fitting_replace_spline_ty
-  - fitting_replace_spline_y
-  - get_init_X.shock
-  - get_limits_X.shock
-  - get_yix_after_bednet_round
-  - get_yix_after_irs_round
-  - setup_fitting_indices.shock
-  - time_since_event
-  - update_function_X.shock

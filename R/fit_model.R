@@ -37,7 +37,7 @@
 #' + **`irs_coverage`** : fit irs coverage parameters (also see [fit_irs_coverage])
 #'    - by default, coverage levels for all rounds are fitted independently
 #'    - other options can be fitted by setting `irs_ix` in `options`
-#' + **`bednet_coverage`** : fit bed net coverage parameters (also see [fit_bednet_coverage])
+#' + **`bednet_contact`** : fit bed net coverage parameters (also see [fit_bednet_contact])
 #'    - by default, coverage levels for all rounds are fitted independently
 #'    - other options can be fitted by setting `bednet_ix` in `options`
 #'

@@ -1,26 +1,9 @@
-pandoc: '3.4'
-pkgdown: 2.0.9
+pandoc: 3.6.3
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
-  Analysis: Analysis.html
-  Baseline: Baseline.html
-  Effect_Sizes: Effect_Sizes.html
-  fitting_demo: fitting_demo.html
-  Fitting_pr2eir: Fitting_pr2eir.html
-  Fitting: Fitting.html
-  Forecast: Forecast.html
-  Hindcast: Hindcast.html
-  History: History.html
-  Pipeline: Pipeline.html
-  QualitativeAnalysis: QualitativeAnalysis.html
   Scaling: Scaling.html
-  Scratch: Scratch.html
-  Seasonality: Seasonality.html
-  spat_metric: spat_metric.html
-  TestFit: TestFit.html
-  Trend: Trend.html
-last_built: 2025-09-25T21:23Z
+last_built: 2025-10-06T02:07Z
 urls:
-  reference: https://dd-harp.github.io/ramp.xds/reference
-  article: https://dd-harp.github.io/ramp.xds/articles
-
+  reference: https://dd-harp.github.io/ramp.work/reference
+  article: https://dd-harp.github.io/ramp.work/articles

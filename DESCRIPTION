@@ -10,16 +10,16 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Remotes: 
-  github::dd-harp/ramp.xds, dd-harp/ramp.control, dd-harp/ramp.library
+  github::dd-harp/ramp.xds, github::dd-harp/ramp.control
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Depends:
-  ramp.xds, 
-  expm, 
+  ramp.xds,
+  ramp.control,
   MASS
 Imports:
-  stats, 
-  ramp.control
+  expm, 
+  stats 
 Suggests:
   deSolve,
   viridisLite,
@@ -27,3 +27,4 @@ Suggests:
   viridis,
   rootSolve,
   rmarkdown 
+URL: https://dd-harp.github.io/ramp.work/
