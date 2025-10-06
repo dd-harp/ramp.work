@@ -61,7 +61,7 @@ The function acts only on the following text strings in \code{feature}:
 \item by default, coverage levels for all rounds are fitted independently
 \item other options can be fitted by setting \code{irs_ix} in \code{options}
 }
-\item \strong{\code{bednet_coverage}} : fit bed net coverage parameters (also see \link{fit_bednet_coverage})
+\item \strong{\code{bednet_contact}} : fit bed net coverage parameters (also see \link{fit_bednet_contact})
 \itemize{
 \item by default, coverage levels for all rounds are fitted independently
 \item other options can be fitted by setting \code{bednet_ix} in \code{options}

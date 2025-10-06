@@ -27,6 +27,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/compute_impact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/eir2fqZ.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/event_chop_spline_t.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/fit_bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_irs_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_mean_forcing.html</loc></url>
@@ -50,6 +51,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fqZ2eir.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/gam_forecast.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.amplitude.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.html</loc></url>
@@ -61,6 +63,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.season.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.shock.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.trend.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.html</loc></url>
@@ -117,6 +120,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_bednet_events.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.amplitude.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.html</loc></url>
@@ -153,6 +157,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/time_since_event.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_fitting_ty.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.amplitude.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.html</loc></url>

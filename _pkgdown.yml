@@ -106,7 +106,7 @@ reference:
   - update_function_X.amplitude
   - update_function_X.trend
   - update_function_X.irs_coverage
-  - update_function_X.bednet_coverage
+  - update_function_X.bednet_contact
   - update_function_X.multifit
 - subtitle: Index Parameter Values
   desc: |
@@ -120,7 +120,7 @@ reference:
   - setup_fitting_indices.pw
   - setup_fitting_indices.season
   - setup_fitting_indices.trend
-  - setup_fitting_indices.bednet_coverage
+  - setup_fitting_indices.bednet_contact
   - setup_fitting_indices.irs_coverage
 - subtitle: Modify Fitted Parameters Vector
   desc: |
@@ -135,7 +135,7 @@ reference:
   contents:
   - get_init_X
   - get_init_X.amplitude
-  - get_init_X.bednet_coverage
+  - get_init_X.bednet_contact
   - get_init_X.bottom
   - get_init_X.irs_coverage
   - get_init_X.mean_forcing
@@ -149,7 +149,7 @@ reference:
     Set limits on parameter values for fitting
   contents:
   - get_limits_X
-  - get_limits_X.bednet_coverage
+  - get_limits_X.bednet_contact
   - get_limits_X.bottom
   - get_limits_X.irs_coverage
   - get_limits_X.mean_forcing
@@ -235,7 +235,7 @@ reference:
   desc: |
     Impute the baseline
   contents:
-  - fit_bednet_coverage
+  - fit_bednet_contact
   - fit_irs_coverage
   - restore_pr2history
   - save_pr2history

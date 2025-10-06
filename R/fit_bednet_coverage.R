@@ -50,7 +50,7 @@ setup_fitting_indices.bednet_contact = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control get_bednet_contact change_bednet_contact make_F_cover_bednet
+#' @importFrom ramp.control get_bednet_contact change_bednet_contact_multiround make_F_cover_bednet
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
@@ -58,7 +58,7 @@ update_function_X.bednet_contact = function(X, xds_obj, feature="bednet_contact"
 
   bednet_contact <- get_bednet_contact(xds_obj)
   bednet_contact <- with(options, modify_vector_X(bednet_ix, bednet_contact, X, bednet_ixX))
-  xds_obj <- change_bednet_contact(bednet_contact, xds_obj)
+  xds_obj <- change_bednet_contact_multiround(bednet_contact, xds_obj)
 
   return(xds_obj)
 }
