@@ -22,7 +22,6 @@ After running `xds_scaling,` the outputs `xds_obj$outputs$scaling` has stored va
 ```{r, message=FALSE}
 library(ramp.xds)
 library(ramp.work)
-devtools::load_all()
 ```
 
 The algorithms require the outputs of `xds_scaling`

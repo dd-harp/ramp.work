@@ -123,7 +123,6 @@ Before we do any fitting, we want to take a look at the $t$-values of the interp
 + the purple squares are an alternative spacing for the $t$-values returned by `event_chop_spline_t`  
 
 ```{r}
-show_fit(sip_si)
 show_events(sip_si, mx = 0.4)
 ti <- event_chop_spline_t(sip_si, fu=200, b4=20, mngp=120)
 points(ti, 0*ti, pch = 15, col = "purple")
