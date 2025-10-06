@@ -1,16 +1,9 @@
 pandoc: 3.1.11
-pkgdown: 2.1.1
+pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
-  Analysis: Analysis.html
-  Fitting_pr2eir: Fitting_pr2eir.html
-  Fitting: Fitting.html
-  Forecast: Forecast.html
-  History: History.html
   Scaling: Scaling.html
-  Seasonality: Seasonality.html
-  Trend: Trend.html
-last_built: 2025-03-19T21:03Z
+last_built: 2025-10-06T02:22Z
 urls:
-  reference: https://dd-harp.github.io/ramp.xds/reference
-  article: https://dd-harp.github.io/ramp.xds/articles
+  reference: https://dd-harp.github.io/ramp.work/reference
+  article: https://dd-harp.github.io/ramp.work/articles
