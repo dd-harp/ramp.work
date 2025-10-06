@@ -98,7 +98,7 @@ add_eirpr_orbits = function(ix, xds_obj, clrs){
 #'
 #' @export
 add_orbits = function(i, xds_obj, clr){
-  with(xds_obj$stable_orbits[[i]],{
+  with(xds_obj$scaling$stable_orbits[[i]],{
     lines(aeir, pr, col = clr)
     points(mean(aeir), mean(pr), pch=19, col=clr)
   })}

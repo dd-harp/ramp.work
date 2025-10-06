@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   MetricConversion: MetricConversion.html
   Scaling: Scaling.html
-last_built: 2025-10-06T22:26Z
+last_built: 2025-10-06T23:01Z
 urls:
   reference: https://dd-harp.github.io/ramp.work/reference
   article: https://dd-harp.github.io/ramp.work/articles
