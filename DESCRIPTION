@@ -30,3 +30,4 @@ Suggests:
   rootSolve,
   rmarkdown 
 URL: https://dd-harp.github.io/ramp.work/
+BugReports: https://github.com/dd-harp/ramp.work/issues
