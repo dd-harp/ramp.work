@@ -13,7 +13,7 @@ time_since_event = function(xds_obj){
   N = length(xds_obj$data$tt)
   last = rep(0, N)
   for(i in 2:N){
-    delta = xds_obj$data$tt[i] - c(xds_obj$bednet_obj$events$jdate, xds_obj$irs_obj$events$jdate)
+    delta = xds_obj$data$tt[i] - c(xds_obj$events_obj$bednet$jdate, xds_obj$events_obj$irs$jdate)
     last[i] = min(delta[delta>0])
   }
   return(last)
@@ -32,7 +32,7 @@ time_since_event = function(xds_obj){
 #' @returns numeric
 #' @export
 get_yix_after_irs_round = function(round_ix, xds_obj, N=1){
-  jdate = xds_obj$irs_obj$event$jdate[round_ix]
+  jdate = xds_obj$events_obj$irs$jdate[round_ix]
   delta = xds_obj$data$tt - jdate
   return(which(delta>0)[1:N])
 }
@@ -50,7 +50,7 @@ get_yix_after_irs_round = function(round_ix, xds_obj, N=1){
 #' @returns numeric
 #' @export
 get_yix_after_bednet_round = function(round_ix, xds_obj, N=1){
-  jdate = xds_obj$bednet_obj$event$jdate[round_ix]
+  jdate = xds_obj$events_obj$bednet$jdate[round_ix]
   delta = xds_obj$data$tt - jdate
   return(which(delta>0)[1:N])
 }

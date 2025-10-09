@@ -119,4 +119,4 @@ update_fitting_ty = function(xds_obj){
     xds_obj$fitting$tt = c(hindcast$tt, data$tt, forecast$tt)
     xds_obj$fitting$yy = c(hindcast$yy, data$yy, forecast$yy)
   return(xds_obj)
-  })}
+})}
