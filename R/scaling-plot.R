@@ -72,7 +72,7 @@ xds_plot_eirpr <- function(xds_obj, clrs= "black", llty = 1){
 #'
 #' @export
 lines_eirpr <- function(xds_obj, clrs= "black", llty = 1){
-  with(xds_obj$outputs$scaling, graphics::lines(aeir, pr, col = clrs, lty = llty))
+  with(xds_obj$scaling, graphics::lines(aeir, pr, col = clrs, lty = llty))
   return(invisible())
 }
 
