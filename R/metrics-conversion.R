@@ -37,9 +37,9 @@ xds_pr2eir = function(pr, xds_obj, extend=FALSE){
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
 xds_eir2pr = function(eir, xds_obj, extend=FALSE){
-  with(xds_obj$outputs, stopifnot(exists("scaling")))
-  PR = xds_obj$outputs$scaling$pr
-  EIR = xds_obj$outputs$scaling$eir
+  with(xds_obj$ stopifnot(exists("scaling")))
+  PR = xds_obj$scaling$pr
+  EIR = xds_obj$scaling$eir
   if(extend==TRUE){
     PR = c(0, PR, 1)
     EIR = c(0, EIR, 5*10^3/365)
@@ -67,9 +67,9 @@ xds_eir2pr = function(eir, xds_obj, extend=FALSE){
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
 xds_eir2ni = function(eir, xds_obj, extend=FALSE){
-  with(xds_obj$outputs, stopifnot(exists("scaling")))
-  NI = xds_obj$outputs$scaling$ni
-  EIR = xds_obj$outputs$scaling$eir
+  with(xds_obj, stopifnot(exists("scaling")))
+  NI = xds_obj$scaling$ni
+  EIR = xds_obj$scaling$eir
   if(extend==TRUE){
     NI = c(0, NI, 1)
     EIR = c(0, EIR, 5*10^3/365)
@@ -97,9 +97,9 @@ xds_eir2ni = function(eir, xds_obj, extend=FALSE){
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
 xds_pr2ni = function(pr, xds_obj, extend=FALSE){
-  with(xds_obj$outputs, stopifnot(exists("scaling")))
-  PR = xds_obj$outputs$scaling$pr
-  NI = xds_obj$outputs$scaling$ni
+  with(xds_obj, stopifnot(exists("scaling")))
+  PR = xds_obj$scaling$pr
+  NI = xds_obj$scaling$ni
   if(extend==TRUE){
     PR = c(0, PR, 1)
     NI = c(0, NI, max(NI))
@@ -158,9 +158,9 @@ xds_pr2m = function(pr, xds_obj, extend=FALSE){
 #' @param extend a [logical] option to determine whether to extend outside the range
 #' @export
 xds_pr2Lambda = function(pr, xds_obj, extend=FALSE){
-  with(xds_obj$outputs, stopifnot(exists("scaling")))
-  PR = xds_obj$outputs$scaling$pr
-  Lambda = xds_obj$outputs$scaling$Lambda
+  with(xds_obj, stopifnot(exists("scaling")))
+  PR = xds_obj$scaling$pr
+  Lambda = xds_obj$scaling$Lambda
   if(extend==TRUE){
     PR = c(0, PR, 1)
     Lambda = c(0, Lambda, 5*10^3/365)
