@@ -51,6 +51,7 @@ reference:
   - xds_pr2ni
   - pr2history
   - pr2history_xm
+  - pr2history_cbmc
   - eir2fqZ
   - fqZ2eir
   - make_HTC_matrix

@@ -35,13 +35,12 @@ fit_irs_coverage <- function(xds_obj, options=list()){
 #' @returns indices
 #' @export
 setup_fitting_indices.irs_coverage = function(xds_obj, feature, options){
-  if(length(options)==0)
-    options$irs_ix =c(1:length(xds_obj$irs_obj$cover_obj$nRounds))
 
-  stopifnot(!is.null(options$irs_ix))
+  if(with(options, !exists("irs_ix")))
+    options$irs_ix = which(xds_obj$events_obj$irs$include)
 
   options$irs_ixX = options$max_ix + 1:length(options$irs_ix)
-  options$max_ix = max(options$irs_cvr_ixX)
+  options$max_ix = max(options$irs_ixX)
 
   return(options)
 }
@@ -54,13 +53,12 @@ setup_fitting_indices.irs_coverage = function(xds_obj, feature, options){
 #' @returns sum of squared differences
 #' @export
 update_function_X.irs_coverage = function(X, xds_obj, feature="irs_coverage", options=list()){
-
-  irs_coverage <- get_irs_coverage(xds_obj)
-  irs_coverage <- with(options, modify_vector_X(irs_ix, irs_coverage, X, irs_ixX))
-  xds_obj <- change_irs_coverage(irs_coverage, xds_obj)
-
+  with(options,{
+    irs_contact <- xds_obj$events_obj$irs$contact
+    irs_contact[irs_ix] <- X[irs_ixX]
+    xds_obj <- change_irs_contact_multiround(irs_contact, xds_obj)
   return(xds_obj)
-}
+})}
 
 #' Get initial X: IRS coverage
 #'
