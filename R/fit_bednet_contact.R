@@ -20,10 +20,18 @@ fit_bednet_contact <- function(xds_obj, options=list()){
   bednet_contact = get_init_X(xds_obj, "bednet_contact", options)
   lims = get_limits_X(xds_obj, "bednet_contact")
 
-  fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_contact",
-                           xds_obj=xds_obj, options=options)
+  if(length(options$bednet_ix)==1){
+    lims = get_limits_X(xds_obj, feature)
+    fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_contact",
+                             xds_obj=xds_obj, options=options)
+    X <- fitit$minimum
+  } else {
+    fitit <- stats::optim(inits, compute_gof_X, feature="bednet_contact",
+                          options=options, xds_obj=xds_obj)
+    X <- fitit$par
+  }
 
-  xds_obj <- update_function_X(fitit$minimum, xds_obj, "bednet_contact", options)
+  xds_obj <- update_function_X(X, xds_obj, "bednet_contact", options)
   xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }
@@ -49,7 +57,7 @@ setup_fitting_indices.bednet_contact = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control get_bednet_contact change_bednet_contact_multiround make_F_cover_bednet
+#' @importFrom ramp.control change_bednet_contact_multiround
 #'
 #' @return a **`ramp.xds`** model object
 #' @export
