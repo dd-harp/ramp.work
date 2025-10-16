@@ -108,7 +108,7 @@ reference:
   - update_function_X.season
   - update_function_X.amplitude
   - update_function_X.trend
-  - update_function_X.irs_coverage
+  - update_function_X.irs_contact
   - update_function_X.bednet_contact
   - update_function_X.multifit
 - subtitle: Index Parameter Values
@@ -124,7 +124,7 @@ reference:
   - setup_fitting_indices.season
   - setup_fitting_indices.trend
   - setup_fitting_indices.bednet_contact
-  - setup_fitting_indices.irs_coverage
+  - setup_fitting_indices.irs_contact
 - subtitle: Modify Fitted Parameters Vector
   desc: |
     Index parameter values for fitting
@@ -140,7 +140,7 @@ reference:
   - get_init_X.amplitude
   - get_init_X.bednet_contact
   - get_init_X.bottom
-  - get_init_X.irs_coverage
+  - get_init_X.irs_contact
   - get_init_X.mean_forcing
   - get_init_X.multifit
   - get_init_X.phase
@@ -154,7 +154,7 @@ reference:
   - get_limits_X
   - get_limits_X.bednet_contact
   - get_limits_X.bottom
-  - get_limits_X.irs_coverage
+  - get_limits_X.irs_contact
   - get_limits_X.mean_forcing
   - get_limits_X.phase
   - get_limits_X.pw
@@ -239,7 +239,7 @@ reference:
     Impute the baseline
   contents:
   - fit_bednet_contact
-  - fit_irs_coverage
+  - fit_irs_contact
   - restore_pr2history
   - save_pr2history
   - scaling_init_ty.eir

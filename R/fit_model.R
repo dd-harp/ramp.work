@@ -34,7 +34,7 @@
 #'    - **`bottom`** : a shape parameter affecting amplitude (also, see [fit_season_bottom])
 #'    - **`amplitude`** : fits the shape parameters that affect amplitude: `pw` & `bottom` (also, see [fit_season_amplitude])
 #'    - **`season`** : fits all seasonality shape parameters: `pw` & `bottom` & `phase` (also, see [fit_season])
-#' + **`irs_coverage`** : fit irs coverage parameters (also see [fit_irs_coverage])
+#' + **`irs_coverage`** : fit irs coverage parameters (also see [fit_irs_contact])
 #'    - by default, coverage levels for all rounds are fitted independently
 #'    - other options can be fitted by setting `irs_ix` in `options`
 #' + **`bednet_contact`** : fit bed net coverage parameters (also see [fit_bednet_contact])

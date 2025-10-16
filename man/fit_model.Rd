@@ -56,7 +56,7 @@ The function acts only on the following text strings in \code{feature}:
 \item \strong{\code{amplitude}} : fits the shape parameters that affect amplitude: \code{pw} & \code{bottom} (also, see \link{fit_season_amplitude})
 \item \strong{\code{season}} : fits all seasonality shape parameters: \code{pw} & \code{bottom} & \code{phase} (also, see \link{fit_season})
 }
-\item \strong{\code{irs_coverage}} : fit irs coverage parameters (also see \link{fit_irs_coverage})
+\item \strong{\code{irs_coverage}} : fit irs coverage parameters (also see \link{fit_irs_contact})
 \itemize{
 \item by default, coverage levels for all rounds are fitted independently
 \item other options can be fitted by setting \code{irs_ix} in \code{options}
