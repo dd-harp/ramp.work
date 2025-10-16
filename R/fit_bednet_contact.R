@@ -18,10 +18,9 @@ fit_bednet_contact <- function(xds_obj, options=list()){
 
 
   bednet_contact = get_init_X(xds_obj, "bednet_contact", options)
-  lims = get_limits_X(xds_obj, "bednet_contact")
 
   if(length(options$bednet_ix)==1){
-    lims = get_limits_X(xds_obj, feature)
+    lims = get_limits_X(xds_obj, "bednet_contact")
     fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_contact",
                              xds_obj=xds_obj, options=options)
     X <- fitit$minimum
