@@ -10,6 +10,20 @@ navbar:
       href: articles/Scaling.html
     - text: Metric Conversion
       href: articles/MetricConversion.html
+  - text: Model Fitting
+    menu:
+    - text: Time Series
+      href: articles/TimeSeries.html
+    - text: Fitting
+      href: articles/Fitting.html
+    - text: Fitting Seasonal Patterns
+      href: articles/FitSeason.html
+    - text: Fitting Trends
+      href: articles/FitTrend.html
+    - text: Estimating IRS Effects
+      href: articles/FitIRS.html
+    - text: Estimating Bed Net Effects
+      href: articles/FitBedNets.html
   - text: Functions
     href: reference/index.html
   right:
@@ -73,10 +87,8 @@ reference:
     No methods to set subclass
   contents:
   - setup_fitting
-  - update_fitting_ty
+  - setup_data
   - fit_model
-  - scaling_init_ty.Lambda
-  - scaling_init_ty
 - subtitle: Goodness of Fit
   desc: |
     No methods to set subclass
@@ -165,10 +177,10 @@ reference:
   contents:
   - setup_hindcast
   - hindcast_ty
-  - setup_pre_obs_y
-  - setup_pre_obs_y.use_first
-  - setup_pre_obs_y.mirror
-  - setup_pre_obs_y.asis
+  - setup_hindcast_y
+  - setup_hindcast_y.use_first
+  - setup_hindcast_y.mirror
+  - setup_hindcast_y.asis
 - title: Forecasting
   desc: |
     No methods to set subclass
@@ -182,15 +194,17 @@ reference:
   - show_fit
   - show_residuals
   - setup_forecast
-  - setup_post_obs_y
-  - setup_post_obs_y.asis
-  - setup_post_obs_y.use_last
+  - setup_forecast_y
+  - setup_forecast_y.asis
+  - setup_forecast_y.use_last
+  - change_forecast_ix
+  - change_forecast_ty
 - title: Imputation
   desc: |
     No methods to set subclass
   contents:
   - setup_imputation
-  - get_ty
+  - get_trend_ty
   - impute_spline_y
   - impute_value
   - impute_value.first
@@ -207,13 +221,13 @@ reference:
   desc: |
     No methods to set subclass
   contents:
-  - get_ty.all
-  - get_ty.first
-  - get_ty.ix
-  - get_ty.last
-  - get_ty.nix
-  - get_ty.tix
-  - get_ty.unmodified
+  - get_trend_ty.all
+  - get_trend_ty.first
+  - get_trend_ty.ix
+  - get_trend_ty.last
+  - get_trend_ty.nix
+  - get_trend_ty.tix
+  - get_trend_ty.unmodified
 - subtitle: Fitting Utilities for Seasonality
   desc: |
     Impute the baseline
@@ -223,18 +237,32 @@ reference:
   - check_season_par.Lambda
   - check_season_par
   - check_season_par.eir
-  - setup_season
-  - setup_season.list
-  - setup_season.sin
-- subtitle: Fitting Utilities for Trends
+  - init_fit_season
+  - init_fit_season.list
+  - init_fit_season.sin
+- subtitle: Fitting Trends
   desc: |
-    Impute the baseline
+    Functions to fit trends
   contents:
-  - setup_spline_fit
-  - setup_trend_par.Lambda
-  - setup_trend_par
-  - setup_trend_par.eir
-- subtitle: Fitting Utilities for Coverage
+  - update_fit_trend
+  - get_fit_trend
+  - compile_fit_trend
+  - compile_fit_trend.Lambda
+  - compile_fit_trend.eir
+  - crude_fit_trend
+  - crude_fit_trend.Lambda
+  - crude_fit_trend.eir
+  - change_all_fit_spline_ty
+  - change_all_fit_spline_y
+  - change_all_fit_spline_t
+  - change_ix_fit_spline_ty
+  - change_ix_fit_spline_y
+  - change_ix_fit_spline_t
+  - event_chop_spline_t
+  - get_yix_after_bednet_round
+  - get_yix_after_irs_round
+  - time_since_event
+- subtitle: Fitting Vector Control
   desc: |
     Impute the baseline
   contents:
@@ -242,23 +270,4 @@ reference:
   - fit_irs_contact
   - restore_pr2history
   - save_pr2history
-  - scaling_init_ty.eir
-  - change_forecast_ix
-  - change_forecast_ty
   - compute_impact
-  - event_chop_spline_t
-  - fit_shock
-  - fitting_change_spline_t
-  - fitting_change_spline_ty
-  - fitting_change_spline_y
-  - fitting_get_spline_ty
-  - fitting_replace_spline_t
-  - fitting_replace_spline_ty
-  - fitting_replace_spline_y
-  - get_init_X.shock
-  - get_limits_X.shock
-  - get_yix_after_bednet_round
-  - get_yix_after_irs_round
-  - setup_fitting_indices.shock
-  - time_since_event
-  - update_function_X.shock

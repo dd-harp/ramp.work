@@ -1,59 +1,29 @@
-
-#' @title Time Since Event
+#' Setup Imputation
 #'
-#' @description Compute the time elapsed
-#' since the last vector control event
-#' for all the spline \eqn{t}-values
+#' @description This sets up the the imputatation model object. It
+#' sets options for using interpolation points to impute a baseline
+#' or to hindcast or forecast.
 #'
-#' @param xds_obj a **`ramp.xds`** model object
+#' @param impute_ty a text string to dispatch `impute_baseline_ty`
+#' @param trusted_ty a text string to dispatch `get_trusted_ty`
 #'
-#' @returns numeric
+#' @returns an imputation model object
+#'
+#'
 #' @export
-time_since_event = function(xds_obj){
-  N = length(xds_obj$data$tt)
-  last = rep(0, N)
-  for(i in 2:N){
-    delta = xds_obj$data$tt[i] - c(xds_obj$events_obj$bednet$jdate, xds_obj$events_obj$irs$jdate)
-    last[i] = min(delta[delta>0])
-  }
-  return(last)
+setup_imputation = function(impute_ty = "mean", trusted_ty="unmodified"){
+
+  impute_obj <- list()
+
+  class(impute_ty) = impute_ty
+  impute_obj$impute_ty = impute_ty
+
+  class(trusted_ty) = trusted_ty
+  impute_obj$trusted_ty = trusted_ty
+
+  return(impute_obj)
 }
 
-#' @title Time Since Event
-#'
-#' @description Compute the time elapsed
-#' since the last vector control event
-#' for all the spline \eqn{t}-values
-#'
-#' @param round_ix the index of the IRS round
-#' @param xds_obj a **`ramp.xds`** model object
-#' @param N the number of y indices
-#'
-#' @returns numeric
-#' @export
-get_yix_after_irs_round = function(round_ix, xds_obj, N=1){
-  jdate = xds_obj$events_obj$irs$jdate[round_ix]
-  delta = xds_obj$data$tt - jdate
-  return(which(delta>0)[1:N])
-}
-
-#' @title Time Since Event
-#'
-#' @description Compute the time elapsed
-#' since the last vector control event
-#' for all the spline \eqn{t}-values
-#'
-#' @param round_ix the index of the IRS round
-#' @param xds_obj a **`ramp.xds`** model object
-#' @param N the number of y indices
-#'
-#' @returns numeric
-#' @export
-get_yix_after_bednet_round = function(round_ix, xds_obj, N=1){
-  jdate = xds_obj$events_obj$bednet$jdate[round_ix]
-  delta = xds_obj$data$tt - jdate
-  return(which(delta>0)[1:N])
-}
 
 #' @title Impute the baseline
 #'
@@ -69,9 +39,9 @@ get_yix_after_bednet_round = function(round_ix, xds_obj, N=1){
 #'
 #' @export
 impute_spline_y = function(impute_ix, trusted_ix, xds_obj, impute_y="mean"){
-  fitting_get_spline_ty(xds_obj)$yy[trusted_ix] -> trusted_y
+  get_fit_trend(xds_obj)$yy[trusted_ix] -> trusted_y
   new_y = impute_value(trusted_y, impute_y, length(impute_ix))
-  xds_obj <- fitting_change_spline_y(new_y, impute_ix, xds_obj)
+  xds_obj <- change_ix_fit_spline_y(new_y, impute_ix, xds_obj)
   return(xds_obj)
 }
 

@@ -2,7 +2,7 @@
 #'
 #' @param xds_obj a **`ramp.xds`** xds_obj object
 #' @param N the number of years to forecast
-#' @param method to dispatch setup_post_obs_y
+#' @param method to dispatch setup_forecast_y
 #'
 #' @returns a **`ramp.xds`** xds_obj object
 #'
@@ -41,7 +41,7 @@ setup_forecast = function(xds_obj, N=0,
 #' @export
 forecast_ty = function(xds_obj, ix=c()){with(xds_obj$forecast,{
   yy <- xds_obj$data$yy
-  xds_obj <- setup_post_obs_y(yy, xds_obj)
+  xds_obj <- setup_forecast_y(yy, xds_obj)
   return(xds_obj)
 })}
 
@@ -53,18 +53,18 @@ forecast_ty = function(xds_obj, ix=c()){with(xds_obj$forecast,{
 #' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_post_obs_y = function(y, xds_obj){
-  UseMethod("setup_post_obs_y", xds_obj$forecast$method)
+setup_forecast_y = function(y, xds_obj){
+  UseMethod("setup_forecast_y", xds_obj$forecast$method)
 }
 
 #' @title Set forecast interpolation points
 #'
-#' @inheritParams setup_post_obs_y
+#' @inheritParams setup_forecast_y
 #'
 #' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_post_obs_y.use_last = function(y, xds_obj){
+setup_forecast_y.use_last = function(y, xds_obj){
   N <- xds_obj$forecast$N
   xds_obj$forecast$yy = rep(tail(y,1), N)
   return(xds_obj)
@@ -72,12 +72,12 @@ setup_post_obs_y.use_last = function(y, xds_obj){
 
 #' @title Set forecast interpolation points
 #'
-#' @inheritParams setup_post_obs_y
+#' @inheritParams setup_forecast_y
 #'
 #' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
-setup_post_obs_y.asis= function(y, xds_obj){
+setup_forecast_y.asis= function(y, xds_obj){
   xds_obj$fitting$post$yy = y
   return(xds_obj)
 }
@@ -106,8 +106,7 @@ change_forecast_ix = function(xds_obj, trusted_ix, N=3, impute_y ="subsamp"){
   new_yy = impute_value(trusted_y, impute_y, N)
   xds_obj$forecast$yy = new_yy
   xds_obj$forecast$N = N
-  xds_obj <- update_fitting_ty(xds_obj)
-  xds_obj <- setup_trend_par(xds_obj)
+  xds_obj <- update_fit_trend(xds_obj)
   return(xds_obj)
 }
 
@@ -131,7 +130,6 @@ change_forecast_ty = function(xds_obj, t, y){
   xds_obj$forecast$tt = t
   xds_obj$forecast$N = length(t)
   xds_obj$forecast$yrs = floor(t/365)
-  xds_obj <- update_fitting_ty(xds_obj)
-  xds_obj <- setup_trend_par(xds_obj)
+  xds_obj <- update_fit_trend(xds_obj)
   return(xds_obj)
 }

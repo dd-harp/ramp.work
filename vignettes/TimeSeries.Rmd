@@ -1,0 +1,12 @@
+---
+title: "Time Series" 
+subtitle: "Composing / Decomposing Time Series Functions" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document
+vignette: >
+  %\VignetteIndexEntry{Time Series}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
