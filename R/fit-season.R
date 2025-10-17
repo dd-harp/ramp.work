@@ -118,14 +118,14 @@ approx_phase <- function(pfpr, jdate){
 #' @return a list with the mean peak and the values
 #' @export
 preset_phase <- function(xds_obj){
-  data_phase <- with(xds_obj$data, approx_phase(pfpr, jdates))
+  d_phase <- with(xds_obj$data_obj, approx_phase(pfpr, jdates))
 
-  times = c(0, xds_obj$data$jdates)
+  times = c(0, xds_obj$data_obj$jdates)
   xds_obj <- xds_solve(xds_obj, times=times)
   model_phase <- approx_phase(get_PR(xds_obj), times)
-  adjust = data_phase - model_phase
+  adjust = d_phase - model_phase
   phase <- get_season_phase(xds_obj, 1)
   xds_obj <- change_season(list(phase=adjust-phase), xds_obj, s=1)
-  xds_obj <- xds_solve(xds_obj, times = c(-3650, xds_obj$data$jdates))
+  xds_obj <- xds_solve(xds_obj, times = c(-3650, xds_obj$data_obj$jdates))
   return(xds_obj)
 }
