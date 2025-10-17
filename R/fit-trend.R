@@ -32,10 +32,9 @@ update_fit_trend = function(xds_obj){
   with(xds_obj,{
     xds_obj$fit_obj$tt = c(hindcast$tt, data_obj$tt, forecast$tt)
     xds_obj$fit_obj$yy = c(hindcast$yy, data_obj$yy, forecast$yy)
-  })
-  xds_obj <- compile_fit_trend(xds_obj)
-  return(xds_obj)
-}
+    xds_obj <- compile_fit_trend(xds_obj)
+    return(xds_obj)
+})}
 
 #' Check the trend setup
 #'

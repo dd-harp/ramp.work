@@ -32,6 +32,7 @@ setup_fitting = function(xds_obj, pfpr, jdates,
   xds_obj$fit_obj = fit_obj
 
 
+
   xds_obj <- setup_data(xds_obj, pfpr, jdates, yr0)
 
   xds_obj <- setup_hindcast(xds_obj, N, "use_first")
@@ -66,10 +67,13 @@ setup_data = function(xds_obj, pfpr, jdates, yr0=2015){
   yrs = c(yr0:yrN)
 
   data_obj = list()
+  data_obj$yr0 = yr0
   data_obj$years = yrs + yr0
-  data_obj_ob$ymesh = yrs*365
-  data_obj_ob$tt = yrs*365
+  data_obj$ymesh = yrs*365
+  data_obj$tt = yrs*365
   data_obj$yy = rep(1, length(yrs))
+  data_obj$pfpr=pfpr
+  data_obj$jdates=jdates
 
   xds_obj$data_obj <- data_obj
 
