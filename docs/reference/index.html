@@ -26,6 +26,15 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Scaling.html">Scaling</a></li>
     <li><a class="dropdown-item" href="../articles/MetricConversion.html">Metric Conversion</a></li>
   </ul></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-model-fitting" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Model Fitting</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-model-fitting"><li><a class="dropdown-item" href="../articles/TimeSeries.html">Time Series</a></li>
+    <li><a class="dropdown-item" href="../articles/Fitting.html">Fitting</a></li>
+    <li><a class="dropdown-item" href="../articles/FitSeason.html">Fitting Seasonal Patterns</a></li>
+    <li><a class="dropdown-item" href="../articles/FitTrend.html">Fitting Trends</a></li>
+    <li><a class="dropdown-item" href="../articles/FitIRS.html">Estimating IRS Effects</a></li>
+    <li><a class="dropdown-item" href="../articles/FitBedNets.html">Estimating Bed Net Effects</a></li>
+  </ul></li>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Functions</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/dd-harp/ramp.work/"><span class="fa fa-github"></span></a></li>
       </ul></div>
@@ -277,28 +286,16 @@
         <dd>Set up the xds_obj fitting object</dd>
       </dl><dl><dt>
 
-          <code><a href="update_fitting_ty.html">update_fitting_ty()</a></code>
+          <code><a href="setup_data.html">setup_data()</a></code>
 
         </dt>
-        <dd>feature Interpolation Points</dd>
+        <dd>Set up the data object for fitting</dd>
       </dl><dl><dt>
 
           <code><a href="fit_model.html">fit_model()</a></code>
 
         </dt>
         <dd>Fit a model to data</dd>
-      </dl><dl><dt>
-
-          <code><a href="scaling_init_ty.Lambda.html">scaling_init_ty(<i>&lt;Lambda&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Use scaling to set initial guesses</dd>
-      </dl><dl><dt>
-
-          <code><a href="scaling_init_ty.html">scaling_init_ty()</a></code>
-
-        </dt>
-        <dd>Use scaling to set initial guesses</dd>
       </dl></div><div class="section level2">
 
       <h3 id="goodness-of-fit">Goodness of Fit<a class="anchor" aria-label="anchor" href="#goodness-of-fit"></a></h3>
@@ -321,7 +318,7 @@
           <code><a href="compute_gof.sse.html">compute_gof(<i>&lt;sse&gt;</i>)</a></code>
 
         </dt>
-        <dd>Compute GoF by LSS</dd>
+        <dd>Compute SSE</dd>
       </dl><dl><dt>
 
           <code><a href="compute_gof_X.html">compute_gof_X()</a></code>
@@ -725,25 +722,25 @@
         <dd>Hindcast a Baseline</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_pre_obs_y.html">setup_pre_obs_y()</a></code>
+          <code><a href="setup_hindcast_y.html">setup_hindcast_y()</a></code>
 
         </dt>
         <dd>Set up a hindcast for burn-in</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_pre_obs_y.use_first.html">setup_pre_obs_y(<i>&lt;use_first&gt;</i>)</a></code>
+          <code><a href="setup_hindcast_y.use_first.html">setup_hindcast_y(<i>&lt;use_first&gt;</i>)</a></code>
 
         </dt>
         <dd>Set up the pre-observation interpolating points</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_pre_obs_y.mirror.html">setup_pre_obs_y(<i>&lt;mirror&gt;</i>)</a></code>
+          <code><a href="setup_hindcast_y.mirror.html">setup_hindcast_y(<i>&lt;mirror&gt;</i>)</a></code>
 
         </dt>
         <dd>Set up the pre-observation interpolating points</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_pre_obs_y.asis.html">setup_pre_obs_y(<i>&lt;asis&gt;</i>)</a></code>
+          <code><a href="setup_hindcast_y.asis.html">setup_hindcast_y(<i>&lt;asis&gt;</i>)</a></code>
 
         </dt>
         <dd>Set up the pre-observation interpolating points</dd>
@@ -801,22 +798,34 @@
         <dd>Set the forecast interpolation</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_post_obs_y.html">setup_post_obs_y()</a></code>
+          <code><a href="setup_forecast_y.html">setup_forecast_y()</a></code>
 
         </dt>
         <dd>Forecast a Baseline</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_post_obs_y.asis.html">setup_post_obs_y(<i>&lt;asis&gt;</i>)</a></code>
+          <code><a href="setup_forecast_y.asis.html">setup_forecast_y(<i>&lt;asis&gt;</i>)</a></code>
 
         </dt>
         <dd>Set forecast interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_post_obs_y.use_last.html">setup_post_obs_y(<i>&lt;use_last&gt;</i>)</a></code>
+          <code><a href="setup_forecast_y.use_last.html">setup_forecast_y(<i>&lt;use_last&gt;</i>)</a></code>
 
         </dt>
         <dd>Set forecast interpolation points</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_forecast_ix.html">change_forecast_ix()</a></code>
+
+        </dt>
+        <dd>Make a Forecast from Trusted Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_forecast_ty.html">change_forecast_ty()</a></code>
+
+        </dt>
+        <dd>Impute the baseline</dd>
       </dl></div><div class="section level2">
       <h2 id="imputation">Imputation<a class="anchor" aria-label="anchor" href="#imputation"></a></h2>
 
@@ -836,7 +845,7 @@
         <dd>Setup Imputation</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.html">get_ty()</a></code>
+          <code><a href="get_trend_ty.html">get_trend_ty()</a></code>
 
         </dt>
         <dd>Get a set of trusted interpolation points</dd>
@@ -925,43 +934,43 @@
 
       <dl><dt>
 
-          <code><a href="get_ty.all.html">get_ty(<i>&lt;all&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.all.html">get_trend_ty(<i>&lt;all&gt;</i>)</a></code>
 
         </dt>
         <dd>Get interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.first.html">get_ty(<i>&lt;first&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.first.html">get_trend_ty(<i>&lt;first&gt;</i>)</a></code>
 
         </dt>
         <dd>Get interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.ix.html">get_ty(<i>&lt;ix&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.ix.html">get_trend_ty(<i>&lt;ix&gt;</i>)</a></code>
 
         </dt>
         <dd>Get the interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.last.html">get_ty(<i>&lt;last&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.last.html">get_trend_ty(<i>&lt;last&gt;</i>)</a></code>
 
         </dt>
         <dd>Get interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.nix.html">get_ty(<i>&lt;nix&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.nix.html">get_trend_ty(<i>&lt;nix&gt;</i>)</a></code>
 
         </dt>
         <dd>Get interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.tix.html">get_ty(<i>&lt;tix&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.tix.html">get_trend_ty(<i>&lt;tix&gt;</i>)</a></code>
 
         </dt>
         <dd>Get interpolation points</dd>
       </dl><dl><dt>
 
-          <code><a href="get_ty.unmodified.html">get_ty(<i>&lt;unmodified&gt;</i>)</a></code>
+          <code><a href="get_trend_ty.unmodified.html">get_trend_ty(<i>&lt;unmodified&gt;</i>)</a></code>
 
         </dt>
         <dd>Get the interpolation points</dd>
@@ -1008,26 +1017,26 @@
         <dd>Check the seasonal setup</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_season.html">setup_season()</a></code>
+          <code><a href="init_fit_season.html">init_fit_season()</a></code>
 
         </dt>
         <dd>Set up the seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_season.list.html">setup_season(<i>&lt;list&gt;</i>)</a></code>
+          <code><a href="init_fit_season.list.html">init_fit_season(<i>&lt;list&gt;</i>)</a></code>
 
         </dt>
         <dd>Set up the seasonal pattern</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_season.sin.html">setup_season(<i>&lt;sin&gt;</i>)</a></code>
+          <code><a href="init_fit_season.sin.html">init_fit_season(<i>&lt;sin&gt;</i>)</a></code>
 
         </dt>
         <dd>Set up the seasonal pattern</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="fitting-utilities-for-trends">Fitting Utilities for Trends<a class="anchor" aria-label="anchor" href="#fitting-utilities-for-trends"></a></h3>
-      <div class="section-desc"><p>Impute the baseline</p></div>
+      <h3 id="fitting-trends">Fitting Trends<a class="anchor" aria-label="anchor" href="#fitting-trends"></a></h3>
+      <div class="section-desc"><p>Functions to fit trends</p></div>
 
 
     </div><div class="section level2">
@@ -1037,31 +1046,115 @@
 
       <dl><dt>
 
-          <code><a href="setup_spline_fit.html">setup_spline_fit()</a></code>
+          <code><a href="update_fit_trend.html">update_fit_trend()</a></code>
 
         </dt>
-        <dd>Title</dd>
+        <dd>feature Interpolation Points</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_trend_par.Lambda.html">setup_trend_par(<i>&lt;Lambda&gt;</i>)</a></code>
+          <code><a href="get_fit_trend.html">get_fit_trend()</a></code>
+
+        </dt>
+        <dd>Get Spline \(t, y\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="compile_fit_trend.html">compile_fit_trend()</a></code>
 
         </dt>
         <dd>Check the trend setup</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_trend_par.html">setup_trend_par()</a></code>
+          <code><a href="compile_fit_trend.Lambda.html">compile_fit_trend(<i>&lt;Lambda&gt;</i>)</a></code>
 
         </dt>
         <dd>Check the trend setup</dd>
       </dl><dl><dt>
 
-          <code><a href="setup_trend_par.eir.html">setup_trend_par(<i>&lt;eir&gt;</i>)</a></code>
+          <code><a href="compile_fit_trend.eir.html">compile_fit_trend(<i>&lt;eir&gt;</i>)</a></code>
 
         </dt>
         <dd>Check the trend setup</dd>
+      </dl><dl><dt>
+
+          <code><a href="crude_fit_trend.html">crude_fit_trend()</a></code>
+
+        </dt>
+        <dd>Initialize the trend</dd>
+      </dl><dl><dt>
+
+          <code><a href="crude_fit_trend.Lambda.html">crude_fit_trend(<i>&lt;Lambda&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Initialize the trend</dd>
+      </dl><dl><dt>
+
+          <code><a href="crude_fit_trend.eir.html">crude_fit_trend(<i>&lt;eir&gt;</i>)</a></code>
+
+        </dt>
+        <dd>Initialize the trend</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_all_fit_spline_ty.html">change_all_fit_spline_ty()</a></code>
+
+        </dt>
+        <dd>Replace Spline \(y\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_all_fit_spline_y.html">change_all_fit_spline_y()</a></code>
+
+        </dt>
+        <dd>Replace Spline \(y\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_all_fit_spline_t.html">change_all_fit_spline_t()</a></code>
+
+        </dt>
+        <dd>Replace Spline \(t\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_ix_fit_spline_ty.html">change_ix_fit_spline_ty()</a></code>
+
+        </dt>
+        <dd>Change Spline \(t,y\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_ix_fit_spline_y.html">change_ix_fit_spline_y()</a></code>
+
+        </dt>
+        <dd>Change Spline \(y\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="change_ix_fit_spline_t.html">change_ix_fit_spline_t()</a></code>
+
+        </dt>
+        <dd>Change Spline \(t\) Values</dd>
+      </dl><dl><dt>
+
+          <code><a href="event_chop_spline_t.html">event_chop_spline_t()</a></code>
+
+        </dt>
+        <dd>Adjust Spacing</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_yix_after_bednet_round.html">get_yix_after_bednet_round()</a></code>
+
+        </dt>
+        <dd>Time Since Event</dd>
+      </dl><dl><dt>
+
+          <code><a href="get_yix_after_irs_round.html">get_yix_after_irs_round()</a></code>
+
+        </dt>
+        <dd>Time Since Event</dd>
+      </dl><dl><dt>
+
+          <code><a href="time_since_event.html">time_since_event()</a></code>
+
+        </dt>
+        <dd>Time Since Event</dd>
       </dl></div><div class="section level2">
 
-      <h3 id="fitting-utilities-for-coverage">Fitting Utilities for Coverage<a class="anchor" aria-label="anchor" href="#fitting-utilities-for-coverage"></a></h3>
+      <h3 id="fitting-vector-control">Fitting Vector Control<a class="anchor" aria-label="anchor" href="#fitting-vector-control"></a></h3>
       <div class="section-desc"><p>Impute the baseline</p></div>
 
 
@@ -1093,127 +1186,13 @@
           <code><a href="save_pr2history.html">save_pr2history()</a></code>
 
         </dt>
-        <dd>Save the history fitting</dd>
-      </dl><dl><dt>
-
-          <code><a href="scaling_init_ty.eir.html">scaling_init_ty(<i>&lt;eir&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Use scaling to set initial guesses</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_forecast_ix.html">change_forecast_ix()</a></code>
-
-        </dt>
-        <dd>Make a Forecast from Trusted Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="change_forecast_ty.html">change_forecast_ty()</a></code>
-
-        </dt>
-        <dd>Impute the baseline</dd>
+        <dd>Save the history fit_obj</dd>
       </dl><dl><dt>
 
           <code><a href="compute_impact.html">compute_impact()</a></code>
 
         </dt>
         <dd>Compute Measures of Impact</dd>
-      </dl><dl><dt>
-
-          <code><a href="event_chop_spline_t.html">event_chop_spline_t()</a></code>
-
-        </dt>
-        <dd>Adjust Spacing</dd>
-      </dl><dl><dt>
-
-          <code><a href="fit_shock.html">fit_shock()</a></code>
-
-        </dt>
-        <dd>Fit interannual variability using splines</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_change_spline_t.html">fitting_change_spline_t()</a></code>
-
-        </dt>
-        <dd>Change Spline \(t\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_change_spline_ty.html">fitting_change_spline_ty()</a></code>
-
-        </dt>
-        <dd>Change Spline \(t,y\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_change_spline_y.html">fitting_change_spline_y()</a></code>
-
-        </dt>
-        <dd>Change Spline \(y\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_get_spline_ty.html">fitting_get_spline_ty()</a></code>
-
-        </dt>
-        <dd>Get Spline \(t, y\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_replace_spline_t.html">fitting_replace_spline_t()</a></code>
-
-        </dt>
-        <dd>Replace Spline \(t\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_replace_spline_ty.html">fitting_replace_spline_ty()</a></code>
-
-        </dt>
-        <dd>Replace Spline \(y\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="fitting_replace_spline_y.html">fitting_replace_spline_y()</a></code>
-
-        </dt>
-        <dd>Replace Spline \(y\) Values</dd>
-      </dl><dl><dt>
-
-          <code><a href="get_init_X.shock.html">get_init_X(<i>&lt;shock&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Get Initial Values for Parameters</dd>
-      </dl><dl><dt>
-
-          <code><a href="get_limits_X.shock.html">get_limits_X(<i>&lt;shock&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Get Initial Values for Parameters</dd>
-      </dl><dl><dt>
-
-          <code><a href="get_yix_after_bednet_round.html">get_yix_after_bednet_round()</a></code>
-
-        </dt>
-        <dd>Time Since Event</dd>
-      </dl><dl><dt>
-
-          <code><a href="get_yix_after_irs_round.html">get_yix_after_irs_round()</a></code>
-
-        </dt>
-        <dd>Time Since Event</dd>
-      </dl><dl><dt>
-
-          <code><a href="setup_fitting_indices.shock.html">setup_fitting_indices(<i>&lt;shock&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Setup indices for</dd>
-      </dl><dl><dt>
-
-          <code><a href="time_since_event.html">time_since_event()</a></code>
-
-        </dt>
-        <dd>Time Since Event</dd>
-      </dl><dl><dt>
-
-          <code><a href="update_function_X.shock.html">update_function_X(<i>&lt;shock&gt;</i>)</a></code>
-
-        </dt>
-        <dd>Update the shock Function</dd>
       </dl></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>

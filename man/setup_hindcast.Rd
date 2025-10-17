@@ -11,7 +11,7 @@ setup_hindcast(xds_obj, N = 0, method = "use_first")
 
 \item{N}{the number of years to hindcast}
 
-\item{method}{to dispatch setup_pre_obs_ty}
+\item{method}{to dispatch setup_hindcast_ty}
 }
 \value{
 a \strong{\code{ramp.xds}} xds_obj object

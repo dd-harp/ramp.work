@@ -1,0 +1,10 @@
+---
+title: "Estimating IRS Effects" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document
+vignette: >
+  %\VignetteIndexEntry{Estimating IRS Effects}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

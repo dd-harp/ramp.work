@@ -1,0 +1,10 @@
+---
+title: "Fitting Seasonal Patterns" 
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document
+vignette: >
+  %\VignetteIndexEntry{Fitting Seasonal Patterns}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---

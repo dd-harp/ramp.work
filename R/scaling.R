@@ -29,7 +29,7 @@ xds_scaling = function(xds_obj, N=30){
 #'
 #' @export
 xds_scaling.eir = function(xds_obj, N=25){
-
+  eir0 <- xds_obj$EIR_obj$eir
   dEIR = 10^seq(-2, 3, length.out=N)/365
   pr = ni = rep(0, N)
   stable_orbits = list()
@@ -58,6 +58,7 @@ xds_scaling.eir = function(xds_obj, N=25){
   xds_obj$scaling <- list(aeir=365*dEIR, eir=dEIR, pr=pr, ni=ni)
   xds_obj$scaling$stable_orbits <- stable_orbits
 
+  xds_obj$EIR_obj$eir <- eir0
   return(xds_obj)
 }
 
@@ -77,6 +78,7 @@ xds_scaling.eir = function(xds_obj, N=25){
 #' @export
 xds_scaling.Lambda = function(xds_obj, N=30){
 
+  Lambda0 <- xds_obj$L_obj[[1]]$Lambda
   # get R0
   thresh  <- compute_Lambda_threshold(xds_obj)
   xds_obj <- change_mean_forcing(thresh*1.01, xds_obj)
@@ -100,6 +102,8 @@ xds_scaling.Lambda = function(xds_obj, N=30){
   xds_obj$scaling <- with(scaling, list(Lambda=Lambda, pr=pr, ni=ni, eir=eir, M=M))
   xds_obj$scaling$aeir = xds_obj$scaling$eir*365
   xds_obj$scaling$stable_orbits <- scaling$orbits
+
+  xds_obj$L_obj[[1]]$Lambda <- Lambda0
 
   return(xds_obj)
 }

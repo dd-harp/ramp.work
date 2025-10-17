@@ -11,14 +11,13 @@
 #'
 #' @param N the number of years to hindcast
 #' @param xds_obj a **`ramp.xds`** xds_obj object
-#' @param method to dispatch setup_pre_obs_ty
+#' @param method to dispatch setup_hindcast_ty
 #'
 #' @returns a **`ramp.xds`** xds_obj object
 #'
 #' @export
 #'
-setup_hindcast = function(xds_obj,
-                          N=0,
+setup_hindcast = function(xds_obj, N=0,
                           method = "use_first"){
   hindcast <- list()
 
@@ -28,10 +27,10 @@ setup_hindcast = function(xds_obj,
   if(N==0) N=length(xds_obj$fitting$pre$tt)
   hindcast$N <- N
 
-  pre_yrs = min(xds_obj$data$years) - c(N:1)
+  pre_yrs = min(xds_obj$data_obj$yr0) - c(N:1)
 
   hindcast$yrs = pre_yrs
-  hindcast$tt = pre_yrs*365
+  hindcast$tt = -c(N:1)*365
   hindcast$yy = rep(1, N)
   xds_obj$hindcast <- hindcast
   xds_obj$hindcast$t_init = min(hindcast$tt)
@@ -59,7 +58,7 @@ setup_hindcast = function(xds_obj,
 #'
 hindcast_ty = function(xds_obj, ix=c()){with(xds_obj$hindcast,{
   yy <- xds_obj$data$yy
-  xds_obj  <- setup_pre_obs_y(yy, xds_obj)
+  xds_obj  <- setup_hindcast_y(yy, xds_obj)
   return(xds_obj)
 })}
 
@@ -70,8 +69,8 @@ hindcast_ty = function(xds_obj, ix=c()){with(xds_obj$hindcast,{
 #'
 #' @returns a **`ramp.xds** xds_obj object
 #' @export
-setup_pre_obs_y = function(y, xds_obj){
-  UseMethod("setup_pre_obs_y", xds_obj$hindcast$method)
+setup_hindcast_y = function(y, xds_obj){
+  UseMethod("setup_hindcast_y", xds_obj$hindcast$method)
 }
 
 
@@ -81,11 +80,11 @@ setup_pre_obs_y = function(y, xds_obj){
 #' pre-observation interpolation points
 #' to a constant.
 #'
-#' @inheritParams setup_pre_obs_y
+#' @inheritParams setup_hindcast_y
 #'
 #' @returns a **`ramp.xds** xds_obj object
 #' @export
-setup_pre_obs_y.use_first = function(y, xds_obj){
+setup_hindcast_y.use_first = function(y, xds_obj){
   N <- xds_obj$hindcast$N
   xds_obj$hindcast$yy = rep(y[1], N)
   return(xds_obj)
@@ -97,22 +96,22 @@ setup_pre_obs_y.use_first = function(y, xds_obj){
 #' pre-observation interpolation points
 #' to a constant.
 #'
-#' @inheritParams setup_pre_obs_y
+#' @inheritParams setup_hindcast_y
 #'
 #' @returns a **`ramp.xds** xds_obj object
 #' @export
-setup_pre_obs_y.asis = function(y, xds_obj){
+setup_hindcast_y.asis = function(y, xds_obj){
   return(xds_obj)
 }
 
 #' Set up the pre-observation interpolating points
 #'
 #' @note Use "all" as the include_rule
-#' @inheritParams setup_pre_obs_y
+#' @inheritParams setup_hindcast_y
 #'
 #' @returns a **`ramp.xds** xds_obj object
 #' @export
-setup_pre_obs_y.mirror = function(y, xds_obj){
+setup_hindcast_y.mirror = function(y, xds_obj){
   xds_obj$hindcast$yy = rev(y)
   xds_obj$hindcast$N = length(y)
   return(xds_obj)

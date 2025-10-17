@@ -11,7 +11,7 @@ setup_forecast(xds_obj, N = 0, method = "use_last")
 
 \item{N}{the number of years to forecast}
 
-\item{method}{to dispatch setup_post_obs_y}
+\item{method}{to dispatch setup_forecast_y}
 }
 \value{
 a \strong{\code{ramp.xds}} xds_obj object
