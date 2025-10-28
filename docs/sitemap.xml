@@ -51,6 +51,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_bednet_shock.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/fit_bednet_shock_d50.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_irs_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_irs_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/fit_irs_shock.html</loc></url>
@@ -79,6 +80,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_shock.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_shock_d50.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_contact.html</loc></url>
@@ -94,6 +96,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_shock.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_shock_d50.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_contact.html</loc></url>
@@ -155,6 +158,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2history_cbmc.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2history_xm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/preset_phase.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/reconD_shock_xm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/restore_pr2history.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/rm_ix_fit_spline_ty.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/save_pr2history.html</loc></url>
@@ -168,6 +172,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_shock.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_shock_d50.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_contact.html</loc></url>
@@ -216,6 +221,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_coverage.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_shock.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_shock_d50.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bottom.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_contact.html</loc></url>
