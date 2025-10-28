@@ -9,4 +9,4 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-change something. 
+change. 
