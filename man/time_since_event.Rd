@@ -4,10 +4,14 @@
 \alias{time_since_event}
 \title{Time Since Event}
 \usage{
-time_since_event(xds_obj)
+time_since_event(xds_obj, bednet_ix = list(), irs_ix = list())
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
+
+\item{bednet_ix}{list of events to fit; if empty, then fit all}
+
+\item{irs_ix}{list of events to fit; if empty, then fit all}
 }
 \value{
 numeric

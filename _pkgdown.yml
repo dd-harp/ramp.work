@@ -258,6 +258,8 @@ reference:
   - change_ix_fit_spline_ty
   - change_ix_fit_spline_y
   - change_ix_fit_spline_t
+  - add_fit_spline_ty
+  - rm_ix_fit_spline_ty
   - event_chop_spline_t
   - get_yix_after_bednet_round
   - get_yix_after_irs_round
@@ -271,3 +273,26 @@ reference:
   - restore_pr2history
   - save_pr2history
   - compute_impact
+- subtitle: IRS Shocks
+  desc: |
+    Impute the baseline
+  contents:
+  - fit_irs_shock
+  - get_init_X.irs_shock
+  - get_limits_X.irs_shock
+  - setup_fitting_indices.irs_shock
+  - update_function_X.irs_shock
+- subtitle: Bed Net Shocks
+  desc: |
+    Impute the baseline
+  contents:
+  - fit_bednet_shock
+  - get_init_X.bednet_shock
+  - get_limits_X.bednet_shock
+  - setup_fitting_indices.bednet_shock
+  - update_function_X.bednet_shock
+  - fit_bednet_shock_d50
+  - get_init_X.bednet_shock_d50
+  - get_limits_X.bednet_shock_d50
+  - setup_fitting_indices.bednet_shock_d50
+  - update_function_X.bednet_shock_d50

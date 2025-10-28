@@ -62,7 +62,7 @@ update_function_X.irs_contact = function(X, xds_obj, feature="irs_contact", opti
   with(options,{
     contact <- xds_obj$events_obj$irs$contact
     contact[irs_ix] <- X[irs_ixX]
-    xds_obj <- change_irs_contact_multiround(contact, xds_obj)
+    xds_obj <- change_irs_contact_multiround(xds_obj, contact)
   return(xds_obj)
 })}
 

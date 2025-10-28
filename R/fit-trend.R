@@ -188,6 +188,43 @@ change_ix_fit_spline_ty = function(new_y, new_t, ix, xds_obj){
   return(xds_obj)
 }
 
+#' Change Spline \eqn{t,y} Values
+#'
+#' @param new_y the new \eqn{y} interpolation point value(s)
+#' @param new_t the new \eqn{t} interpolation point value(s)
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @returns a **`ramp.xds`**  model object
+#'
+#' @export
+add_fit_spline_ty = function(new_y, new_t, xds_obj){
+  stopifnot(length(new_y) == length(new_t))
+  xds_obj$data_obj$yy = c(xds_obj$data_obj$yy, new_y)
+  xds_obj$data_obj$tt = c(xds_obj$data_obj$tt, new_t)
+  ot = order(xds_obj$data_obj$tt)
+  xds_obj$data_obj$tt = xds_obj$data_obj$tt[ot]
+  xds_obj$data_obj$yy = xds_obj$data_obj$yy[ot]
+  xds_obj <- update_fit_trend(xds_obj)
+  return(xds_obj)
+}
+
+
+#' Change Spline \eqn{t,y} Values
+#'
+#' @param ix the indices of the values to replace
+#' @param xds_obj a **`ramp.xds`**  model object
+#'
+#' @returns a **`ramp.xds`**  model object
+#'
+#' @export
+rm_ix_fit_spline_ty = function(ix, xds_obj){
+  xds_obj$data_obj$yy = xds_obj$data_obj$yy[-ix]
+  xds_obj$data_obj$tt = xds_obj$data_obj$tt[-ix]
+  xds_obj$data_obj$n_ty = length(xds_obj$data_obj$yy)
+  xds_obj <- update_fit_trend(xds_obj)
+  return(xds_obj)
+}
+
 
 #' Initialize the trend
 #'

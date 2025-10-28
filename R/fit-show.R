@@ -10,18 +10,20 @@
 #' @returns the PR, invisibly
 #' @export
 show_fit = function(xds_obj, clr="black", add=FALSE, rng=NULL){
-  if(is.null("rng")) rng = range(0, xds_obj$data$pfpr)
+  if(is.null(rng)) rng = range(0, xds_obj$data$pfpr)*1.05
   gof <- round(compute_gof(xds_obj)*1e5)/1e5
-  if(add==FALSE)
-    with(xds_obj$data, plot(jdates, pfpr, type = "p",
+  if(add==FALSE){
+    with(xds_obj$data_obj, plot(jdates, pfpr, type = "p",
+                            xaxt = "n",
                             xlab = "Time", ylab = "PfPR",
                             pch=15, main = gof, xaxt = "n",
                             xlim = range(0, jdates), ylim = rng))
+    with(xds_obj$data_obj, axis(1, ymesh, years))
+  }
   xds_obj <- ramp.xds::xds_solve(xds_obj, times = c(-3650, xds_obj$data$jdates[1]))
   xds_obj <- last_to_inits(xds_obj)
   xds_obj <- ramp.xds::xds_solve(xds_obj, times = xds_obj$data$jdates)
   ramp.xds::xds_plot_PR(xds_obj, clr=clr, add=TRUE)
-  with(xds_obj$data_obj, axis(1, ymesh, years))
   return(invisible(get_PR(xds_obj)))
 }
 
