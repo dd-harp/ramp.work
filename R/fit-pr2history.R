@@ -30,35 +30,6 @@ pr2history_xm = function(xds_obj, twice=FALSE){
   return(xds_obj)
 }
 
-#' @title Reconstruct a history of exposure from a PR time series
-#'
-#' @description Construct a function describing the EIR, including
-#' the mean EIR, the seasonal pattern, and the i
-#'
-#' For set of paired a time series \eqn{X,} compute the
-#' phase of a seasonal pattern for the EIR
-#'
-#' @param xds_obj an `xds` xds_obj
-#' @param twice cycle through a second time
-#'
-#' @return the **`ramp.xds`** model object, fitted to a time series.
-#' The state at the end is saved as `xds_obj$history`
-#' @export
-pr2history_cbmc = function(xds_obj, twice=FALSE){
-
-  do_list = c("season", "trend")
-  if(with(xds_obj$events_obj,exists("irs")))
-    do_list = c(do_list, "irs")
-  if(with(xds_obj$events_obj,exists("bednet")))
-    do_list = c(do_list, "bednet")
-
-  xds_obj <- fit_model(xds_obj, do_list)
-
-  xds_obj <- save_pr2history(xds_obj)
-
-  return(xds_obj)
-}
-
 
 #' @title Reconstruct a history of exposure from a PR time series
 #'

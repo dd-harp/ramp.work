@@ -62,9 +62,7 @@ setup_fitting = function(xds_obj, pfpr, jdates,
 #' @export
 setup_data = function(xds_obj, pfpr, jdates, yr0=2015){
 
-  yr0 = floor(min(jdates/365))
-  yrN = ceiling(max(jdates/365))
-  yrs = c(yr0:yrN)
+  yrs = floor(min(jdates/365)):ceiling(max(jdates/365))
 
   data_obj = list()
   data_obj$yr0 = yr0
