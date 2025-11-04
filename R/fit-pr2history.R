@@ -15,7 +15,9 @@
 #' @export
 pr2history_xm = function(xds_obj, twice=FALSE){
 
+  print("trend-1")
   xds_obj <- fit_trend(xds_obj)
+  print("season-1")
   xds_obj <- fit_season(xds_obj)
 
   if(twice == TRUE){
@@ -23,8 +25,10 @@ pr2history_xm = function(xds_obj, twice=FALSE){
     xds_obj <- fit_season(xds_obj)
   }
 
+  print("trend-2")
   xds_obj <- fit_trend(xds_obj)
 
+  print("save")
   xds_obj <- save_pr2history(xds_obj)
 
   return(xds_obj)
@@ -71,7 +75,7 @@ save_pr2history = function(xds_obj){
   xds_obj$history = list()
   xds_obj$mean_forcing <- get_mean_forcing(xds_obj)
   xds_obj$season <- get_season(xds_obj)
-  xds_obj$history$data_obj     <- xds_obj$data_obj
+  xds_obj$history$data_obj <- xds_obj$data_obj
   xds_obj$history$fit_obj  <- xds_obj$fit_obj
   xds_obj$history$hindcast <- xds_obj$hindcast
   xds_obj$history$forecast <- xds_obj$forecast

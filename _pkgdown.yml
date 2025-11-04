@@ -106,6 +106,8 @@ reference:
   - fit_season_phase
   - fit_season_bottom
   - fit_season_pw
+  - X2pw
+  - X2bottom
   - fit_season_phase_alt
   - fit_trend
 - subtitle: Update Function

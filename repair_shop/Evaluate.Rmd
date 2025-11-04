@@ -64,7 +64,7 @@ The functions that set up model fitting in **`ramp.work`** use `xds_scaling` to 
 
 ```{r xds_scaling}
 sip_si <- xds_scaling(sip_si)
-plot_eirpr(sip_si)
+xds_plot_eirpr(sip_si)
 ```
 
 After fitting the model and getting the seasonal pattern right, it might be worth it to run `xds_scaling` again. 
