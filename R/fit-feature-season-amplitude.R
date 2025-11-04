@@ -36,8 +36,10 @@ fit_season_amplitude <- function(xds_obj){
 #'
 setup_fitting_indices.amplitude = function(xds_obj, feature, options){
 
-  options = setup_fitting_indices(xds_obj, "pw", options)
-  options = setup_fitting_indices(xds_obj, "bottom", options)
+  options$bottom_ixX = options$max_ix + 1
+  options$pw_ixX = options$max_ix + 2
+
+  options$max_ix = options$max_ix + 2
 
   return(options)
 }
@@ -62,15 +64,12 @@ get_init_X.amplitude <- function(xds_obj, feature, options=list()){
 #' @returns sum of squared differences
 #' @export
 update_function_X.amplitude = function(X, xds_obj, feature="amplitude", options=list()){
+  with(options,{
+    pars <- get_season(xds_obj)
+    pars$bottom <- X2bottom(X[bottom_ixX])
+    pars$pw <- X2pw(X[pw_ixX])
+    xds_obj <- change_season(pars, xds_obj, s=1)
 
-  bottom <- get_season_bottom(xds_obj)
-  bottom <- with(options, modify_vector_X(bottom, bottom_ix, X, bottom_ixX))
-
-  pw <- get_season_pw(xds_obj)
-  pw <- with(options, modify_vector_X(pw, pw_ix, X, pw_ixX))
-
-  xds_obj <- change_season(list(pw=pw, bottom=bottom), xds_obj, s=1)
-
-  return(xds_obj)
-}
+    return(xds_obj)
+  })}
 

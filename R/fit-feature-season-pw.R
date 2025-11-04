@@ -44,6 +44,20 @@ setup_fitting_indices.pw= function(xds_obj, feature, options){
 }
 
 
+#' @title `X2pw`
+#'
+#' @description Ensure the pw
+#' parameter is properly bounded
+#'
+#' @param x a number
+#'
+#' @returns a number
+#' @export
+X2pw = function(x){
+  0.2 + 10*exp(x)/(1+exp(x))
+}
+
+
 #' Get Initial Values for Parameters
 #'
 #' @inheritParams get_limits_X
@@ -51,7 +65,7 @@ setup_fitting_indices.pw= function(xds_obj, feature, options){
 #' @return a vector
 #' @export
 get_limits_X.pw <- function(xds_obj, feature="pw"){
-  return(c(0,10))
+  return(c(0.2,10))
 }
 
 #' Get Initial Values for Parameters
@@ -72,8 +86,7 @@ get_init_X.pw <- function(xds_obj, feature, options=list()){
 #' @export
 update_function_X.pw = function(X, xds_obj, feature, options){
 
-  pw <- get_season_pw(xds_obj)
-  pw   <- with(options, modify_vector_X(pw, pw_ix, X, pw_ixX))
+  pw <- X2pw(X[options$pw_ixX])
   xds_obj <- change_season(list(pw=pw), xds_obj, 1)
 
   return(xds_obj)

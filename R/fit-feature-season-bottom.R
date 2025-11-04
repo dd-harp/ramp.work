@@ -43,6 +43,18 @@ setup_fitting_indices.bottom = function(xds_obj, feature, options){
   return(options)
 }
 
+#' @title `X2bottom`
+#'
+#' @description Ensure the bottom
+#' parameter is properly bounded
+#'
+#' @param x a number
+#'
+#' @returns a number
+#' @export
+X2bottom = function(x){
+  20*exp(x)/(1+exp(x))
+}
 
 #' Get Initial Values for Parameters
 #'
@@ -51,7 +63,7 @@ setup_fitting_indices.bottom = function(xds_obj, feature, options){
 #' @return a vector
 #' @export
 get_limits_X.bottom <- function(xds_obj, feature="bottom"){
-  return(c(0,365))
+  return(c(0,20))
 }
 
 #' Get Initial Values for Parameters
@@ -72,8 +84,7 @@ get_init_X.bottom <- function(xds_obj, feature, options=list()){
 #' @export
 update_function_X.bottom = function(X, xds_obj, feature, options){
 
-  bottom <- get_season_bottom(xds_obj)
-  bottom   <- with(options, modify_vector_X(bottom, bottom_ix, X, bottom_ixX))
+  bottom <- X2bottom(X[options$bottom_ixX])
   xds_obj <- change_season(list(bottom=bottom), xds_obj, s=1)
 
   return(xds_obj)

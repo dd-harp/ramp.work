@@ -2,6 +2,7 @@ pandoc: 3.6.3
 pkgdown: 2.1.3
 pkgdown_sha: ~
 articles:
+  Evaluate: Evaluate.html
   FitBedNets: FitBedNets.html
   FitIRS: FitIRS.html
   FitSeason: FitSeason.html
@@ -10,7 +11,7 @@ articles:
   MetricConversion: MetricConversion.html
   Scaling: Scaling.html
   TimeSeries: TimeSeries.html
-last_built: 2025-10-28T05:32Z
+last_built: 2025-11-04T15:54Z
 urls:
   reference: https://dd-harp.github.io/ramp.work/reference
   article: https://dd-harp.github.io/ramp.work/articles
