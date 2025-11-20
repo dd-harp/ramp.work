@@ -16,8 +16,11 @@ a \strong{\code{ramp.xds}} model object
 }
 \description{
 As part of a dynamical time series
-analysis, fit the parameter(s) describing
-the scale of IRS effect sizes.
-
-This should not be used
+analysis, fit the parameters describing
+the response timeline to IRS. This fits three parameters:
+\itemize{
+\item \code{size} controls the maximum effect size of the shock
+\item \code{d_50} days after the shock when the effect size reaches half of the maximum
+\item \code{d_shape} a shape parameter
+}
 }

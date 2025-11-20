@@ -1,9 +1,9 @@
 
-#' @title Fit bednet shock_d50
+#' @title Fit bednet d50
 #'
 #' @description As part of a dynamical time series
 #' analysis, fit the parameter(s) describing
-#' the scale of bednet effect sizes.
+#' the scale of bednet effect d50s.
 #'
 #' This should not be used
 #'
@@ -19,7 +19,7 @@ fit_bednet_shock_d50 <- function(xds_obj, options=list()){
   options$max_ix = 0
   options <- setup_fitting_indices(xds_obj, "bednet_shock_d50", options)
 
-  if(length(options$bednet_shock_ix)==1){
+  if(length(options$bednet_ix)==1){
     lims = get_limits_X(xds_obj, "bednet_shock_d50")
     fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_shock_d50",
                              xds_obj=xds_obj, options=options)
@@ -36,7 +36,7 @@ fit_bednet_shock_d50 <- function(xds_obj, options=list()){
   return(xds_obj)
 }
 
-#' Setup indices for bednet shock_d50
+#' Setup indices for bednet d50
 #'
 #' @inheritParams setup_fitting_indices
 #'
@@ -44,38 +44,37 @@ fit_bednet_shock_d50 <- function(xds_obj, options=list()){
 #' @export
 setup_fitting_indices.bednet_shock_d50 = function(xds_obj, feature, options){
 
-  if(with(options, !exists("bednet_shock_ix")))
-    options$bednet_shock_ix = 1:xds_obj$events_obj$bednet$N
+  if(with(options, !exists("bednet_ix")))
+    options$bednet_ix = 1:xds_obj$events_obj$bednet$N
 
-  options$bednet_shock_ixX = options$max_ix + 1:length(options$bednet_shock_ix)
-  options$max_ix = max(options$bednet_shock_ixX)
+  options$bednet_ixX = options$max_ix + 1:length(options$bednet_ix)
+  options$max_ix = max(options$bednet_ixX)
 
   return(options)
 }
 
-#' feature the bednet shock_d50 function
+#' feature the bednet d50 function
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control change_bednet_shock_d50_multiround
+#' @importFrom ramp.control change_bednet_shock_multiround
 #'
 #' @returns sum of squared differences
 #' @export
 update_function_X.bednet_shock_d50 = function(X, xds_obj, feature="bednet_shock_d50", options=list()){
   with(options,{
-    shock_d50 <- xds_obj$events_obj$bednet$d_50
-    shock_d50[bednet_shock_ix] <- abs(X[bednet_shock_ixX])
-    xds_obj <- change_bednet_shock_d50_multiround(xds_obj, shock_d50)
+    xds_obj$events_obj$bednet$d_50[bednet_ix] <- X[bednet_ixX]^2
+    xds_obj <- setup_F_multishock(xds_obj)
     return(xds_obj)
-  })}
+})}
 
-#' Get initial X: bednet shock_d50
+#' Get initial X: bednet d50
 #'
 #' @inheritParams get_init_X
-#' @return bednet shock_d50 levels
+#' @return bednet d50 levels
 #' @export
 get_init_X.bednet_shock_d50 <- function(xds_obj, feature, options){
-  inits <- pmax(xds_obj$events_obj$bednet$d_50[options$bednet_shock_ix], 0.1)
+  inits <- pmax(xds_obj$events_obj$bednet$d_50[options$bednet_ix], 0.1)
   return(inits)
 }
 
@@ -86,5 +85,5 @@ get_init_X.bednet_shock_d50 <- function(xds_obj, feature, options){
 #' @return a vector
 #' @export
 get_limits_X.bednet_shock_d50 <- function(xds_obj, feature="bednet_shock_d50"){
-  return(c(0,1000))
+  return(c(0,Inf))
 }

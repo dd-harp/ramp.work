@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit-feature-bednet_shock.R
 \name{fit_bednet_shock}
 \alias{fit_bednet_shock}
-\title{Fit bednet Shock}
+\title{Fit Bednet Shock}
 \usage{
 fit_bednet_shock(xds_obj, options = list())
 }

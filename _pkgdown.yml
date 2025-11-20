@@ -106,8 +106,6 @@ reference:
   - fit_season_phase
   - fit_season_bottom
   - fit_season_pw
-  - X2pw
-  - X2bottom
   - fit_season_phase_alt
   - fit_trend
 - subtitle: Update Function
@@ -161,6 +159,7 @@ reference:
   - get_init_X.pw
   - get_init_X.season
   - get_init_X.trend
+  - sigX
 - subtitle: Limits on Parameter Values
   desc: |
     Set limits on parameter values for fitting
@@ -298,3 +297,30 @@ reference:
   - get_limits_X.bednet_shock_d50
   - setup_fitting_indices.bednet_shock_d50
   - update_function_X.bednet_shock_d50
+
+  - X2dshape
+  - fit_bednet_dshape
+  - fit_bednet_shock_size
+  - fit_irs_d50
+  - fit_irs_dshape
+  - fit_irs_shock_size
+  - get_init_X.bednet_dshape
+  - get_init_X.bednet_shock_size
+  - get_init_X.irs_d50
+  - get_init_X.irs_dshape
+  - get_init_X.irs_shock_size
+  - get_limits_X.bednet_dshape
+  - get_limits_X.bednet_shock_size
+  - get_limits_X.irs_d50
+  - get_limits_X.irs_dshape
+  - get_limits_X.irs_shock_size
+  - setup_fitting_indices.bednet_dshape
+  - setup_fitting_indices.bednet_shock_size
+  - update_function_X.irs_dshape
+  - update_function_X.irs_shock_size
+  - setup_fitting_indices.irs_d50
+  - setup_fitting_indices.irs_dshape
+  - setup_fitting_indices.irs_shock_size
+  - update_function_X.bednet_dshape
+  - update_function_X.bednet_shock_size
+  - update_function_X.irs_d50
