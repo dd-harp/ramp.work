@@ -1,0 +1,31 @@
+# Compute the GoF for `X`
+
+Compute the GoF for `X`
+
+## Usage
+
+``` r
+compute_gof_X(X, xds_obj, feature, options = list())
+```
+
+## Arguments
+
+- X:
+
+  new parameter values
+
+- xds_obj:
+
+  a **`ramp.xds`** model object
+
+- feature:
+
+  a string to dispatch a specific model feature
+
+- options:
+
+  a list to configure feature-specific indexing
+
+## Value
+
+sum of squared differences

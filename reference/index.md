@@ -1,0 +1,618 @@
+# Package index
+
+## Scaling
+
+Compute Scaling Relationships
+
+- [`xds_scaling()`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.md)
+  : Scaling for Malaria Metrics
+
+- [`xds_scaling(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.eir.md)
+  : Compute eir-pr scaling relationships
+
+- [`xds_scaling(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.Lambda.md)
+  : Compute scaling relationships from mosquito emergence through PfPR
+
+- [`xds_scaling_Lambda()`](https://dd-harp.github.io/ramp.work/reference/xds_scaling_Lambda.md)
+  : Compute
+
+- [`compute_Lambda_threshold()`](https://dd-harp.github.io/ramp.work/reference/compute_Lambda_threshold.md)
+  : Get High/Low Values for Lambda
+
+- [`xds_plot_eirVpr()`](https://dd-harp.github.io/ramp.work/reference/xds_plot_eirVpr.md)
+  :
+
+  xds_plot EIR(t) *vs.* the PR(t)
+
+- [`xds_plot_eirpr()`](https://dd-harp.github.io/ramp.work/reference/xds_plot_eirpr.md)
+  : xds_plot the eir-pr scaling relationship
+
+- [`lines_eirVpr()`](https://dd-harp.github.io/ramp.work/reference/lines_eirVpr.md)
+  :
+
+  Add lines for the EIR(t) *vs.* the PR(t)
+
+- [`lines_eirpr()`](https://dd-harp.github.io/ramp.work/reference/lines_eirpr.md)
+  : Add lines for an eir-pr scaling relationship
+
+## Metrics
+
+Metric Conversion
+
+- [`pr2Lambda()`](https://dd-harp.github.io/ramp.work/reference/pr2Lambda.md)
+  : Using the eirpr matrix and a RM xds_obj, convert pr to Lambda
+- [`xds_eir2ni()`](https://dd-harp.github.io/ramp.work/reference/xds_eir2ni.md)
+  : Convert eir to ni
+- [`xds_eir2pr()`](https://dd-harp.github.io/ramp.work/reference/xds_eir2pr.md)
+  : Convert eir to pr
+- [`xds_pr2eir()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2eir.md)
+  : Convert pr to eir
+- [`xds_pr2Lambda()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2Lambda.md)
+  : Convert pr to lambda
+- [`xds_pr2m()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2m.md)
+  : Convert pr to mosquito density
+- [`xds_pr2ni()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2ni.md)
+  : Convert pr to ni
+- [`pr2history()`](https://dd-harp.github.io/ramp.work/reference/pr2history.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`pr2history_xm()`](https://dd-harp.github.io/ramp.work/reference/pr2history_xm.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`reconD_shock_xm()`](https://dd-harp.github.io/ramp.work/reference/reconD_shock_xm.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`eir2fqZ()`](https://dd-harp.github.io/ramp.work/reference/eir2fqZ.md)
+  : Convert the EIR into a vector describing infective biting density
+- [`fqZ2eir()`](https://dd-harp.github.io/ramp.work/reference/fqZ2eir.md)
+  : Convert a vector describing infective biting density into the EIR,
+  \\E\\
+- [`make_HTC_matrix()`](https://dd-harp.github.io/ramp.work/reference/make_HTC_matrix.md)
+  : Parasite dispersal by humans
+- [`make_VC_matrix()`](https://dd-harp.github.io/ramp.work/reference/make_VC_matrix.md)
+  : Parasite dispersal by mosquitoes
+- [`make_calR()`](https://dd-harp.github.io/ramp.work/reference/make_calR.md)
+  : Parasite Dispersal through one Parasite Generation (Humans)
+- [`make_calZ()`](https://dd-harp.github.io/ramp.work/reference/make_calZ.md)
+  : Parasite Dispersal through one Parasite Generation (Mosquitoes)
+
+## Seasonality
+
+No methods to set subclass
+
+- [`add_orbits()`](https://dd-harp.github.io/ramp.work/reference/add_orbits.md)
+  : Draw the orbit for the \\i^{th}\\ element of eirpr\$scaling.
+
+- [`add_orbits_px()`](https://dd-harp.github.io/ramp.work/reference/add_orbits_px.md)
+  : Draw the orbit for the \\i^{th}\\ element of eirpr\$scaling, and add
+  points at the minimum and maximum eir and pr
+
+- [`compute_IoSD_F()`](https://dd-harp.github.io/ramp.work/reference/compute_IoSD_F.md)
+  : Compute the Index of Dispersal for a function F(t) over one year.
+
+- [`compute_IoSD_S()`](https://dd-harp.github.io/ramp.work/reference/compute_IoSD_S.md)
+  : Compute the Index of Seasonal Dispersal for a seasonal pattern
+  \\S(t)\\ over one year. This assumes that \$\$\int_0^{365} S(t)dt =
+  365\$\$
+
+- [`compute_IoSD_pr()`](https://dd-harp.github.io/ramp.work/reference/compute_IoSD_pr.md)
+  :
+
+  Compute the Index of Seasonal Dispersal for a PR seasonal orbit for
+  the \\i^{th}\\ element of `eirpr$scaling`
+
+- [`add_eirpr_orbits()`](https://dd-harp.github.io/ramp.work/reference/add_eirpr_orbits.md)
+  : Draw the orbit for the \\i^{th}\\ element of eirpr\$scaling.
+
+## Model Fitting
+
+No methods to set subclass
+
+- [`setup_fitting()`](https://dd-harp.github.io/ramp.work/reference/setup_fitting.md)
+  : Set up the xds_obj fitting object
+- [`setup_data()`](https://dd-harp.github.io/ramp.work/reference/setup_data.md)
+  : Set up the data object for fitting
+- [`fit_model()`](https://dd-harp.github.io/ramp.work/reference/fit_model.md)
+  : Fit a model to data
+
+### Goodness of Fit
+
+No methods to set subclass
+
+- [`compute_gof()`](https://dd-harp.github.io/ramp.work/reference/compute_gof.md)
+  : Compute GoF
+
+- [`compute_gof(`*`<sse>`*`)`](https://dd-harp.github.io/ramp.work/reference/compute_gof.sse.md)
+  : Compute SSE
+
+- [`compute_gof_X()`](https://dd-harp.github.io/ramp.work/reference/compute_gof_X.md)
+  :
+
+  Compute the GoF for `X`
+
+### Fit Part of a Model
+
+No methods to set subclass
+
+- [`fit_mean_forcing()`](https://dd-harp.github.io/ramp.work/reference/fit_mean_forcing.md)
+  : Fit mean forcing
+- [`fit_season()`](https://dd-harp.github.io/ramp.work/reference/fit_season.md)
+  : Fit a seasonal pattern
+- [`fit_season_amplitude()`](https://dd-harp.github.io/ramp.work/reference/fit_season_amplitude.md)
+  : Fit a seasonal pattern
+- [`fit_season_phase()`](https://dd-harp.github.io/ramp.work/reference/fit_season_phase.md)
+  : Fit a seasonal pattern
+- [`fit_season_bottom()`](https://dd-harp.github.io/ramp.work/reference/fit_season_bottom.md)
+  : Fit a seasonal pattern
+- [`fit_season_pw()`](https://dd-harp.github.io/ramp.work/reference/fit_season_pw.md)
+  : Fit a seasonal pattern
+- [`fit_season_phase_alt()`](https://dd-harp.github.io/ramp.work/reference/fit_season_phase_alt.md)
+  : Fit the phase
+- [`fit_trend()`](https://dd-harp.github.io/ramp.work/reference/fit_trend.md)
+  : Fit interannual variability using splines
+
+### Update Function
+
+Update function with parameter values
+
+- [`update_function_X()`](https://dd-harp.github.io/ramp.work/reference/update_function_X.md)
+  : Update a function
+
+- [`update_function_X(`*`<mean_forcing>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.mean_forcing.md)
+  : Update Mean Forcing
+
+- [`update_function_X(`*`<phase>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.phase.md)
+  : feature a function
+
+- [`update_function_X(`*`<bottom>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.bottom.md)
+  :
+
+  `bottom`
+
+- [`update_function_X(`*`<pw>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.pw.md)
+  : feature a function
+
+- [`update_function_X(`*`<season>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.season.md)
+  :
+
+  feature `F_season`
+
+- [`update_function_X(`*`<amplitude>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.amplitude.md)
+  : feature a function
+
+- [`update_function_X(`*`<trend>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.trend.md)
+  : Update the Trend Function
+
+- [`update_function_X(`*`<irs_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_contact.md)
+  : feature the irs contact function
+
+- [`update_function_X(`*`<bednet_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_contact.md)
+  : feature the bed net coverage function
+
+- [`update_function_X(`*`<multifit>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.multifit.md)
+  :
+
+  Compute the GoF for `X`
+
+### Index Parameter Values
+
+Index parameter values for fitting
+
+- [`setup_fitting_indices()`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.md)
+  : Set up indices for model fitting
+
+- [`setup_fitting_indices(`*`<amplitude>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.amplitude.md)
+  :
+
+  Seasonality: `amplitude` Indices
+
+- [`setup_fitting_indices(`*`<bottom>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bottom.md)
+  :
+
+  Seasonality: `bottom` Indices
+
+- [`setup_fitting_indices(`*`<mean_forcing>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.mean_forcing.md)
+  : Indices for Mean Forcing
+
+- [`setup_fitting_indices(`*`<phase>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.phase.md)
+  :
+
+  Seasonality: `phase` Indices
+
+- [`setup_fitting_indices(`*`<pw>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.pw.md)
+  :
+
+  Seasonality: `pw` Indices
+
+- [`setup_fitting_indices(`*`<season>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.season.md)
+  : Seasonality Indices
+
+- [`setup_fitting_indices(`*`<trend>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.trend.md)
+  : Setup indices for
+
+- [`setup_fitting_indices(`*`<bednet_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_contact.md)
+  : Setup indices for bednet coverage
+
+- [`setup_fitting_indices(`*`<irs_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_contact.md)
+  : Setup indices for irs contact
+
+### Modify Fitted Parameters Vector
+
+Index parameter values for fitting
+
+- [`modify_vector_X(`*`<NULL>`*`)`](https://dd-harp.github.io/ramp.work/reference/modify_vector_X.NULL.md)
+  : Replace Values in a List
+- [`modify_vector_X()`](https://dd-harp.github.io/ramp.work/reference/modify_vector_X.md)
+  : Replace
+- [`modify_vector_X(`*`<numeric>`*`)`](https://dd-harp.github.io/ramp.work/reference/modify_vector_X.numeric.md)
+  : Replace Values in a List
+
+### Initial Guesses for Parameter Values
+
+Set limits on parameter values for fitting
+
+- [`get_init_X()`](https://dd-harp.github.io/ramp.work/reference/get_init_X.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<amplitude>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.amplitude.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<bednet_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_contact.md)
+  : Get initial X: Bed net coverage
+
+- [`get_init_X(`*`<bottom>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.bottom.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<irs_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_contact.md)
+  : Get initial X: IRS contact
+
+- [`get_init_X(`*`<mean_forcing>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.mean_forcing.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<multifit>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.multifit.md)
+  :
+
+  Compute the GoF for `X`
+
+- [`get_init_X(`*`<phase>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.phase.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<pw>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.pw.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<season>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.season.md)
+  : Get Initial Values for Parameters
+
+- [`get_init_X(`*`<trend>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.trend.md)
+  : Get Initial Values for Parameters
+
+- [`sigX()`](https://dd-harp.github.io/ramp.work/reference/sigX.md) :
+
+  `sigX`
+
+### Limits on Parameter Values
+
+Set limits on parameter values for fitting
+
+- [`get_limits_X()`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.md)
+  : Get Limits
+- [`get_limits_X(`*`<bednet_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_contact.md)
+  : Get limits for IRS coverage parameters
+- [`get_limits_X(`*`<bottom>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.bottom.md)
+  : Get Initial Values for Parameters
+- [`get_limits_X(`*`<irs_contact>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_contact.md)
+  : Get Initial Values for Parameters
+- [`get_limits_X(`*`<mean_forcing>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.mean_forcing.md)
+  : Get Initial Values for Parameters
+- [`get_limits_X(`*`<phase>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.phase.md)
+  : Get Initial Values for Parameters
+- [`get_limits_X(`*`<pw>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.pw.md)
+  : Get Initial Values for Parameters
+- [`get_limits_X(`*`<trend>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.trend.md)
+  : Get Initial Values for Parameters
+
+### Hindcasting
+
+No methods to set subclass
+
+- [`setup_hindcast()`](https://dd-harp.github.io/ramp.work/reference/setup_hindcast.md)
+  : Hindcast a Baseline
+- [`hindcast_ty()`](https://dd-harp.github.io/ramp.work/reference/hindcast_ty.md)
+  : Hindcast a Baseline
+- [`setup_hindcast_y()`](https://dd-harp.github.io/ramp.work/reference/setup_hindcast_y.md)
+  : Set up a hindcast for burn-in
+- [`setup_hindcast_y(`*`<use_first>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_hindcast_y.use_first.md)
+  : Set up the pre-observation interpolating points
+- [`setup_hindcast_y(`*`<mirror>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_hindcast_y.mirror.md)
+  : Set up the pre-observation interpolating points
+- [`setup_hindcast_y(`*`<asis>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_hindcast_y.asis.md)
+  : Set up the pre-observation interpolating points
+
+## Forecasting
+
+No methods to set subclass
+
+- [`forecast_ty()`](https://dd-harp.github.io/ramp.work/reference/forecast_ty.md)
+  : Set the forecast interpolation
+- [`gam_forecast()`](https://dd-harp.github.io/ramp.work/reference/gam_forecast.md)
+  : Fit and draw
+
+### Fitting
+
+No methods to set subclass
+
+- [`show_fit()`](https://dd-harp.github.io/ramp.work/reference/show_fit.md)
+  : Plot the model and the data
+- [`show_residuals()`](https://dd-harp.github.io/ramp.work/reference/show_residuals.md)
+  : Plot the model and the data
+- [`setup_forecast()`](https://dd-harp.github.io/ramp.work/reference/setup_forecast.md)
+  : Set the forecast interpolation
+- [`setup_forecast_y()`](https://dd-harp.github.io/ramp.work/reference/setup_forecast_y.md)
+  : Forecast a Baseline
+- [`setup_forecast_y(`*`<asis>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_forecast_y.asis.md)
+  : Set forecast interpolation points
+- [`setup_forecast_y(`*`<use_last>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_forecast_y.use_last.md)
+  : Set forecast interpolation points
+- [`change_forecast_ix()`](https://dd-harp.github.io/ramp.work/reference/change_forecast_ix.md)
+  : Make a Forecast from Trusted Values
+- [`change_forecast_ty()`](https://dd-harp.github.io/ramp.work/reference/change_forecast_ty.md)
+  : Impute the baseline
+
+## Imputation
+
+No methods to set subclass
+
+- [`setup_imputation()`](https://dd-harp.github.io/ramp.work/reference/setup_imputation.md)
+  : Setup Imputation
+- [`get_trend_ty()`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.md)
+  : Get a set of trusted interpolation points
+- [`impute_spline_y()`](https://dd-harp.github.io/ramp.work/reference/impute_spline_y.md)
+  : Impute the baseline
+- [`impute_value()`](https://dd-harp.github.io/ramp.work/reference/impute_value.md)
+  : Impute the baseline
+- [`impute_value(`*`<first>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.first.md)
+  : Use Mean for Modify Baseline
+- [`impute_value(`*`<gam>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.gam.md)
+  : Baseline with gamma predictions
+- [`impute_value(`*`<last>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.last.md)
+  : Use Mean for Modify Baseline
+- [`impute_value(`*`<max>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.max.md)
+  : Use Max for Modify Baseline
+- [`impute_value(`*`<mean>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.mean.md)
+  : Use Mean for Modify Baseline
+- [`impute_value(`*`<median>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.median.md)
+  : Use Median for Modify Baseline
+- [`impute_value(`*`<min>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.min.md)
+  : Use Min for Modify Baseline
+- [`impute_value(`*`<reverse>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.reverse.md)
+  : Use Mean for Modify Baseline
+- [`impute_value(`*`<subsamp>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.subsamp.md)
+  : Create a modify Baseline
+- [`impute_value(`*`<asis>`*`)`](https://dd-harp.github.io/ramp.work/reference/impute_value.asis.md)
+  : Use Mean for Modify Baseline
+
+### Get Spline Interpolation Points
+
+No methods to set subclass
+
+- [`get_trend_ty(`*`<all>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.all.md)
+  : Get interpolation points
+- [`get_trend_ty(`*`<first>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.first.md)
+  : Get interpolation points
+- [`get_trend_ty(`*`<ix>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.ix.md)
+  : Get the interpolation points
+- [`get_trend_ty(`*`<last>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.last.md)
+  : Get interpolation points
+- [`get_trend_ty(`*`<nix>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.nix.md)
+  : Get interpolation points
+- [`get_trend_ty(`*`<tix>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.tix.md)
+  : Get interpolation points
+- [`get_trend_ty(`*`<unmodified>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_trend_ty.unmodified.md)
+  : Get the interpolation points
+
+### Fitting Utilities for Seasonality
+
+Impute the baseline
+
+- [`preset_phase()`](https://dd-harp.github.io/ramp.work/reference/preset_phase.md)
+  : Initialize the phase parameter
+- [`approx_phase()`](https://dd-harp.github.io/ramp.work/reference/approx_phase.md)
+  : Compute the observed phase
+- [`check_season_par(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/check_season_par.Lambda.md)
+  : Check the seasonal setup
+- [`check_season_par()`](https://dd-harp.github.io/ramp.work/reference/check_season_par.md)
+  : Check the seasonal setup
+- [`check_season_par(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.work/reference/check_season_par.eir.md)
+  : Check the seasonal setup
+- [`init_fit_season()`](https://dd-harp.github.io/ramp.work/reference/init_fit_season.md)
+  : Set up the seasonal pattern
+- [`init_fit_season(`*`<list>`*`)`](https://dd-harp.github.io/ramp.work/reference/init_fit_season.list.md)
+  : Set up the seasonal pattern
+- [`init_fit_season(`*`<sin>`*`)`](https://dd-harp.github.io/ramp.work/reference/init_fit_season.sin.md)
+  : Set up the seasonal pattern
+
+### Fitting Trends
+
+Functions to fit trends
+
+- [`update_fit_trend()`](https://dd-harp.github.io/ramp.work/reference/update_fit_trend.md)
+  : feature Interpolation Points
+- [`get_fit_trend()`](https://dd-harp.github.io/ramp.work/reference/get_fit_trend.md)
+  : Get Spline \\t, y\\ Values
+- [`compile_fit_trend()`](https://dd-harp.github.io/ramp.work/reference/compile_fit_trend.md)
+  : Check the trend setup
+- [`compile_fit_trend(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/compile_fit_trend.Lambda.md)
+  : Check the trend setup
+- [`compile_fit_trend(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.work/reference/compile_fit_trend.eir.md)
+  : Check the trend setup
+- [`crude_fit_trend()`](https://dd-harp.github.io/ramp.work/reference/crude_fit_trend.md)
+  : Initialize the trend
+- [`crude_fit_trend(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/crude_fit_trend.Lambda.md)
+  : Initialize the trend
+- [`crude_fit_trend(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.work/reference/crude_fit_trend.eir.md)
+  : Initialize the trend
+- [`change_all_fit_spline_ty()`](https://dd-harp.github.io/ramp.work/reference/change_all_fit_spline_ty.md)
+  : Replace Spline \\y\\ Values
+- [`change_all_fit_spline_y()`](https://dd-harp.github.io/ramp.work/reference/change_all_fit_spline_y.md)
+  : Replace Spline \\y\\ Values
+- [`change_all_fit_spline_t()`](https://dd-harp.github.io/ramp.work/reference/change_all_fit_spline_t.md)
+  : Replace Spline \\t\\ Values
+- [`change_ix_fit_spline_ty()`](https://dd-harp.github.io/ramp.work/reference/change_ix_fit_spline_ty.md)
+  : Change Spline \\t,y\\ Values
+- [`change_ix_fit_spline_y()`](https://dd-harp.github.io/ramp.work/reference/change_ix_fit_spline_y.md)
+  : Change Spline \\y\\ Values
+- [`change_ix_fit_spline_t()`](https://dd-harp.github.io/ramp.work/reference/change_ix_fit_spline_t.md)
+  : Change Spline \\t\\ Values
+- [`add_fit_spline_ty()`](https://dd-harp.github.io/ramp.work/reference/add_fit_spline_ty.md)
+  : Change Spline \\t,y\\ Values
+- [`rm_ix_fit_spline_ty()`](https://dd-harp.github.io/ramp.work/reference/rm_ix_fit_spline_ty.md)
+  : Change Spline \\t,y\\ Values
+- [`event_chop_spline_t()`](https://dd-harp.github.io/ramp.work/reference/event_chop_spline_t.md)
+  : Adjust Spacing
+- [`get_yix_after_bednet_round()`](https://dd-harp.github.io/ramp.work/reference/get_yix_after_bednet_round.md)
+  : Time Since Event
+- [`get_yix_after_irs_round()`](https://dd-harp.github.io/ramp.work/reference/get_yix_after_irs_round.md)
+  : Time Since Event
+- [`time_since_event()`](https://dd-harp.github.io/ramp.work/reference/time_since_event.md)
+  : Time Since Event
+
+### Fitting Vector Control
+
+Impute the baseline
+
+- [`fit_bednet_contact()`](https://dd-harp.github.io/ramp.work/reference/fit_bednet_contact.md)
+  : Fit bed net coverage
+- [`fit_irs_contact()`](https://dd-harp.github.io/ramp.work/reference/fit_irs_contact.md)
+  : Fit irs contact
+- [`restore_pr2history()`](https://dd-harp.github.io/ramp.work/reference/restore_pr2history.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`save_pr2history()`](https://dd-harp.github.io/ramp.work/reference/save_pr2history.md)
+  : Save the history fit_obj
+- [`compute_impact()`](https://dd-harp.github.io/ramp.work/reference/compute_impact.md)
+  : Compute Measures of Impact
+
+### IRS Shocks
+
+Impute the baseline
+
+- [`fit_irs_shock()`](https://dd-harp.github.io/ramp.work/reference/fit_irs_shock.md)
+  : Fit IRS Shock
+- [`get_init_X(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_shock.md)
+  : Get initial X: IRS shock
+- [`get_limits_X(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_shock.md)
+  : Get Initial Values for Parameters
+- [`setup_fitting_indices(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_shock.md)
+  : Setup indices for irs shock
+- [`update_function_X(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_shock.md)
+  : feature the irs shock function
+
+### Bed Net Shocks
+
+Impute the baseline
+
+- [`fit_bednet_shock()`](https://dd-harp.github.io/ramp.work/reference/fit_bednet_shock.md)
+  : Fit Bednet Shock
+
+- [`get_init_X(`*`<bednet_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_shock.md)
+  : Get initial X: bednet shock
+
+- [`get_limits_X(`*`<bednet_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_shock.md)
+  : Get Initial Values for Parameters
+
+- [`setup_fitting_indices(`*`<bednet_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_shock.md)
+  : Setup indices for bednet shock
+
+- [`update_function_X(`*`<bednet_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_shock.md)
+  : feature the bednet shock function
+
+- [`fit_bednet_shock_d50()`](https://dd-harp.github.io/ramp.work/reference/fit_bednet_shock_d50.md)
+  : Fit bednet d50
+
+- [`get_init_X(`*`<bednet_shock_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_shock_d50.md)
+  : Get initial X: bednet d50
+
+- [`get_limits_X(`*`<bednet_shock_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_shock_d50.md)
+  : Get Initial Values for Parameters
+
+- [`setup_fitting_indices(`*`<bednet_shock_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_shock_d50.md)
+  : Setup indices for bednet d50
+
+- [`update_function_X(`*`<bednet_shock_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_shock_d50.md)
+  : feature the bednet d50 function
+
+- [`X2dshape()`](https://dd-harp.github.io/ramp.work/reference/X2dshape.md)
+  :
+
+  `X2bottom`
+
+- [`fit_bednet_dshape()`](https://dd-harp.github.io/ramp.work/reference/fit_bednet_dshape.md)
+  : Fit bednet dshape
+
+- [`fit_bednet_shock_size()`](https://dd-harp.github.io/ramp.work/reference/fit_bednet_shock_size.md)
+  : Fit bednet shock_size
+
+- [`fit_irs_d50()`](https://dd-harp.github.io/ramp.work/reference/fit_irs_d50.md)
+  : Fit IRS shock_d50
+
+- [`fit_irs_dshape()`](https://dd-harp.github.io/ramp.work/reference/fit_irs_dshape.md)
+  : IRS Effects: Fit Shape
+
+- [`fit_irs_shock_size()`](https://dd-harp.github.io/ramp.work/reference/fit_irs_shock_size.md)
+  : Fit IRS shock_size
+
+- [`get_init_X(`*`<bednet_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_dshape.md)
+  : Get initial X: bednet dshape
+
+- [`get_init_X(`*`<bednet_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.bednet_shock_size.md)
+  : Get initial X: bednet shock_size
+
+- [`get_init_X(`*`<irs_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_d50.md)
+  : Get initial X: IRS shock_d50
+
+- [`get_init_X(`*`<irs_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_dshape.md)
+  : Get initial X: IRS dshape
+
+- [`get_init_X(`*`<irs_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_shock_size.md)
+  : Get initial X: IRS shock_size
+
+- [`get_limits_X(`*`<bednet_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_dshape.md)
+  : Get Initial Values for Parameters
+
+- [`get_limits_X(`*`<bednet_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.bednet_shock_size.md)
+  : Get Initial Values for Parameters
+
+- [`get_limits_X(`*`<irs_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_d50.md)
+  : Get Initial Values for Parameters
+
+- [`get_limits_X(`*`<irs_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_dshape.md)
+  : Get Initial Values for Parameters
+
+- [`get_limits_X(`*`<irs_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_shock_size.md)
+  : Get Initial Values for Parameters
+
+- [`setup_fitting_indices(`*`<bednet_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_dshape.md)
+  : Setup indices for bednet dshape
+
+- [`setup_fitting_indices(`*`<bednet_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.bednet_shock_size.md)
+  : Setup indices for bednet shock_size
+
+- [`update_function_X(`*`<irs_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_dshape.md)
+  : feature the irs dshape function
+
+- [`update_function_X(`*`<irs_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_shock_size.md)
+  : feature the irs shock_size function
+
+- [`setup_fitting_indices(`*`<irs_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_d50.md)
+  : Setup indices for irs shock_d50
+
+- [`setup_fitting_indices(`*`<irs_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_dshape.md)
+  : Setup indices for irs dshape
+
+- [`setup_fitting_indices(`*`<irs_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_shock_size.md)
+  : Setup indices for irs shock_size
+
+- [`update_function_X(`*`<bednet_dshape>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_dshape.md)
+  : feature the bednet dshape function
+
+- [`update_function_X(`*`<bednet_shock_size>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_shock_size.md)
+  : feature the bednet shock_size function
+
+- [`update_function_X(`*`<irs_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_d50.md)
+  : feature the irs shock_d50 function
