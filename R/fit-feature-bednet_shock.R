@@ -1,5 +1,5 @@
 
-#' @title Fit bednet Shock
+#' @title Fit Bednet Shock
 #'
 #' @description As part of a dynamical time series
 #' analysis, fit the parameter(s) describing
@@ -19,7 +19,7 @@ fit_bednet_shock <- function(xds_obj, options=list()){
   options$max_ix = 0
   options <- setup_fitting_indices(xds_obj, "bednet_shock", options)
 
-  if(length(options$bednet_shock_ix)==1){
+  if(length(options$bednet_ix)==1){
     lims = get_limits_X(xds_obj, "bednet_shock")
     fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_shock",
                              xds_obj=xds_obj, options=options)
@@ -44,11 +44,14 @@ fit_bednet_shock <- function(xds_obj, options=list()){
 #' @export
 setup_fitting_indices.bednet_shock = function(xds_obj, feature, options){
 
-  if(with(options, !exists("bednet_shock_ix")))
-    options$bednet_shock_ix = 1:xds_obj$events_obj$bednet$N
+  if(with(options, !exists("bednet_ix")))
+    options$bednet_ix = 1:xds_obj$events_obj$bednet$N
 
-  options$bednet_shock_ixX = options$max_ix + 1:length(options$bednet_shock_ix)
-  options$max_ix = max(options$bednet_shock_ixX)
+  L = length(options$bednet_ix)
+  options$bednet_L = L
+  options$bednet_ixX = options$max_ix + 1:(3*L)
+
+  options$max_ix = max(options$bednet_ixX)
 
   return(options)
 }
@@ -63,8 +66,12 @@ setup_fitting_indices.bednet_shock = function(xds_obj, feature, options){
 #' @export
 update_function_X.bednet_shock = function(X, xds_obj, feature="bednet_shock", options=list()){
   with(options,{
-    shock <- xds_obj$events_obj$bednet$shock
-    shock[bednet_shock_ix] <- abs(X[bednet_shock_ixX])
+    shock   <- xds_obj$events_obj$bednet$shock
+    shock[bednet_ix] <- sigX(X[bednet_ixX])
+
+    xds_obj$events$bednet$d_50[bednet_ix] <- X[bednet_ixX+bednet_L]^2
+    xds_obj$events$bednet$d_shape[bednet_ix] <- X[bednet_ixX+2*bednet_L]^2
+
     xds_obj <- change_bednet_shock_multiround(xds_obj, shock)
     return(xds_obj)
   })}
@@ -75,7 +82,7 @@ update_function_X.bednet_shock = function(X, xds_obj, feature="bednet_shock", op
 #' @return bednet shock levels
 #' @export
 get_init_X.bednet_shock <- function(xds_obj, feature, options){
-  inits <- pmax(xds_obj$events_obj$bednet$shock[options$bednet_shock_ix], 0.1)
+  inits <- pmax(xds_obj$events_obj$bednet$shock[options$bednet_ix], 0.1)
   return(inits)
 }
 

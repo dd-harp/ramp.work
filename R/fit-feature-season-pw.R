@@ -37,24 +37,10 @@ fit_season_pw <- function(xds_obj){
 setup_fitting_indices.pw= function(xds_obj, feature, options){
 
   options$pw_ix = 1
-  options$pw_ixX = options$max_ix + 1:length(options$pw_ix)
+  options$pw_ixX = options$max_ix + 1
   options$max_ix = max(options$pw_ixX)
 
   return(options)
-}
-
-
-#' @title `X2pw`
-#'
-#' @description Ensure the pw
-#' parameter is properly bounded
-#'
-#' @param x a number
-#'
-#' @returns a number
-#' @export
-X2pw = function(x){
-  0.2 + 10*exp(x)/(1+exp(x))
 }
 
 
@@ -86,7 +72,7 @@ get_init_X.pw <- function(xds_obj, feature, options=list()){
 #' @export
 update_function_X.pw = function(X, xds_obj, feature, options){
 
-  pw <- X2pw(X[options$pw_ixX])
+  pw <- sigX(X[options$pw_ixX], 0.2, 10)
   xds_obj <- change_season(list(pw=pw), xds_obj, 1)
 
   return(xds_obj)

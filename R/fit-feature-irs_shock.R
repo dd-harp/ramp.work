@@ -2,10 +2,12 @@
 #' @title Fit IRS Shock
 #'
 #' @description As part of a dynamical time series
-#' analysis, fit the parameter(s) describing
-#' the scale of IRS effect sizes.
+#' analysis, fit the parameters describing
+#' the response timeline to IRS. This fits three parameters:
 #'
-#' This should not be used
+#' + `size` controls the maximum effect size of the shock
+#' + `d_50` days after the shock when the effect size reaches half of the maximum
+#' + `d_shape` a shape parameter
 #'
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param options setup options for the irs rounds indexing
@@ -19,7 +21,7 @@ fit_irs_shock <- function(xds_obj, options=list()){
   options$max_ix = 0
   options <- setup_fitting_indices(xds_obj, "irs_shock", options)
 
-  if(length(options$irs_shock_ix)==1){
+  if(length(options$irs_ix)==1){
     lims = get_limits_X(xds_obj, "irs_shock")
     fitit <- stats::optimize(compute_gof_X, lims, feature="irs_shock",
                              xds_obj=xds_obj, options=options)
@@ -44,11 +46,13 @@ fit_irs_shock <- function(xds_obj, options=list()){
 #' @export
 setup_fitting_indices.irs_shock = function(xds_obj, feature, options){
 
-  if(with(options, !exists("irs_shock_ix")))
-    options$irs_shock_ix = 1:xds_obj$events_obj$irs$N
+  if(with(options, !exists("irs_ix")))
+    options$irs_ix = 1:xds_obj$events_obj$irs$N
 
-  options$irs_shock_ixX = options$max_ix + 1:length(options$irs_ix)
-  options$max_ix = max(options$irs_shock_ixX)
+  L = length(options$irs_ix)
+  options$irs_L = L
+  options$irs_ixX = options$max_ix + 1:(3*L)
+  options$max_ix = max(options$irs_ixX)
 
   return(options)
 }
@@ -64,7 +68,11 @@ setup_fitting_indices.irs_shock = function(xds_obj, feature, options){
 update_function_X.irs_shock = function(X, xds_obj, feature="irs_shock", options=list()){
   with(options,{
     shock <- xds_obj$events_obj$irs$shock
-    shock[irs_shock_ix] <- abs(X[irs_ixX])
+    shock[irs_ix] <- sigX(X[irs_ixX])
+
+    xds_obj$events$irs$d_50[irs_ix] <- X[irs_ixX+irs_L]^2
+    xds_obj$events$irs$d_shape[irs_ix] <- sigX(X[irs_ixX+irs_L*2])
+
     xds_obj <- change_irs_shock_multiround(xds_obj, shock)
     return(xds_obj)
   })}
@@ -75,7 +83,7 @@ update_function_X.irs_shock = function(X, xds_obj, feature="irs_shock", options=
 #' @return IRS shock levels
 #' @export
 get_init_X.irs_shock <- function(xds_obj, feature, options){
-  inits <- pmax(xds_obj$events_obj$irs$shock[options$irs_shock_ix], 0.1)
+  inits <- pmax(xds_obj$events_obj$irs$shock[options$irs_ix], 0.1)
   return(inits)
 }
 

@@ -38,7 +38,7 @@ fit_season_phase <- function(xds_obj){
 setup_fitting_indices.phase = function(xds_obj, feature, options){
 
   options$phase_ix = 1
-  options$phase_ixX = options$max_ix + 1:length(options$phase_ix)
+  options$phase_ixX = options$max_ix + 1
   options$max_ix = max(options$phase_ixX)
 
   return(options)

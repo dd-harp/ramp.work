@@ -28,7 +28,7 @@ reconD_shock_xm = function(xds_obj, do_bednet=TRUE, bednet_ix=c(), do_irs=TRUE, 
         bednet_ix = 1:xds_obj$events_obj$bednet$N
 
     xds_obj <- setup_bednet_coverage("multiround", xds_obj)
-    xds_obj <- setup_bednet_shock_multiround(xds_obj)
+    xds_obj <- setup_F_multishock(xds_obj)
     options$bednet_shock_ix = bednet_ix
   } else {
     bednet_ix = 0
@@ -41,7 +41,7 @@ reconD_shock_xm = function(xds_obj, do_bednet=TRUE, bednet_ix=c(), do_irs=TRUE, 
         irs_ix = 1:xds_obj$events_obj$irs$N
 
     xds_obj <- setup_irs_coverage("multiround", xds_obj)
-    xds_obj <- setup_irs_shock_multiround(xds_obj)
+    xds_obj <- setup_F_multishock(xds_obj)
     options$irs_shock_ix = irs_ix
   } else {
     irs_ix = 0
