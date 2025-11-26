@@ -297,7 +297,6 @@ reference:
   - get_limits_X.bednet_shock_d50
   - setup_fitting_indices.bednet_shock_d50
   - update_function_X.bednet_shock_d50
-
   - X2dshape
   - fit_bednet_dshape
   - fit_bednet_shock_size
