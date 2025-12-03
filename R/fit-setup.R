@@ -33,7 +33,7 @@ setup_fitting = function(xds_obj, pfpr, jdates,
 
 
 
-  xds_obj <- setup_data(xds_obj, pfpr, jdates, yr0)
+  xds_obj <- setup_data(xds_obj, pfpr, jdates, yr0, N)
 
   xds_obj <- setup_hindcast(xds_obj, N, "use_first")
 
@@ -56,11 +56,12 @@ setup_fitting = function(xds_obj, pfpr, jdates,
 #' @param pfpr a *Pf*PR time series
 #' @param jdates julian dates for `pfpr`
 #' @param yr0 the starting year
+#' @param N the number of spline points
 #'
 #' @return an **`xds_obj`**
 #'
 #' @export
-setup_data = function(xds_obj, pfpr, jdates, yr0=2015){
+setup_data = function(xds_obj, pfpr, jdates, yr0=2015, N=c()){
 
   yrs = floor(min(jdates/365)):ceiling(max(jdates/365))
 
@@ -69,7 +70,10 @@ setup_data = function(xds_obj, pfpr, jdates, yr0=2015){
   data_obj$years = yrs + yr0
   data_obj$ymesh = yrs*365
   data_obj$tt = yrs*365
-  data_obj$yy = rep(1, length(yrs))
+  print(c(N=N))
+  if(length(N)>0 & N>1)
+  data_obj$tt = seq(min(yrs*365), max(yrs*365), length.out=N)
+  data_obj$yy = rep(1, length(data_obj$tt))
   data_obj$pfpr=pfpr
   data_obj$jdates=jdates
 

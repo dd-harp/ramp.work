@@ -79,6 +79,7 @@ update_function_X.trend = function(X, xds_obj, feature, options){
   with(options,{
     xds_obj$data_obj$yy[trend_ix] = X[trend_ixX]
     xds_obj <- update_fit_trend(xds_obj)
+#    browser()
     return(xds_obj)
 })}
 

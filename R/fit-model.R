@@ -61,7 +61,6 @@ fit_model <- function(xds_obj, feature, options=list()){
   Xinits = get_init_X(xds_obj, feature, options)
   xds_obj$fit_obj$Xinits = Xinits
 
-
   if(length(unlist(Xinits))==1){
     lims = get_limits_X(xds_obj, feature)
     fitit <- stats::optimize(compute_gof_X, lims, feature=feature,
