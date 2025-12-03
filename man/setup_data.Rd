@@ -4,7 +4,7 @@
 \alias{setup_data}
 \title{Set up the data object for fitting}
 \usage{
-setup_data(xds_obj, pfpr, jdates, yr0 = 2015)
+setup_data(xds_obj, pfpr, jdates, yr0 = 2015, N = c())
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}}  model object}
@@ -14,6 +14,8 @@ setup_data(xds_obj, pfpr, jdates, yr0 = 2015)
 \item{jdates}{julian dates for \code{pfpr}}
 
 \item{yr0}{the starting year}
+
+\item{N}{the number of spline points}
 }
 \value{
 an \strong{\code{xds_obj}}

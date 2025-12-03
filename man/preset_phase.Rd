@@ -7,10 +7,10 @@
 preset_phase(xds_obj)
 }
 \arguments{
-\item{xds_obj}{an \code{xds} xds_obj}
+\item{xds_obj}{an \strong{\code{xds}} object}
 }
 \value{
-a list with the mean peak and the values
+an \strong{\code{xds}} object
 }
 \description{
 Compute the empirical phase

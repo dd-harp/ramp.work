@@ -113,19 +113,23 @@ approx_phase <- function(pfpr, jdate){
 #' *close* to the value that
 #' will get fitted later.
 #'
-#' @param xds_obj an `xds` xds_obj
+#' @param xds_obj an **`xds`** object
 #'
-#' @return a list with the mean peak and the values
+#' @return an **`xds`** object
 #' @export
 preset_phase <- function(xds_obj){
   d_phase <- with(xds_obj$data_obj, approx_phase(pfpr, jdates))
 
   times = c(0, xds_obj$data_obj$jdates)
+  xds_obj <- burnin(xds_obj)
   xds_obj <- xds_solve(xds_obj, times=times)
   model_phase <- approx_phase(get_PR(xds_obj), times)
-  adjust = d_phase - model_phase
-  phase <- get_season_phase(xds_obj, 1)
-  xds_obj <- change_season(list(phase=adjust-phase), xds_obj, s=1)
-  xds_obj <- xds_solve(xds_obj, times = c(-3650, xds_obj$data_obj$jdates))
+  old_phase <- get_season_phase(xds_obj, 1)
+  new_phase <- (old_phase+(d_phase-model_phase))%%365
+  xds_obj <- change_season(list(phase=new_phase), xds_obj, s=1)
+  xds_obj <- xds_solve(xds_obj, times=times)
+#  new <- approx_phase(get_PR(xds_obj), times)
+#  print(c(dphase=d_phase, model_phase=model_phase, new=new))
+  xds_obj <- burnin(xds_obj)
   return(xds_obj)
 }
