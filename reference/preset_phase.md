@@ -13,11 +13,11 @@ preset_phase(xds_obj)
 
 - xds_obj:
 
-  an `xds` xds_obj
+  an **`xds`** object
 
 ## Value
 
-a list with the mean peak and the values
+an **`xds`** object
 
 ## Note
 

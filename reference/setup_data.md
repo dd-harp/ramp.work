@@ -5,7 +5,7 @@ Set up the data object for fitting
 ## Usage
 
 ``` r
-setup_data(xds_obj, pfpr, jdates, yr0 = 2015)
+setup_data(xds_obj, pfpr, jdates, yr0 = 2015, N = c())
 ```
 
 ## Arguments
@@ -25,6 +25,10 @@ setup_data(xds_obj, pfpr, jdates, yr0 = 2015)
 - yr0:
 
   the starting year
+
+- N:
+
+  the number of spline points
 
 ## Value
 
