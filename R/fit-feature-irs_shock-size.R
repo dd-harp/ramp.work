@@ -76,8 +76,7 @@ update_function_X.irs_shock_size = function(X, xds_obj, feature="irs_shock_size"
 #' @export
 get_init_X.irs_shock_size <- function(xds_obj, feature, options){
   last <- xds_obj$events_obj$irs$shock[options$irs_ix]
-  last <- pmax(last, 1e-3)
-  inits <- log(last/(1-last))
+  inits <- sigXinv(last)
   return(inits)
 }
 

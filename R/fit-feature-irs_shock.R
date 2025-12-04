@@ -21,17 +21,10 @@ fit_irs_shock <- function(xds_obj, options=list()){
   options$max_ix = 0
   options <- setup_fitting_indices(xds_obj, "irs_shock", options)
 
-  if(length(options$irs_ix)==1){
-    lims = get_limits_X(xds_obj, "irs_shock")
-    fitit <- stats::optimize(compute_gof_X, lims, feature="irs_shock",
-                             xds_obj=xds_obj, options=options)
-    X <- fitit$minimum
-  } else {
-    inits = get_init_X(xds_obj, "irs_shock", options)
-    fitit <- stats::optim(inits, compute_gof_X, feature="irs_shock",
+  inits = get_init_X(xds_obj, "irs_shock", options)
+  fitit <- stats::optim(inits, compute_gof_X, feature="irs_shock",
                           options=options, xds_obj=xds_obj)
-    X <- fitit$par
-  }
+  X <- fitit$par
 
   xds_obj <- update_function_X(X, xds_obj, "irs_shock", options)
   xds_obj <- burnin(xds_obj)
@@ -51,8 +44,9 @@ setup_fitting_indices.irs_shock = function(xds_obj, feature, options){
 
   L = length(options$irs_ix)
   options$irs_L = L
-  options$irs_ixX = options$max_ix + 1:(3*L)
-  options$max_ix = max(options$irs_ixX)
+  options$irs_ixX = options$max_ix + 1:L
+
+  options$max_ix = options$max_ix + 3*L
 
   return(options)
 }
@@ -74,6 +68,7 @@ update_function_X.irs_shock = function(X, xds_obj, feature="irs_shock", options=
     xds_obj$events$irs$d_shape[irs_ix] <- sigX(X[irs_ixX+irs_L*2])
 
     xds_obj <- change_irs_shock_multiround(xds_obj, shock)
+
     return(xds_obj)
   })}
 
@@ -83,16 +78,11 @@ update_function_X.irs_shock = function(X, xds_obj, feature="irs_shock", options=
 #' @return IRS shock levels
 #' @export
 get_init_X.irs_shock <- function(xds_obj, feature, options){
-  inits <- pmax(xds_obj$events_obj$irs$shock[options$irs_ix], 0.1)
-  return(inits)
+
+  shock = xds_obj$events_obj$irs$shock[options$irs_ix]
+  d_50 = with(options, xds_obj$events_obj$irs$d_50[irs_ix])
+  d_shape = with(options, xds_obj$events_obj$irs$d_shape[irs_ix])
+
+  return(c(sigXinv(shock), sqrt(d_50), sigXinv(d_shape)))
 }
 
-#' Get Initial Values for Parameters
-#'
-#' @inheritParams get_limits_X
-#'
-#' @return a vector
-#' @export
-get_limits_X.irs_shock <- function(xds_obj, feature="irs_shock"){
-  return(c(0,1))
-}

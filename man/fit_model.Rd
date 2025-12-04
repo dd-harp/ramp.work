@@ -4,7 +4,7 @@
 \alias{fit_model}
 \title{Fit a model to data}
 \usage{
-fit_model(xds_obj, feature, options = list())
+fit_model(xds_obj, feature, options = list(), fit_method = NULL)
 }
 \arguments{
 \item{xds_obj}{an \strong{\code{xds}} model object}
@@ -12,6 +12,8 @@ fit_model(xds_obj, feature, options = list())
 \item{feature}{a list of one or more model feature to fit}
 
 \item{options}{a list of options to override feature-specific defaults}
+
+\item{fit_method}{the method for \link{optim}}
 }
 \value{
 an \strong{\code{xds}} model object

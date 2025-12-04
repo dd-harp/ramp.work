@@ -280,7 +280,6 @@ reference:
   contents:
   - fit_irs_shock
   - get_init_X.irs_shock
-  - get_limits_X.irs_shock
   - setup_fitting_indices.irs_shock
   - update_function_X.irs_shock
 - subtitle: Bed Net Shocks
@@ -323,3 +322,8 @@ reference:
   - update_function_X.bednet_dshape
   - update_function_X.bednet_shock_size
   - update_function_X.irs_d50
+  - pr2shockit
+  - pr2shockit_xm
+  - restore_pr2shockit
+  - save_pr2shockit
+  - sigXinv
