@@ -9,7 +9,7 @@ pattern for the EIR
 ## Usage
 
 ``` r
-pr2history(xds_obj, fit_method = NULL)
+restore_pr2shockit(xds_obj)
 ```
 
 ## Arguments
@@ -18,11 +18,10 @@ pr2history(xds_obj, fit_method = NULL)
 
   an `xds` xds_obj
 
-- fit_method:
-
-  the method for [optim](https://rdrr.io/r/stats/optim.html)
-
 ## Value
 
-the **`ramp.xds`** model object, fitted to a time series. The state at
-the end is saved as `xds_obj$history`
+an `xds` object
+
+## Note
+
+This utility relies on `xds_scaling`

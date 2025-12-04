@@ -74,7 +74,7 @@ optimal paramters.
 ## Usage
 
 ``` r
-fit_model(xds_obj, feature, options = list())
+fit_model(xds_obj, feature, options = list(), fit_method = NULL)
 ```
 
 ## Arguments
@@ -90,6 +90,10 @@ fit_model(xds_obj, feature, options = list())
 - options:
 
   a list of options to override feature-specific defaults
+
+- fit_method:
+
+  the method for [optim](https://rdrr.io/r/stats/optim.html)
 
 ## Value
 

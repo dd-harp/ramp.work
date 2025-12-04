@@ -9,7 +9,7 @@ pattern for the EIR
 ## Usage
 
 ``` r
-pr2history(xds_obj, fit_method = NULL)
+pr2shockit_xm(xds_obj, bednet_ix = c(), irs_ix = c(), N = 1)
 ```
 
 ## Arguments
@@ -18,9 +18,17 @@ pr2history(xds_obj, fit_method = NULL)
 
   an `xds` xds_obj
 
-- fit_method:
+- bednet_ix:
 
-  the method for [optim](https://rdrr.io/r/stats/optim.html)
+  the indices for bednet events to fit
+
+- irs_ix:
+
+  the indices for irs events to fit
+
+- N:
+
+  cycle through a N times
 
 ## Value
 

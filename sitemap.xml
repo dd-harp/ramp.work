@@ -98,7 +98,6 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_contact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_d50.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_dshape.html</loc></url>
-<url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_shock.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_shock_size.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.mean_forcing.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/get_limits_X.phase.html</loc></url>
@@ -143,11 +142,15 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2Lambda.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2history.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2history_xm.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/pr2shockit.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/pr2shockit_xm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/preset_phase.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/reconD_shock_xm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/restore_pr2history.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/restore_pr2shockit.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/rm_ix_fit_spline_ty.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/save_pr2history.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/save_pr2shockit.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_data.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.amplitude.html</loc></url>
@@ -181,6 +184,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/show_fit.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/show_residuals.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/sigX.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/sigXinv.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/time_since_event.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_fit_trend.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.amplitude.html</loc></url>

@@ -496,8 +496,6 @@ Impute the baseline
   : Fit IRS Shock
 - [`get_init_X(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_init_X.irs_shock.md)
   : Get initial X: IRS shock
-- [`get_limits_X(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/get_limits_X.irs_shock.md)
-  : Get Initial Values for Parameters
 - [`setup_fitting_indices(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.irs_shock.md)
   : Setup indices for irs shock
 - [`update_function_X(`*`<irs_shock>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_shock.md)
@@ -616,3 +614,20 @@ Impute the baseline
 
 - [`update_function_X(`*`<irs_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_d50.md)
   : feature the irs shock_d50 function
+
+- [`pr2shockit()`](https://dd-harp.github.io/ramp.work/reference/pr2shockit.md)
+  : Reconstruct a history of exposure from a PR time series
+
+- [`pr2shockit_xm()`](https://dd-harp.github.io/ramp.work/reference/pr2shockit_xm.md)
+  : Reconstruct a history of exposure from a PR time series
+
+- [`restore_pr2shockit()`](https://dd-harp.github.io/ramp.work/reference/restore_pr2shockit.md)
+  : Reconstruct a history of exposure from a PR time series
+
+- [`save_pr2shockit()`](https://dd-harp.github.io/ramp.work/reference/save_pr2shockit.md)
+  : Save the history fit_obj
+
+- [`sigXinv()`](https://dd-harp.github.io/ramp.work/reference/sigXinv.md)
+  :
+
+  `sigX`

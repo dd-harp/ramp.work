@@ -9,7 +9,7 @@ pattern for the EIR
 ## Usage
 
 ``` r
-pr2history(xds_obj, fit_method = NULL)
+pr2shockit(xds_obj, fit_method = NULL)
 ```
 
 ## Arguments
