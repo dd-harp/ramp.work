@@ -46,10 +46,11 @@
 #' @param xds_obj an **`xds`** model object
 #' @param feature a list of one or more model feature to fit
 #' @param options a list of options to override feature-specific defaults
+#' @param fit_method the method for [optim]
 #'
 #' @return an **`xds`** model object
 #' @export
-fit_model <- function(xds_obj, feature, options=list()){
+fit_model <- function(xds_obj, feature, options=list(), fit_method=NULL){
 
   if(length(feature)>1) class(feature) = "multifit"
 
@@ -68,7 +69,9 @@ fit_model <- function(xds_obj, feature, options=list()){
     X <- fitit$minimum
   } else {
     inits = unlist(Xinits)
-    fitit <- stats::optim(inits, compute_gof_X, feature=feature,
+    if(is.null(fit_method)) fit_method = "Nelder-Mead"
+    print(paste("method =", fit_method))
+    fitit <- stats::optim(inits, method=fit_method, compute_gof_X, feature=feature,
                           options=options, xds_obj=xds_obj)
     X <- fitit$par
   }

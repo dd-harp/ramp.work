@@ -60,7 +60,8 @@ get_limits_X.bottom <- function(xds_obj, feature="bottom"){
 #' @return a vector
 #' @export
 get_init_X.bottom <- function(xds_obj, feature, options=list()){
-  return(list(bottom = get_season(xds_obj)$bottom))
+  bottom = get_season(xds_obj)$bottom
+  return(c(bottom = sigXinv(bottom,0,20)))
 }
 
 #' `bottom`

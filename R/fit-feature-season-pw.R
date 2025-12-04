@@ -61,7 +61,8 @@ get_limits_X.pw <- function(xds_obj, feature="pw"){
 #' @return a vector
 #' @export
 get_init_X.pw <- function(xds_obj, feature, options=list()){
-  return(list(pw=get_season(xds_obj)$pw))
+  pw=get_season(xds_obj)$pw
+  return(c(pw=sigXinv(pw, 0.2, 10)))
 }
 
 #' feature a function

@@ -49,9 +49,9 @@ setup_fitting_indices.bednet_shock = function(xds_obj, feature, options){
 
   L = length(options$bednet_ix)
   options$bednet_L = L
-  options$bednet_ixX = options$max_ix + 1:(3*L)
+  options$bednet_ixX = options$max_ix + 1:L
 
-  options$max_ix = max(options$bednet_ixX)
+  options$max_ix = options$max_ix + 3*L
 
   return(options)
 }

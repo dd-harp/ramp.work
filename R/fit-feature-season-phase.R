@@ -51,7 +51,7 @@ setup_fitting_indices.phase = function(xds_obj, feature, options){
 #' @return a vector
 #' @export
 get_init_X.phase <- function(xds_obj, feature, options=list()){
-  return(list(phase = get_season(xds_obj)$phase))
+  return(c(phase = get_season(xds_obj)$phase))
 }
 
 #' Get Initial Values for Parameters

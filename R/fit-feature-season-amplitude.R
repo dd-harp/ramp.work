@@ -54,7 +54,7 @@ get_init_X.amplitude <- function(xds_obj, feature, options=list()){
   season_par <- get_season(xds_obj)
   bottom <- season_par$bottom
   pw <- season_par$pw
-  c(bottom=bottom, pw=pw)
+  c(bottom=sigXinv(bottom, 0, 20), pw=sigXinv(pw, 0.2, 10))
 }
 
 #' feature a function
