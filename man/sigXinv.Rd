@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit-utils.R
 \name{sigXinv}
 \alias{sigXinv}
-\title{\code{sigX}}
+\title{Sigmoid-X Inverse}
 \usage{
 sigXinv(x, mn = 0, mx = 1)
 }
@@ -17,6 +17,5 @@ sigXinv(x, mn = 0, mx = 1)
 a number
 }
 \description{
-Ensure the pw
-parameter is properly bounded
+The inverse of \link{sigX}
 }
