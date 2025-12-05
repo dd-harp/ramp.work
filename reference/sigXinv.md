@@ -1,6 +1,7 @@
-# `sigX`
+# Sigmoid-X Inverse
 
-Ensure the pw parameter is properly bounded
+The inverse of
+[sigX](https://dd-harp.github.io/ramp.work/reference/sigX.md)
 
 ## Usage
 

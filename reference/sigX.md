@@ -1,6 +1,6 @@
-# `sigX`
+# Sigmoid-X
 
-Ensure the pw parameter is properly bounded
+A sigmoid function to bound parameters
 
 ## Usage
 

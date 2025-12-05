@@ -284,8 +284,7 @@ Set limits on parameter values for fitting
   : Get Initial Values for Parameters
 
 - [`sigX()`](https://dd-harp.github.io/ramp.work/reference/sigX.md) :
-
-  `sigX`
+  Sigmoid-X
 
 ### Limits on Parameter Values
 
@@ -628,6 +627,13 @@ Impute the baseline
   : Save the history fit_obj
 
 - [`sigXinv()`](https://dd-harp.github.io/ramp.work/reference/sigXinv.md)
-  :
+  : Sigmoid-X Inverse
 
-  `sigX`
+- [`norm_trend()`](https://dd-harp.github.io/ramp.work/reference/norm_trend.md)
+  : Normalize Trend
+
+- [`norm_trend(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.work/reference/norm_trend.eir.md)
+  : Normalize Trend
+
+- [`norm_trend(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/norm_trend.Lambda.md)
+  : Normalize Trend
