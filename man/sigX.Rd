@@ -2,7 +2,7 @@
 % Please edit documentation in R/fit-utils.R
 \name{sigX}
 \alias{sigX}
-\title{\code{sigX}}
+\title{Sigmoid-X}
 \usage{
 sigX(x, mn = 0, mx = 1)
 }
@@ -17,6 +17,6 @@ sigX(x, mn = 0, mx = 1)
 a number
 }
 \description{
-Ensure the pw
-parameter is properly bounded
+A sigmoid function to
+bound parameters
 }

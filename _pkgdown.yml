@@ -327,3 +327,6 @@ reference:
   - restore_pr2shockit
   - save_pr2shockit
   - sigXinv
+  - norm_trend
+  - norm_trend.eir
+  - norm_trend.Lambda
