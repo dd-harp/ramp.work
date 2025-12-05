@@ -31,7 +31,11 @@ sigXinv = function(x, mn=0, mx=1){
 
 #' @title Normalize Trend
 #'
-#' @description
+#' @description Adjust the y-values for the
+#' interpolation point and reset the mean
+#' forcing parameter such that the product
+#' of the seasonal pattern and the trend over
+#' an observation period is one.
 #'
 #' @param xds_obj a **`ramp.xds`** object
 #'
@@ -43,10 +47,15 @@ norm_trend = function(xds_obj){
 
 #' @title Normalize Trend
 #'
-#' @description
+#' @description Adjust the y-values for the
+#' interpolation point and reset the mean
+#' daily EIR such that the product
+#' of the seasonal pattern and the trend over
+#' an observation period is one.
 #'
 #' @param xds_obj a **`ramp.xds`** object
-#'
+#' @keywords internal
+#' @importFrom stats integrate
 #' @returns a number
 #' @export
 norm_trend.eir = function(xds_obj){
@@ -64,10 +73,15 @@ norm_trend.eir = function(xds_obj){
 
 #' @title Normalize Trend
 #'
-#' @description
+#' @description Adjust the y-values for the
+#' interpolation point and reset the mean
+#' daily adult emergence rate such that the product
+#' of the seasonal pattern and the trend over
+#' an observation period is one.
 #'
 #' @param xds_obj a **`ramp.xds`** object
 #'
+#' @importFrom stats integrate
 #' @returns a number
 #' @export
 norm_trend.Lambda = function(xds_obj){

@@ -13,5 +13,10 @@
 a number
 }
 \description{
-Normalize Trend
+Adjust the y-values for the
+interpolation point and reset the mean
+daily EIR such that the product
+of the seasonal pattern and the trend over
+an observation period is one.
 }
+\keyword{internal}
