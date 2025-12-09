@@ -19,17 +19,12 @@ fit_bednet_shock <- function(xds_obj, options=list()){
   options$max_ix = 0
   options <- setup_fitting_indices(xds_obj, "bednet_shock", options)
 
-  if(length(options$bednet_ix)==1){
-    lims = get_limits_X(xds_obj, "bednet_shock")
-    fitit <- stats::optimize(compute_gof_X, lims, feature="bednet_shock",
-                             xds_obj=xds_obj, options=options)
-    X <- fitit$minimum
-  } else {
-    inits = get_init_X(xds_obj, "bednet_shock", options)
-    fitit <- stats::optim(inits, compute_gof_X, feature="bednet_shock",
+
+  inits = get_init_X(xds_obj, "bednet_shock", options)
+
+  fitit <- stats::optim(inits, compute_gof_X, feature="bednet_shock",
                           options=options, xds_obj=xds_obj)
-    X <- fitit$par
-  }
+  X <- fitit$par
 
   xds_obj <- update_function_X(X, xds_obj, "bednet_shock", options)
   xds_obj <- burnin(xds_obj)
@@ -65,12 +60,13 @@ setup_fitting_indices.bednet_shock = function(xds_obj, feature, options){
 #' @returns sum of squared differences
 #' @export
 update_function_X.bednet_shock = function(X, xds_obj, feature="bednet_shock", options=list()){
+
   with(options,{
-    shock   <- xds_obj$events_obj$bednet$shock
+    shock <- xds_obj$events_obj$bednet$shock
     shock[bednet_ix] <- sigX(X[bednet_ixX])
 
     xds_obj$events$bednet$d_50[bednet_ix] <- X[bednet_ixX+bednet_L]^2
-    xds_obj$events$bednet$d_shape[bednet_ix] <- X[bednet_ixX+2*bednet_L]^2
+    xds_obj$events$bednet$d_shape[bednet_ix] <- sigX(X[bednet_ixX+2*bednet_L])
 
     xds_obj <- change_bednet_shock_multiround(xds_obj, shock)
     return(xds_obj)
@@ -82,9 +78,12 @@ update_function_X.bednet_shock = function(X, xds_obj, feature="bednet_shock", op
 #' @return bednet shock levels
 #' @export
 get_init_X.bednet_shock <- function(xds_obj, feature, options){
-  inits <- pmax(xds_obj$events_obj$bednet$shock[options$bednet_ix], 0.1)
-  return(inits)
-}
+  with(options,{
+    shock = xds_obj$events_obj$bednet$shock[bednet_ix]
+    d_50 = xds_obj$events_obj$bednet$d_50[bednet_ix]
+    d_shape = xds_obj$events_obj$bednet$d_shape[bednet_ix]
+  return(c(sigXinv(shock), sqrt(d_50), sigXinv(d_shape)))
+})}
 
 #' Get Initial Values for Parameters
 #'
