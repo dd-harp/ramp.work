@@ -63,9 +63,9 @@ update_function_X.irs_shock = function(X, xds_obj, feature="irs_shock", options=
   with(options,{
     shock <- xds_obj$events_obj$irs$shock
     shock[irs_ix] <- sigX(X[irs_ixX])
-
     xds_obj$events$irs$d_50[irs_ix] <- X[irs_ixX+irs_L]^2
     xds_obj$events$irs$d_shape[irs_ix] <- sigX(X[irs_ixX+irs_L*2])
+
 
     xds_obj <- change_irs_shock_multiround(xds_obj, shock)
 
@@ -80,8 +80,8 @@ update_function_X.irs_shock = function(X, xds_obj, feature="irs_shock", options=
 get_init_X.irs_shock <- function(xds_obj, feature, options){
 
   shock = xds_obj$events_obj$irs$shock[options$irs_ix]
-  d_50 = with(options, xds_obj$events_obj$irs$d_50[irs_ix])
-  d_shape = with(options, xds_obj$events_obj$irs$d_shape[irs_ix])
+  d_50 = xds_obj$events_obj$irs$d_50[options$irs_ix]
+  d_shape = xds_obj$events_obj$irs$d_shape[options$irs_ix]
 
   return(c(sigXinv(shock), sqrt(d_50), sigXinv(d_shape)))
 }

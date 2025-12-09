@@ -322,8 +322,8 @@ reference:
   - update_function_X.bednet_dshape
   - update_function_X.bednet_shock_size
   - update_function_X.irs_d50
-  - pr2shockit
-  - pr2shockit_xm
+  - pr2shockfit
+  - pr2shockfit_xm
   - restore_pr2shockit
   - save_pr2shockit
   - sigXinv
