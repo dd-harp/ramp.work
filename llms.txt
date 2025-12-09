@@ -695,10 +695,10 @@ Impute the baseline
 - [`update_function_X(`*`<irs_d50>`*`)`](https://dd-harp.github.io/ramp.work/reference/update_function_X.irs_d50.md)
   : feature the irs shock_d50 function
 
-- [`pr2shockit()`](https://dd-harp.github.io/ramp.work/reference/pr2shockit.md)
+- [`pr2shockfit()`](https://dd-harp.github.io/ramp.work/reference/pr2shockfit.md)
   : Reconstruct a history of exposure from a PR time series
 
-- [`pr2shockit_xm()`](https://dd-harp.github.io/ramp.work/reference/pr2shockit_xm.md)
+- [`pr2shockfit_xm()`](https://dd-harp.github.io/ramp.work/reference/pr2shockfit_xm.md)
   : Reconstruct a history of exposure from a PR time series
 
 - [`restore_pr2shockit()`](https://dd-harp.github.io/ramp.work/reference/restore_pr2shockit.md)
