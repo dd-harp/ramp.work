@@ -6,18 +6,20 @@
 #' @param clr the color of the line to be plotted
 #' @param add add to an existing show_fit plot
 #' @param rng if not null, the y axis limits
+#' @param dom if not null, the x axis limits
 #'
 #' @returns the PR, invisibly
 #' @export
-show_fit = function(xds_obj, clr="black", add=FALSE, rng=NULL){
-  if(is.null(rng)) rng = range(0, xds_obj$data$pfpr)*1.05
+show_fit = function(xds_obj, clr="black", add=FALSE, rng=NULL,dom=NULL){
+  if(is.null(rng)) rng = range(0, xds_obj$data_obj$pfpr)*1.05
+  if(is.null(dom)) dom = range(xds_obj$data_obj$jdates)*1.02
   gof <- round(compute_gof(xds_obj)*1e5)/1e5
   if(add==FALSE){
     with(xds_obj$data_obj, plot(jdates, pfpr, type = "p",
                             xaxt = "n",
                             xlab = "Time", ylab = "PfPR",
                             pch=15, main = gof, xaxt = "n",
-                            xlim = range(0, jdates), ylim = rng))
+                            xlim = dom, ylim = rng))
     with(xds_obj$data_obj, axis(1, ymesh, years))
   }
   xds_obj <- ramp.xds::xds_solve(xds_obj, times = c(-3650, xds_obj$data$jdates[1]))

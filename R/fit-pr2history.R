@@ -19,10 +19,12 @@ pr2history_xm = function(xds_obj, twice=FALSE){
   xds_obj <- fit_trend(xds_obj)
   print("season-1")
   xds_obj <- fit_season(xds_obj)
+  xds_obj <- norm_trend(xds_obj)
 
   if(twice == TRUE){
     xds_obj <- fit_trend(xds_obj)
     xds_obj <- fit_season(xds_obj)
+    xds_obj <- norm_trend(xds_obj)
   }
 
   print("trend-2")
