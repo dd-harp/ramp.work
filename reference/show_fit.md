@@ -5,7 +5,7 @@ Plot the model and the data
 ## Usage
 
 ``` r
-show_fit(xds_obj, clr = "black", add = FALSE, rng = NULL)
+show_fit(xds_obj, clr = "black", add = FALSE, rng = NULL, dom = NULL)
 ```
 
 ## Arguments
@@ -25,6 +25,10 @@ show_fit(xds_obj, clr = "black", add = FALSE, rng = NULL)
 - rng:
 
   if not null, the y axis limits
+
+- dom:
+
+  if not null, the x axis limits
 
 ## Value
 
