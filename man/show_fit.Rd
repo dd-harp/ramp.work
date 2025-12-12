@@ -4,7 +4,7 @@
 \alias{show_fit}
 \title{Plot the model and the data}
 \usage{
-show_fit(xds_obj, clr = "black", add = FALSE, rng = NULL)
+show_fit(xds_obj, clr = "black", add = FALSE, rng = NULL, dom = NULL)
 }
 \arguments{
 \item{xds_obj}{a \strong{\code{ramp.xds}} model object}
@@ -14,6 +14,8 @@ show_fit(xds_obj, clr = "black", add = FALSE, rng = NULL)
 \item{add}{add to an existing show_fit plot}
 
 \item{rng}{if not null, the y axis limits}
+
+\item{dom}{if not null, the x axis limits}
 }
 \value{
 the PR, invisibly

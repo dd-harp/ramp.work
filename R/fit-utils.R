@@ -24,8 +24,10 @@ sigX = function(x, mn=0, mx=1){
 #' @returns a number
 #' @export
 sigXinv = function(x, mn=0, mx=1){
-  stopifnot(x<mx)
-  stopifnot(x>mn)
+  stopifnot(x<=mx)
+  stopifnot(x>=mn)
+  if(x==mx) x = mx-1e-5
+  if(x==mn) x = mn+1e-5
   log((x-mn)/(mx-x))
 }
 
