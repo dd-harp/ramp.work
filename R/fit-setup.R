@@ -70,7 +70,7 @@ setup_data = function(xds_obj, pfpr, jdates, yr0=2015, N=c()){
   data_obj$years = yrs + yr0
   data_obj$ymesh = yrs*365
   data_obj$tt = yrs*365
-  print(c(N=N))
+  #print(c(N=N))
   if(length(N)>0 & N>1)
   data_obj$tt = seq(min(yrs*365), max(yrs*365), length.out=N)
   data_obj$yy = rep(1, length(data_obj$tt))
