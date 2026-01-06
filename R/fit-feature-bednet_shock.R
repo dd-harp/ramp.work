@@ -65,8 +65,8 @@ update_function_X.bednet_shock = function(X, xds_obj, feature="bednet_shock", op
     shock <- xds_obj$events_obj$bednet$shock
     shock[bednet_ix] <- sigX(X[bednet_ixX])
 
-    xds_obj$events$bednet$d_50[bednet_ix] <- X[bednet_ixX+bednet_L]^2
-    xds_obj$events$bednet$d_shape[bednet_ix] <- sigX(X[bednet_ixX+2*bednet_L])
+    xds_obj$events_obj$bednet$d_50[bednet_ix] <- X[bednet_ixX+bednet_L]^2
+    xds_obj$events_obj$bednet$d_shape[bednet_ix] <- sigX(X[bednet_ixX+2*bednet_L])
 
     xds_obj <- change_bednet_shock_multiround(xds_obj, shock)
     return(xds_obj)
