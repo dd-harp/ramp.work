@@ -16,7 +16,7 @@
 Source:
 [`DESCRIPTION`](https://github.com/dd-harp/ramp.work/blob/main/DESCRIPTION)
 
-Smith D, Nakakawa J, Ssebuliba D (2025). *ramp.work: Algorithms to
+Smith D, Nakakawa J, Ssebuliba D (2026). *ramp.work: Algorithms to
 support workflows and analytics pipelines for RAMP (Robust Analytics for
 Malaria Policy)*. R package version 1.0.0-0,
 <https://dd-harp.github.io/ramp.work/>.
@@ -24,7 +24,7 @@ Malaria Policy)*. R package version 1.0.0-0,
     @Manual{,
       title = {ramp.work: Algorithms to support workflows and analytics pipelines for RAMP (Robust Analytics for Malaria Policy)},
       author = {David L. Smith and Juliet Nsumba Nakakawa and Doreen Mbabazi Ssebuliba},
-      year = {2025},
+      year = {2026},
       note = {R package version 1.0.0-0},
       url = {https://dd-harp.github.io/ramp.work/},
     }

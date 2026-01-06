@@ -74,7 +74,7 @@
             <h3 data-toc-skip class="subtitle">Compute Scaling
 Relationships for Malaria Metrics</h3>
             
-            <h4 data-toc-skip class="date">December 15, 2025</h4>
+            <h4 data-toc-skip class="date">January 06, 2026</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/dd-harp/ramp.work/blob/main/vignettes/Scaling.Rmd" class="external-link"><code>vignettes/Scaling.Rmd</code></a></small>
       <div class="d-none name"><code>Scaling.Rmd</code></div>
@@ -144,7 +144,7 @@ E.\)</span></p></li>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_setup_eir.html" class="external-link">xds_setup_eir</a></span><span class="op">(</span>eir <span class="op">=</span> <span class="fl">1</span><span class="op">/</span><span class="fl">365</span>, season_par <span class="op">=</span> <span class="va">Spar</span><span class="op">)</span></span>
 <span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/xds_solve.html" class="external-link">xds_solve</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://dd-harp.github.io/ramp.xds/reference/show_season.html" class="external-link">show_season</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Scaling_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" width="700"></p>
+<p><img src="Scaling_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
 <p>The function <a href="https://dd-harp.github.io/ramp.work/reference/xds_scaling.html"><code>xds_scaling</code></a>
 computes and stores the values:</p>
 <ul>
@@ -168,7 +168,7 @@ easy to relate the orbit and the mean value.</p>
 <span><span class="fu"><a href="../reference/xds_plot_eirpr.html">xds_plot_eirpr</a></span><span class="op">(</span><span class="va">model</span><span class="op">)</span></span>
 <span><span class="va">ix_subset</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">13</span>, <span class="fl">17</span>, <span class="fl">21</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/add_eirpr_orbits.html">add_eirpr_orbits</a></span><span class="op">(</span><span class="va">ix_subset</span>, <span class="va">model</span>, clrs <span class="op">=</span> <span class="fu"><a href="https://sjmgarnier.github.io/viridisLite/reference/viridis.html" class="external-link">turbo</a></span><span class="op">(</span><span class="fl">25</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><img src="Scaling_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="700"></p>
+<p><img src="Scaling_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
