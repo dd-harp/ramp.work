@@ -15,6 +15,8 @@
 #' @export
 pr2history_xm = function(xds_obj, twice=FALSE){
 
+  xds_obj <- rebuild_forcing_functions(xds_obj)
+
   #print("trend-1")
   xds_obj <- fit_trend(xds_obj)
   #print("season-1")
@@ -52,6 +54,8 @@ pr2history_xm = function(xds_obj, twice=FALSE){
 #' The state at the end is saved as `xds_obj$history`
 #' @export
 pr2history = function(xds_obj, fit_method=NULL){
+
+  xds_obj <- rebuild_forcing_functions(xds_obj)
 
   xds_obj <- fit_model(xds_obj, c("season", "trend"), fit_method=fit_method)
   xds_obj <- save_pr2history(xds_obj)

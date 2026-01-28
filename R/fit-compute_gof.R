@@ -1,8 +1,10 @@
 
 #' Compute GoF
+#' @description
+#' Compute the Goodness of Fit
 #'
 #' @param xds_obj a **`ramp.xds`** model object
-#'
+#' @keywords internal
 #' @returns sum of squared differences
 #' @export
 compute_gof = function(xds_obj){
@@ -46,32 +48,15 @@ compute_gof.smooth_sse = function(xds_obj){
 
 #' Smooth PR
 #'
-#' @description
+#' @description Smooth the PR
 #'
 #' @param pr predicted PR values
 #' @param jdates the julian dates
 #' @param bwidth a constant
-#'
+#' @importFrom stats weighted.mean
 #' @returns smoothed PR
 #' @export
 smooth_pr = function(pr, jdates, bwidth=180){
-  pr = sapply(1:length(pr), ksmooth_i, pr=pr, jdates=jdates, bwidth=bwidth)
-}
-
-#' Smooth PR
-#'
-#' @description
-#'
-#'
-#' @param i the index of an observation
-#' @param pr predicted PR values
-#' @param jdates the julian dates
-#' @param xds_obj a **`ramp.xds`** model object
-#'
-#' @returns smoothed PR
-#' @export
-ksmooth_i = function(i, pr, jdates, bwidth=180){
   wts = exp(-((jdates[i]-jdates)/bwidth)^2)
   weighted.mean(pr, wts)
 }
-
