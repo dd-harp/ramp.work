@@ -13,5 +13,6 @@ compute_gof(xds_obj)
 sum of squared differences
 }
 \description{
-Compute GoF
+Compute the Goodness of Fit
 }
+\keyword{internal}

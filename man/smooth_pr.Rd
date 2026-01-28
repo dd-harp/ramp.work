@@ -17,5 +17,5 @@ smooth_pr(pr, jdates, bwidth = 180)
 smoothed PR
 }
 \description{
-Smooth PR
+Smooth the PR
 }
