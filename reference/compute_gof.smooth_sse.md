@@ -1,10 +1,11 @@
-# Compute GoF
+# Compute SSE
 
-Compute the Goodness of Fit
+Computes the sum of squared errors
 
 ## Usage
 
 ``` r
+# S3 method for class 'smooth_sse'
 compute_gof(xds_obj)
 ```
 

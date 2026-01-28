@@ -203,6 +203,12 @@ No methods to set subclass
 - [`compute_gof(`*`<sse>`*`)`](https://dd-harp.github.io/ramp.work/reference/compute_gof.sse.md)
   : Compute SSE
 
+- [`compute_gof(`*`<smooth_sse>`*`)`](https://dd-harp.github.io/ramp.work/reference/compute_gof.smooth_sse.md)
+  : Compute SSE
+
+- [`smooth_pr()`](https://dd-harp.github.io/ramp.work/reference/smooth_pr.md)
+  : Smooth PR
+
 - [`compute_gof_X()`](https://dd-harp.github.io/ramp.work/reference/compute_gof_X.md)
   :
 
