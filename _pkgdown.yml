@@ -96,6 +96,7 @@ reference:
   - compute_gof
   - compute_gof.sse
   - compute_gof.smooth_sse
+  - smooth_pr
   - compute_gof_X
 - subtitle: Fit Part of a Model
   desc: |
