@@ -12,7 +12,7 @@ fit_trend(xds_obj, options = list())
 \item{options}{a list to configure the indices}
 }
 \value{
-a list with the mean peak and the values
+an \code{xds} xds_obj
 }
 \description{
 For a \emph{Pf}PR time series, \eqn{x}, fit

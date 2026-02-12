@@ -289,7 +289,7 @@ crude_fit_trend.Lambda = function(xds_obj){
 crude_fit_trend.eir = function(xds_obj){
 
   mean_pr <- mean(xds_obj$data_obj$pfpr)
-  xds_pr2eir(mean_pr, xds_obj)$eir -> E
+  xds_pr2eir(mean_pr, xds_obj, extend=TRUE)$eir -> E
   xds_obj$EIR_obj$eir <- E
 
   yy <- xds_obj$data_obj$yy
@@ -298,7 +298,7 @@ crude_fit_trend.eir = function(xds_obj){
   for(i in 1:length(tt)){
     ix = which(abs(xds_obj$data_obj$jdates-tt[i]) < 365)
     loc_mn = mean(xds_obj$data_obj$pfpr[ix])
-    E_loc = xds_pr2eir(loc_mn, xds_obj)$eir
+    E_loc = xds_pr2eir(loc_mn, xds_obj, extend=TRUE)$eir
     yy[i] = E_loc/E
   }
 

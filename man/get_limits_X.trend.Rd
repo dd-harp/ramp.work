@@ -12,7 +12,7 @@
 \item{feature}{the dispatch string}
 }
 \value{
-a vector
+a pair of values
 }
 \description{
 Get Initial Values for Parameters

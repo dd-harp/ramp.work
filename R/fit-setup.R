@@ -35,6 +35,8 @@ setup_fitting = function(xds_obj, pfpr, jdates,
 
   xds_obj <- setup_data(xds_obj, pfpr, jdates, yr0, N)
 
+  xds_obj <- crude_fit_trend(xds_obj)
+
   xds_obj <- setup_hindcast(xds_obj, N, "use_first")
 
   xds_obj <- setup_forecast(xds_obj, N, "use_last")
@@ -79,7 +81,6 @@ setup_data = function(xds_obj, pfpr, jdates, yr0=2015, N=c()){
 
   xds_obj$data_obj <- data_obj
 
-  xds_obj <- crude_fit_trend(xds_obj)
 
   return(xds_obj)
 }
