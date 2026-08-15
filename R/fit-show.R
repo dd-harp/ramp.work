@@ -26,7 +26,7 @@ show_fit = function(xds_obj, clr="black", add=FALSE, rng=NULL,dom=NULL){
   xds_obj <- last_to_inits(xds_obj)
   xds_obj <- ramp.xds::xds_solve(xds_obj, times = xds_obj$data$jdates)
   ramp.xds::xds_plot_PR(xds_obj, clr=clr, add=TRUE)
-  return(invisible(get_PR(xds_obj)))
+  return(invisible(get_PR(xds_obj, xds_obj$fit_obj$pr_diagnostic, 1)))
 }
 
 #' @title Plot the model and the data
@@ -41,9 +41,10 @@ show_fit = function(xds_obj, clr="black", add=FALSE, rng=NULL,dom=NULL){
 show_residuals = function(xds_obj, clr="black", add=FALSE){
   jdates = xds_obj$data$jdates
   xds_obj <- ramp.xds::xds_solve(xds_obj, times = c(0, jdates))
-  residuals <- xds_obj$data$pfpr - get_PR(xds_obj, 1)[-1]
+  residuals <- xds_obj$data$pfpr - get_PR(xds_obj, xds_obj$fit_obj$pr_diagnostic, 1)$pr[-1]
   if(add==FALSE)
-    plot(jdates, residuals, type = "p", xlab = "Time", ylab = "PfPR", pch=15, ylim = range(-max(residuals), max(residuals)))
+    plot(jdates, residuals, type = "n", xlab = "Time", ylab = "PfPR", pch=15, ylim = range(-max(residuals), max(residuals)))
+  points(jdates, residuals, type = "p", pch=15, col = clr)
   segments(0, 0, max(jdates), 0)
   return(invisible(residuals))
 }

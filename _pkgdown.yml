@@ -89,6 +89,9 @@ reference:
   - setup_fitting
   - setup_data
   - fit_model
+  - mask_data
+  - unmask_data
+  - mask_events
 - subtitle: Goodness of Fit
   desc: |
     No methods to set subclass

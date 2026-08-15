@@ -24,7 +24,7 @@ compute_gof = function(xds_obj){
 compute_gof.sse = function(xds_obj){
   times = c(xds_obj$fit_obj$t_neg_inf, xds_obj$data_obj$jdates)
   xds_obj <- xds_solve(xds_obj, times=times)
-  pred_pr <- get_PR(xds_obj, i=1, method=xds_obj$fit_obj$pr_diagnostic)[-1]
+  pred_pr <- get_PR(xds_obj, i=1, method=xds_obj$fit_obj$pr_diagnostic)$pr[-1]
   sum((xds_obj$data_obj$pfpr-pred_pr)^2)
 }
 
@@ -41,7 +41,7 @@ compute_gof.sse = function(xds_obj){
 compute_gof.smooth_sse = function(xds_obj){
   times = c(xds_obj$fit_obj$t_neg_inf, xds_obj$data_obj$jdates)
   xds_obj <- xds_solve(xds_obj, times=times)
-  pred_pr <- get_PR(xds_obj, 1, method=xds_obj$fit_obj$pr_diagnostic)[-1]
+  pred_pr <- get_PR(xds_obj, 1, method=xds_obj$fit_obj$pr_diagnostic)$pr[-1]
   smoothed_pr <- smooth_pr(pred_pr, xds_obj$data_obj$jdates, xds_obj$fit_obj$bwidth)
   sum((xds_obj$data_obj$pfpr-smoothed_pr)^2)
 }
@@ -63,4 +63,20 @@ smooth_pr = function(pr, jdates, bwidth=180){
   }
   smpr = sapply(1:length(jdates), ksm)
   return(smpr)
+}
+
+#' Compute SSE
+#'
+#' @description
+#' Computes the sum of squared errors
+#'
+#'
+#' @param xds_obj a **`ramp.xds`** model object
+#'
+#' @returns sum of squared differences
+#' @export
+compute_gof.ts_sse = function(xds_obj){
+  times = c(xds_obj$fit_obj$t_neg_inf, xds_obj$data_obj$jdates)
+  pred_pr <- F_pr(times, xds_obj)
+  sum((xds_obj$data_obj$pfpr-pred_pr)^2)
 }
