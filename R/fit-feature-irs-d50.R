@@ -57,7 +57,7 @@ setup_fitting_indices.irs_d50 = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control change_irs_shock_multiround
+#' @importFrom ramp.forcing change_irs_shock_multiround
 #'
 #' @returns sum of squared differences
 #' @export

@@ -54,7 +54,7 @@ setup_fitting_indices.bednet_contact = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control change_bednet_contact_multiround
+#' @importFrom ramp.forcing change_bednet_contact_multiround
 #'
 #' @return a **`ramp.xds`** model object
 #' @export

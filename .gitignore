@@ -13,3 +13,7 @@ docs/reference/ar_compare.html
 ramp.work.Rproj
 ramp.work.Rproj
 .DS_Store
+/docs
+/docs/articles
+*.html
+.positai

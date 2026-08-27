@@ -10,3 +10,5 @@ docs
 ^index\.html$
 ^vignettes$
 ^repair_shop$
+^\.positai$
+^\.claude$

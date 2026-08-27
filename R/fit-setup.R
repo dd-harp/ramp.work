@@ -32,8 +32,9 @@ setup_fitting = function(xds_obj, pfpr, jdates,
   xds_obj$fit_obj = fit_obj
 
 
-
   xds_obj <- setup_data(xds_obj, pfpr, jdates, yr0, N)
+
+  xds_obj <- crude_fit_trend(xds_obj)
 
   xds_obj <- setup_hindcast(xds_obj, N, "use_first")
 
@@ -75,11 +76,13 @@ setup_data = function(xds_obj, pfpr, jdates, yr0=2015, N=c()){
   data_obj$tt = seq(min(yrs*365), max(yrs*365), length.out=N)
   data_obj$yy = rep(1, length(data_obj$tt))
   data_obj$pfpr=pfpr
+  data_obj$original_pfpr=pfpr
   data_obj$jdates=jdates
+  data_obj$original_jdates=jdates
+  data_obj$mask_ix = c()
 
   xds_obj$data_obj <- data_obj
 
-  xds_obj <- crude_fit_trend(xds_obj)
 
   return(xds_obj)
 }

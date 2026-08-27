@@ -54,7 +54,7 @@ setup_fitting_indices.irs_contact = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control change_irs_contact_multiround
+#' @importFrom ramp.forcing change_irs_contact_multiround
 #'
 #' @returns sum of squared differences
 #' @export

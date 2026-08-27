@@ -56,7 +56,7 @@ setup_fitting_indices.bednet_dshape = function(xds_obj, feature, options){
 #'
 #' @inheritParams update_function_X
 #'
-#' @importFrom ramp.control change_bednet_shock_multiround
+#' @importFrom ramp.forcing change_bednet_shock_multiround
 #'
 #' @returns sum of squared differences
 #' @export

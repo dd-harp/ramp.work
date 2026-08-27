@@ -14,7 +14,7 @@
 \item{options}{options for setting indices}
 }
 \value{
-indices
+indices to be fit
 }
 \description{
 Setup indices for

@@ -41,7 +41,7 @@ check_season_par.eir = function(xds_obj){
 #'
 #' @return a `sin` function parameter set
 #' @export
-#' @seealso [makepar_F_sin()]
+#' @seealso [ramp.func::makepar_F_sin()]
 init_fit_season = function(season_par){
   UseMethod("init_fit_season", season_par)
 }
@@ -56,7 +56,7 @@ init_fit_season = function(season_par){
 #'
 #' @return a `sin` function parameter set
 #'
-#' @seealso [makepar_F_sin()]
+#' @seealso [ramp.func::makepar_F_sin()]
 #'
 #' @export
 #'
@@ -74,7 +74,7 @@ init_fit_season.list = function(season_par){
 #'
 #' @return a `sin` function parameter set
 #'
-#' @seealso [makepar_F_sin()]
+#' @seealso [ramp.func::makepar_F_sin()]
 #'
 #' @export
 #'
@@ -123,7 +123,7 @@ preset_phase <- function(xds_obj){
   times = c(0, xds_obj$data_obj$jdates)
   xds_obj <- burnin(xds_obj)
   xds_obj <- xds_solve(xds_obj, times=times)
-  model_phase <- approx_phase(get_PR(xds_obj), times)
+  model_phase <- approx_phase(get_PR(xds_obj)$pr, times)
   old_phase <- get_season_phase(xds_obj, 1)
   new_phase <- (old_phase+(d_phase-model_phase))%%365
   xds_obj <- change_season(list(phase=new_phase), xds_obj, s=1)

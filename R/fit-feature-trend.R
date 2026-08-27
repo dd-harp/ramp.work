@@ -8,7 +8,7 @@
 #' @param xds_obj an `xds` xds_obj
 #' @param options a list to configure the indices
 #'
-#' @return a list with the mean peak and the values
+#' @return an `xds` xds_obj
 #' @export
 fit_trend <- function(xds_obj, options = list()){
   options$max_ix = 0
@@ -38,7 +38,7 @@ fit_trend <- function(xds_obj, options = list()){
 #'
 #' @inheritParams setup_fitting_indices
 #'
-#' @returns indices
+#' @returns indices to be fit
 #' @export
 setup_fitting_indices.trend = function(xds_obj, feature, options){
   if(is.null(options$trend_ix))
@@ -63,7 +63,7 @@ get_init_X.trend <- function(xds_obj, feature, options){
 #'
 #' @inheritParams get_limits_X
 #'
-#' @return a vector
+#' @return a pair of values
 #' @export
 get_limits_X.trend <- function(xds_obj, feature){
   return(c(.001,10))
@@ -79,7 +79,6 @@ update_function_X.trend = function(X, xds_obj, feature, options){
   with(options,{
     xds_obj$data_obj$yy[trend_ix] = X[trend_ixX]
     xds_obj <- update_fit_trend(xds_obj)
-#    browser()
     return(xds_obj)
 })}
 

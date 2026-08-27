@@ -17,5 +17,5 @@ If the current \code{season_par} is a list,
 return a parameter set
 }
 \seealso{
-\code{\link[ramp.xds:makepar_F_sin]{ramp.xds::makepar_F_sin()}}
+\code{\link[ramp.func:makepar_F_sin]{ramp.func::makepar_F_sin()}}
 }
