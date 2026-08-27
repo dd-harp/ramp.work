@@ -1,1 +1,39 @@
 # Time Series
+
+``` r
+
+#devtools::load_all()
+```
+
+``` r
+
+library(ramp.forcing)
+```
+
+    ## Loading required package: ramp.xds
+
+    ## Loading required package: ramp.func
+
+``` r
+
+library(ramp.func)
+library(ramp.work)
+```
+
+    ## Loading required package: ramp.qa
+
+``` r
+
+sp <- makepar_F_sin(bottom = 1)
+tp <- makepar_F_spline(seq(0, 3650, length.out=5), c(1,0.2,.25,1.5,1))
+ts1 <- ts_setup(.3, sp, tp, tnorm = 3650)  
+```
+
+``` r
+
+tm = 1:3650
+ts <- F_pr(tm, ts1)
+plot(tm, ts, type ="l", main = round(100*mean(ts))/100)
+```
+
+![](TimeSeries_files/figure-html/unnamed-chunk-4-1.png)

@@ -21,4 +21,4 @@ fit_trend(xds_obj, options = list())
 
 ## Value
 
-a list with the mean peak and the values
+an `xds` xds_obj

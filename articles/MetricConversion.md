@@ -14,6 +14,7 @@ linear interpolation.
 ## Example
 
 ``` r
+
 library(ramp.xds)
 library(ramp.work)
 ```
@@ -21,6 +22,7 @@ library(ramp.work)
 The algorithms require the outputs of `xds_scaling`
 
 ``` r
+
 Spar  <- makepar_F_sin(bottom = 0.2, pw=2)
 model <- xds_setup_eir(eir = 1/365, season_par = Spar)
 model <- xds_scaling(model)
@@ -35,6 +37,7 @@ We can create 50 randomly chosen values of the *Pf*PR, and output the
 associated *Pf*EIR values
 
 ``` r
+
 prs = c(0.001, runif(25, 0, 1), 0.999)
 preir_i = xds_pr2eir(prs, model)
 ```
@@ -44,15 +47,17 @@ This may not seem important for the SIS model, but the range of other
 models can be bounded, so we don’t want to return nonsense values.
 
 ``` r
+
 preir_i$errors
 ```
 
-    ##       pr1       pr2       pr3 
-    ## 0.0010000 0.9805397 0.9990000
+    ##   pr1   pr2 
+    ## 0.001 0.999
 
 We can plot the others:
 
 ``` r
+
 xds_plot_eirpr(model)
 with(model$scaling, points(aeir, pr, pch = 15))
 with(preir_i, points(365*eir, pr, pch = 19, col = "red"))

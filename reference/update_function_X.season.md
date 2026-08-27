@@ -3,7 +3,7 @@
 This features three shape parameters for a function `F_season` using
 [modify_vector_X](https://dd-harp.github.io/ramp.work/reference/modify_vector_X.md)
 and
-[ramp.xds::change_season](https://dd-harp.github.io/ramp.xds/reference/change_season.html)
+[ramp.forcing::change_season](https://dd-harp.github.io/ramp.forcing/reference/change_season.html)
 
 ## Usage
 

@@ -25,4 +25,4 @@ setup_fitting_indices(xds_obj, feature, options)
 
 ## Value
 
-indices
+indices to be fit

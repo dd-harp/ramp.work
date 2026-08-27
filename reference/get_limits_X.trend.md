@@ -21,4 +21,4 @@ get_limits_X(xds_obj, feature)
 
 ## Value
 
-a vector
+a pair of values

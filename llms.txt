@@ -41,9 +41,9 @@ handle forcing by weather and other exogenous variables.
 The software was designed around a rigorous mathematical framework for
 modular model building, described in [Spatial Dynamics of Malaria
 Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684)
-(Wu SL, *et al.* 2023. PLoS Computational Biology)[¹](#fn1). The
-mathematical framework has now been extended to cover *exogenous
-forcing* by weather and vector control.
+(Wu SL, *et al.* 2023. PLoS Computational Biology)[^1]. The mathematical
+framework has now been extended to cover *exogenous forcing* by weather
+and vector control.
 
 ## What is **`ramp.work`**?
 
@@ -72,115 +72,12 @@ developed to support RAMP:
 
 **`ramp.work`** is under active development.
 
-------------------------------------------------------------------------
-
-1.  Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J,
-    Sánchez C. HM, et al. (2023) Spatial dynamics of malaria
+[^1]: Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba
+    J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria
     transmission. PLoS Comput Biol 19(6): e1010684.
     <https://doi.org/10.1371/journal.pcbi.1010684>
 
 # Package index
-
-## Scaling
-
-Compute Scaling Relationships
-
-- [`xds_scaling()`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.md)
-  : Scaling for Malaria Metrics
-
-- [`xds_scaling(`*`<eir>`*`)`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.eir.md)
-  : Compute eir-pr scaling relationships
-
-- [`xds_scaling(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.Lambda.md)
-  : Compute scaling relationships from mosquito emergence through PfPR
-
-- [`xds_scaling_Lambda()`](https://dd-harp.github.io/ramp.work/reference/xds_scaling_Lambda.md)
-  : Compute
-
-- [`compute_Lambda_threshold()`](https://dd-harp.github.io/ramp.work/reference/compute_Lambda_threshold.md)
-  : Get High/Low Values for Lambda
-
-- [`xds_plot_eirVpr()`](https://dd-harp.github.io/ramp.work/reference/xds_plot_eirVpr.md)
-  :
-
-  xds_plot EIR(t) *vs.* the PR(t)
-
-- [`xds_plot_eirpr()`](https://dd-harp.github.io/ramp.work/reference/xds_plot_eirpr.md)
-  : xds_plot the eir-pr scaling relationship
-
-- [`lines_eirVpr()`](https://dd-harp.github.io/ramp.work/reference/lines_eirVpr.md)
-  :
-
-  Add lines for the EIR(t) *vs.* the PR(t)
-
-- [`lines_eirpr()`](https://dd-harp.github.io/ramp.work/reference/lines_eirpr.md)
-  : Add lines for an eir-pr scaling relationship
-
-## Metrics
-
-Metric Conversion
-
-- [`pr2Lambda()`](https://dd-harp.github.io/ramp.work/reference/pr2Lambda.md)
-  : Using the eirpr matrix and a RM xds_obj, convert pr to Lambda
-- [`xds_eir2ni()`](https://dd-harp.github.io/ramp.work/reference/xds_eir2ni.md)
-  : Convert eir to ni
-- [`xds_eir2pr()`](https://dd-harp.github.io/ramp.work/reference/xds_eir2pr.md)
-  : Convert eir to pr
-- [`xds_pr2eir()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2eir.md)
-  : Convert pr to eir
-- [`xds_pr2Lambda()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2Lambda.md)
-  : Convert pr to lambda
-- [`xds_pr2m()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2m.md)
-  : Convert pr to mosquito density
-- [`xds_pr2ni()`](https://dd-harp.github.io/ramp.work/reference/xds_pr2ni.md)
-  : Convert pr to ni
-- [`pr2history()`](https://dd-harp.github.io/ramp.work/reference/pr2history.md)
-  : Reconstruct a history of exposure from a PR time series
-- [`pr2history_xm()`](https://dd-harp.github.io/ramp.work/reference/pr2history_xm.md)
-  : Reconstruct a history of exposure from a PR time series
-- [`reconD_shock_xm()`](https://dd-harp.github.io/ramp.work/reference/reconD_shock_xm.md)
-  : Reconstruct a history of exposure from a PR time series
-- [`eir2fqZ()`](https://dd-harp.github.io/ramp.work/reference/eir2fqZ.md)
-  : Convert the EIR into a vector describing infective biting density
-- [`fqZ2eir()`](https://dd-harp.github.io/ramp.work/reference/fqZ2eir.md)
-  : Convert a vector describing infective biting density into the EIR,
-  \\E\\
-- [`make_HTC_matrix()`](https://dd-harp.github.io/ramp.work/reference/make_HTC_matrix.md)
-  : Parasite dispersal by humans
-- [`make_VC_matrix()`](https://dd-harp.github.io/ramp.work/reference/make_VC_matrix.md)
-  : Parasite dispersal by mosquitoes
-- [`make_calR()`](https://dd-harp.github.io/ramp.work/reference/make_calR.md)
-  : Parasite Dispersal through one Parasite Generation (Humans)
-- [`make_calZ()`](https://dd-harp.github.io/ramp.work/reference/make_calZ.md)
-  : Parasite Dispersal through one Parasite Generation (Mosquitoes)
-
-## Seasonality
-
-No methods to set subclass
-
-- [`add_orbits()`](https://dd-harp.github.io/ramp.work/reference/add_orbits.md)
-  : Draw the orbit for the \\i^{th}\\ element of eirpr\$scaling.
-
-- [`add_orbits_px()`](https://dd-harp.github.io/ramp.work/reference/add_orbits_px.md)
-  : Draw the orbit for the \\i^{th}\\ element of eirpr\$scaling, and add
-  points at the minimum and maximum eir and pr
-
-- [`compute_IoSD_F()`](https://dd-harp.github.io/ramp.work/reference/compute_IoSD_F.md)
-  : Compute the Index of Dispersal for a function F(t) over one year.
-
-- [`compute_IoSD_S()`](https://dd-harp.github.io/ramp.work/reference/compute_IoSD_S.md)
-  : Compute the Index of Seasonal Dispersal for a seasonal pattern
-  \\S(t)\\ over one year. This assumes that \$\$\int_0^{365} S(t)dt =
-  365\$\$
-
-- [`compute_IoSD_pr()`](https://dd-harp.github.io/ramp.work/reference/compute_IoSD_pr.md)
-  :
-
-  Compute the Index of Seasonal Dispersal for a PR seasonal orbit for
-  the \\i^{th}\\ element of `eirpr$scaling`
-
-- [`add_eirpr_orbits()`](https://dd-harp.github.io/ramp.work/reference/add_eirpr_orbits.md)
-  : Draw the orbit for the \\i^{th}\\ element of eirpr\$scaling.
 
 ## Model Fitting
 
@@ -192,6 +89,12 @@ No methods to set subclass
   : Set up the data object for fitting
 - [`fit_model()`](https://dd-harp.github.io/ramp.work/reference/fit_model.md)
   : Fit a model to data
+- [`mask_data()`](https://dd-harp.github.io/ramp.work/reference/mask_data.md)
+  : Mask data
+- [`unmask_data()`](https://dd-harp.github.io/ramp.work/reference/unmask_data.md)
+  : Unmask data
+- [`mask_events()`](https://dd-harp.github.io/ramp.work/reference/mask_events.md)
+  : Mask data around events
 
 ### Goodness of Fit
 
@@ -724,6 +627,23 @@ Impute the baseline
 
 - [`norm_trend(`*`<Lambda>`*`)`](https://dd-harp.github.io/ramp.work/reference/norm_trend.Lambda.md)
   : Normalize Trend
+
+## New
+
+- [`compute_gof(`*`<ts_sse>`*`)`](https://dd-harp.github.io/ramp.work/reference/compute_gof.ts_sse.md)
+  : Compute SSE
+- [`mask_bn_event()`](https://dd-harp.github.io/ramp.work/reference/mask_bn_event.md)
+  : Mask data around a bednet event
+- [`pr2history()`](https://dd-harp.github.io/ramp.work/reference/pr2history.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`pr2history_xm()`](https://dd-harp.github.io/ramp.work/reference/pr2history_xm.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`reconD_shock_xm()`](https://dd-harp.github.io/ramp.work/reference/reconD_shock_xm.md)
+  : Reconstruct a history of exposure from a PR time series
+- [`setup_fitting_ts()`](https://dd-harp.github.io/ramp.work/reference/setup_fitting_ts.md)
+  : Set up the ts_obj fitting object
+- [`ts_setup()`](https://dd-harp.github.io/ramp.work/reference/ts_setup.md)
+  : Build a Decomposable Time Series Model
 
 # Articles
 

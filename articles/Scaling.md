@@ -54,6 +54,7 @@ handles this task.
 Load the required packages:
 
 ``` r
+
 library(ramp.xds)
 library(ramp.work)
 ```
@@ -63,6 +64,7 @@ Set up a model forced by the EIR with a seasonal pattern, and we use
 to see the pattern:
 
 ``` r
+
 Spar  <- makepar_F_sin(bottom = 0.2, pw=2)
 model <- xds_setup_eir(eir = 1/365, season_par = Spar)
 model <- xds_solve(model)
@@ -80,6 +82,7 @@ computes and stores the values:
 - `xds_scaling$scaling$stable_orbits` stores the stable orbits
 
 ``` r
+
 xds_scaling(model) -> model
 names(model$scaling)
 ```
@@ -93,6 +96,7 @@ stable orbits for an indexed subset. We use the `virisLite::turbo` color
 scheme so it is easy to relate the orbit and the mean value.
 
 ``` r
+
 library(viridisLite)
 xds_plot_eirpr(model)
 ix_subset = c(9, 13, 17, 21)
@@ -106,15 +110,13 @@ add_eirpr_orbits(ix_subset, model, clrs = turbo(25))
 - `xds_scaling` dispatches on `xds_obj$forced_by,` which is set up
   either by `xds_setup_eir` or by the `make_L_obj_trivial.`
 
-- The function
-  [`xds_scaling.eir()`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.eir.md)
-  creates a mesh over logged values of on an even mesh for values of
-  `log(aEIR)` running from \\10^{-2}\\ up to \\10^{3}.\\
+- The function `xds_scaling.eir()` creates a mesh over logged values of
+  on an even mesh for values of `log(aEIR)` running from \\10^{-2}\\ up
+  to \\10^{3}.\\
 
-- The function
-  [`xds_scaling.Lambda()`](https://dd-harp.github.io/ramp.work/reference/xds_scaling.Lambda.md)
-  computes a creates a crude mesh. The first step is to compute an
-  approximate pseudo-threshold value \\L.\\ The initial mesh looks has
-  five values \\c(L/100, L/5, L, 5L, 100L).\\ Subsequent values are
-  identified by picking a new value in the interval that has the largest
-  change in *Pf*PR. After adding the new value, the
+- The function `xds_scaling.Lambda()` computes a creates a crude mesh.
+  The first step is to compute an approximate pseudo-threshold value
+  \\L.\\ The initial mesh looks has five values \\c(L/100, L/5, L, 5L,
+  100L).\\ Subsequent values are identified by picking a new value in
+  the interval that has the largest change in *Pf*PR. After adding the
+  new value, the

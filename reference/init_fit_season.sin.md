@@ -22,4 +22,4 @@ a `sin` function parameter set
 
 ## See also
 
-[`ramp.xds::makepar_F_sin()`](https://dd-harp.github.io/ramp.xds/reference/makepar_F_sin.html)
+[`ramp.func::makepar_F_sin()`](https://dd-harp.github.io/ramp.func/reference/makepar_F_sin.html)

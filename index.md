@@ -41,9 +41,9 @@ handle forcing by weather and other exogenous variables.
 The software was designed around a rigorous mathematical framework for
 modular model building, described in [Spatial Dynamics of Malaria
 Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684)
-(Wu SL, *et al.* 2023. PLoS Computational Biology)[¹](#fn1). The
-mathematical framework has now been extended to cover *exogenous
-forcing* by weather and vector control.
+(Wu SL, *et al.* 2023. PLoS Computational Biology)[^1]. The mathematical
+framework has now been extended to cover *exogenous forcing* by weather
+and vector control.
 
 ## What is **`ramp.work`**?
 
@@ -72,9 +72,7 @@ developed to support RAMP:
 
 **`ramp.work`** is under active development.
 
-------------------------------------------------------------------------
-
-1.  Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J,
-    Sánchez C. HM, et al. (2023) Spatial dynamics of malaria
+[^1]: Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba
+    J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria
     transmission. PLoS Comput Biol 19(6): e1010684.
     <https://doi.org/10.1371/journal.pcbi.1010684>
