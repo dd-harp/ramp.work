@@ -49,6 +49,7 @@ setup_fitting_indices.season = function(xds_obj, feature, options){
 #'
 #' @inheritParams get_init_X
 #'
+#'
 #' @return a vector
 #' @export
 get_init_X.season <- function(xds_obj, feature, options=list()){
@@ -60,7 +61,7 @@ get_init_X.season <- function(xds_obj, feature, options=list()){
 #' @title feature `F_season`
 #'
 #' @description This features three shape parameters
-#' for a function `F_season` using [modify_vector_X] and [change_season]
+#' for a function `F_season` using [modify_vector_X] and [ramp.forcing::change_season]
 #'
 #' @note This assumes the vector, `X`, has got
 #' three sets of parameters describing three
@@ -68,6 +69,7 @@ get_init_X.season <- function(xds_obj, feature, options=list()){
 #' parameter names phase, bottom, and pw.
 #'
 #' @inheritParams update_function_X
+#' @importFrom ramp.forcing change_season
 #'
 #' @returns sum of squared differences
 #' @export

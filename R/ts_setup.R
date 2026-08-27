@@ -2,7 +2,6 @@
 #' @title Build a Decomposable Time Series Model
 #'
 #' @description
-#' \loadmathjax
 #'
 #' Like [xds_setup], [ts_setup] sets up a decomposed,
 #' multiplicative time-series analysis that can be used
@@ -19,19 +18,19 @@
 #' a function is set up to modify exposure by age.
 #'
 #' @param pr is the mean pr
-#' @param season_par parameters to configure a seasonality function using [make_function]
-#' @param trend_par parameters to configure a trends function using [make_function]
-#' @param age_par parameters to configure an age weights function using [make_function]
-#' @param shock_par parameters to configure a shock using [make_function]
+#' @param season_par parameters to configure a seasonality function using [ramp.func::make_function]
+#' @param trend_par parameters to configure a trends function using [ramp.func::make_function]
+#' @param age_par parameters to configure an age weights function using [ramp.func::make_function]
+#' @param shock_par parameters to configure a shock using [ramp.func::make_function]
 #' @param tnorm normalize from 0 up to tnorm
 #'
 #' @return a **`ts`** object
 #' @export
 ts_setup = function(pr=.3,
-                    season_par = makepar_F_one(),
-                    trend_par = makepar_F_one(),
-                    age_par = makepar_F_one(),
-                    shock_par = makepar_F_one(),
+                    season_par = makepar_F_c(1),
+                    trend_par = makepar_F_c(1),
+                    age_par = makepar_F_c(1),
+                    shock_par = makepar_F_c(1),
                     tnorm =365
 
 ){
@@ -63,7 +62,7 @@ ts_setup = function(pr=.3,
 #' + `F_trend` is made from `trend_par`
 #' + `F_shock` is made from `shock_par`
 #'
-#' @inheritParams ramp.xds::rebuild_forcing_functions
+#' @inheritParams ramp.forcing::rebuild_forcing_functions
 #' @keywords internal
 #'
 #' @return an **`xds`** object
@@ -93,7 +92,7 @@ rebuild_forcing_functions.pr = function(xds_obj, ix=1){
 #' + `F_trend` is made from `trend_par`
 #' + `F_shock` is made from `shock_par`
 #'
-#' @inheritParams ramp.xds::rebuild_forcing_functions
+#' @inheritParams ramp.forcing::rebuild_forcing_functions
 #' @keywords internal
 #'
 #' @return an **`xds`** object
@@ -112,7 +111,7 @@ F_pr = function(tm, ts_obj, bday=0){
 #' @param pfpr a *Pf*PR time series
 #' @param jdates julian dates for `pfpr`
 #' @param yr0 the starting year
-#' @param g_neg_inf a starting year
+#' @param t_neg_inf a starting year
 #' @param N the number of interpolation points for hindcasting and forecasting
 #' @param gof_method to dispatch [compute_gof]
 #'

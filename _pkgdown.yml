@@ -39,49 +39,6 @@ home:
     - authors
     - dev
 reference:
-- title: Scaling
-  desc: |
-    Compute Scaling Relationships
-  contents:
-  - xds_scaling
-  - xds_scaling.eir
-  - xds_scaling.Lambda
-  - xds_scaling_Lambda
-  - compute_Lambda_threshold
-  - xds_plot_eirVpr
-  - xds_plot_eirpr
-  - lines_eirVpr
-  - lines_eirpr
-- title: Metrics
-  desc: |
-    Metric Conversion
-  contents:
-  - pr2Lambda
-  - xds_eir2ni
-  - xds_eir2pr
-  - xds_pr2eir
-  - xds_pr2Lambda
-  - xds_pr2m
-  - xds_pr2ni
-  - pr2history
-  - pr2history_xm
-  - reconD_shock_xm
-  - eir2fqZ
-  - fqZ2eir
-  - make_HTC_matrix
-  - make_VC_matrix
-  - make_calR
-  - make_calZ
-- title: Seasonality
-  desc: |
-    No methods to set subclass
-  contents:
-  - add_orbits
-  - add_orbits_px
-  - compute_IoSD_F
-  - compute_IoSD_S
-  - compute_IoSD_pr
-  - add_eirpr_orbits
 - title: Model Fitting
   desc: |
     No methods to set subclass
@@ -335,3 +292,12 @@ reference:
   - norm_trend
   - norm_trend.eir
   - norm_trend.Lambda
+- title: New
+  contents:
+  - compute_gof.ts_sse
+  - mask_bn_event
+  - pr2history
+  - pr2history_xm
+  - reconD_shock_xm
+  - setup_fitting_ts
+  - ts_setup

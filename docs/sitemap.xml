@@ -13,6 +13,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/articles/index.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/authors.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/index.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/F_pr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/X2dshape.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/add_eirpr_orbits.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/add_fit_spline_ty.html</loc></url>
@@ -40,6 +41,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/compute_gof.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/compute_gof.smooth_sse.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/compute_gof.sse.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/compute_gof.ts_sse.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/compute_gof_X.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/compute_impact.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/crude_fit_trend.Lambda.html</loc></url>
@@ -137,6 +139,9 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/make_VC_matrix.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/make_calR.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/make_calZ.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/mask_bn_event.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/mask_data.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/mask_events.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/modify_vector_X.NULL.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/modify_vector_X.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/modify_vector_X.numeric.html</loc></url>
@@ -151,6 +156,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2shockfit.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/pr2shockfit_xm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/preset_phase.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/rebuild_forcing_functions.pr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/reconD_shock_xm.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/restore_pr2history.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/restore_pr2shockit.html</loc></url>
@@ -177,6 +183,7 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.pw.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.season.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_indices.trend.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/setup_fitting_ts.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_forecast.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_forecast_y.asis.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/setup_forecast_y.html</loc></url>
@@ -193,6 +200,8 @@
 <url><loc>https://dd-harp.github.io/ramp.work/reference/sigXinv.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/smooth_pr.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/time_since_event.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/ts_setup.html</loc></url>
+<url><loc>https://dd-harp.github.io/ramp.work/reference/unmask_data.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_fit_trend.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.amplitude.html</loc></url>
 <url><loc>https://dd-harp.github.io/ramp.work/reference/update_function_X.bednet_contact.html</loc></url>

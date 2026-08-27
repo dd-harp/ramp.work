@@ -20,7 +20,7 @@ sum of squared differences
 }
 \description{
 This features three shape parameters
-for a function \code{F_season} using \link{modify_vector_X} and \link[ramp.xds:change_season]{ramp.xds::change_season}
+for a function \code{F_season} using \link{modify_vector_X} and \link[ramp.forcing:change_season]{ramp.forcing::change_season}
 }
 \note{
 This assumes the vector, \code{X}, has got

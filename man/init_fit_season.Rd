@@ -16,5 +16,5 @@ a \code{sin} function parameter set
 Set up the seasonal pattern
 }
 \seealso{
-\code{\link[ramp.xds:makepar_F_sin]{ramp.xds::makepar_F_sin()}}
+\code{\link[ramp.func:makepar_F_sin]{ramp.func::makepar_F_sin()}}
 }

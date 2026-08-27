@@ -34,13 +34,14 @@ show_fit = function(xds_obj, clr="black", add=FALSE, rng=NULL,dom=NULL){
 #' @param xds_obj a **`ramp.xds`** model object
 #' @param clr the color of the line to be plotted
 #' @param add add to an existing show_fit plot
-#' @importFrom graphics segments
+#' @importFrom graphics segments points
+#' @importFrom ramp.xds xds_solve
 #'
 #' @returns the PR, invisibly
 #' @export
 show_residuals = function(xds_obj, clr="black", add=FALSE){
   jdates = xds_obj$data$jdates
-  xds_obj <- ramp.xds::xds_solve(xds_obj, times = c(0, jdates))
+  xds_obj <- xds_solve(xds_obj, times = c(0, jdates))
   residuals <- xds_obj$data$pfpr - get_PR(xds_obj, xds_obj$fit_obj$pr_diagnostic, 1)$pr[-1]
   if(add==FALSE)
     plot(jdates, residuals, type = "n", xlab = "Time", ylab = "PfPR", pch=15, ylim = range(-max(residuals), max(residuals)))

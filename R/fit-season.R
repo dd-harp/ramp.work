@@ -41,7 +41,7 @@ check_season_par.eir = function(xds_obj){
 #'
 #' @return a `sin` function parameter set
 #' @export
-#' @seealso [makepar_F_sin()]
+#' @seealso [ramp.func::makepar_F_sin()]
 init_fit_season = function(season_par){
   UseMethod("init_fit_season", season_par)
 }
@@ -56,7 +56,7 @@ init_fit_season = function(season_par){
 #'
 #' @return a `sin` function parameter set
 #'
-#' @seealso [makepar_F_sin()]
+#' @seealso [ramp.func::makepar_F_sin()]
 #'
 #' @export
 #'
@@ -74,7 +74,7 @@ init_fit_season.list = function(season_par){
 #'
 #' @return a `sin` function parameter set
 #'
-#' @seealso [makepar_F_sin()]
+#' @seealso [ramp.func::makepar_F_sin()]
 #'
 #' @export
 #'
