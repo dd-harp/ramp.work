@@ -126,7 +126,7 @@ preset_phase <- function(xds_obj){
   model_phase <- approx_phase(get_PR(xds_obj)$pr, times)
   old_phase <- get_season_phase(xds_obj, 1)
   new_phase <- (old_phase+(d_phase-model_phase))%%365
-  xds_obj <- change_season(list(phase=new_phase), xds_obj, s=1)
+  xds_obj <- change_season(list(phase=new_phase), xds_obj, ix=1)
   xds_obj <- xds_solve(xds_obj, times=times)
 #  new <- approx_phase(get_PR(xds_obj), times)
 #  print(c(dphase=d_phase, model_phase=model_phase, new=new))

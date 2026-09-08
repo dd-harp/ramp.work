@@ -79,7 +79,7 @@ update_function_X.season = function(X, xds_obj, feature="season", options=list()
     pars$phase <- X[phase_ixX]
     pars$bottom <- sigX(X[bottom_ixX], 0, 20)
     pars$pw <- sigX(X[pw_ixX], 0.2, 10)
-    xds_obj <- change_season(pars, xds_obj, s=1)
+    xds_obj <- change_season(pars, xds_obj, ix=1)
     return(xds_obj)
 })}
 

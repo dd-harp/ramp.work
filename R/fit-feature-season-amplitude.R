@@ -68,7 +68,7 @@ update_function_X.amplitude = function(X, xds_obj, feature="amplitude", options=
     pars <- get_season(xds_obj)
     pars$bottom <- sigX(X[bottom_ixX], 0, 20)
     pars$pw <-  sigX(X[pw_ixX], 0.2, 10)
-    xds_obj <- change_season(pars, xds_obj, s=1)
+    xds_obj <- change_season(pars, xds_obj, 1)
 
     return(xds_obj)
   })}

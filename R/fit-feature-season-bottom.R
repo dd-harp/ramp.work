@@ -73,7 +73,7 @@ get_init_X.bottom <- function(xds_obj, feature, options=list()){
 update_function_X.bottom = function(X, xds_obj, feature, options){
 
   bottom <- sigX(X[options$bottom_ixX], 0, 20)
-  xds_obj <- change_season(list(bottom=bottom), xds_obj, s=1)
+  xds_obj <- change_season(list(bottom=bottom), xds_obj, 1)
 
   return(xds_obj)
 }
